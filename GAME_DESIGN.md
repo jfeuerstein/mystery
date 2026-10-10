@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.0, final. Written from a design interview, October 2026
+**Status:** v1.1. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -360,22 +360,27 @@ The signature Holmes moment, and the opener of almost every case.
 *"If this, then that. And if that…"*
 
 - **Shown:** a set of 5–9 **premise cards** drawn from evidence, testimony
-  and established facts. Each is phrased as a conditional or quantified
-  statement in period English ("No one who dined at the Hall left before
-  ten," "The study can be reached only through the library").
+  and established facts. Every card is true. Each is a fact or a conditional
+  in period English ("No one who dined at the Hall left before ten," "The
+  study can be reached only through the library"). Quantified cards ("some",
+  "most", "all") arrive with tier 3.
 - **Built:** drag cards onto the Chain Hall board and link them
   head-to-tail. The final link lands in a **Conclusion** slot that offers
   conclusions phrased on the fly from the end of your chain.
 - **The prompt** states what must be determined ("What must be true of
-  the man who stopped the clock?").
-- **Traps:** distractor cards are deliberately the *converse* or *inverse*
-  of real links, "unless" and "only if" phrasings, and "some" versus "all"
-  mismatches. A chain built from a converse snaps together visually but
-  reaches the wrong conclusion.
-- **Contrapositives:** you can **flip** any conditional card (a double-tap
-  turns "If A then B" into "If not B then not A"). Flipping is always
-  allowed, because it is always valid. Learning that this is the *only*
-  legal transformation is the lesson.
+  the murderer?").
+- **Turning a card:** a chain starts from a fact card. Every conditional
+  card you place can be **turned** (tap to cycle) through four readings,
+  each written out in plain English with no labels: as stated, its
+  *contrapositive*, its *converse*, and its *inverse*. You pick the reading
+  that links to the end of your chain. Only the stated reading and the
+  contrapositive are valid; the converse and inverse are the **traps**.
+  They read naturally, they snap into place, and they lead to a wrong
+  conclusion. "Unless" and "only if" cards make the stated reading itself
+  hard to recognize, which is the point.
+- **Why this design:** every link is a real test of telling the four
+  readings apart. An earlier draft used separate "trap cards," which a
+  player could beat by never using them.
 - **Validation:** the declared chain must be *valid*, meaning each link
   follows, and must reach the target conclusion. Any valid chain counts, so
   alternative routes to the same conclusion are accepted.
@@ -496,11 +501,14 @@ you.
 
 ### Structure
 - **The Fallacy Index:** one entry per flaw type, such as *On the Gate and
-  the Key* (necessary versus sufficient conditions), *On Reversed Arrows*
-  (the converse), *On the Rooster and the Dawn* (correlation and causation),
-  *On the Unrepresentative Witness* (biased samples).
+  the Key* (treating a necessary condition as sufficient), *On the Shut
+  Gate* (treating a sufficient condition as necessary), *On the Rooster and
+  the Dawn* (correlation and causation), *On the Unrepresentative Witness*
+  (biased samples). Each logical error has exactly one entry, so a Flaw
+  never has two defensible names.
 - **The Methods:** entries on reasoning tools, such as *On Turning a
-  Statement About* (the contrapositive), *On "Unless"*, *On Some, Most and
+  Statement About* (the contrapositive), *On Reversed Arrows* (why the
+  converse and inverse don't follow), *On "Unless"*, *On Some, Most and
   All*, *On Ordering by Elimination*.
 - **The Casebook Margins:** after you solve a deduction, it is appended to
   the relevant entry as a worked example in Holmes' hand. Your past cases
@@ -794,7 +802,7 @@ reports.
 | Type | Formal spec | Verifier |
 |------|-------------|----------|
 | **Arrangement** | Entities, slots, and constraints in a small DSL (`before(A,B)`, `adjacent(A,B)`, `not_in(A,{1,5})`, `same_group(A,B)`…) | A backtracking solver confirms **exactly one** solution, or that the partial-question answer is forced. A human-style propagation solver confirms it is solvable **without guessing**, and its step count sets the difficulty score. |
-| **Chain** | Premises as typed logical forms (`A→B`, `all(X,Y)`, `some(X,Y)`, `A→¬B`), with surface phrasing ("only if", "unless") mapped to logical form by **code, not by the model** | Forward chaining with contrapositives confirms the target is entailed, every offered distractor conclusion is *not* entailed, and each trap card produces a plausible-but-invalid chain. |
+| **Chain** | Premises as typed logical forms (`A→B`, `all(X,Y)`, `some(X,Y)`, `A→¬B`), with surface phrasing ("only if", "unless") mapped to logical form by **code, not by the model** | Forward chaining with contrapositives confirms the target is entailed and no distractor is. Each card's converse and inverse readings are confirmed *not* to follow (so they really are traps), and at least one distractor must be reachable through them. |
 | **Missing Link** | Argument in logical form, plus the gap | The solver confirms the intended premise is necessary (or sufficient), and that every tile combination reaching a *different* logical form fails the test. |
 | **Flaw** | Sentences with roles, the failing sentence id, a flaw type from the taxonomy, and (for formal flaws) the argument's logical form | Formal flaws (converse, necessary/sufficient, quantifier errors) are checked mechanically. All flaws go through blind playtest agreement (3 of 3) plus the adversary pass. |
 | **Objection / Corroborate** | Each testimony sentence mapped to world-model propositions; each evidence card mapped to the facts it establishes | Code computes every (sentence, evidence) pair that contradicts or supports. There must be **exactly one** intended pair, and no unintended pairs among the cards available. |
@@ -1041,14 +1049,13 @@ clay)*, *a half-burned partnership deed in the grate*.
 recollections and the servants' testimony, the order in which five people
 passed through the hall between eight and nine:
 
-1. Vance passed before Miss Darrow.
-2. Mrs. Hale passed immediately after the Colonel.
-3. Pike was neither the first nor the last.
-4. Miss Darrow passed after Mrs. Hale.
-5. The Colonel was not first.
-6. Pike passed before the Colonel.
+1. Mrs. Hale passed immediately after the Colonel.
+2. Pike was neither the first nor the last.
+3. Miss Darrow passed after Mrs. Hale.
+4. Pike passed before the Colonel.
 
-*Solution (verified unique by brute force):* **Vance, Pike, Colonel, Mrs. Hale,
+*Solution (verified unique, solvable without guessing, and with no
+redundant rule, by `@afoot/logic`):* **Vance, Pike, Colonel, Mrs. Hale,
 Miss Darrow.** Vance was first, and alone in the hall well before nine.
 
 ### Chapter III: The Witnesses
@@ -1067,17 +1074,24 @@ Miss Darrow.** Vance was first, and alone in the hall well before nine.
 
 **Chain deduction.** *"What must be true of the murderer?"*
 
-| Premise cards offered | |
+| Card | Stated reading |
 |---|---|
-| P1 If the clock was stopped deliberately, then the murderer wished to fix a false time of death. | ✔ |
-| P2 The murderer wished to fix a false time only if he had an alibi for that false time. | ✔ (note "only if": *wished → alibi*) |
-| P3 The clock was stopped deliberately. *(Established: the glass broke from the front, with no glass beneath.)* | ✔ |
-| T1 Anyone with an alibi for 9:14 wished to fix a false time. | ✘ trap: the converse of P2 |
-| T2 If the clock was not stopped deliberately, the murderer had no alibi for 9:14. | ✘ trap: the inverse of the P1→P2 chain |
+| P1 | If the clock was stopped deliberately, then the murderer wished to fix a false time of death. |
+| P2 | The murderer wished to fix a false time only if he had an alibi for that false time. (*"only if": wished → alibi*) |
+| P3 | The clock was stopped deliberately. *(fact; Established: the glass broke from the front, with no glass beneath)* |
+| P4 | If the murderer was one of the servants, he had no alibi for 9:14, for the servants were below stairs and unaccounted for. |
+| P5 | The dogs did not bark. *(fact)* |
+| P6 | If the murderer was one of the servants, the dogs would not have barked. |
 
-Valid chain: **P3 → P1 → P2 ⇒ "The murderer has an alibi for 9:14."**
-The twist lands: the culprit is someone with the *best* alibi, and that
-points at the card table.
+Valid chain: **P3 → P1 → P2 → P4 turned to its contrapositive** ("If the
+murderer had an alibi for 9:14, he was not one of the servants") **⇒ "The
+murderer was not one of the servants."**
+
+The trap: start from P5 and turn P6 to its *converse*, "If the dogs did not
+bark, the murderer was one of the servants." It reads naturally and snaps
+into place, but it affirms the consequent and reaches the opposite
+conclusion. Holmes speaks: *"The man we seek is no servant, Watson. He is a
+man with the best alibi in the house."* The twist points at the card table.
 
 ### Finale: The Reconstruction
 
@@ -1138,8 +1152,9 @@ glossary.
 | 1 | *On If and Then* | Basic conditionals | Conditional reasoning | Chain |
 | 1 | *On Turning a Statement About* | The contrapositive | Contrapositive | Chain |
 | 1 | *On Order by Elimination* | Simple sequencing | Ordering games | Arrangement |
-| 2 | *On Reversed Arrows* | The converse and inverse errors | Mistaken Reversal / Negation | Flaw, Chain traps |
-| 2 | *On the Gate and the Key* | Necessary versus sufficient | Sufficient/Necessary Confusion | Flaw, Missing Link |
+| 2 | *On Reversed Arrows* (Method) | The converse and inverse don't follow from a conditional | Mistaken Reversal / Negation | Chain (turning cards) |
+| 2 | *On the Gate and the Key* | Treating a necessary condition as sufficient (affirming the consequent) | Sufficient/Necessary Confusion | Flaw, Missing Link |
+| 2 | *On the Shut Gate* | Treating a sufficient condition as necessary (denying the antecedent) | Mistaken Negation | Flaw |
 | 2 | *On "Only If" and "Unless"* | Translating tricky conditionals | Conditional indicators | Chain |
 | 2 | *On the Rooster and the Dawn* | Correlation versus causation | Causal flaw | Flaw, Objection (Weaken) |
 | 2 | *On the Other Explanation* | Alternative causes weaken causal claims | Weaken: alternative cause | Objection |
@@ -1201,3 +1216,4 @@ glossary.
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.1 | Corrections found while building the M0 checkers. The Chain's traps are now converse and inverse *readings* of true cards rather than separate trap cards (§8.4). The Fallacy Index splits necessary/sufficient errors into two entries so no Flaw has two right names (§10, Appendix A). The §16 Arrangement drops two redundant rules, and its Chain gains a real converse trap. |
