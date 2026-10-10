@@ -3,17 +3,23 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "app"
   ],
   "scripts": {
-    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "dev": "npm run dev -w @afoot/app",
+    "build": "npm run build -w @afoot/app",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p app/tsconfig.json && tsc --noEmit -p app/tsconfig.node.json",
     "test": "vitest run",
-    "check": "npm run typecheck && npm run test"
+    "e2e": "node app/e2e/playthrough.mjs",
+    "check": "npm run typecheck && npm run test && npm run build"
   },
   "engines": {
     "node": ">=22"
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
+    "playwright-core": "1.64",
     "typescript": "^5.9.3",
     "vitest": "^3.2.7"
   }

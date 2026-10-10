@@ -1,0 +1,509 @@
+{
+  "$comment": "The illustrative case from GAME_DESIGN.md §16 as a full, playable case. Hand-written development fixture; not a spoiler and never part of the generated game.",
+  "id": "stopped-clock",
+  "title": "The Adventure of the Stopped Clock",
+  "season": 0,
+  "number": 1,
+  "concepts": {
+    "introduces": "reversed-arrows",
+    "reinforces": ["seeing-and-observing", "necessary-as-sufficient", "order-by-elimination", "plain-contradiction", "contrapositive"]
+  },
+  "cast": [
+    { "id": "clara", "name": "Miss Clara Darrow", "role": "our client, the Colonel's daughter", "description": "Five-and-twenty, composed, and frightened beneath it.", "portrait": { "tag": "portrait-young-woman" } },
+    { "id": "colonel", "name": "Colonel Hugh Darrow", "role": "master of Darrow Hall", "description": "Late of the Bengal Lancers; a man of cards and grievances.", "portrait": { "tag": "portrait-colonel" } },
+    { "id": "vance", "name": "Mr. Julian Vance", "role": "the Colonel's business partner", "description": "Smooth, well-tailored, and too ready with his alibi.", "portrait": { "tag": "portrait-gentleman" } },
+    { "id": "pike", "name": "Pike", "role": "the groom", "description": "Young, sullen, and fond of the river path.", "portrait": { "tag": "portrait-groom" } },
+    { "id": "hale", "name": "Mrs. Hale", "role": "the housekeeper", "description": "Thirty years at the Hall; misses nothing.", "portrait": { "tag": "portrait-housekeeper" } },
+    { "id": "orme", "name": "Mr. Silas Orme", "role": "the Colonel's solicitor, deceased", "description": "Found dead in the study.", "portrait": { "tag": "portrait-solicitor" } },
+    { "id": "lestrade", "name": "Inspector Lestrade", "role": "of Scotland Yard", "description": "Sallow, rat-faced, and certain.", "portrait": { "tag": "portrait-inspector" } },
+    { "id": "watson", "name": "Dr. John Watson", "role": "my friend and chronicler", "description": "Late of the Army Medical Department.", "portrait": { "tag": "portrait-watson" } }
+  ],
+  "locations": [
+    { "id": "baker-street", "name": "221B Baker Street", "scene": { "tag": "scene-sitting-room" } },
+    { "id": "darrow-hall", "name": "The study and hall, Darrow Hall", "scene": { "tag": "scene-study" } }
+  ],
+  "evidence": [
+    { "id": "e-clock", "name": "The smashed hall clock", "description": "Its hands stand at 9:14. The glass is broken from the front, yet not a splinter lies on the floor beneath it.", "vignette": { "tag": "vignette-clock" }, "hotspot": { "x": 0.18, "y": 0.22, "r": 0.09 } },
+    { "id": "e-teacup", "name": "Orme's teacup", "description": "Cold and untouched. Mrs. Hale brought it at half past eight.", "vignette": { "tag": "vignette-teacup" }, "hotspot": { "x": 0.62, "y": 0.55, "r": 0.08 } },
+    { "id": "e-library-key", "name": "The library door key", "description": "Found on the study desk, though the library has been locked all week.", "vignette": { "tag": "vignette-key" }, "hotspot": { "x": 0.78, "y": 0.42, "r": 0.07 } },
+    { "id": "e-boots", "name": "Pike's boots", "description": "Left by the side door, wet with the grey clay of the river path.", "vignette": { "tag": "vignette-boots" }, "hotspot": { "x": 0.12, "y": 0.84, "r": 0.08 } },
+    { "id": "e-deed", "name": "A half-burned deed", "description": "A partnership deed in the grate. The Colonel's signature on the surviving corner is not quite the Colonel's hand.", "vignette": { "tag": "vignette-deed" }, "hotspot": { "x": 0.47, "y": 0.78, "r": 0.08 } }
+  ],
+  "facts": [
+    { "id": "n-orme-found", "text": "Mr. Silas Orme, the Colonel's solicitor, was found dead in the study at Darrow Hall." },
+    { "id": "n-clock-914", "text": "The hall clock was found smashed, its hands stopped at 9:14." },
+    { "id": "n-card-game", "text": "At 9:14 the Colonel and Mr. Vance were at cards in the drawing room, by every account." },
+    { "id": "n-threatening-letter", "text": "A week before his death, Orme received a threatening letter on the Colonel's blue stationery." },
+    { "id": "f-letter-not-proof", "text": "Access to the Colonel's desk proves nothing against Miss Darrow; half the house passes it daily." },
+    { "id": "f-vance-alone-in-hall", "text": "Mr. Vance was the first to pass the hall clock between eight and nine." },
+    { "id": "f-pike-at-river", "text": "Pike left the stables to meet a girl at the river. He lied, but not about murder." },
+    { "id": "f-clock-staged", "text": "The clock was stopped deliberately: its glass broke from the front, yet none lay beneath it." },
+    { "id": "n-servants-alone", "text": "At 9:14 every servant was about the house alone; none can vouch for another." },
+    { "id": "f-murderer-not-servant", "text": "The murderer has an alibi for 9:14, and so is not one of the servants." }
+  ],
+  "chapters": [
+    {
+      "id": "ch1",
+      "title": "The Client",
+      "patienceHolder": "clara",
+      "beats": [
+        {
+          "kind": "narration",
+          "art": { "tag": "scene-sitting-room" },
+          "paragraphs": [
+            "It was a raw morning in the March of 1891, and Holmes had spent the better part of it in a grey cloud of tobacco, staring at nothing.",
+            "At a little after eleven Mrs. Hudson showed in a young lady in a dark travelling dress. She took the chair Holmes offered and sat very straight in it, her gloved hands folded in her lap.",
+            "Holmes did not speak at once. He looked at her, as he looks at everything, with an attention that would have been rude in any other man."
+          ],
+          "introduces": []
+        },
+        {
+          "kind": "observe",
+          "subject": "clara",
+          "details": [
+            { "id": "o-ticket", "text": "The return half of a first-class ticket from Guildford, tucked into her glove.", "vignette": { "tag": "vignette-ticket" } },
+            { "id": "o-ink", "text": "A violet ink stain on the inside of the right middle finger, half scrubbed away.", "vignette": { "tag": "vignette-ink" } },
+            { "id": "o-calluses", "text": "Hard calluses on the fingertips of her left hand, and a faint mark under the left side of her jaw.", "vignette": { "tag": "vignette-hand" } }
+          ]
+        },
+        {
+          "kind": "deduction",
+          "slot": {
+            "id": "d-cold-read",
+            "prompt": "Before she has said a word, she has told you a great deal. Read her.",
+            "requires": ["o-ticket", "o-ink", "o-calluses"],
+            "variants": [
+              {
+                "id": "a",
+                "difficulty": 1,
+                "concepts": ["seeing-and-observing"],
+                "puzzle": {
+                  "type": "observation",
+                  "observations": [
+                    { "id": "o-ticket", "text": "The return half of a first-class ticket from Guildford, tucked into her glove." },
+                    { "id": "o-ink", "text": "A violet ink stain on the inside of the right middle finger, half scrubbed away." },
+                    { "id": "o-calluses", "text": "Hard calluses on the fingertips of her left hand, and a faint mark under the left side of her jaw." }
+                  ],
+                  "inferences": [
+                    { "id": "i-surrey", "text": "She travelled up from Surrey this morning." },
+                    { "id": "i-letter", "text": "She wrote a letter in haste before setting out." },
+                    { "id": "i-violin", "text": "She plays the violin, and seriously." },
+                    { "id": "i-left-handed", "text": "She is left-handed.", "defeater": "A violinist stops the strings with the left hand; the calluses say nothing of which hand she writes with." },
+                    { "id": "i-mourning", "text": "She has lately come out of mourning.", "defeater": "Nothing observed supports it." }
+                  ],
+                  "answer": {
+                    "links": [
+                      { "observation": "o-ticket", "inference": "i-surrey" },
+                      { "observation": "o-ink", "inference": "i-letter" },
+                      { "observation": "o-calluses", "inference": "i-violin" }
+                    ]
+                  }
+                }
+              }
+            ],
+            "onSolved": {
+              "holmesSpeaks": "\"You have come up from Surrey this morning, Miss Darrow, you wrote a letter in some haste before you left, and you play the violin, though not, I think, for an audience. Pray tell me what has happened at home.\"",
+              "establishes": []
+            }
+          }
+        },
+        {
+          "kind": "narration",
+          "paragraphs": [
+            "She stared at him, then gave a short, unhappy laugh. \"Then you will know I am at the end of my wits, Mr. Holmes. Mr. Silas Orme, my father's solicitor, was found dead in the study at Darrow Hall last night.\"",
+            "\"The hall clock had been smashed. Its hands stood at fourteen minutes past nine. At that hour my father and his partner, Mr. Vance, were at cards in the drawing room; half the house can swear to it.\"",
+            "\"And there is worse. A week ago Mr. Orme received a letter threatening his life, written on my father's own blue paper. The inspector has learned that I sit at my father's desk every morning to do the household accounts. He looks at me, Mr. Holmes, in a way I do not like.\""
+          ],
+          "introduces": ["n-orme-found", "n-clock-914", "n-card-game", "n-threatening-letter"]
+        },
+        {
+          "kind": "narration",
+          "paragraphs": [
+            "I confess the same thought had occurred to me, and, fool that I was, I said so. \"It seems plain enough, Holmes,\" said I, \"however painful.\"",
+            "Holmes raised one eyebrow and waited for me to go on, which is always a bad sign."
+          ],
+          "introduces": []
+        },
+        {
+          "kind": "deduction",
+          "slot": {
+            "id": "d-watson-letter",
+            "prompt": "Watson's reasoning has a hole in it. Find the step where it fails, and name the error.",
+            "requires": ["n-threatening-letter"],
+            "variants": [
+              {
+                "id": "a",
+                "difficulty": 1,
+                "concepts": ["necessary-as-sufficient"],
+                "puzzle": {
+                  "type": "flaw",
+                  "speaker": "watson",
+                  "sentences": [
+                    { "id": "s1", "role": "premise", "text": "Whoever wrote that letter must have had access to the Colonel's desk, for the paper is his own blue stationery." },
+                    { "id": "s2", "role": "premise", "text": "Miss Darrow herself tells us she uses that desk every morning." },
+                    { "id": "s3", "role": "conclusion", "text": "It follows that Miss Darrow wrote the letter." }
+                  ],
+                  "answer": { "sentenceId": "s3", "flawType": "necessary-as-sufficient" },
+                  "formal": {
+                    "premises": [
+                      { "form": "if", "a": "darrow-wrote-letter", "b": "darrow-had-desk-access" },
+                      { "form": "fact", "literal": "darrow-had-desk-access" }
+                    ],
+                    "conclusion": "darrow-wrote-letter"
+                  }
+                }
+              }
+            ],
+            "onSolved": {
+              "holmesSpeaks": "\"Access is the gate, Watson, not the key. Whoever wrote the letter needed the desk; it does not follow that whoever used the desk wrote the letter. Half the house passes it daily. Miss Darrow, we shall take the 2:10 from Waterloo.\"",
+              "establishes": ["f-letter-not-proof"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch2",
+      "title": "The Scene",
+      "patienceHolder": "lestrade",
+      "beats": [
+        {
+          "kind": "narration",
+          "art": { "tag": "scene-country-house" },
+          "paragraphs": [
+            "Darrow Hall is a long, low house of grey stone, set among wet lawns a mile from Guildford station. Lestrade met us on the steps, his hands deep in his pockets.",
+            "\"I don't know what you hope to find, Mr. Holmes,\" said he. \"The clock gives us the time, the young lady had the paper, and that is the long and short of it. But you are welcome to look.\""
+          ],
+          "introduces": []
+        },
+        {
+          "kind": "examine",
+          "location": "darrow-hall",
+          "hotspots": ["e-clock", "e-teacup", "e-library-key", "e-boots", "e-deed"]
+        },
+        {
+          "kind": "narration",
+          "paragraphs": [
+            "When he had done with the study, Holmes asked for the housekeeper. Mrs. Hale proved to be a small, upright woman with a memory like a ledger."
+          ],
+          "introduces": []
+        },
+        {
+          "kind": "interrogate",
+          "witness": "hale",
+          "topics": [
+            {
+              "id": "t-hale-evening",
+              "label": "The evening",
+              "unlockedBy": [],
+              "sentences": [
+                { "id": "s1", "text": "I took Mr. Orme his tea in the study at half past eight, sir, and he never touched it." },
+                { "id": "s2", "text": "The dogs were quiet all evening. I'd have heard them from the kitchen." }
+              ]
+            },
+            {
+              "id": "t-hale-hall",
+              "label": "Who passed the hall clock",
+              "unlockedBy": ["e-clock"],
+              "sentences": [
+                { "id": "s1", "text": "Between eight and nine, five of us went through the hall: the Colonel, Miss Clara, Mr. Vance, Pike and myself." },
+                { "id": "s2", "text": "I went through immediately after the Colonel." },
+                { "id": "s3", "text": "Pike was neither the first nor the last." },
+                { "id": "s4", "text": "Miss Clara came through after me." },
+                { "id": "s5", "text": "And Pike came through before the Colonel." }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "deduction",
+          "slot": {
+            "id": "d-hall-order",
+            "prompt": "Five people passed the hall clock between eight and nine. In what order?",
+            "requires": ["t-hale-hall", "e-clock"],
+            "variants": [
+              {
+                "id": "a",
+                "difficulty": 2,
+                "concepts": ["order-by-elimination"],
+                "puzzle": {
+                  "type": "arrangement",
+                  "layout": "ordering",
+                  "entities": [
+                    { "id": "colonel", "name": "The Colonel" },
+                    { "id": "clara", "name": "Miss Darrow" },
+                    { "id": "vance", "name": "Mr. Vance" },
+                    { "id": "pike", "name": "Pike" },
+                    { "id": "hale", "name": "Mrs. Hale" }
+                  ],
+                  "slots": [
+                    { "id": "first", "label": "First" },
+                    { "id": "second", "label": "Second" },
+                    { "id": "third", "label": "Third" },
+                    { "id": "fourth", "label": "Fourth" },
+                    { "id": "fifth", "label": "Fifth" }
+                  ],
+                  "rules": [
+                    { "id": "r1", "text": "Mrs. Hale passed immediately after the Colonel.", "constraint": { "op": "immediately-before", "a": "colonel", "b": "hale" } },
+                    { "id": "r2", "text": "Pike was neither the first nor the last.", "constraint": { "op": "not-in", "entity": "pike", "slots": ["first", "fifth"] } },
+                    { "id": "r3", "text": "Miss Darrow passed after Mrs. Hale.", "constraint": { "op": "before", "a": "hale", "b": "clara" } },
+                    { "id": "r4", "text": "Pike passed before the Colonel.", "constraint": { "op": "before", "a": "pike", "b": "colonel" } }
+                  ],
+                  "question": { "kind": "full" }
+                }
+              },
+              {
+                "id": "b",
+                "difficulty": 2,
+                "concepts": ["order-by-elimination"],
+                "puzzle": {
+                  "type": "arrangement",
+                  "layout": "ordering",
+                  "entities": [
+                    { "id": "colonel", "name": "The Colonel" },
+                    { "id": "clara", "name": "Miss Darrow" },
+                    { "id": "vance", "name": "Mr. Vance" },
+                    { "id": "pike", "name": "Pike" },
+                    { "id": "hale", "name": "Mrs. Hale" }
+                  ],
+                  "slots": [
+                    { "id": "first", "label": "First" },
+                    { "id": "second", "label": "Second" },
+                    { "id": "third", "label": "Third" },
+                    { "id": "fourth", "label": "Fourth" },
+                    { "id": "fifth", "label": "Fifth" }
+                  ],
+                  "rules": [
+                    { "id": "r1", "text": "The Colonel passed immediately before Mrs. Hale.", "constraint": { "op": "immediately-before", "a": "colonel", "b": "hale" } },
+                    { "id": "r2", "text": "Pike passed immediately before the Colonel.", "constraint": { "op": "immediately-before", "a": "pike", "b": "colonel" } },
+                    { "id": "r3", "text": "Miss Darrow passed later than the Colonel.", "constraint": { "op": "before", "a": "colonel", "b": "clara" } },
+                    { "id": "r4", "text": "Pike was not the first.", "constraint": { "op": "not-in", "entity": "pike", "slots": ["first"] } }
+                  ],
+                  "question": { "kind": "full" }
+                }
+              }
+            ],
+            "onSolved": {
+              "holmesSpeaks": "\"Mr. Vance, Pike, the Colonel, Mrs. Hale, and Miss Darrow last. Note it, Watson: of all the household, Mr. Vance was the first through that hall, and he went through it alone.\"",
+              "establishes": ["f-vance-alone-in-hall"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch3",
+      "title": "The Witnesses",
+      "patienceHolder": "lestrade",
+      "beats": [
+        {
+          "kind": "narration",
+          "art": { "tag": "scene-stables" },
+          "paragraphs": [
+            "We found the groom in the stable yard, rubbing down a bay mare with more energy than the work required. He did not look up when Lestrade called his name."
+          ],
+          "introduces": []
+        },
+        {
+          "kind": "interrogate",
+          "witness": "pike",
+          "topics": [
+            {
+              "id": "t-pike-evening",
+              "label": "Where he was",
+              "unlockedBy": [],
+              "sentences": [{ "id": "s1", "text": "I never left the stables from seven until the alarm at ten." }]
+            },
+            {
+              "id": "t-pike-noise",
+              "label": "Anything unusual",
+              "unlockedBy": [],
+              "sentences": [{ "id": "s2", "text": "I heard nothing unusual." }]
+            },
+            {
+              "id": "t-pike-dogs",
+              "label": "The dogs",
+              "unlockedBy": [],
+              "sentences": [{ "id": "s3", "text": "The dogs never barked once." }]
+            }
+          ]
+        },
+        {
+          "kind": "deduction",
+          "slot": {
+            "id": "d-pike-objection",
+            "prompt": "One of the groom's statements cannot stand. Which, and what breaks it?",
+            "requires": ["t-pike-evening", "t-pike-noise", "t-pike-dogs", "e-boots"],
+            "variants": [
+              {
+                "id": "a",
+                "difficulty": 1,
+                "concepts": ["plain-contradiction"],
+                "puzzle": {
+                  "type": "objection",
+                  "mode": "contradict",
+                  "witness": "pike",
+                  "testimony": [
+                    { "id": "s1", "text": "I never left the stables from seven until the alarm at ten.", "asserts": ["pike-stayed-in-stables"] },
+                    { "id": "s2", "text": "I heard nothing unusual.", "asserts": ["pike-heard-nothing"] },
+                    { "id": "s3", "text": "The dogs never barked once.", "asserts": ["dogs-silent"] }
+                  ],
+                  "hand": [
+                    { "id": "e-boots", "name": "Pike's boots", "establishes": ["pike-walked-river-path"] },
+                    { "id": "e-clock", "name": "The smashed hall clock", "establishes": ["clock-stopped-deliberately"] },
+                    { "id": "e-teacup", "name": "Orme's teacup", "establishes": ["orme-died-before-nine"] },
+                    { "id": "e-library-key", "name": "The library door key", "establishes": ["library-key-in-study"] }
+                  ],
+                  "background": [{ "form": "if", "a": "pike-walked-river-path", "b": "!pike-stayed-in-stables" }],
+                  "answer": { "sentenceId": "s1", "evidenceId": "e-boots" }
+                }
+              }
+            ],
+            "onSolved": {
+              "holmesSpeaks": "\"You never left the stables? Then how came the grey clay of the river path onto your boots, Pike? The river lies on the far side of the house.\" The groom went red to the ears, and in a moment the whole sorry tale was out: he had slipped away to meet Mrs. Hale's niece by the water. He had lied, but not, Holmes was satisfied, about murder.",
+              "establishes": ["f-pike-at-river"]
+            }
+          }
+        },
+        {
+          "kind": "narration",
+          "paragraphs": [
+            "Holmes returned to the hall and spent some minutes on his knees before the clock with his lens. \"The glass was broken from the front, Watson,\" said he, \"and yet there is not a splinter on the boards beneath it. Someone swept them up. A clock that is stopped by accident does not tidy after itself.\"",
+            "\"And the servants?\" said Lestrade. \"At fourteen past nine every one of them was about the house on his own errand. Not one can vouch for another.\""
+          ],
+          "introduces": ["f-clock-staged", "n-servants-alone"]
+        },
+        {
+          "kind": "deduction",
+          "slot": {
+            "id": "d-clock-chain",
+            "prompt": "Holmes sat back on his heels. What must be true of the murderer?",
+            "requires": ["e-clock", "f-clock-staged", "n-servants-alone", "t-hale-evening"],
+            "variants": [
+              {
+                "id": "a",
+                "difficulty": 3,
+                "concepts": ["if-and-then", "contrapositive", "only-if-and-unless", "reversed-arrows"],
+                "puzzle": {
+                  "type": "chain",
+                  "prompt": "What must be true of the murderer?",
+                  "target": "!murderer-is-servant",
+                  "distractors": ["murderer-is-servant", "!murderer-has-alibi-for-false-time"],
+                  "phrases": {
+                    "clock-stopped-deliberately": "The clock was stopped deliberately.",
+                    "!clock-stopped-deliberately": "The clock was not stopped deliberately.",
+                    "murderer-wished-false-time": "The murderer wished to fix a false time of death.",
+                    "!murderer-wished-false-time": "The murderer did not wish to fix a false time of death.",
+                    "murderer-has-alibi-for-false-time": "The murderer had an alibi for 9:14.",
+                    "!murderer-has-alibi-for-false-time": "The murderer had no alibi for 9:14.",
+                    "murderer-is-servant": "The murderer was one of the servants.",
+                    "!murderer-is-servant": "The murderer was not one of the servants.",
+                    "dogs-barked": "The dogs barked.",
+                    "!dogs-barked": "The dogs did not bark."
+                  },
+                  "cards": [
+                    {
+                      "id": "p1",
+                      "text": "If the clock was stopped deliberately, then the murderer wished to fix a false time of death.",
+                      "statement": { "form": "if", "a": "clock-stopped-deliberately", "b": "murderer-wished-false-time" },
+                      "readings": {
+                        "contrapositive": "If the murderer did not wish to fix a false time of death, the clock was not stopped deliberately.",
+                        "converse": "If the murderer wished to fix a false time of death, the clock was stopped deliberately.",
+                        "inverse": "If the clock was not stopped deliberately, the murderer did not wish to fix a false time of death."
+                      }
+                    },
+                    {
+                      "id": "p2",
+                      "text": "The murderer wished to fix a false time only if he had an alibi for that false time.",
+                      "statement": { "form": "only-if", "a": "murderer-wished-false-time", "b": "murderer-has-alibi-for-false-time" },
+                      "readings": {
+                        "contrapositive": "If the murderer had no alibi for the false time, he did not wish to fix one.",
+                        "converse": "If the murderer had an alibi for the false time, he wished to fix one.",
+                        "inverse": "If the murderer did not wish to fix a false time, he had no alibi for it."
+                      }
+                    },
+                    {
+                      "id": "p3",
+                      "text": "The clock was stopped deliberately.",
+                      "statement": { "form": "fact", "literal": "clock-stopped-deliberately" }
+                    },
+                    {
+                      "id": "p4",
+                      "text": "If the murderer was one of the servants, he had no alibi for 9:14, for every servant was about the house alone.",
+                      "statement": { "form": "if", "a": "murderer-is-servant", "b": "!murderer-has-alibi-for-false-time" },
+                      "readings": {
+                        "contrapositive": "If the murderer had an alibi for 9:14, he was not one of the servants.",
+                        "converse": "If the murderer had no alibi for 9:14, he was one of the servants.",
+                        "inverse": "If the murderer was not one of the servants, he had an alibi for 9:14."
+                      }
+                    },
+                    {
+                      "id": "p5",
+                      "text": "The dogs did not bark.",
+                      "statement": { "form": "fact", "literal": "!dogs-barked" }
+                    },
+                    {
+                      "id": "p6",
+                      "text": "If the murderer was one of the servants, the dogs would not have barked.",
+                      "statement": { "form": "if", "a": "murderer-is-servant", "b": "!dogs-barked" },
+                      "readings": {
+                        "contrapositive": "If the dogs barked, the murderer was not one of the servants.",
+                        "converse": "If the dogs did not bark, the murderer was one of the servants.",
+                        "inverse": "If the murderer was not one of the servants, the dogs barked."
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "onSolved": {
+              "holmesSpeaks": "\"The man we seek is no servant, Lestrade. He stopped that clock to give himself an hour he could account for, and so he must be a man with the best alibi in the house. Shall we go and look at the card table?\"",
+              "establishes": ["f-murderer-not-servant"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "finale": {
+    "patienceHolder": "lestrade",
+    "intro": [
+      "We gathered in the drawing room as the lamps were lit: the Colonel, Mr. Vance, Miss Darrow, and Lestrade by the door with a constable at his back.",
+      "\"Then let me tell you,\" said Holmes, \"what happened at Darrow Hall.\""
+    ],
+    "reconstruction": {
+      "passage": "{{culprit}} killed Mr. Orme {{when}}, when he was alone in the hall. He set the clock's hands to {{false-time}} and broke it, so that his card game with {{alibi}} would serve as his alibi. His motive was {{motive}}, which Orme had discovered.",
+      "blanks": [
+        { "id": "culprit", "answer": "Mr. Vance", "establishedBy": ["d-hall-order", "d-clock-chain"] },
+        { "id": "when", "answer": "before nine", "establishedBy": ["d-hall-order", "e-teacup"] },
+        { "id": "false-time", "answer": "9:14", "establishedBy": ["d-clock-chain", "e-clock"] },
+        { "id": "alibi", "answer": "the Colonel", "establishedBy": ["n-card-game"] },
+        { "id": "motive", "answer": "the forged partnership deed", "establishedBy": ["e-deed"] }
+      ],
+      "wordBank": [
+        "Mr. Vance",
+        "Pike",
+        "Miss Darrow",
+        "the Colonel",
+        "Mrs. Hale",
+        "before nine",
+        "after ten",
+        "9:14",
+        "9:30",
+        "the forged partnership deed",
+        "the threatening letter",
+        "the library key"
+      ]
+    },
+    "solution": [
+      "\"Orme never drank his tea, Lestrade; he was dead within minutes of its arriving at half past eight. Mr. Vance, first through the hall and alone, went into the study and killed him. Then he set the hall clock to fourteen past nine, stopped it, broke the glass, and swept up the splinters, which no accident does.\"",
+      "\"At fourteen past nine he was at cards with the Colonel, exactly as he meant to be. It was the finest alibi in the house, and it was the alibi that hanged him. The deed in the grate bears the Colonel's name in Mr. Vance's hand. Orme had found the forgery, and the threatening letter on the Colonel's paper was Mr. Vance's first attempt to frighten him off.\"",
+      "Vance made one movement toward the window, and then the constable had him."
+    ]
+  },
+  "account": {
+    "masterful": "Never had I seen my friend's faculties in finer order than in the matter of the stopped clock. Not once did he set a foot wrong, and I record it here as a model of the art he has made his own.",
+    "workmanlike": "Holmes stumbled once or twice in the matter of the stopped clock, as the best of us will, but he came through to the truth with his customary resolve, and Mr. Vance will trouble no more solicitors.",
+    "untidy": "I record the matter of the stopped clock not as one of my friend's triumphs. Lestrade's patience was sorely tried before the end, and so, I confess, was mine. Yet the truth came out, as with Holmes it always does."
+  }
+}
