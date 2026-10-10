@@ -108,6 +108,9 @@ The decisions made in the design interview, with the reasoning behind each.
 | 17 | Audio | **Ambient sound and music only**, no voice | Atmosphere without narration cost. |
 | 18 | LSAT fidelity | **LSAT-flavored only** | The mystery comes first. LSAT concepts inform design, and an internal tag system powers adaptivity. |
 | 19 | Title | **The Game Is Afoot** | Chosen by the player. |
+| 20 | Case order | **Strictly sequential**, one open case at a time | Keeps the curriculum and adaptive tuning in a fixed order. |
+| 21 | Wrong-answer feedback | **None**: a miss costs one Patience and reveals nothing | Purist, consistent with decision 8. Guessing teaches nothing. |
+| 22 | Patience budget | **3 per chapter**, 3 for the finale, for every patience-holder | Confirmed by the player after the first draft. |
 
 ---
 
@@ -161,7 +164,7 @@ Season (a sealed batch of ~8 cases)
 
 | Unit | Size | Notes |
 |------|------|-------|
-| **Season** | 6–10 cases | One sealed content bundle. Cases unlock in order, and replaying finished cases is allowed. |
+| **Season** | 6–10 cases | One sealed content bundle. **Strictly sequential:** only one unsolved case is open at a time, and the next unlocks when the current one is solved. Replaying finished cases is allowed. |
 | **Case** | 3–4 chapters, 6–10 deductions | One self-contained mystery. |
 | **Chapter** | 5–10 minutes, 2–3 deductions | The unit of failure (decision 7) and a natural stopping point. |
 | **Beat** | 30 seconds to 3 minutes | The unit of autosave. Closing the app mid-beat resumes at the start of that beat. |
@@ -325,9 +328,8 @@ The signature Holmes moment, and the opener of almost every case.
   choice" exception, kept honest by the growing index and by combining it
   with Step 1.
 - **Declare.** Both parts must be correct.
-- **On a miss:** you lose one Patience. Holmes' inner voice gives a one-line
-  verdict on *which part* failed ("The place is right. The reason is not.").
-  It never says what the right answer is.
+- **On a miss:** you lose one Patience, and that is all you learn. There is
+  no feedback on which part was wrong (§9.1).
 
 ### 8.3 Objection! and Corroborate
 *"The groom says he never left the stables. The river says otherwise."*
@@ -384,8 +386,8 @@ The signature Holmes moment, and the opener of almost every case.
   - **Hybrid:** later in the curriculum.
 - **Interaction:** tap a cell to cycle ✓ / ✗ / blank, or drag a person onto
   a slot. Pencil marks are free. You can annotate rules as "used".
-- **Declare** the full arrangement. On a miss, Holmes' verdict reports *how
-  many* placements are wrong, not which ones.
+- **Declare** the full arrangement. On a miss, you lose one Patience and get
+  no other feedback, not even how many placements were wrong.
 - **Sometimes the question is partial.** Instead of the full arrangement, it
   asks "Who must have been third?" or "Which pair *could* have been together
   in the library?" This is the classic logic-game question style, answered
@@ -427,9 +429,9 @@ The signature Holmes moment, and the opener of almost every case.
 - Blanks are filled from a **word bank** harvested from the case: every
   person, item, time and motive you encountered, with no extra answers added
   that weren't in the case.
-- Declaring is all-or-nothing, but the verdict reports the *count* of wrong
-  blanks (the Golden Idol convention). The Reconstruction has its own
-  Patience budget (§9).
+- Declaring is all-or-nothing. Unlike Golden Idol, a miss does **not**
+  report how many blanks are wrong. The Reconstruction has its own Patience
+  budget (§9).
 - On success, Holmes delivers the full solution as the case's climax, with a
   full-page engraving.
 
@@ -438,14 +440,20 @@ The signature Holmes moment, and the opener of almost every case.
 ## 9. Patience, Failure and Grading
 
 ### 9.1 The Patience meter
-- Each chapter has a **Patience budget, by default 3**. The finale has its
-  own budget, also 3.
+- Each chapter has a **Patience budget of 3**. The finale has its own
+  budget, also 3. The budget is fixed, never adapted, and the same for
+  every patience-holder.
 - It is owned diegetically by whoever is watching Holmes work: Lestrade
-  (drawn as bowler hats), the client (teacups), or Mycroft (budget 2, shown
-  as clock hands). The meter is the same in every case; only the art and
-  dialogue change.
+  (drawn as bowler hats), the client (teacups), or Mycroft (clock hands).
+  The meter works the same way in every case; only the art and dialogue
+  change.
 - **Every wrong Declare costs one point.** Nothing outside the Mind Palace
   costs Patience.
+- **No feedback on a wrong Declare.** The answer is rejected (a struck-glass
+  chime, and one Patience point falls), and nothing else is said: not which
+  part was wrong, not how many placements or blanks were wrong. Your
+  partial answer stays on the board so you can rethink it, but the game
+  never tells you where the error is. The Notebook remains the only help.
 - **When Patience runs out:** a short scene plays in which Lestrade storms
   off ("The case has gone cold, Mr. Holmes"), and the **chapter restarts**
   (decision 7). Evidence and testimony gathered *in that chapter* are reset.
@@ -1033,18 +1041,12 @@ from the Examine scene.
 | **iOS clears saved data** | Install to the home screen, plus Export Save |
 
 ### Open questions
-1. **Patience budget:** is 3 per chapter right? Should Mycroft's 2 be the
-   hard mode?
-2. **Partial feedback on a wrong Declare** ("the place is right, the reason
-   is not"): does it feel like a hint? It could become a setting.
-3. **Image generation:** stay with composed public-domain engravings, or add
+1. **Image generation:** stay with composed public-domain engravings, or add
    a generation model for bespoke vignettes? Which service?
-4. **Case select:** strictly sequential, or two cases open at once for
-   choice?
-5. **Reading Comprehension** isn't in scope. Should long documents (letters,
+2. **Reading Comprehension** isn't in scope. Should long documents (letters,
    wills, newspaper columns) eventually get comprehension-style deductions,
    since the LSAT tests it?
-6. **Season arc:** revisit after Season 1. A Moriarty thread could reuse the
+3. **Season arc:** revisit after Season 1. A Moriarty thread could reuse the
    Reconstruction format across cases.
 
 ---
