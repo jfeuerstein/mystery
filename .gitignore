@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+
+# Plaintext generated cases never leave the generation session (GAME_DESIGN.md §14.6)
+content/.plain/
