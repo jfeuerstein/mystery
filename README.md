@@ -8,3 +8,15 @@ AI-generated, machine-verified for fairness and unique solutions, and sealed
 so you never see them before you play.
 
 See **[GAME_DESIGN.md](GAME_DESIGN.md)** for the full design document.
+
+## Development
+
+Requires Node 22.
+
+```sh
+npm ci
+npm run check   # typecheck + tests
+```
+
+The logic checkers (`packages/logic`) verify every puzzle type, and the tests
+run them against the sample case from the design doc (`fixtures/stopped-clock.json`).

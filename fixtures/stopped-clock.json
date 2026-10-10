@@ -1,0 +1,534 @@
+{
+  "$comment": "The illustrative case from GAME_DESIGN.md §16, encoded as puzzle specs. Hand-written development fixture; never part of the generated game.",
+  "sequence": [
+    {
+      "kind": "clue",
+      "id": "o-ticket"
+    },
+    {
+      "kind": "clue",
+      "id": "o-ink"
+    },
+    {
+      "kind": "clue",
+      "id": "o-calluses"
+    },
+    {
+      "kind": "deduction",
+      "id": "d-cold-read",
+      "requires": [
+        "o-ticket",
+        "o-ink",
+        "o-calluses"
+      ]
+    },
+    {
+      "kind": "clue",
+      "id": "n-threatening-letter"
+    },
+    {
+      "kind": "clue",
+      "id": "n-card-game"
+    },
+    {
+      "kind": "deduction",
+      "id": "d-watson-letter",
+      "requires": [
+        "n-threatening-letter"
+      ]
+    },
+    {
+      "kind": "clue",
+      "id": "e-clock"
+    },
+    {
+      "kind": "clue",
+      "id": "e-teacup"
+    },
+    {
+      "kind": "clue",
+      "id": "e-library-key"
+    },
+    {
+      "kind": "clue",
+      "id": "e-boots"
+    },
+    {
+      "kind": "clue",
+      "id": "e-deed"
+    },
+    {
+      "kind": "clue",
+      "id": "t-hall-order"
+    },
+    {
+      "kind": "deduction",
+      "id": "d-hall-order",
+      "requires": [
+        "t-hall-order"
+      ],
+      "establishes": [
+        "f-vance-alone-in-hall"
+      ]
+    },
+    {
+      "kind": "clue",
+      "id": "t-pike"
+    },
+    {
+      "kind": "deduction",
+      "id": "d-pike-objection",
+      "requires": [
+        "t-pike",
+        "e-boots"
+      ]
+    },
+    {
+      "kind": "deduction",
+      "id": "d-clock-chain",
+      "requires": [
+        "e-clock"
+      ],
+      "establishes": [
+        "f-murderer-has-alibi",
+        "f-murderer-not-servant"
+      ]
+    }
+  ],
+  "deductions": [
+    {
+      "id": "d-cold-read",
+      "difficulty": 1,
+      "concepts": [
+        "seeing-and-observing"
+      ],
+      "puzzle": {
+        "type": "observation",
+        "observations": [
+          {
+            "id": "o-ticket",
+            "text": "The return half of a first-class ticket from Guildford, tucked into her glove."
+          },
+          {
+            "id": "o-ink",
+            "text": "A violet ink stain on the inside of the right middle finger, half scrubbed away."
+          },
+          {
+            "id": "o-calluses",
+            "text": "Hard calluses on the fingertips of her left hand, and a faint mark under the left side of her jaw."
+          }
+        ],
+        "inferences": [
+          {
+            "id": "i-surrey",
+            "text": "She travelled up from Surrey this morning."
+          },
+          {
+            "id": "i-letter",
+            "text": "She wrote a letter in haste before setting out."
+          },
+          {
+            "id": "i-violin",
+            "text": "She plays the violin, and seriously."
+          },
+          {
+            "id": "i-left-handed",
+            "text": "She is left-handed.",
+            "defeater": "A violinist stops the strings with the left hand; the calluses say nothing of which hand she writes with."
+          },
+          {
+            "id": "i-mourning",
+            "text": "She has lately come out of mourning.",
+            "defeater": "Nothing observed supports it."
+          }
+        ],
+        "answer": {
+          "links": [
+            {
+              "observation": "o-ticket",
+              "inference": "i-surrey"
+            },
+            {
+              "observation": "o-ink",
+              "inference": "i-letter"
+            },
+            {
+              "observation": "o-calluses",
+              "inference": "i-violin"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "d-watson-letter",
+      "difficulty": 1,
+      "concepts": [
+        "necessary-as-sufficient"
+      ],
+      "puzzle": {
+        "type": "flaw",
+        "speaker": "watson",
+        "sentences": [
+          {
+            "id": "s1",
+            "role": "premise",
+            "text": "Whoever wrote that letter must have had access to the Colonel's desk, for the paper is his own blue stationery."
+          },
+          {
+            "id": "s2",
+            "role": "premise",
+            "text": "Miss Darrow herself tells us she uses that desk every morning."
+          },
+          {
+            "id": "s3",
+            "role": "conclusion",
+            "text": "It follows that Miss Darrow wrote the letter."
+          }
+        ],
+        "answer": {
+          "sentenceId": "s3",
+          "flawType": "necessary-as-sufficient"
+        },
+        "formal": {
+          "premises": [
+            {
+              "form": "if",
+              "a": "darrow-wrote-letter",
+              "b": "darrow-had-desk-access"
+            },
+            {
+              "form": "fact",
+              "literal": "darrow-had-desk-access"
+            }
+          ],
+          "conclusion": "darrow-wrote-letter"
+        }
+      }
+    },
+    {
+      "id": "d-hall-order",
+      "difficulty": 2,
+      "concepts": [
+        "order-by-elimination"
+      ],
+      "puzzle": {
+        "type": "arrangement",
+        "layout": "ordering",
+        "entities": [
+          {
+            "id": "colonel",
+            "name": "Colonel Darrow"
+          },
+          {
+            "id": "clara",
+            "name": "Miss Darrow"
+          },
+          {
+            "id": "vance",
+            "name": "Mr. Vance"
+          },
+          {
+            "id": "pike",
+            "name": "Pike"
+          },
+          {
+            "id": "hale",
+            "name": "Mrs. Hale"
+          }
+        ],
+        "slots": [
+          {
+            "id": "first",
+            "label": "First"
+          },
+          {
+            "id": "second",
+            "label": "Second"
+          },
+          {
+            "id": "third",
+            "label": "Third"
+          },
+          {
+            "id": "fourth",
+            "label": "Fourth"
+          },
+          {
+            "id": "fifth",
+            "label": "Fifth"
+          }
+        ],
+        "rules": [
+          {
+            "id": "r1",
+            "text": "Mrs. Hale passed immediately after the Colonel.",
+            "constraint": {
+              "op": "immediately-before",
+              "a": "colonel",
+              "b": "hale"
+            }
+          },
+          {
+            "id": "r2",
+            "text": "Pike was neither the first nor the last.",
+            "constraint": {
+              "op": "not-in",
+              "entity": "pike",
+              "slots": [
+                "first",
+                "fifth"
+              ]
+            }
+          },
+          {
+            "id": "r3",
+            "text": "Miss Darrow passed after Mrs. Hale.",
+            "constraint": {
+              "op": "before",
+              "a": "hale",
+              "b": "clara"
+            }
+          },
+          {
+            "id": "r4",
+            "text": "Pike passed before the Colonel.",
+            "constraint": {
+              "op": "before",
+              "a": "pike",
+              "b": "colonel"
+            }
+          }
+        ],
+        "question": {
+          "kind": "full"
+        }
+      }
+    },
+    {
+      "id": "d-pike-objection",
+      "difficulty": 1,
+      "concepts": [
+        "plain-contradiction"
+      ],
+      "puzzle": {
+        "type": "objection",
+        "mode": "contradict",
+        "witness": "pike",
+        "testimony": [
+          {
+            "id": "s1",
+            "text": "I never left the stables from seven until the alarm at ten.",
+            "asserts": [
+              "pike-stayed-in-stables"
+            ]
+          },
+          {
+            "id": "s2",
+            "text": "I heard nothing unusual.",
+            "asserts": [
+              "pike-heard-nothing"
+            ]
+          },
+          {
+            "id": "s3",
+            "text": "The dogs never barked once.",
+            "asserts": [
+              "dogs-silent"
+            ]
+          }
+        ],
+        "hand": [
+          {
+            "id": "e-boots",
+            "name": "Pike's boots, wet with grey river clay",
+            "establishes": [
+              "pike-walked-river-path"
+            ]
+          },
+          {
+            "id": "e-clock",
+            "name": "The smashed hall clock",
+            "establishes": [
+              "clock-stopped-deliberately"
+            ]
+          },
+          {
+            "id": "e-teacup",
+            "name": "Orme's cold teacup",
+            "establishes": [
+              "orme-died-before-nine"
+            ]
+          },
+          {
+            "id": "e-library-key",
+            "name": "The library door key",
+            "establishes": [
+              "library-key-in-study"
+            ]
+          }
+        ],
+        "background": [
+          {
+            "form": "if",
+            "a": "pike-walked-river-path",
+            "b": "!pike-stayed-in-stables"
+          }
+        ],
+        "answer": {
+          "sentenceId": "s1",
+          "evidenceId": "e-boots"
+        }
+      }
+    },
+    {
+      "id": "d-clock-chain",
+      "difficulty": 3,
+      "concepts": [
+        "if-and-then",
+        "contrapositive",
+        "only-if-and-unless",
+        "reversed-arrows"
+      ],
+      "puzzle": {
+        "type": "chain",
+        "prompt": "What must be true of the murderer?",
+        "target": "!murderer-is-servant",
+        "distractors": [
+          "murderer-is-servant",
+          "!murderer-has-alibi-for-false-time"
+        ],
+        "cards": [
+          {
+            "id": "p1",
+            "text": "If the clock was stopped deliberately, then the murderer wished to fix a false time of death.",
+            "statement": {
+              "form": "if",
+              "a": "clock-stopped-deliberately",
+              "b": "murderer-wished-false-time"
+            },
+            "readings": {
+              "contrapositive": "If the murderer did not wish to fix a false time of death, the clock was not stopped deliberately.",
+              "converse": "If the murderer wished to fix a false time of death, the clock was stopped deliberately.",
+              "inverse": "If the clock was not stopped deliberately, the murderer did not wish to fix a false time of death."
+            }
+          },
+          {
+            "id": "p2",
+            "text": "The murderer wished to fix a false time only if he had an alibi for that false time.",
+            "statement": {
+              "form": "only-if",
+              "a": "murderer-wished-false-time",
+              "b": "murderer-has-alibi-for-false-time"
+            },
+            "readings": {
+              "contrapositive": "If the murderer had no alibi for the false time, he did not wish to fix one.",
+              "converse": "If the murderer had an alibi for the false time, he wished to fix one.",
+              "inverse": "If the murderer did not wish to fix a false time, he had no alibi for it."
+            }
+          },
+          {
+            "id": "p3",
+            "text": "The clock was stopped deliberately.",
+            "statement": {
+              "form": "fact",
+              "literal": "clock-stopped-deliberately"
+            }
+          },
+          {
+            "id": "p4",
+            "text": "If the murderer was one of the servants, he had no alibi for 9:14, for the servants were below stairs and unaccounted for.",
+            "statement": {
+              "form": "if",
+              "a": "murderer-is-servant",
+              "b": "!murderer-has-alibi-for-false-time"
+            },
+            "readings": {
+              "contrapositive": "If the murderer had an alibi for 9:14, he was not one of the servants.",
+              "converse": "If the murderer had no alibi for 9:14, he was one of the servants.",
+              "inverse": "If the murderer was not one of the servants, he had an alibi for 9:14."
+            }
+          },
+          {
+            "id": "p5",
+            "text": "The dogs did not bark.",
+            "statement": {
+              "form": "fact",
+              "literal": "!dogs-barked"
+            }
+          },
+          {
+            "id": "p6",
+            "text": "If the murderer was one of the servants, the dogs would not have barked.",
+            "statement": {
+              "form": "if",
+              "a": "murderer-is-servant",
+              "b": "!dogs-barked"
+            },
+            "readings": {
+              "contrapositive": "If the dogs barked, the murderer was not one of the servants.",
+              "converse": "If the dogs did not bark, the murderer was one of the servants.",
+              "inverse": "If the murderer was not one of the servants, the dogs barked."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "reconstruction": {
+    "passage": "{{culprit}} killed Mr. Orme {{when}}, when he was alone in the hall. He set the clock's hands to {{false-time}} and broke it, so that his card game with {{alibi}} would serve as his alibi. His motive was {{motive}}, which Orme had discovered.",
+    "blanks": [
+      {
+        "id": "culprit",
+        "answer": "Mr. Vance",
+        "establishedBy": [
+          "d-hall-order",
+          "d-clock-chain"
+        ]
+      },
+      {
+        "id": "when",
+        "answer": "before nine",
+        "establishedBy": [
+          "d-hall-order"
+        ]
+      },
+      {
+        "id": "false-time",
+        "answer": "9:14",
+        "establishedBy": [
+          "d-clock-chain",
+          "e-clock"
+        ]
+      },
+      {
+        "id": "alibi",
+        "answer": "the Colonel",
+        "establishedBy": [
+          "n-card-game"
+        ]
+      },
+      {
+        "id": "motive",
+        "answer": "the forged partnership deed",
+        "establishedBy": [
+          "e-deed"
+        ]
+      }
+    ],
+    "wordBank": [
+      "Mr. Vance",
+      "Pike",
+      "Miss Darrow",
+      "the Colonel",
+      "Mrs. Hale",
+      "before nine",
+      "after ten",
+      "9:14",
+      "9:30",
+      "the forged partnership deed",
+      "the threatening letter",
+      "the library key"
+    ]
+  }
+}
