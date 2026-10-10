@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** Draft v0.1, written from a design interview, October 2026
+**Status:** v1.0, final. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -28,9 +28,10 @@
 15. [Technical Architecture](#15-technical-architecture)
 16. [Illustrative Case: The Stopped Clock](#16-illustrative-case-the-stopped-clock)
 17. [Roadmap](#17-roadmap)
-18. [Risks and Open Questions](#18-risks-and-open-questions)
+18. [Risks](#18-risks)
 19. [Appendix A: Logic Concept Taxonomy](#appendix-a-logic-concept-taxonomy)
 20. [Appendix B: Motif Library Format](#appendix-b-motif-library-format)
+21. [Document History](#document-history)
 
 ---
 
@@ -85,7 +86,7 @@ a Sidney Paget illustration, sized for a commute.*
 
 ## 3. Decisions Log
 
-The decisions made in the design interview, with the reasoning behind each.
+Every design decision from the interview and the revisions that followed, with the reasoning behind each. All decisions are final for v1.0.
 
 | # | Decision | Choice | Why |
 |---|----------|--------|-----|
@@ -114,6 +115,7 @@ The decisions made in the design interview, with the reasoning behind each.
 | 23 | Art source | **Public-domain engravings only**, with no AI image generation | Authentic period look. The pipeline writes cases to fit the art catalog. |
 | 24 | Story arc | **Standalone cases, no Moriarty storyline yet.** Moriarty is excluded from the motif library for now. | Keeps every case self-contained. An arc can be revisited later. |
 | 25 | Generation runner | **Claude Code sessions on the player's existing subscription**, not the Claude API | No per-case cost. The writing steps run in a session that follows a repo skill, and the code checks stay the same. |
+| 26 | Reading Comprehension | **Out of scope**, not planned for any season | Keeps the game focused on argument, conditional and ordering logic. Documents (letters, wills, newspaper columns) remain clue sources only. |
 
 ---
 
@@ -133,7 +135,7 @@ Dartmoor, the Sussex Downs, Edinburgh, or across the Channel.
 | **Dr. John Watson** | Narrator of the story text, and a frequent source of well-meaning but flawed theories for you to dissect. Writes the end-of-case **Account** that grades you. |
 | **Inspector Lestrade** (and Gregson, Hopkins, Bradstreet) | Official police. Usually the owner of the **Patience** meter. Prone to confident leaps of logic. |
 | **Mrs. Hudson** | Frames the start and end of cases at 221B. |
-| **Mycroft Holmes** | Occasional client for government cases, and an occasional patience-holder whose patience is especially short. |
+| **Mycroft Holmes** | Occasional client for government cases, and an occasional patience-holder (with the same budget of 3 as everyone else). |
 | **The Baker Street Irregulars** | Bring in leads, sometimes as unreliable testimony to analyze. |
 | **Antagonists** | Each case has its own original culprit. Canon villains such as Milverton or Moran may appear as one-off adversaries. **Moriarty does not appear, and there is no Moriarty storyline for now** (decision 24); he is held back for a possible future arc. |
 
@@ -242,7 +244,7 @@ The signature Holmes moment, and the opener of almost every case.
   cuff, a railway ticket tucked into a glove, a callus, a mud stain).
 - Each inspected detail becomes an *Observation* card.
 - Then the scene freezes for an **Observation deduction** in the Mind Palace
-  (§8.5), where you link observations to conclusions.
+  (§8.6), where you link observations to conclusions.
 - Holmes delivers the read aloud ("You have come up from Surrey this
   morning, you write a great many letters, and you play the violin, though
   not, I think, for an audience"), and the client is suitably astonished.
@@ -267,7 +269,7 @@ The signature Holmes moment, and the opener of almost every case.
 - Every statement is recorded verbatim in the Testimony tab, broken into
   individually addressable sentences.
 - Interrogation is exploratory and free. Contradicting a witness happens
-  later, in the Mind Palace (§8.2), where it is scored.
+  later, in the Mind Palace (§8.3), where it is scored.
 
 ### 7.4 Narration
 - Watson's prose, styled like a Strand page: drop cap, ornamental rules, a
@@ -288,7 +290,7 @@ The signature Holmes moment, and the opener of almost every case.
 ### 8.1 Presentation and the cutaway
 - **Trigger:** narration reaches a point where Holmes must reason ("Holmes
   was silent for a long moment…"). A deduction can also be triggered from
-  testimony with an **"Objection!"** gesture (§8.2).
+  testimony with an **"Objection!"** gesture (§8.3).
 - **Transition (~600 ms):** the sepia scene freezes, desaturates, and
   *inverts*, so ink becomes light on a black ground. The relevant elements
   (the testimony sentences, the evidence cards, the people involved) lift
@@ -296,9 +298,10 @@ The signature Holmes moment, and the opener of almost every case.
 - **The Palace:** a dark, architectural space drawn in fine white line, like
   an engraving negative. Each puzzle type has its own "room": the Gallery of
   Testimony, the Evidence Room, the Chain Hall, the Map Room.
-- **Exit:** when you **Declare** your deduction (press and hold for 0.6 s to
-  prevent fat-finger submissions), the Palace collapses back into the scene,
-  colour returns, and Holmes speaks.
+- **Declare:** press and hold for 0.6 s to submit, which prevents fat-finger
+  submissions. A wrong Declare keeps you in the Palace (§9.1).
+- **Exit:** when a Declare is correct, the Palace collapses back into the
+  scene, colour returns, and Holmes speaks.
 - The **Notebook** (§10) is always reachable from the Palace via a ribbon
   bookmark in the corner. **The Case File** is also available.
 - The **Patience** meter is visible at the top of the screen.
@@ -313,7 +316,7 @@ The signature Holmes moment, and the opener of almost every case.
 | **The Chain** | Chain Hall | a chain of linked premises ending in a conclusion | LR: Must Be True, Conditional Inference |
 | **The Arrangement** | Map Room | a filled grid or timeline | Analytical Reasoning: Ordering, Grouping, Matching |
 | **Observation** | Evidence Room | links from observations to inferences | LR: Most Strongly Supported, Explain |
-| **The Missing Link** | Chain Hall | the unstated premise, built from phrase tiles | LR: Necessary Assumption |
+| **The Missing Link** | Chain Hall | the unstated premise, built from phrase tiles | LR: Necessary / Sufficient Assumption |
 | **The Reconstruction** | (Finale) | the full account, filled from a word bank | (none; the payoff) |
 
 ### 8.2 The Flaw
@@ -1062,7 +1065,7 @@ Miss Darrow.** Vance was first, and alone in the hall well before nine.
   niece at the river. **A red herring is resolved:** Pike lied, but not
   about murder.
 
-**Chain deduction.** *"What must be true of the man who stopped the clock?"*
+**Chain deduction.** *"What must be true of the murderer?"*
 
 | Premise cards offered | |
 |---|---|
@@ -1100,13 +1103,12 @@ from the Examine scene.
 | **M2: Pipeline v1** | The `afoot` CLI, the generate-case skill, blind-solver and adversary agents, motif library (~40 motifs), art catalog | One case generated in an unopened session passes every check and is played blind |
 | **M3: Season 1** | 8 cases, curriculum tiers 1–2, variants and adaptive selection, Watson's Account, grading | The season is played; tune difficulty from the exported profile |
 | **M4: Polish** | Mind Palace transition, audio, Test Conditions, stats screen, engraving library expansion | Feels like a finished game |
-| **Later** | Profile-guided Season 2, tiers 3–4, on-demand generation in the app, a possible season arc (deferred, decision 24) | — |
+| **Later** | Profile-guided Season 2, tiers 3–4, a possible season arc (deferred, decision 24) | — |
 
 ---
 
-## 18. Risks and Open Questions
+## 18. Risks
 
-### Risks
 | Risk | Mitigation |
 |------|------------|
 | **Generated argument puzzles are ambiguous** (two defensible flaws) | Formal encoding wherever the flaw type allows it, 3-of-3 blind agreement, an adversary pass, and discarding on doubt |
@@ -1119,10 +1121,8 @@ from the Examine scene.
 | **Subscription usage limits** slow down generation | One case per session, so a limit costs at most one case. Spread a season over several days with a scheduled routine. |
 | **iOS clears saved data** | Install to the home screen, plus Export Save |
 
-### Open questions
-1. **Reading Comprehension** isn't in scope. Should long documents (letters,
-   wills, newspaper columns) eventually get comprehension-style deductions,
-   since the LSAT tests it?
+There are no open design questions as of v1.0. New questions that come up
+during building are added to the decisions log once they're settled.
 
 ---
 
@@ -1189,3 +1189,15 @@ glossary.
 
 *"It is a capital mistake to theorize before one has data."*
 — *A Scandal in Bohemia*
+
+---
+
+## Document History
+
+| Version | Changes |
+|---------|---------|
+| v0.1 | First draft from the design interview (decisions 1–19). |
+| v0.2 | Strictly sequential cases, no feedback on wrong answers, Patience of 3 (decisions 20–22). |
+| v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
+| v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
+| v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
