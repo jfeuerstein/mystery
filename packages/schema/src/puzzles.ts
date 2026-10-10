@@ -91,6 +91,8 @@ export const ChainPuzzle = z.object({
   target: Literal,
   /** Conclusions a careless chain (one using a converse or inverse) might reach. None may be entailed. */
   distractors: z.array(Literal).default([]),
+  /** Plain-English phrasing of literals, so the board can state where a chain has got to. */
+  phrases: z.record(Literal, z.string().min(1)).default({}),
 });
 export type ChainPuzzle = z.infer<typeof ChainPuzzle>;
 

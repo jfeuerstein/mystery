@@ -1,9 +1,8 @@
 // M0 "done when": the solvers verify the illustrative case's puzzles
 // (GAME_DESIGN.md §16, §17).
-import { DeductionVariant, Id, Reconstruction } from "@afoot/schema";
+import { Case, type Puzzle } from "@afoot/schema";
 import { describe, expect, it } from "vitest";
-import { z } from "zod";
-import fixtureJson from "../../../fixtures/stopped-clock.json";
+import caseJson from "../../../fixtures/stopped-clock.case.json";
 import {
   checkArrangementAnswer,
   checkChainAnswer,
@@ -12,53 +11,38 @@ import {
   checkObservationAnswer,
   checkReconstructionAnswer,
   solveArrangement,
-  verifyFairPlay,
+  verifyCase,
   verifyPuzzle,
-  verifyReconstruction,
 } from "../src/index.js";
 
-const Fixture = z.object({
-  sequence: z.array(
-    z.discriminatedUnion("kind", [
-      z.object({ kind: z.literal("clue"), id: Id }),
-      z.object({
-        kind: z.literal("deduction"),
-        id: Id,
-        requires: z.array(Id),
-        establishes: z.array(Id).optional(),
-      }),
-    ]),
-  ),
-  deductions: z.array(DeductionVariant),
-  reconstruction: Reconstruction,
-});
-
-const fixture = Fixture.parse(fixtureJson);
-const deduction = (id: string) => {
-  const d = fixture.deductions.find((x) => x.id === id);
-  if (!d) throw new Error(`no deduction ${id}`);
-  return d.puzzle;
+const fixture = Case.parse(caseJson);
+const slots = fixture.chapters.flatMap((c) => c.beats.flatMap((b) => (b.kind === "deduction" ? [b.slot] : [])));
+const variants = slots.flatMap((s) => s.variants.map((v) => [`${s.id}/${v.id}`, v.puzzle] as const));
+const deduction = (id: string): Puzzle => {
+  const slot = slots.find((x) => x.id === id);
+  if (!slot) throw new Error(`no deduction ${id}`);
+  return slot.variants[0]!.puzzle;
 };
 
 describe("The Stopped Clock (§16)", () => {
-  it.each(fixture.deductions.map((d) => [d.id, d] as const))("%s passes verification", (_, d) => {
-    const result = verifyPuzzle(d.puzzle);
+  it("verifies as a whole case: references, fair play and the Reconstruction", () => {
+    const result = verifyCase(fixture);
     expect(result.errors).toEqual([]);
-    expect(result.ok).toBe(true);
     // Only Observation relies on the blind playtest; everything else is clean.
-    if (d.puzzle.type !== "observation") expect(result.warnings).toEqual([]);
+    expect(result.warnings.every((w) => w.includes("blind playtest"))).toBe(true);
   });
 
-  it("follows the fair-play graph", () => {
-    expect(verifyFairPlay(fixture.sequence).errors).toEqual([]);
+  it.each(variants)("%s passes verification", (_, puzzle) => {
+    const result = verifyPuzzle(puzzle);
+    expect(result.errors).toEqual([]);
+    if (puzzle.type !== "observation") expect(result.warnings).toEqual([]);
   });
 
-  it("has a verified Reconstruction", () => {
-    const proven = new Set(fixture.sequence.flatMap((i) => [i.id, ...(i.kind === "deduction" ? (i.establishes ?? []) : [])]));
-    expect(verifyReconstruction(fixture.reconstruction, proven).errors).toEqual([]);
-    const right = Object.fromEntries(fixture.reconstruction.blanks.map((b) => [b.id, b.answer]));
-    expect(checkReconstructionAnswer(fixture.reconstruction, right)).toBe(true);
-    expect(checkReconstructionAnswer(fixture.reconstruction, { ...right, culprit: "Pike" })).toBe(false);
+  it("accepts the right Reconstruction and rejects a wrong one", () => {
+    const r = fixture.finale.reconstruction;
+    const right = Object.fromEntries(r.blanks.map((b) => [b.id, b.answer]));
+    expect(checkReconstructionAnswer(r, right)).toBe(true);
+    expect(checkReconstructionAnswer(r, { ...right, culprit: "Pike" })).toBe(false);
   });
 
   it("solves the hall-clock Arrangement to the documented order", () => {

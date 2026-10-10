@@ -171,6 +171,10 @@ export function verifyChain(puzzle: ChainPuzzle): VerifyResult {
     report.warn("no distractor is reachable through a converse or inverse");
   }
 
+  for (const literal of [puzzle.target, ...puzzle.distractors]) {
+    if (!puzzle.phrases[literal]) report.warn(`no phrase for "${literal}", so the board can't state it`);
+  }
+
   const shortest = findShortestChain(puzzle);
   if (derived.has(puzzle.target) && !shortest) {
     report.error("the target follows, but no chain of cards reaches it");

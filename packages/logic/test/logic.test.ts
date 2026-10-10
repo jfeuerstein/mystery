@@ -66,6 +66,7 @@ describe("The Chain", () => {
     prompt: "?",
     target: "!a",
     distractors: ["a"],
+    phrases: { "!a": "not a", a: "a" },
     cards: [fact("f", "!alibi"), rule("r1", "a", "b"), rule("r2", "b", "alibi", "only-if"), fact("g", "c"), rule("r3", "a", "c")],
   };
 

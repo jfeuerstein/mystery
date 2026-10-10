@@ -6,3 +6,4 @@ coverage/
 
 # Plaintext generated cases never leave the generation session (GAME_DESIGN.md §14.6)
 content/.plain/
+app/e2e/screenshots/

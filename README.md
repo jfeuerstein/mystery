@@ -15,8 +15,11 @@ Requires Node 22.
 
 ```sh
 npm ci
-npm run check   # typecheck + tests
+npm run dev     # play at http://localhost:5173
+npm run check   # typecheck + tests + build
+npm run e2e     # after a build: plays the sample case in headless Chromium
 ```
 
-The logic checkers (`packages/logic`) verify every puzzle type, and the tests
-run them against the sample case from the design doc (`fixtures/stopped-clock.json`).
+- `packages/schema`, `packages/logic`: the case format and the logic checkers that verify every puzzle.
+- `app/`: the game, an installable web app for iPhone.
+- `fixtures/stopped-clock.case.json`: the playable sample case from the design doc.

@@ -9,6 +9,8 @@ export type ArtRef = z.infer<typeof ArtRef>;
 export const Person = z.object({
   id: Id,
   name: z.string().min(1),
+  /** Short label for the Persons tab, e.g. "the groom". */
+  role: z.string().min(1),
   description: z.string(),
   portrait: ArtRef,
 });
@@ -50,8 +52,14 @@ export const Topic = z.object({
 });
 export type Topic = z.infer<typeof Topic>;
 
+/** A fact the player knows, shown in the Established tab (§6). */
+export const Fact = z.object({ id: Id, text: z.string().min(1) });
+export type Fact = z.infer<typeof Fact>;
+
 export const DeductionSlot = z.object({
   id: Id,
+  /** Holmes' inner voice as the Mind Palace opens, e.g. "Watson's reasoning has a hole in it." */
+  prompt: z.string().min(1),
   /** Clue ids the deduction depends on: the fair-play graph (§14.4). */
   requires: z.array(Id),
   /** 2–3 verified variants (§11.3); the vertical slice may ship one. */
@@ -69,7 +77,7 @@ export const Beat = z.discriminatedUnion("kind", [
     kind: z.literal("narration"),
     paragraphs: z.array(z.string().min(1)).min(1),
     art: ArtRef.optional(),
-    /** Clues delivered passively by this narration. */
+    /** Fact ids (from `Case.facts`) delivered passively by this narration. */
     introduces: z.array(Id).default([]),
   }),
   z.object({
@@ -105,7 +113,8 @@ export const PATIENCE_PER_CHAPTER = 3;
 export const Case = z.object({
   id: Id,
   title: z.string().min(1),
-  season: z.number().int().positive(),
+  /** 0 is the hand-written sample case. */
+  season: z.number().int().nonnegative(),
   number: z.number().int().positive(),
   concepts: z.object({
     introduces: ConceptId.optional(),
@@ -114,8 +123,17 @@ export const Case = z.object({
   cast: z.array(Person).min(1),
   locations: z.array(Location).min(1),
   evidence: z.array(EvidenceCard),
+  /** Facts that narration introduces or deductions establish. */
+  facts: z.array(Fact),
   chapters: z.array(Chapter).min(1),
-  reconstruction: Reconstruction,
+  finale: z.object({
+    patienceHolder: Id,
+    /** "Then let me tell you what happened…" */
+    intro: z.array(z.string().min(1)).min(1),
+    reconstruction: Reconstruction,
+    /** Holmes' full solution, delivered once the Reconstruction is right. */
+    solution: z.array(z.string().min(1)).min(1),
+  }),
   account: z.object({
     masterful: z.string().min(1),
     workmanlike: z.string().min(1),

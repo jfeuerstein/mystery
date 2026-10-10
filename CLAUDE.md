@@ -17,7 +17,8 @@ never see a generated case before playing it.
   commit messages use the metric-only template and contain no titles, names,
   motifs or plot.
 - Development works against the hand-written sample case in
-  `fixtures/stopped-clock.json` (GAME_DESIGN.md §16), which is not a spoiler.
+  `fixtures/stopped-clock.case.json` (GAME_DESIGN.md §16), which is not a
+  spoiler.
 
 ## Layout
 
@@ -26,18 +27,23 @@ never see a generated case before playing it.
 - `packages/logic` (`@afoot/logic`): pure TypeScript verifiers and answer
   checkers for every puzzle type. No runtime dependencies beyond the schema
   types. The app checks Declares with the same code the pipeline verifies with.
-- `fixtures/`: hand-written test fixtures.
-- Planned (see GAME_DESIGN.md §15.2): `app/` (the PWA), `pipeline/` (the
-  `afoot` CLI), `.claude/skills/generate-case/`, `.claude/agents/`,
-  `content/`.
+- `app/` (`@afoot/app`): the PWA (Vite + React). `src/engine/progress.ts` is
+  the game engine as pure functions; `src/engine/store.ts` wraps it with
+  Zustand and IndexedDB saves; `src/palace/rooms.tsx` holds the Mind Palace
+  puzzle rooms; `e2e/playthrough.mjs` plays the sample case in Chromium.
+- `fixtures/`: hand-written test fixtures, including the full sample case.
+- Planned (see GAME_DESIGN.md §15.2): `pipeline/` (the `afoot` CLI),
+  `.claude/skills/generate-case/`, `.claude/agents/`, `content/`.
 
 ## Commands
 
 ```sh
 npm ci            # install
-npm run check     # typecheck + tests (what CI runs)
+npm run check     # typecheck + tests + build (what CI runs)
 npm test          # vitest only
 npm run typecheck # tsc only
+npm run dev       # the app at http://localhost:5173
+npm run e2e       # after `npm run build`: full playthrough in Chromium
 ```
 
 ## Conventions

@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.1. Written from a design interview, October 2026
+**Status:** v1.2. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -904,7 +904,7 @@ So:
 |-------|--------|-------|
 | Build | **Vite + TypeScript** | Fast iteration. |
 | UI | **React** | With CSS modules and CSS custom properties for the two palettes. |
-| Animation | **Framer Motion** | The Mind Palace transition, the card hand, chain links. |
+| Animation | **CSS animations** | The Mind Palace transition and the struck-glass shake. (Framer Motion was the plan; plain CSS proved enough for M1.) |
 | State | **Zustand** | A small store, serializable for saves. |
 | Persistence | **IndexedDB** (via `idb-keyval`) | Saves, the profile, and settings. Export and import as a JSON file for backup. |
 | Offline | **vite-plugin-pwa** (Workbox) | Precaches the app shell, fonts, art and sealed bundles. |
@@ -1112,8 +1112,8 @@ from the Examine scene.
 
 | Milestone | Scope | Done when |
 |-----------|-------|-----------|
-| **M0: Foundations** | Repo scaffold, `CLAUDE.md` with the spoiler rule, Zod schema, the logic package (Arrangement solver, Chain checker) with unit tests | The solvers verify §16's puzzles in CI |
-| **M1: Vertical slice** | PWA shell, beat engine, Narration, Observe, Examine and Interrogate screens, all Mind Palace types, Case File, Notebook (5 entries), Patience and chapter restart, saves. Content: §16 hand-encoded. | §16 is playable start to finish on an iPhone from the home screen |
+| **M0: Foundations** ✓ | Repo scaffold, `CLAUDE.md` with the spoiler rule, Zod schema, the logic package (Arrangement solver, Chain checker) with unit tests | The solvers verify §16's puzzles in CI |
+| **M1: Vertical slice** ✓ | PWA shell, beat engine, Narration, Observe, Examine and Interrogate screens, all Mind Palace types, Case File, Notebook (5 entries), Patience and chapter restart, saves. Content: §16 hand-encoded. | §16 is playable start to finish on an iPhone from the home screen |
 | **M2: Pipeline v1** | The `afoot` CLI, the generate-case skill, blind-solver and adversary agents, motif library (~40 motifs), art catalog | One case generated in an unopened session passes every check and is played blind |
 | **M3: Season 1** | 8 cases, curriculum tiers 1–2, variants and adaptive selection, Watson's Account, grading | The season is played; tune difficulty from the exported profile |
 | **M4: Polish** | Mind Palace transition, audio, Test Conditions, stats screen, engraving library expansion | Feels like a finished game |
@@ -1216,4 +1216,5 @@ glossary.
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.2 | M1 built. Animation uses CSS instead of Framer Motion. The vertical slice uses placeholder engraving plates until the art catalog exists. The Missing Link puzzle type is deferred to the tier 3 curriculum. |
 | v1.1 | Corrections found while building the M0 checkers. The Chain's traps are now converse and inverse *readings* of true cards rather than separate trap cards (§8.4). The Fallacy Index splits necessary/sufficient errors into two entries so no Flaw has two right names (§10, Appendix A). The §16 Arrangement drops two redundant rules, and its Chain gains a real converse trap. |
