@@ -111,6 +111,8 @@ The decisions made in the design interview, with the reasoning behind each.
 | 20 | Case order | **Strictly sequential**, one open case at a time | Keeps the curriculum and adaptive tuning in a fixed order. |
 | 21 | Wrong-answer feedback | **None**: a miss costs one Patience and reveals nothing | Purist, consistent with decision 8. Guessing teaches nothing. |
 | 22 | Patience budget | **3 per chapter**, 3 for the finale, for every patience-holder | Confirmed by the player after the first draft. |
+| 23 | Art source | **Public-domain engravings only**, with no AI image generation | Authentic period look. The pipeline writes cases to fit the art catalog. |
+| 24 | Story arc | **Standalone cases, no Moriarty storyline yet.** Moriarty is excluded from the motif library for now. | Keeps every case self-contained. An arc can be revisited later. |
 
 ---
 
@@ -132,7 +134,7 @@ Dartmoor, the Sussex Downs, Edinburgh, or across the Channel.
 | **Mrs. Hudson** | Frames the start and end of cases at 221B. |
 | **Mycroft Holmes** | Occasional client for government cases, and an occasional patience-holder whose patience is especially short. |
 | **The Baker Street Irregulars** | Bring in leads, sometimes as unreliable testimony to analyze. |
-| **Recurring antagonists** | Moriarty, Moran, Milverton and others may appear as one-off adversaries. *There is no season-long arc in v1* (decision 15). |
+| **Antagonists** | Each case has its own original culprit. Canon villains such as Milverton or Moran may appear as one-off adversaries. **Moriarty does not appear, and there is no Moriarty storyline for now** (decision 24); he is held back for a possible future arc. |
 
 ### Tone
 - **Prose:** Watson's first-person narration, pastiching Doyle's cadence:
@@ -593,9 +595,10 @@ An optional toggle in Settings (decision 14), off by default.
   headings set like "THE ADVENTURE OF THE STOPPED CLOCK."
 
 ### 13.2 Art production
-Claude can't produce the illustrations, and fully AI-painted scenes make it
-hard to know where tappable hotspots are. The plan is a **composed
-engraving** approach:
+**All art comes from genuine public-domain Victorian engravings. There is
+no AI image generation** (decision 23). This keeps the look authentic and
+consistent, and it means hotspot positions are always known, because the
+pipeline composes the scenes itself:
 
 1. **Asset library.** Public-domain Victorian engravings (Paget's Strand
    illustrations, period catalogues, the *Illustrated London News*, and
@@ -608,9 +611,14 @@ engraving** approach:
    the glove, the ink stain) for the cold read. Two or three expression
    variants per character (neutral, agitated, defiant) come from cropping
    and alternate engravings.
-4. **Optional later:** an image-generation model with a fixed pen-and-ink
-   style prompt, used for bespoke vignettes, with every image checked by a
-   vision pass. This is an open question (§18).
+4. **The art catalog constrains the writing.** Every asset is tagged in a
+   catalog (`app/public/art/catalog.yaml`): figure type, era, dress, pose,
+   object, room type. The catalog is an input to pipeline stages 1–3, so a
+   case may only call for people, places, objects and cold-read details the
+   library can actually show. The consistency audit (stage 7) fails any case
+   that references an art tag the catalog doesn't contain. When the stories
+   start feeling limited by the art, the fix is to grow the library, not to
+   generate images.
 
 ### 13.3 Portrait screen layouts
 
@@ -723,6 +731,9 @@ The **motif library** (`pipeline/motifs/`, format in Appendix B) holds:
   generator recombining ideas instead of retelling stories.
 - **Period texture:** professions, railway lines, poisons known in the era,
   telegram conventions, and social settings.
+
+The library excludes Moriarty and any motif that depends on a long-running
+conspiracy (decision 24). Every case is self-contained.
 
 Each case combines 2–3 motifs (one central trick and one or two
 complications), a setting, and the curriculum targets. A **novelty check**
@@ -1023,7 +1034,7 @@ from the Examine scene.
 | **M2: Pipeline v1** | Stages 1–8, motif library (~40 motifs), blind playtest harness, seal | One generated case passes every check and is played blind |
 | **M3: Season 1** | 8 cases, curriculum tiers 1–2, variants and adaptive selection, Watson's Account, grading | The season is played; tune difficulty from the exported profile |
 | **M4: Polish** | Mind Palace transition, audio, Test Conditions, stats screen, engraving library expansion | Feels like a finished game |
-| **Later** | Profile-guided Season 2, tiers 3–4, on-demand generation in the app, a season arc (a Moriarty figure) | — |
+| **Later** | Profile-guided Season 2, tiers 3–4, on-demand generation in the app, a possible season arc (deferred, decision 24) | — |
 
 ---
 
@@ -1037,17 +1048,14 @@ from the Examine scene.
 | **Difficulty is miscalibrated** | Solver step counts and blind-solver effort as proxies, the 70% target band, and profile feedback between seasons |
 | **Mysteries feel samey** | Motif novelty check, a varied case template, a large motif library, and per-season motif rotation |
 | **Art consistency and hotspot coverage** | The composed-engraving approach (§13.2), and a curated library built once and reused |
+| **The engraving library limits what stories can show** | The art catalog feeds the generator (§13.2), and the library grows between seasons |
 | **Accidental spoilers** during development (the player is the developer) | Sealed bundles, metric-only pipeline logs, the `CLAUDE.md` rule, and plaintext deleted after sealing |
 | **iOS clears saved data** | Install to the home screen, plus Export Save |
 
 ### Open questions
-1. **Image generation:** stay with composed public-domain engravings, or add
-   a generation model for bespoke vignettes? Which service?
-2. **Reading Comprehension** isn't in scope. Should long documents (letters,
+1. **Reading Comprehension** isn't in scope. Should long documents (letters,
    wills, newspaper columns) eventually get comprehension-style deductions,
    since the LSAT tests it?
-3. **Season arc:** revisit after Season 1. A Moriarty thread could reuse the
-   Reconstruction format across cases.
 
 ---
 
