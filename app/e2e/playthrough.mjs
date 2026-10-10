@@ -58,6 +58,26 @@ async function hold(page, locator) {
 
 const byText = (page, text) => page.locator("button", { hasText: text }).first();
 
+/** Waits until the save in IndexedDB (idb-keyval's default store) matches. */
+async function waitForSave(page, predicate) {
+  await page.waitForFunction(
+    async (source) => {
+      const raw = await new Promise((resolve) => {
+        const open = indexedDB.open("keyval-store");
+        open.onsuccess = () => {
+          const req = open.result.transaction("keyval").objectStore("keyval").get("afoot-save");
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => resolve(undefined);
+        };
+        open.onerror = () => resolve(undefined);
+      });
+      return typeof raw === "string" && new Function("save", `return (${source})(save)`)(JSON.parse(raw));
+    },
+    predicate.toString(),
+    { timeout: 10000 },
+  );
+}
+
 async function readNarration(page) {
   while (await page.getByTestId("narration").count()) {
     await page.getByTestId("continue").click();
@@ -135,7 +155,9 @@ async function main() {
   await hold(page, page.getByTestId("declare"));
   await holmesSpeaks(page);
 
-  // Reload mid-case: progress must survive (IndexedDB).
+  // Reload mid-case: progress must survive (IndexedDB). Wait for the save
+  // to land first; writes are asynchronous.
+  await waitForSave(page, (save) => save.state.progress["stopped-clock"].stage.phase?.kind === "narration");
   await page.reload();
   await page.getByTestId("resume").click();
   await page.getByTestId("narration").waitFor({ timeout: 10000 });
