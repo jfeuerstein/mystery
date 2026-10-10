@@ -113,6 +113,7 @@ The decisions made in the design interview, with the reasoning behind each.
 | 22 | Patience budget | **3 per chapter**, 3 for the finale, for every patience-holder | Confirmed by the player after the first draft. |
 | 23 | Art source | **Public-domain engravings only**, with no AI image generation | Authentic period look. The pipeline writes cases to fit the art catalog. |
 | 24 | Story arc | **Standalone cases, no Moriarty storyline yet.** Moriarty is excluded from the motif library for now. | Keeps every case self-contained. An arc can be revisited later. |
+| 25 | Generation runner | **Claude Code sessions on the player's existing subscription**, not the Claude API | No per-case cost. The writing steps run in a session that follows a repo skill, and the code checks stay the same. |
 
 ---
 
@@ -711,8 +712,13 @@ unique solution, without the player ever reading them before play.
    blind playthroughs.
 3. **Nothing ships that fails a check.** A failing deduction is regenerated.
    A case that keeps failing is discarded.
-4. **Spoiler hygiene.** The pipeline's console output and logs show only
-   identifiers and pass/fail metrics, never story content.
+4. **Spoiler hygiene.** Generation runs in sessions the player never opens,
+   and everything those sessions report (final messages, commit messages,
+   logs) contains only identifiers and pass/fail metrics, never story
+   content (§14.7).
+5. **No per-case cost.** The model work is done by Claude Code on the
+   player's existing subscription (§14.5). Everything else is free,
+   deterministic code.
 
 ### 14.2 Sources of story material (decision 12)
 The **motif library** (`pipeline/motifs/`, format in Appendix B) holds:
@@ -764,23 +770,28 @@ trick within the last N cases.
  └──────────────┘   └────────────────┘
 ```
 
+Every stage is either **writing**, done by the generation session (§14.5), or
+**code**, done by the `afoot` CLI the session runs. The session never judges
+its own work. It writes, runs the checker, and fixes what the checker
+reports.
+
 | # | Stage | Who | Output |
 |---|-------|-----|--------|
-| 1 | **Concept** | LLM | Motif selection, setting, a one-paragraph secret synopsis, curriculum targets (from the player profile) |
-| 2 | **World model** | LLM, using structured output against a schema | Full ground truth: cast (with secrets and motives), locations, a minute-level timeline of true events, physical evidence, what each witness knows, believes and will lie about, plus red herrings and their innocent explanations |
-| 3 | **Deduction plan** | LLM, then code checks | Beat sequence, and for each deduction slot: type, concepts, 2–3 variants, each with a **formal spec** (below) |
-| 4 | **Formal verification** | Code | Pass or fail per deduction. Fair-play graph check. Difficulty metrics. |
-| 5 | **Prose** | LLM | Narration, dialogue and puzzle text, written *from* the specs with fixed fact anchors |
-| 6 | **Blind playtest** | LLM ×3 plus an adversary, with no access to the truth | Each solver sees only what the player would see and must reach the intended answer. The adversary tries to argue for a different defensible answer. |
-| 7 | **Consistency audit** | LLM plus code | The prose contradicts no world-model fact and leaks no answer early. Proper nouns, times and places match the model. |
-| 8 | **Assets and seal** | Code | Scenes composed and hotspots placed, the bundle encrypted |
+| 1 | **Concept** | Session | Motif selection, setting, a one-paragraph secret synopsis, curriculum targets (from the player profile) |
+| 2 | **World model** | Session writes JSON; `afoot validate` checks it against the schema | Full ground truth: cast (with secrets and motives), locations, a minute-level timeline of true events, physical evidence, what each witness knows, believes and will lie about, plus red herrings and their innocent explanations |
+| 3 | **Deduction plan** | Session, then `afoot validate` | Beat sequence, and for each deduction slot: type, concepts, 2–3 variants, each with a **formal spec** (below) |
+| 4 | **Formal verification** | `afoot verify` | Pass or fail per deduction. Fair-play graph check. Difficulty metrics. |
+| 5 | **Prose** | Session | Narration, dialogue and puzzle text, written *from* the specs with fixed fact anchors |
+| 6 | **Blind playtest** | 3 blind-solver sub-agents plus 1 adversary sub-agent, with no access to the truth (§14.5) | Each solver sees only what the player would see and must reach the intended answer. The adversary tries to argue for a different defensible answer. |
+| 7 | **Consistency audit** | `afoot audit` (names, times, places, art tags) plus a session read-through | The prose contradicts no world-model fact and leaks no answer early. Proper nouns, times and places match the model. |
+| 8 | **Assets and seal** | `afoot compose` and `afoot seal` | Scenes composed and hotspots placed, the bundle encrypted |
 
 ### 14.4 Formal specs and verifiers per puzzle type
 
 | Type | Formal spec | Verifier |
 |------|-------------|----------|
 | **Arrangement** | Entities, slots, and constraints in a small DSL (`before(A,B)`, `adjacent(A,B)`, `not_in(A,{1,5})`, `same_group(A,B)`…) | A backtracking solver confirms **exactly one** solution, or that the partial-question answer is forced. A human-style propagation solver confirms it is solvable **without guessing**, and its step count sets the difficulty score. |
-| **Chain** | Premises as typed logical forms (`A→B`, `all(X,Y)`, `some(X,Y)`, `A→¬B`), with surface phrasing ("only if", "unless") mapped to logical form by **code, not by the LLM** | Forward chaining with contrapositives confirms the target is entailed, every offered distractor conclusion is *not* entailed, and each trap card produces a plausible-but-invalid chain. |
+| **Chain** | Premises as typed logical forms (`A→B`, `all(X,Y)`, `some(X,Y)`, `A→¬B`), with surface phrasing ("only if", "unless") mapped to logical form by **code, not by the model** | Forward chaining with contrapositives confirms the target is entailed, every offered distractor conclusion is *not* entailed, and each trap card produces a plausible-but-invalid chain. |
 | **Missing Link** | Argument in logical form, plus the gap | The solver confirms the intended premise is necessary (or sufficient), and that every tile combination reaching a *different* logical form fails the test. |
 | **Flaw** | Sentences with roles, the failing sentence id, a flaw type from the taxonomy, and (for formal flaws) the argument's logical form | Formal flaws (converse, necessary/sufficient, quantifier errors) are checked mechanically. All flaws go through blind playtest agreement (3 of 3) plus the adversary pass. |
 | **Objection / Corroborate** | Each testimony sentence mapped to world-model propositions; each evidence card mapped to the facts it establishes | Code computes every (sentence, evidence) pair that contradicts or supports. There must be **exactly one** intended pair, and no unintended pairs among the cards available. |
@@ -792,34 +803,85 @@ requires, and the beat order must introduce each clue *before* the
 deduction that uses it. Chapter-restart variants must satisfy the same
 graph.
 
-### 14.5 Models and cost
-- All LLM stages use the **Claude API** with **Claude Opus 5.5**
-  (`claude-opus-5-5`), with adaptive thinking at high effort for world
-  modelling, deduction planning and the adversary, and medium effort for
-  prose.
-- **Structured outputs** (`output_config.format` with JSON schemas generated
-  from the shared Zod schema) for stages 1–3 and 6.
-- Because generation is offline, stages run through the **Message Batches
-  API** (50% cost) where latency doesn't matter.
-- **Budget:** a case runs on the order of 15–30 model calls, including
-  retries and three blind solvers. Measure a pilot case before committing to
-  a season. At current Opus 5.5 rates ($4 per million input tokens and $20
-  per million output), expect single-digit dollars per verified case,
-  pending that measurement.
-- The pipeline is a **TypeScript (Node) CLI** in the same repository, so the
-  case schema and the logic solvers are **shared** between the pipeline and
-  the app. The app uses the same Chain and Arrangement validators to check
-  your Declares.
+### 14.5 The generation runner: Claude Code
+There is **no Claude API usage and no per-case cost** (decision 25). The
+writing stages are performed by a **Claude Code session** running on the
+player's existing Claude subscription, the same way this design was
+written. Generation uses up plan usage limits instead of money.
+
+**The pieces**
+
+| Piece | Where | What it does |
+|-------|-------|--------------|
+| **`afoot` CLI** | `pipeline/` (TypeScript, Node) | All the deterministic stages: `validate`, `verify`, `player-view`, `check-answer`, `audit`, `compose`, `seal`. Free to run, and the only judge of pass or fail. |
+| **Generation skill** | `.claude/skills/generate-case/SKILL.md` | The step-by-step procedure the session follows for stages 1–8, including the retry rules and the spoiler protocol. |
+| **Blind-solver agent** | `.claude/agents/blind-solver.md` | A sub-agent definition **with no file or shell tools**, so it can't open the plaintext case even by accident. It receives only the player view, passed into its prompt. |
+| **Adversary agent** | `.claude/agents/adversary.md` | Same restrictions. Given the player view *and* the intended answer, it tries to argue for a second defensible answer. |
+| **Motif library and art catalog** | `pipeline/motifs/`, `app/public/art/catalog.yaml` | The inputs the session draws from. |
+
+**One case per session.** Each session generates exactly one case, from
+concept to sealed bundle, then commits and ends:
+
+1. Read the skill, the motif library, the art catalog, the curriculum
+   state, and the latest player profile (if one has been committed).
+2. Write the concept, world model and deduction plan as JSON in
+   `content/.plain/`. Run `afoot validate` and `afoot verify`, and fix and
+   re-run until everything passes.
+3. Write the prose. Run `afoot audit`.
+4. For each deduction variant, run `afoot player-view` to export only what
+   the player would see. Give it to three blind solvers and one adversary.
+   Check each solver's answer with `afoot check-answer`. If any solver
+   misses or the adversary finds a defensible alternative, revise or
+   replace that deduction and test it again.
+5. Run `afoot compose` and `afoot seal`, delete `content/.plain/`, and
+   commit only the sealed case.
+6. If a case still fails after a set number of revision rounds (default 3
+   per deduction), discard it and start a fresh concept.
+
+Because each session handles a single case, the context stays small and a
+session that runs into a usage limit loses at most one unfinished case. Its
+plaintext dies with the session's container and the case is simply
+regenerated next time.
+
+**Starting a season.** Either run one cloud session per case, or set up a
+scheduled routine that starts a fresh session each night until the season
+has its 6–10 cases. The player profile reaches the generator by committing
+the exported `profile.json` to `content/profiles/` (from the iPhone, via
+the GitHub app or website). A profile isn't a spoiler.
+
+**Model quality.** It's the same family of Claude models the API would
+have used, and the quality guarantee comes from the `afoot` checks, not
+from trusting the writer.
 
 ### 14.6 Sealing
 - Output: one `season-N.bundle` containing per-case JSON, compressed and
   encrypted with AES-GCM (WebCrypto in the app).
 - The key ships in the app. This is **spoiler protection, not security.** It
   only has to stop the player from reading a case by accident.
-- Plaintext lives only in a git-ignored `content/.plain/` directory on the
-  generating machine and is deleted after sealing.
-- A repository `CLAUDE.md` rule will instruct coding agents never to
-  display, summarize, or quote decrypted case content to the player.
+- Plaintext lives only in a git-ignored `content/.plain/` directory inside
+  the generation session's container. It is deleted after sealing and is
+  never committed or pushed.
+- A repository `CLAUDE.md` rule instructs every coding session that isn't a
+  generation session never to decrypt, display, summarize, or quote case
+  content.
+
+### 14.7 Spoiler protocol for generation sessions
+The person who can read a Claude Code session's transcript is the player.
+So:
+
+- **Never open a generation session.** Generation runs in background cloud
+  sessions or scheduled routines, titled like "Sealed generation, do not
+  open: S1 case 3."
+- **Metric-only reporting.** The skill requires the session's final message
+  to be a fixed template, for example `S1 case 3: SEALED. 9/9 deductions
+  verified, 27/27 blind solves, 0 adversary objections, 2 revisions.` It
+  contains no title, names, motifs or plot.
+- **Metric-only commits.** Commit messages follow the same template. The
+  case title is inside the sealed bundle, not in a file name.
+- **Notifications** from scheduled routines carry the session's final
+  message, so they are metric-only too.
+- **Development sessions** (building the app) work against the hand-written
+  §16 sample case and never decrypt real content.
 
 ---
 
@@ -838,7 +900,7 @@ graph.
 | Audio | **Web Audio API** | Loops and crossfades. Unlocked on the first tap, as iOS requires. |
 | Schema | **Zod** | One case schema shared by the app and the pipeline. |
 | Logic core | **Pure TypeScript package** | Arrangement solver, Chain checker, logical-form compiler, used by both the app and the pipeline. |
-| Pipeline | **Node + `@anthropic-ai/sdk`** | A CLI: `afoot generate --season 1 --profile profile.json`. |
+| Pipeline | **Node CLI (`afoot`)**, no model SDK | Deterministic stages only. The model work is done by Claude Code sessions following `.claude/skills/generate-case/` (§14.5). |
 | Hosting | **Cloudflare Pages or Netlify** (free, deploy from a private repo) | GitHub Pages also works if the repo is public. The bundles are sealed either way. |
 
 ### 15.2 Repository layout (proposed)
@@ -846,6 +908,9 @@ graph.
 /
 ├── GAME_DESIGN.md          ← this document
 ├── CLAUDE.md               ← agent rules, including the spoiler rule
+├── .claude/
+│   ├── skills/generate-case/  ← the generation procedure (§14.5)
+│   └── agents/             ← blind-solver and adversary (no file tools)
 ├── packages/
 │   ├── schema/             ← Zod case schema and types (shared)
 │   └── logic/              ← solvers and validators (shared, unit-tested)
@@ -859,10 +924,11 @@ graph.
 │   └── public/art/         ← the engraving asset library
 ├── pipeline/
 │   ├── motifs/             ← motif library (YAML)
-│   ├── stages/             ← 1–8
-│   └── prompts/
+│   └── src/                ← the afoot CLI: validate, verify, player-view,
+│                              check-answer, audit, compose, seal
 └── content/
     ├── sealed/             ← committed: season bundles
+    ├── profiles/           ← committed: exported player profiles
     └── .plain/             ← git-ignored, transient
 ```
 
@@ -1031,7 +1097,7 @@ from the Examine scene.
 |-----------|-------|-----------|
 | **M0: Foundations** | Repo scaffold, `CLAUDE.md` with the spoiler rule, Zod schema, the logic package (Arrangement solver, Chain checker) with unit tests | The solvers verify §16's puzzles in CI |
 | **M1: Vertical slice** | PWA shell, beat engine, Narration, Observe, Examine and Interrogate screens, all Mind Palace types, Case File, Notebook (5 entries), Patience and chapter restart, saves. Content: §16 hand-encoded. | §16 is playable start to finish on an iPhone from the home screen |
-| **M2: Pipeline v1** | Stages 1–8, motif library (~40 motifs), blind playtest harness, seal | One generated case passes every check and is played blind |
+| **M2: Pipeline v1** | The `afoot` CLI, the generate-case skill, blind-solver and adversary agents, motif library (~40 motifs), art catalog | One case generated in an unopened session passes every check and is played blind |
 | **M3: Season 1** | 8 cases, curriculum tiers 1–2, variants and adaptive selection, Watson's Account, grading | The season is played; tune difficulty from the exported profile |
 | **M4: Polish** | Mind Palace transition, audio, Test Conditions, stats screen, engraving library expansion | Feels like a finished game |
 | **Later** | Profile-guided Season 2, tiers 3–4, on-demand generation in the app, a possible season arc (deferred, decision 24) | — |
@@ -1049,7 +1115,8 @@ from the Examine scene.
 | **Mysteries feel samey** | Motif novelty check, a varied case template, a large motif library, and per-season motif rotation |
 | **Art consistency and hotspot coverage** | The composed-engraving approach (§13.2), and a curated library built once and reused |
 | **The engraving library limits what stories can show** | The art catalog feeds the generator (§13.2), and the library grows between seasons |
-| **Accidental spoilers** during development (the player is the developer) | Sealed bundles, metric-only pipeline logs, the `CLAUDE.md` rule, and plaintext deleted after sealing |
+| **Accidental spoilers** during development (the player is the developer) | Sealed bundles, unopened generation sessions, metric-only reports and commits (§14.7), the `CLAUDE.md` rule, and plaintext that never leaves the session's container |
+| **Subscription usage limits** slow down generation | One case per session, so a limit costs at most one case. Spread a season over several days with a scheduled routine. |
 | **iOS clears saved data** | Install to the home screen, plus Export Save |
 
 ### Open questions
