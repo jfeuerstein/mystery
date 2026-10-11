@@ -142,8 +142,16 @@ async function main() {
   current = page;
   page.on("framenavigated", (f) => f === page.mainFrame() && console.log(`navigated: ${f.url()}`));
   const errors = [];
-  page.on("pageerror", (e) => errors.push(e.message));
-  page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+  // Logged as they happen too, so a crash shows in the log even if a later step times out.
+  page.on("pageerror", (e) => {
+    errors.push(e.message);
+    console.error(`pageerror: ${e.stack ?? e.message}`);
+  });
+  page.on("console", (m) => {
+    if (m.type() !== "error") return;
+    errors.push(m.text());
+    console.error(`console error: ${m.text()}`);
+  });
 
   await page.goto(`http://localhost:${PORT}/`);
   await page.getByTestId("begin").waitFor();
