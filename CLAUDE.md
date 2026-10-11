@@ -46,7 +46,8 @@ never see a generated case before playing it.
   exists only inside a generation session.
 - `app/public/art/catalog.json`: the engraving catalog; cases may only use
   its tags. `pipeline/art/plates.json` names each plate's public-domain
-  source and crop; `afoot art build` prints them into `app/public/art/`.
+  source and crop (`tag#2`, `tag#3`, … are further plates of a tag); `afoot
+  art build` prints them into `app/public/art/`.
 - `pipeline/audio/sounds.json`: every music cue and violin effect as
   excerpts of free recordings; `afoot audio build` (needs ffmpeg) cuts them
   into `app/public/audio/` and its manifest.
