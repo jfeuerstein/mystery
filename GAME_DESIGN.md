@@ -989,6 +989,10 @@ So:
   case title is inside the sealed bundle, not in a file name.
 - **Notifications** from scheduled routines carry the session's final
   message, so they are metric-only too.
+- **Status lines.** A session's status summary (what a session list or an
+  orchestrating session shows) is generated from its narration, task list
+  and sub-agent descriptions, so those are content-free too, and deduction
+  slots have neutral ids (`d1`, `d2`, …).
 - **Development sessions** (building the app) work against the hand-written
   §16 sample case and never decrypt real content.
 
@@ -1316,7 +1320,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
-| v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). |
+| v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). Generation sessions keep their status lines content-free and their deduction slot ids neutral (§14.7). |
 | v1.6 | The engraving library: 112 of 116 catalog tags have a public-domain plate (Paget's Strand illustrations, Cassell's *Old and New London*, Doré, Gross's *Criminal Investigation*, trade catalogues, museum prints). Evidence objects sit in paper medallions in Examine scenes (§13.2). |
 | v1.5 | Season 2 groundwork. Tier 3's Notebook entries; *On Some, Most and All* moves to the Fallacy Index. The Missing Link is built as a sufficient-assumption puzzle with code-owned frames (§8.7). Adaptive variant selection and one-time room guides are built (§11.2, §11.3); variant difficulty is 1–5. |
 | v1.4 | M4 built. The test is never named in the app; the Notebook shows classic logic terms (decision 18). Audio is violin music and violin effects, with no ambience (decision 17, §13.5). Test Conditions is renamed By Candlelight, and Holmes' Ledger records every Declare (§12). Visual system, motion and the engraving build are written down (§13.1, §13.2); the grade seal's oxblood wax is the palette's one colour. |
