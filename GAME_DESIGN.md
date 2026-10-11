@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.5. Written from a design interview, October 2026
+**Status:** v1.6. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -668,15 +668,21 @@ pipeline composes the scenes itself:
    or CC0 only). `afoot art build` downloads each original, crops it, takes
    it to greyscale, sets ink to black and paper to white from its histogram,
    and writes a WebP (portrait 560×640 for an oval frame, scene 720×960 for
-   the upright Examine frame, vignette 640×480). The app lays every plate
+   the upright Examine frame, vignette 640×480, the object shown whole on
+   white). A plate may whiten scan marks or a neighbouring cut (`erase`).
+   Images come from large Commons renderings (`thumb.wikimedia.org`), the
+   Internet Archive and museum collections. v1.6 ships 101 of the 116
+   tags; the rest keep their placeholder until a plate good enough turns
+   up. The app lays every plate
    onto the paper with a multiply blend and one sepia filter, which is what
    makes plates from different sources look like one magazine. `afoot art
    check` (also a unit test) confirms every plate exists and is credited;
    the Credits screen lists every artist, work and source.
 2. **Composition by the pipeline.** A scene is a background plus placed
    object layers. Because the pipeline *places* each evidence object, the
-   hotspot coordinates are known by construction. Each object's vignette is
-   drawn into the scene at its hotspot.
+   hotspot coordinates are known by construction. Each object's vignette
+   sits in a small paper medallion at its hotspot, with a faint ring
+   breathing out from it until it is found.
 3. **Portraits** are one figure from a plate, cropped for the oval. Detail
    overlays and expression variants are later work.
 4. **The art catalog constrains the writing.** Every asset is tagged in a
@@ -1282,6 +1288,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.6 | The engraving library: 101 of 116 catalog tags have a public-domain plate (Paget's Strand illustrations, Cassell's *Old and New London*, Doré, trade catalogues, museum prints). Evidence objects sit in paper medallions in Examine scenes (§13.2). |
 | v1.5 | Season 2 groundwork. Tier 3's Notebook entries; *On Some, Most and All* moves to the Fallacy Index. The Missing Link is built as a sufficient-assumption puzzle with code-owned frames (§8.7). Adaptive variant selection and one-time room guides are built (§11.2, §11.3); variant difficulty is 1–5. |
 | v1.4 | M4 built. The test is never named in the app; the Notebook shows classic logic terms (decision 18). Audio is violin music and violin effects, with no ambience (decision 17, §13.5). Test Conditions is renamed By Candlelight, and Holmes' Ledger records every Declare (§12). Visual system, motion and the engraving build are written down (§13.1, §13.2); the grade seal's oxblood wax is the palette's one colour. |
 | v1.3 | M2 built. The art catalog is JSON. The Notebook moved into the shared schema package. Seal format: gzip + AES-GCM + base64 in `packages/seal`. Playtest records are tied to a hash of the puzzle. Blind playtest counts: three solvers and an adversary for argument puzzles, one solver for formal puzzles and the finale. Motif suggestions use a random seed so nothing outside a generation session can predict them. |
