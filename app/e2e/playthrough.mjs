@@ -59,6 +59,8 @@ async function launch() {
 }
 
 let shotIndex = 0;
+/** The page under test, for a screenshot if the run fails. */
+let current;
 async function shot(page, name) {
   shotIndex++;
   await page.waitForTimeout(350);
@@ -137,6 +139,8 @@ async function main() {
     hasTouch: true,
   });
   const page = await context.newPage();
+  current = page;
+  page.on("framenavigated", (f) => f === page.mainFrame() && console.log(`navigated: ${f.url()}`));
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
@@ -312,8 +316,13 @@ main()
     stop();
     process.exit(0);
   })
-  .catch((e) => {
+  .catch(async (e) => {
     console.error(e);
+    // Show where the run stopped: a screenshot and the visible text.
+    try {
+      await current.screenshot({ path: `${shots}/failure.png` });
+      console.error(`at ${current.url()}:\n${(await current.locator("body").innerText()).slice(0, 600)}`);
+    } catch {}
     stop();
     process.exit(1);
   });
