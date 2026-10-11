@@ -1,4 +1,5 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import catalogJson from "../../public/art/catalog.json";
 import { HolderIcon, type HolderKind } from "./icons";
 
@@ -119,6 +120,9 @@ export function Engraving(props: { tag: string; height?: number; children?: Reac
 // Ornaments
 // ---------------------------------------------------------------------------
 
+/** Chapter numerals. */
+export const ROMAN = ["I", "II", "III", "IV", "V", "VI"];
+
 /** A Strand-style rule with a central fleuron; draws itself in. */
 export function Ornament(props: { className?: string }) {
   return (
@@ -163,8 +167,35 @@ export function PatienceMeter(props: { holder: string; kind: HolderKind; patienc
 // Sheet (a drawer from the bottom edge)
 // ---------------------------------------------------------------------------
 
+/**
+ * Sets the browser's theme colour, which iOS uses for the status bar, while a
+ * component is mounted: the Mind Palace is dark, and a paper-coloured status
+ * bar would sit over it as a pale band.
+ */
+export function useThemeColor(color: string) {
+  useEffect(() => {
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (!meta) return;
+    const before = meta.content;
+    meta.content = color;
+    return () => {
+      meta.content = before;
+    };
+  }, [color]);
+}
+
+/**
+ * Where sheets render. A page's entrance animation leaves it a containing
+ * block for fixed elements, so a sheet drawn inside one would dim only that
+ * page's box; by default sheets go to the document body instead. The Mind
+ * Palace, itself a full-screen layer whose styles dress its sheets, keeps
+ * them in place.
+ */
+export const SheetHost = createContext<"body" | "inline">("body");
+
 export function Sheet(props: { onClose: () => void; children: ReactNode; className?: string }) {
-  return (
+  const host = useContext(SheetHost);
+  const sheet = (
     <>
       <div className="sheet-backdrop" onClick={props.onClose} />
       <div className={`sheet ${props.className ?? ""}`} role="dialog" aria-modal="true">
@@ -172,6 +203,55 @@ export function Sheet(props: { onClose: () => void; children: ReactNode; classNa
         <div className="sheet-body">{props.children}</div>
       </div>
     </>
+  );
+  return host === "body" ? createPortal(sheet, document.body) : sheet;
+}
+
+// ---------------------------------------------------------------------------
+// Forward: the button that turns the page
+// ---------------------------------------------------------------------------
+
+/** How long a page's forward button ignores taps after it appears or changes. */
+export const SETTLE_MS = 450;
+
+/** True for a moment after `key` changes (and after mount). */
+export function useSettling(key?: unknown): boolean {
+  const [settling, setSettling] = useState(true);
+  // Before paint, so no tap can land in the frame between the change and the guard.
+  useLayoutEffect(() => {
+    setSettling(true);
+    const t = window.setTimeout(() => setSettling(false), SETTLE_MS);
+    return () => window.clearTimeout(t);
+  }, [key]);
+  return settling;
+}
+
+/**
+ * A page's forward button. Every page puts it in the same place, so a reader
+ * tapping in rhythm (Read on, Read on, Continue) could carry a tap onto the
+ * next page before reading it. It ignores taps for a moment after it appears
+ * or its label changes, without looking disabled.
+ */
+export function Forward(props: {
+  onClick: () => void;
+  children: ReactNode;
+  disabled?: boolean;
+  settleKey?: unknown;
+  testid?: string;
+}) {
+  const settling = useSettling(props.settleKey);
+  return (
+    <button
+      className={`btn ${settling && !props.disabled ? "settling" : ""}`}
+      disabled={props.disabled || settling}
+      onClick={(e) => {
+        e.stopPropagation();
+        props.onClick();
+      }}
+      data-testid={props.testid ?? "continue"}
+    >
+      {props.children}
+    </button>
   );
 }
 

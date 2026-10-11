@@ -150,10 +150,24 @@ async function main() {
 
   // Chapter I
   await shot(page, "narration");
+  // Read to the last paragraph: a tap on the page there must not leave it;
+  // only the Continue button does.
+  while ((await page.getByTestId("continue").textContent()) !== "Continue") await page.getByTestId("continue").click();
+  await page.locator(".stage-body").click({ position: { x: 20, y: 20 } });
+  await page.waitForTimeout(500);
+  if (!(await page.getByTestId("narration").count())) throw new Error("a tap on the page left the narration");
   await readNarration(page);
   for (const id of ["o-ticket", "o-ink", "o-calluses"]) {
     await page.getByTestId(`detail-${id}`).click();
-    if (id === "o-ticket") await shot(page, "observe-detail");
+    if (id === "o-ticket") {
+      // The backdrop dims the whole screen, not just the page's box.
+      const box = await page.locator(".sheet-backdrop").boundingBox();
+      const view = page.viewportSize();
+      if (Math.round(box.width) !== view.width || Math.round(box.height) !== view.height) {
+        throw new Error(`the sheet backdrop covers ${JSON.stringify(box)}, not the ${view.width}x${view.height} screen`);
+      }
+      await shot(page, "observe-detail");
+    }
     await page.getByTestId("close-detail").click();
   }
   await shot(page, "observe");
@@ -195,6 +209,14 @@ async function main() {
   await page.reload();
   await page.getByTestId("resume").click();
   await page.getByTestId("narration").waitFor({ timeout: 10000 });
+
+  // The story so far: everything read, ending where the player is.
+  await page.getByTestId("open-story").click();
+  await page.getByTestId("story").waitFor();
+  const story = await page.getByTestId("story").textContent();
+  if (!story.includes("CHAPTER I") || !story.includes("a raw morning in the March of 1891")) throw new Error("the story so far is missing what was read");
+  await shot(page, "story-so-far");
+  await page.locator(".sheet-handle").click();
 
   // Chapter II
   await readNarration(page);

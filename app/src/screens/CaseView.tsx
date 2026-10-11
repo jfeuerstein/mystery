@@ -4,12 +4,10 @@ import { audio, type MusicCue } from "../audio/director";
 import * as engine from "../engine/progress";
 import type { CaseProgress } from "../engine/progress";
 import { useGame } from "../engine/store";
-import { artFor, artUrl, Engraving, GradeSeal, Ornament, PatienceMeter, Sheet } from "../ui/common";
-import { Back, Folder, holderKind, Lens, Notebook } from "../ui/icons";
+import { artFor, artUrl, Engraving, Forward, GradeSeal, Ornament, PatienceMeter, ROMAN, Sheet, useSettling } from "../ui/common";
+import { Back, Folder, holderKind, Lens, Notebook, OpenBook } from "../ui/icons";
 import { DeductionPalace, FinalePalace } from "./Palace";
-import { CaseFile, NotebookSheet } from "./Sheets";
-
-const ROMAN = ["I", "II", "III", "IV", "V", "VI"];
+import { CaseFile, NotebookSheet, StorySheet } from "./Sheets";
 
 function Header(props: { c: Case; p: CaseProgress; title: string; inert: boolean }) {
   const { go, openSheet } = useGame();
@@ -21,6 +19,9 @@ function Header(props: { c: Case; p: CaseProgress; title: string; inert: boolean
         <Back />
       </button>
       <div className="title smallcaps">{props.title}</div>
+      <button className="icon-btn" onClick={() => openSheet("story")} aria-label="The story so far" data-testid="open-story">
+        <OpenBook />
+      </button>
       <button className="icon-btn" onClick={() => openSheet("notebook")} aria-label="Notebook">
         <Notebook />
       </button>
@@ -64,14 +65,20 @@ function Narration(props: {
 }) {
   const { step } = useGame();
   const phase = props.p.stage.kind === "chapter" && props.p.stage.phase.kind === "narration" ? props.p.stage.phase : null;
-  const shown = props.beat.paragraphs.slice(0, (phase?.paragraph ?? 0) + 1);
-  const last = (phase?.paragraph ?? 0) >= props.beat.paragraphs.length - 1;
+  const paragraph = phase?.paragraph ?? 0;
+  const shown = props.beat.paragraphs.slice(0, paragraph + 1);
+  const last = paragraph >= props.beat.paragraphs.length - 1;
+  const settling = useSettling(paragraph);
+  const turn = () => {
+    if (last) audio.sfx("page");
+    step(engine.nextParagraph);
+  };
   return (
     <div
       className="stage page"
+      // A tap anywhere reads on; leaving the page takes the button itself.
       onClick={() => {
-        if (last) audio.sfx("page");
-        step(engine.nextParagraph);
+        if (!last && !settling) turn();
       }}
       data-testid="narration"
     >
@@ -85,9 +92,9 @@ function Narration(props: {
         ))}
       </div>
       <Actions>
-        <button className="btn" data-testid="continue">
+        <Forward settleKey={paragraph} onClick={turn}>
           {last ? "Continue" : "Read on"}
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -125,7 +132,7 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
                 }}
               >
                 {art?.file && !done ? (
-                  <img src={artUrl(art.file)} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "multiply" }} />
+                  <img className="lens-plate" src={artUrl(art.file)} alt="" />
                 ) : done ? (
                   "✓"
                 ) : (
@@ -138,9 +145,9 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+        <Forward disabled={!ready} settleKey={ready} onClick={() => step(engine.advance)}>
           {ready ? "Continue" : `${phase?.inspected.length ?? 0} of ${props.beat.details.length} observed`}
-        </button>
+        </Forward>
       </Actions>
       {detail && (
         <Sheet onClose={() => setOpen(undefined)}>
@@ -199,9 +206,9 @@ function Examine(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+        <Forward disabled={!ready} settleKey={ready} onClick={() => step(engine.advance)}>
           {ready ? "Continue" : "Search the room"}
-        </button>
+        </Forward>
       </Actions>
       {card && (
         <Sheet onClose={() => setOpen(undefined)}>
@@ -260,9 +267,9 @@ function Interrogate(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { ki
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+        <Forward disabled={!ready} settleKey={ready} onClick={() => step(engine.advance)}>
           {ready ? "Continue" : "Ask about everything"}
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -280,9 +287,7 @@ function Deduction(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind
           <p>{props.beat.slot.onSolved.holmesSpeaks}</p>
         </div>
         <Actions>
-          <button className="btn" onClick={() => step(engine.advance)} data-testid="continue">
-            Continue
-          </button>
+          <Forward onClick={() => step(engine.advance)}>Continue</Forward>
         </Actions>
       </div>
     );
@@ -295,9 +300,9 @@ function Deduction(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" onClick={() => step((_, p) => engine.enterPalace(p))} data-testid="enter-palace">
+        <Forward onClick={() => step((_, p) => engine.enterPalace(p))} testid="enter-palace">
           Enter the Mind Palace
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -324,13 +329,9 @@ function Cold(props: { c: Case; p: CaseProgress; finale: boolean }) {
         </p>
       </div>
       <Actions>
-        <button
-          className="btn"
-          data-testid="restart"
-          onClick={() => step((c, p) => (props.finale ? engine.restartFinale(p) : engine.restartChapter(c, p)))}
-        >
+        <Forward testid="restart" onClick={() => step((c, p) => (props.finale ? engine.restartFinale(p) : engine.restartChapter(c, p)))}>
           Begin again
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -352,9 +353,7 @@ function Finale(props: { c: Case; p: CaseProgress }) {
           ))}
         </div>
         <Actions>
-          <button className="btn" onClick={() => step((_, pp) => engine.finish(pp))} data-testid="continue">
-            Continue
-          </button>
+          <Forward onClick={() => step((_, pp) => engine.finish(pp))}>Continue</Forward>
         </Actions>
       </div>
     );
@@ -383,16 +382,14 @@ function Finale(props: { c: Case; p: CaseProgress }) {
           </p>
         </div>
         <Actions>
-          <button
-            className="btn"
+          <Forward
             onClick={() => {
               audio.sfx("seal");
               completeCase();
             }}
-            data-testid="continue"
           >
             Close the case
-          </button>
+          </Forward>
         </Actions>
       </div>
     );
@@ -412,9 +409,9 @@ function Finale(props: { c: Case; p: CaseProgress }) {
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" onClick={() => step((_, pp) => engine.enterPalace(pp))} data-testid="enter-palace">
+        <Forward onClick={() => step((_, pp) => engine.enterPalace(pp))} testid="enter-palace">
           Enter the Mind Palace
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -483,6 +480,7 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
       {body}
       {!inPalace && sheet === "casefile" && <CaseFile c={c} p={p} onClose={() => openSheet(null)} />}
       {!inPalace && sheet === "notebook" && <NotebookSheet onClose={() => openSheet(null)} />}
+      {!inPalace && sheet === "story" && <StorySheet c={c} p={p} onClose={() => openSheet(null)} />}
     </>
   );
 }

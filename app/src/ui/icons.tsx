@@ -37,6 +37,15 @@ export const Notebook = (p: P) => (
   </Svg>
 );
 
+/** An open book: the story so far. */
+export const OpenBook = (p: P) => (
+  <Svg {...p}>
+    <path d="M12 6.5C9.5 5 6.5 4.7 3.5 5.5v13c3-.8 6-.5 8.5 1 2.5-1.5 5.5-1.8 8.5-1v-13c-3-.8-6-.5-8.5 1z" />
+    <path d="M12 6.5v13" />
+    <path d="M6 9c1.4-.3 2.8-.2 4 .3M6 12c1.4-.3 2.8-.2 4 .3M14 9.3c1.2-.5 2.6-.6 4-.3" strokeWidth={1} />
+  </Svg>
+);
+
 export const Folder = (p: P) => (
   <Svg {...p}>
     <path d="M3 7V5.5A1.5 1.5 0 0 1 4.5 4H9l2 2h8.5A1.5 1.5 0 0 1 21 7.5V18a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18z" />

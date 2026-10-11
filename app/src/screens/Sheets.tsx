@@ -1,8 +1,8 @@
 import { ENTRIES, entryById, type Case } from "@afoot/schema";
-import { useState } from "react";
-import type { CaseProgress } from "../engine/progress";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { storySoFar, type CaseProgress, type StoryPage } from "../engine/progress";
 import { useGame } from "../engine/store";
-import { Sheet } from "../ui/common";
+import { Ornament, ROMAN, Sheet } from "../ui/common";
 
 type Tab = "evidence" | "testimony" | "persons" | "established";
 
@@ -150,6 +150,100 @@ export function NotebookSheet(props: { onClose: () => void }) {
             ))}
           </div>
         )}
+      </div>
+    </Sheet>
+  );
+}
+
+function StoryPageView({ page }: { page: StoryPage }) {
+  switch (page.kind) {
+    case "chapter":
+      return (
+        <div className="story-chapter">
+          <div className="chapter-number">CHAPTER {ROMAN[page.number]}</div>
+          <h3 className="display">{page.title}</h3>
+        </div>
+      );
+    case "narration":
+    case "finale":
+      return (
+        <>
+          {page.paragraphs.map((t, i) => (
+            <p key={i}>{t}</p>
+          ))}
+        </>
+      );
+    case "observed":
+      return (
+        <div className="story-aside">
+          <div className="smallcaps muted">Observed: {page.subject}</div>
+          {page.notes.map((t, i) => (
+            <p key={i} className="speech">
+              {t}
+            </p>
+          ))}
+        </div>
+      );
+    case "examined":
+      return (
+        <div className="story-aside">
+          <div className="smallcaps muted">Found at {page.place}</div>
+          {page.items.map((item, i) => (
+            <p key={i}>
+              <span className="display">{item.name}.</span> {item.text}
+            </p>
+          ))}
+        </div>
+      );
+    case "questioned":
+      return (
+        <div className="story-aside">
+          {page.answers.map((a, i) => (
+            <div key={i}>
+              <div className="smallcaps muted">
+                {page.witness}, on {a.topic.toLowerCase()}
+              </div>
+              {a.sentences.map((t, j) => (
+                <p key={j} className="speech">
+                  “{t}”
+                </p>
+              ))}
+            </div>
+          ))}
+        </div>
+      );
+    case "deduction":
+      return (
+        <div className="story-deduction">
+          <p className="speech">{page.prompt}</p>
+          {page.conclusion && <p className="holmes-line">{page.conclusion}</p>}
+        </div>
+      );
+  }
+}
+
+/**
+ * The story so far: every page read in this case, ending where the player is,
+ * so one tapped past too quickly can be read again. Read-only; the story
+ * itself only moves forward.
+ */
+export function StorySheet(props: { c: Case; p: CaseProgress; onClose: () => void }) {
+  const pages = useMemo(() => storySoFar(props.c, props.p), [props.c, props.p]);
+  const end = useRef<HTMLDivElement>(null);
+  // Open at the most recent page.
+  useEffect(() => end.current?.scrollIntoView({ block: "end" }), []);
+  return (
+    <Sheet onClose={props.onClose} className="story-sheet">
+      <h2 className="display" style={{ margin: "0 0 8px", textAlign: "center" }}>
+        The Story So Far
+      </h2>
+      <div className="story prose" data-testid="story">
+        {pages.map((page, i) => (
+          <StoryPageView key={i} page={page} />
+        ))}
+        <Ornament />
+        <p className="smallcaps muted story-here">You are here</p>
+        <div ref={end} />
       </div>
     </Sheet>
   );
