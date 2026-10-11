@@ -22,7 +22,12 @@ below exists to make a fair, verified, *unseen* case.
    `afoot seal` deletes it.
 4. Do not open a pull request, post comments, or message other sessions.
 5. Keep your own narration between tool calls brief and content-free
-   ("Writing the world model.", "Revising one deduction.").
+   ("Writing the world model.", "Revising one deduction."). The player sees
+   the session's status line, which is generated from that narration, your
+   task list, and every Agent call's `description`, so all three stay free
+   of names, places, objects, motifs and plot ("Blind solver 2 of 3,
+   deduction 4"). For the same reason, give deduction slots neutral ids
+   (`d1`, `d2`, …) and variants `a`, `b`, `c`.
 
 ## Tools
 
