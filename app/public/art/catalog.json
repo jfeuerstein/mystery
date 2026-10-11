@@ -471,6 +471,76 @@
       }
     },
     {
+      "tag": "portrait-widow",
+      "kind": "portrait",
+      "description": "A woman in widow's black, perhaps veiled."
+    },
+    {
+      "tag": "portrait-nurse",
+      "kind": "portrait",
+      "description": "A nurse in cap and apron."
+    },
+    {
+      "tag": "portrait-page-boy",
+      "kind": "portrait",
+      "description": "A boy in buttons: a page, messenger or telegraph boy."
+    },
+    {
+      "tag": "portrait-child",
+      "kind": "portrait",
+      "description": "A child of the household, in Sunday best."
+    },
+    {
+      "tag": "portrait-footman",
+      "kind": "portrait",
+      "description": "A footman or valet in livery."
+    },
+    {
+      "tag": "portrait-squire",
+      "kind": "portrait",
+      "description": "A country squire in tweeds or riding clothes."
+    },
+    {
+      "tag": "portrait-old-soldier",
+      "kind": "portrait",
+      "description": "A veteran soldier, upright and moustached."
+    },
+    {
+      "tag": "portrait-naval-officer",
+      "kind": "portrait",
+      "description": "A naval officer in uniform."
+    },
+    {
+      "tag": "portrait-stationmaster",
+      "kind": "portrait",
+      "description": "A railway official in uniform and peaked cap."
+    },
+    {
+      "tag": "portrait-pawnbroker",
+      "kind": "portrait",
+      "description": "A shrewd tradesman: a pawnbroker, moneylender or jeweller."
+    },
+    {
+      "tag": "portrait-engineer",
+      "kind": "portrait",
+      "description": "An engineer, inventor or chemist, sleeves rolled."
+    },
+    {
+      "tag": "portrait-magistrate",
+      "kind": "portrait",
+      "description": "A judge or magistrate, grave, perhaps in wig and robes."
+    },
+    {
+      "tag": "portrait-farmer",
+      "kind": "portrait",
+      "description": "A farmer or countryman in smock or gaiters."
+    },
+    {
+      "tag": "portrait-tramp",
+      "kind": "portrait",
+      "description": "A tramp or vagrant in ragged clothes."
+    },
+    {
       "tag": "scene-sitting-room",
       "kind": "scene",
       "description": "221B Baker Street: the sitting room, fire, chemicals and books.",
@@ -979,6 +1049,76 @@
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=150",
         "license": "Public domain"
       }
+    },
+    {
+      "tag": "scene-conservatory",
+      "kind": "scene",
+      "description": "A glass conservatory or hothouse full of palms."
+    },
+    {
+      "tag": "scene-billiard-room",
+      "kind": "scene",
+      "description": "A billiard room in a club or country house."
+    },
+    {
+      "tag": "scene-courtroom",
+      "kind": "scene",
+      "description": "A courtroom or inquest: bench, dock and witness box."
+    },
+    {
+      "tag": "scene-police-station",
+      "kind": "scene",
+      "description": "A police station's charge room or office."
+    },
+    {
+      "tag": "scene-hospital-ward",
+      "kind": "scene",
+      "description": "A hospital ward or sickroom."
+    },
+    {
+      "tag": "scene-pawnshop",
+      "kind": "scene",
+      "description": "A pawnshop or curiosity shop crowded with goods."
+    },
+    {
+      "tag": "scene-embankment",
+      "kind": "scene",
+      "description": "The Thames Embankment or a London bridge."
+    },
+    {
+      "tag": "scene-night-street",
+      "kind": "scene",
+      "description": "A gaslit street or alley at night, often in fog."
+    },
+    {
+      "tag": "scene-ship-deck",
+      "kind": "scene",
+      "description": "The deck of a ship or steamer."
+    },
+    {
+      "tag": "scene-lighthouse",
+      "kind": "scene",
+      "description": "A lighthouse or coastguard station on a lonely coast."
+    },
+    {
+      "tag": "scene-country-lane",
+      "kind": "scene",
+      "description": "A country lane or road between hedges."
+    },
+    {
+      "tag": "scene-ballroom",
+      "kind": "scene",
+      "description": "A ballroom or grand reception."
+    },
+    {
+      "tag": "scene-market",
+      "kind": "scene",
+      "description": "A busy market or fair."
+    },
+    {
+      "tag": "scene-museum",
+      "kind": "scene",
+      "description": "A museum gallery or exhibition room."
     },
     {
       "tag": "vignette-clock",
@@ -1601,6 +1741,106 @@
         "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889",
         "license": "Public domain"
       }
+    },
+    {
+      "tag": "vignette-spectacles",
+      "kind": "vignette",
+      "description": "A pair of spectacles or pince-nez."
+    },
+    {
+      "tag": "vignette-magnifying-glass",
+      "kind": "vignette",
+      "description": "A magnifying glass."
+    },
+    {
+      "tag": "vignette-handcuffs",
+      "kind": "vignette",
+      "description": "A pair of handcuffs."
+    },
+    {
+      "tag": "vignette-wax-seal",
+      "kind": "vignette",
+      "description": "A wax seal or signet."
+    },
+    {
+      "tag": "vignette-fan",
+      "kind": "vignette",
+      "description": "A lady's fan."
+    },
+    {
+      "tag": "vignette-locket",
+      "kind": "vignette",
+      "description": "A locket or brooch."
+    },
+    {
+      "tag": "vignette-medal",
+      "kind": "vignette",
+      "description": "A medal or decoration."
+    },
+    {
+      "tag": "vignette-chessboard",
+      "kind": "vignette",
+      "description": "A chessboard with pieces."
+    },
+    {
+      "tag": "vignette-violin",
+      "kind": "vignette",
+      "description": "A violin and bow."
+    },
+    {
+      "tag": "vignette-chemistry",
+      "kind": "vignette",
+      "description": "Chemical apparatus: retort, flasks and test tubes."
+    },
+    {
+      "tag": "vignette-wallet",
+      "kind": "vignette",
+      "description": "A pocket-book, wallet or purse."
+    },
+    {
+      "tag": "vignette-snuffbox",
+      "kind": "vignette",
+      "description": "A snuffbox or cigarette case."
+    },
+    {
+      "tag": "vignette-birdcage",
+      "kind": "vignette",
+      "description": "A birdcage."
+    },
+    {
+      "tag": "vignette-scissors",
+      "kind": "vignette",
+      "description": "A pair of scissors or shears."
+    },
+    {
+      "tag": "vignette-timetable",
+      "kind": "vignette",
+      "description": "A railway timetable or Bradshaw."
+    },
+    {
+      "tag": "vignette-bell-pull",
+      "kind": "vignette",
+      "description": "A bell or bell-pull."
+    },
+    {
+      "tag": "vignette-hourglass",
+      "kind": "vignette",
+      "description": "An hourglass."
+    },
+    {
+      "tag": "vignette-telescope",
+      "kind": "vignette",
+      "description": "A telescope or field glasses."
+    },
+    {
+      "tag": "vignette-quill",
+      "kind": "vignette",
+      "description": "A quill pen or steel pen and inkstand."
+    },
+    {
+      "tag": "vignette-jewel",
+      "kind": "vignette",
+      "description": "A gemstone, necklace or jewel."
     }
   ]
 }

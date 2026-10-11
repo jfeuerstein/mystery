@@ -19,6 +19,7 @@ import {
   restartChapter,
   restartFinale,
   startCase,
+  storySoFar,
   type CaseProgress,
 } from "./progress";
 
@@ -130,5 +131,52 @@ describe("engine", () => {
     p = restartFinale(p);
     expect(p.stage).toEqual({ kind: "finale", step: "intro" });
     expect(p.patience).toBe(3);
+  });
+});
+
+describe("the story so far", () => {
+  it("holds exactly what has been read, in order, up to the current paragraph", () => {
+    const first = c.chapters[0]!.beats[0]!;
+    if (first.kind !== "narration") throw new Error("expected an opening narration");
+    let p = startCase(c);
+    expect(storySoFar(c, p)).toEqual([
+      { kind: "chapter", number: 0, title: "The Client" },
+      { kind: "narration", paragraphs: [first.paragraphs[0]] },
+    ]);
+    p = nextParagraph(c, p);
+    const opening = storySoFar(c, p)[1]!;
+    expect(opening.kind === "narration" && opening.paragraphs.length).toBe(2);
+
+    // Mid-observation: only the details inspected so far.
+    p = playBeat(startCase(c));
+    const observe = currentBeat(c, p)!;
+    if (observe.kind !== "observe") throw new Error("expected the cold read");
+    p = inspect(c, p, observe.details[0]!.id);
+    expect(storySoFar(c, p).at(-1)).toEqual({ kind: "observed", subject: expect.any(String), notes: [observe.details[0]!.text] });
+  });
+
+  it("shows a deduction's conclusion only once it is solved", () => {
+    let p = startCase(c);
+    while (currentBeat(c, p)?.kind !== "deduction") p = playBeat(p);
+    expect(storySoFar(c, p).at(-1)).toEqual({ kind: "deduction", prompt: currentSlot(c, p)!.prompt });
+    p = declare(c, enterPalace(p), true);
+    expect(storySoFar(c, p).at(-1)).toMatchObject({ kind: "deduction", conclusion: currentSlot(c, p)!.onSolved.holmesSpeaks });
+  });
+
+  it("covers the whole case at the finale, and drops a chapter that has gone cold", () => {
+    let p = playToFinale(startCase(c));
+    const pages = storySoFar(c, p);
+    expect(pages.filter((x) => x.kind === "chapter").map((x) => x.kind === "chapter" && x.title)).toEqual(c.chapters.map((ch) => ch.title));
+    expect(pages.at(-1)).toEqual({ kind: "finale", paragraphs: c.finale.intro });
+    // Nothing from the finale's solution until it is reached.
+    expect(JSON.stringify(pages)).not.toContain(c.finale.solution[0]!);
+
+    p = startCase(c);
+    while (p.stage.kind === "chapter" && p.stage.chapter === 0) p = playBeat(p);
+    while (currentBeat(c, p)?.kind !== "deduction") p = playBeat(p);
+    p = enterPalace(p);
+    for (let i = 0; i < 3; i++) p = declare(c, p, false);
+    expect(p.stage.kind).toBe("cold");
+    expect(storySoFar(c, p).filter((x) => x.kind === "chapter")).toEqual([{ kind: "chapter", number: 0, title: "The Client" }]);
   });
 });

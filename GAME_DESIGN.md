@@ -258,6 +258,13 @@ bottom edge. It has four tabs:
 | **Persons** | The cast list with portraits, relationships, and what you've established about each. |
 | **Established** | Facts you have *proved* in earlier deductions. These become premises for later ones. |
 
+**The story so far.** The open book in the header shows every page read in
+the case, in order, ending where you are: narration, what you observed and
+found, the answers you heard, each deduction's question and, once solved,
+Holmes' conclusion. It is read-only (the story only moves forward) and shows
+nothing you haven't been shown, so a page tapped past too quickly can always
+be read again.
+
 ---
 
 ## 7. Investigation
@@ -772,7 +779,13 @@ pipeline composes the scenes itself:
 ### 13.4 Ergonomics
 - Portrait only, locked. Designed for one thumb: all actions sit in the
   bottom 40% of the screen.
-- Respect safe-area insets (notch, Dynamic Island, home indicator).
+- Respect safe-area insets (notch, Dynamic Island, home indicator). The strip
+  under the status bar is plain paper, matching the status bar iOS paints in
+  the theme colour; the Mind Palace switches the theme colour to its own
+  black while it is open.
+- A page's forward button sits in the same place on every page, so it
+  ignores taps for a moment (0.45 s) after it appears or changes. A tap on
+  the page reads on through narration, but only the button leaves it.
 - Long text never requires horizontal scrolling. Arrangement grids of up to
   6×6 fit on a 375 pt-wide screen, and larger grids scroll vertically only.
 - An accessibility text size setting, and Reduce Motion support (the Palace
@@ -1320,7 +1333,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
-| v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). Generation sessions keep their status lines content-free and their deduction slot ids neutral (§14.7). |
+| v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). Generation sessions keep their status lines content-free and their deduction slot ids neutral (§14.7). The story so far (§6), the forward button's settle, and the status-bar strip (§13.4). |
 | v1.6 | The engraving library: 112 of 116 catalog tags have a public-domain plate (Paget's Strand illustrations, Cassell's *Old and New London*, Doré, Gross's *Criminal Investigation*, trade catalogues, museum prints). Evidence objects sit in paper medallions in Examine scenes (§13.2). |
 | v1.5 | Season 2 groundwork. Tier 3's Notebook entries; *On Some, Most and All* moves to the Fallacy Index. The Missing Link is built as a sufficient-assumption puzzle with code-owned frames (§8.7). Adaptive variant selection and one-time room guides are built (§11.2, §11.3); variant difficulty is 1–5. |
 | v1.4 | M4 built. The test is never named in the app; the Notebook shows classic logic terms (decision 18). Audio is violin music and violin effects, with no ambience (decision 17, §13.5). Test Conditions is renamed By Candlelight, and Holmes' Ledger records every Declare (§12). Visual system, motion and the engraving build are written down (§13.1, §13.2); the grade seal's oxblood wax is the palette's one colour. |
