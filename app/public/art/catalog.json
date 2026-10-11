@@ -975,72 +975,184 @@
     {
       "tag": "vignette-clock",
       "kind": "vignette",
-      "description": "A long-case clock, glass broken."
+      "description": "A long-case clock, glass broken.",
+      "file": "vignette-clock.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-watch",
       "kind": "vignette",
-      "description": "A pocket watch, stopped."
+      "description": "A pocket watch, stopped.",
+      "file": "vignette-watch.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-teacup",
       "kind": "vignette",
-      "description": "A cup and saucer."
+      "description": "A cup and saucer.",
+      "file": "vignette-teacup.webp",
+      "credit": {
+        "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+        "author": "Sears, Roebuck and Co. (catalogue engraving)",
+        "date": "1897",
+        "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-key",
       "kind": "vignette",
-      "description": "A large iron key."
+      "description": "A large iron key.",
+      "file": "vignette-key.webp",
+      "credit": {
+        "title": "Three keys, Collection Sauvageot (Rijksmuseum)",
+        "author": "Edouard Lièvre",
+        "date": "1863",
+        "source": "https://commons.wikimedia.org/wiki/File:Drie_sleutels,_RP-P-1929-12.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-boots",
       "kind": "vignette",
-      "description": "A pair of muddy boots."
+      "description": "A pair of muddy boots.",
+      "file": "vignette-boots.webp",
+      "credit": {
+        "title": "A pair of boots (Rijksmuseum)",
+        "author": "Henri Guérard",
+        "date": "1856-1897",
+        "source": "https://commons.wikimedia.org/wiki/File:Paar_laarzen,_RP-P-1943-163.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-deed",
       "kind": "vignette",
-      "description": "A legal document, half burned."
+      "description": "A legal document, half burned.",
+      "file": "vignette-deed.webp",
+      "credit": {
+        "title": "Magna Carta (facsimile of the fire-damaged Cotton charter)",
+        "author": "John Pine",
+        "date": "1733",
+        "source": "https://commons.wikimedia.org/wiki/File:Magna_Carta_-_John_Pine_engraving_1733.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-letter",
       "kind": "vignette",
-      "description": "A folded letter."
+      "description": "A folded letter.",
+      "file": "vignette-letter.webp",
+      "credit": {
+        "title": "The Reigate Squire (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p612.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-envelope",
       "kind": "vignette",
-      "description": "An envelope with a broken seal."
+      "description": "An envelope with a broken seal.",
+      "file": "vignette-envelope.webp",
+      "credit": {
+        "title": "Penny Pink postal envelope",
+        "author": "General Post Office (used envelope)",
+        "date": "1842",
+        "source": "https://commons.wikimedia.org/wiki/File:Penny_Pink_(1841).jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-telegram",
       "kind": "vignette",
-      "description": "A telegraph form."
+      "description": "A telegraph form.",
+      "file": "vignette-telegram.webp",
+      "credit": {
+        "title": "Post Office Telegraphs form, Victoria",
+        "author": "Post Office Telegraphs (printed form)",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:1873_1_shilling_telegraph_form.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-newspaper",
       "kind": "vignette",
-      "description": "A folded newspaper column."
+      "description": "A folded newspaper column.",
+      "file": "vignette-newspaper.webp",
+      "credit": {
+        "title": "The Morning Post, front page",
+        "author": "The Morning Post",
+        "date": "1900",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Morning_Post,_No._39841,_London,_February_12,_1900.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-ticket",
       "kind": "vignette",
-      "description": "A railway ticket."
+      "description": "A railway ticket.",
+      "file": "vignette-ticket.webp",
+      "credit": {
+        "title": "Manx Northern Railway return ticket, Ramsey to Waterfalls",
+        "author": "Manx Northern Railway Company (printed ticket)",
+        "date": "before 1905",
+        "source": "https://commons.wikimedia.org/wiki/File:MNRRamseyWaterfalls.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-ink",
       "kind": "vignette",
-      "description": "A hand with an ink stain."
+      "description": "A hand with an ink stain.",
+      "file": "vignette-ink.webp",
+      "credit": {
+        "title": "Right hand with a quill pen, Spieghel der schrijfkonste (Rijksmuseum)",
+        "author": "After Jan van de Velde",
+        "date": "1605",
+        "source": "https://commons.wikimedia.org/wiki/File:Rechterhand_met_ganzenpen,_RP-P-1896-A-19245-36(R).jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-hand",
       "kind": "vignette",
-      "description": "A hand showing calluses."
+      "description": "A hand showing calluses.",
+      "file": "vignette-hand.webp",
+      "credit": {
+        "title": "Study of a hand (Rijksmuseum)",
+        "author": "Johannes Bemme after D. P. G. Humbert de Superville",
+        "date": "1813",
+        "source": "https://commons.wikimedia.org/wiki/File:Studie_van_een_hand,_RP-P-1878-A-515.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-ring",
       "kind": "vignette",
-      "description": "A signet ring."
+      "description": "A signet ring.",
+      "file": "vignette-ring.webp",
+      "credit": {
+        "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+        "author": "Sears, Roebuck and Co. (catalogue engraving)",
+        "date": "1897",
+        "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-glove",
@@ -1050,22 +1162,54 @@
     {
       "tag": "vignette-hat",
       "kind": "vignette",
-      "description": "A hat with a band."
+      "description": "A hat with a band.",
+      "file": "vignette-hat.webp",
+      "credit": {
+        "title": "A hat (Rijksmuseum)",
+        "author": "Johann Friedrich Morgenstern",
+        "date": "1797",
+        "source": "https://commons.wikimedia.org/wiki/File:Hoed,_RP-P-1906-3739.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-cane",
       "kind": "vignette",
-      "description": "A walking stick with a silver head."
+      "description": "A walking stick with a silver head.",
+      "file": "vignette-cane.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-umbrella",
       "kind": "vignette",
-      "description": "A furled umbrella."
+      "description": "A furled umbrella.",
+      "file": "vignette-umbrella.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-pipe",
       "kind": "vignette",
-      "description": "A briar pipe."
+      "description": "A briar pipe.",
+      "file": "vignette-pipe.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-cigar-ash",
@@ -1075,27 +1219,67 @@
     {
       "tag": "vignette-footprint",
       "kind": "vignette",
-      "description": "A footprint in soft earth."
+      "description": "A footprint in soft earth.",
+      "file": "vignette-footprint.webp",
+      "credit": {
+        "title": "Criminal Investigation (Hans Gross, tr. J. Adam)",
+        "author": "Hans Gross",
+        "date": "1906",
+        "source": "https://archive.org/details/criminalinvestig00grosuoft",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-candle",
       "kind": "vignette",
-      "description": "A candle burned low."
+      "description": "A candle burned low.",
+      "file": "vignette-candle.webp",
+      "credit": {
+        "title": "A burning candle, Devises et emblesmes d'amour moralisez (Rijksmuseum)",
+        "author": "Albert Flamen",
+        "date": "1672",
+        "source": "https://commons.wikimedia.org/wiki/File:Brandende_kaars_Moraliserende_liefdesemblemen_(serietitel)_Devises_et_emblesmes_d%27amovr_moralisez_(serietitel),_RP-P-1926-380.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-lamp",
       "kind": "vignette",
-      "description": "An oil lamp."
+      "description": "An oil lamp.",
+      "file": "vignette-lamp.webp",
+      "credit": {
+        "title": "Catalogue of lamps, burners & accessories (Sherwood)",
+        "author": "Unknown engraver (trade catalogue)",
+        "date": "c. 1900",
+        "source": "https://archive.org/details/sherwood12085_20240130",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-bottle",
       "kind": "vignette",
-      "description": "A small medicine bottle."
+      "description": "A small medicine bottle.",
+      "file": "vignette-bottle.webp",
+      "credit": {
+        "title": "Book of illustrations to S. Maw, Son & Thompson's quarterly price-current (Wellcome Collection)",
+        "author": "S. Maw, Son & Thompson",
+        "date": "1870",
+        "source": "https://wellcomecollection.org/works/yvpdehkx",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-poison-label",
       "kind": "vignette",
-      "description": "A chemist's label."
+      "description": "A chemist's label.",
+      "file": "vignette-poison-label.webp",
+      "credit": {
+        "title": "Poison label, Fowke & Aston, Chemists, Stafford (Wellcome Collection)",
+        "author": "Fowke & Aston (printed label)",
+        "date": "1890s",
+        "source": "https://wellcomecollection.org/works/evtbv6zp",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-pistol",

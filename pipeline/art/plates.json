@@ -1030,6 +1030,394 @@
         0.5,
         0.62
       ]
+    },
+    "vignette-boots": {
+      "page": "https://commons.wikimedia.org/wiki/File:Paar_laarzen,_RP-P-1943-163.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Paar_laarzen%2C_RP-P-1943-163.jpg/1920px-Paar_laarzen%2C_RP-P-1943-163.jpg",
+      "title": "A pair of boots (Rijksmuseum)",
+      "author": "Henri Guérard",
+      "date": "1856-1897",
+      "license": "CC0",
+      "crop": [
+        0.15,
+        0.11,
+        0.85,
+        0.76
+      ],
+      "levels": [
+        35,
+        145
+      ]
+    },
+    "vignette-bottle": {
+      "page": "https://wellcomecollection.org/works/yvpdehkx",
+      "image": "https://iiif.wellcomecollection.org/image/b22267761_0126.jp2/full/max/0/default.jpg",
+      "title": "Book of illustrations to S. Maw, Son & Thompson's quarterly price-current (Wellcome Collection)",
+      "author": "S. Maw, Son & Thompson",
+      "date": "1870",
+      "license": "Public domain",
+      "crop": [
+        0.055,
+        0.3617,
+        0.344,
+        0.507
+      ],
+      "levels": [
+        30,
+        185
+      ]
+    },
+    "vignette-candle": {
+      "page": "https://commons.wikimedia.org/wiki/File:Brandende_kaars_Moraliserende_liefdesemblemen_(serietitel)_Devises_et_emblesmes_d%27amovr_moralisez_(serietitel),_RP-P-1926-380.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Brandende_kaars_Moraliserende_liefdesemblemen_%28serietitel%29_Devises_et_emblesmes_d%27amovr_moralisez_%28serietitel%29%2C_RP-P-1926-380.jpg/1920px-Brandende_kaars_Moraliserende_liefdesemblemen_%28serietitel%29_Devises_et_emblesmes_d%27amovr_moralisez_%28serietitel%29%2C_RP-P-1926-380.jpg",
+      "title": "A burning candle, Devises et emblesmes d'amour moralisez (Rijksmuseum)",
+      "author": "Albert Flamen",
+      "date": "1672",
+      "license": "CC0",
+      "crop": [
+        0.255,
+        0.385,
+        0.795,
+        0.6843
+      ]
+    },
+    "vignette-cane": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n666.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.343,
+        0.444,
+        0.781,
+        0.653
+      ],
+      "levels": [
+        50,
+        170
+      ]
+    },
+    "vignette-clock": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n590.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.386,
+        0.137,
+        0.856,
+        0.361
+      ],
+      "levels": [
+        55,
+        175
+      ]
+    },
+    "vignette-deed": {
+      "page": "https://commons.wikimedia.org/wiki/File:Magna_Carta_-_John_Pine_engraving_1733.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Magna_Carta_-_John_Pine_engraving_1733.jpg/1920px-Magna_Carta_-_John_Pine_engraving_1733.jpg",
+      "title": "Magna Carta (facsimile of the fire-damaged Cotton charter)",
+      "author": "John Pine",
+      "date": "1733",
+      "license": "Public domain",
+      "crop": [
+        0.155,
+        0.185,
+        0.655,
+        0.455
+      ]
+    },
+    "vignette-envelope": {
+      "page": "https://commons.wikimedia.org/wiki/File:Penny_Pink_(1841).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Penny_Pink_%281841%29.jpg/1920px-Penny_Pink_%281841%29.jpg",
+      "title": "Penny Pink postal envelope",
+      "author": "General Post Office (used envelope)",
+      "date": "1842",
+      "license": "Public domain",
+      "crop": [
+        0.123,
+        0.0,
+        0.877,
+        1.0
+      ]
+    },
+    "vignette-footprint": {
+      "page": "https://archive.org/details/criminalinvestig00grosuoft",
+      "image": "https://archive.org/download/criminalinvestig00grosuoft/page/n580.jpg",
+      "title": "Criminal Investigation (Hans Gross, tr. J. Adam)",
+      "author": "Hans Gross",
+      "date": "1906",
+      "license": "Public domain",
+      "crop": [
+        0.065,
+        0.33,
+        0.88,
+        0.716
+      ],
+      "levels": [
+        40,
+        215
+      ]
+    },
+    "vignette-hand": {
+      "page": "https://commons.wikimedia.org/wiki/File:Studie_van_een_hand,_RP-P-1878-A-515.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Studie_van_een_hand%2C_RP-P-1878-A-515.jpg/1920px-Studie_van_een_hand%2C_RP-P-1878-A-515.jpg",
+      "title": "Study of a hand (Rijksmuseum)",
+      "author": "Johannes Bemme after D. P. G. Humbert de Superville",
+      "date": "1813",
+      "license": "CC0",
+      "crop": [
+        0.25,
+        0.09,
+        0.912,
+        0.885
+      ],
+      "levels": [
+        8,
+        222
+      ]
+    },
+    "vignette-hat": {
+      "page": "https://commons.wikimedia.org/wiki/File:Hoed,_RP-P-1906-3739.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Hoed%2C_RP-P-1906-3739.jpg/1920px-Hoed%2C_RP-P-1906-3739.jpg",
+      "title": "A hat (Rijksmuseum)",
+      "author": "Johann Friedrich Morgenstern",
+      "date": "1797",
+      "license": "CC0",
+      "crop": [
+        0.25,
+        0.215,
+        0.75,
+        0.742
+      ]
+    },
+    "vignette-ink": {
+      "page": "https://commons.wikimedia.org/wiki/File:Rechterhand_met_ganzenpen,_RP-P-1896-A-19245-36(R).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Rechterhand_met_ganzenpen%2C_RP-P-1896-A-19245-36%28R%29.jpg/1920px-Rechterhand_met_ganzenpen%2C_RP-P-1896-A-19245-36%28R%29.jpg",
+      "title": "Right hand with a quill pen, Spieghel der schrijfkonste (Rijksmuseum)",
+      "author": "After Jan van de Velde",
+      "date": "1605",
+      "license": "CC0",
+      "crop": [
+        0.355,
+        0.14,
+        0.735,
+        0.592
+      ],
+      "levels": [
+        14,
+        220
+      ]
+    },
+    "vignette-key": {
+      "page": "https://commons.wikimedia.org/wiki/File:Drie_sleutels,_RP-P-1929-12.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Drie_sleutels%2C_RP-P-1929-12.jpg/1920px-Drie_sleutels%2C_RP-P-1929-12.jpg",
+      "title": "Three keys, Collection Sauvageot (Rijksmuseum)",
+      "author": "Edouard Lièvre",
+      "date": "1863",
+      "license": "CC0",
+      "crop": [
+        0.15,
+        0.274,
+        0.84,
+        0.6427
+      ],
+      "levels": [
+        60,
+        232
+      ]
+    },
+    "vignette-lamp": {
+      "page": "https://archive.org/details/sherwood12085_20240130",
+      "image": "https://archive.org/download/sherwood12085_20240130/page/n21.jpg",
+      "title": "Catalogue of lamps, burners & accessories (Sherwood)",
+      "author": "Unknown engraver (trade catalogue)",
+      "date": "c. 1900",
+      "license": "Public domain",
+      "crop": [
+        0.525,
+        0.347,
+        0.975,
+        0.628
+      ]
+    },
+    "vignette-letter": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p612.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/The_Strand_Magazine_%28Volume_5%29_-_p612.png/1920px-The_Strand_Magazine_%28Volume_5%29_-_p612.png",
+      "title": "The Reigate Squire (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        0.728,
+        1.0
+      ]
+    },
+    "vignette-newspaper": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Morning_Post,_No._39841,_London,_February_12,_1900.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/The_Morning_Post%2C_No._39841%2C_London%2C_February_12%2C_1900.jpg/1920px-The_Morning_Post%2C_No._39841%2C_London%2C_February_12%2C_1900.jpg",
+      "title": "The Morning Post, front page",
+      "author": "The Morning Post",
+      "date": "1900",
+      "license": "Public domain",
+      "crop": [
+        0.148,
+        0.062,
+        0.43,
+        0.2253
+      ]
+    },
+    "vignette-pipe": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n176.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.177,
+        0.378,
+        0.749,
+        0.65
+      ],
+      "levels": [
+        60,
+        180
+      ]
+    },
+    "vignette-poison-label": {
+      "page": "https://wellcomecollection.org/works/evtbv6zp",
+      "image": "https://iiif.wellcomecollection.org/image/b15456821_0001.jp2/full/1600,/0/default.jpg",
+      "title": "Poison label, Fowke & Aston, Chemists, Stafford (Wellcome Collection)",
+      "author": "Fowke & Aston (printed label)",
+      "date": "1890s",
+      "license": "Public domain",
+      "crop": [
+        0.07,
+        0.05,
+        0.93,
+        0.55
+      ]
+    },
+    "vignette-ring": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n416.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.4912,
+        0.8225,
+        0.6448,
+        0.9125
+      ]
+    },
+    "vignette-teacup": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n609.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.346,
+        0.3022,
+        0.519,
+        0.3729
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.08,
+          0.16
+        ],
+        [
+          0.85,
+          0,
+          1,
+          0.22
+        ]
+      ]
+    },
+    "vignette-telegram": {
+      "page": "https://commons.wikimedia.org/wiki/File:1873_1_shilling_telegraph_form.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/1873_1_shilling_telegraph_form.jpg/1920px-1873_1_shilling_telegraph_form.jpg",
+      "title": "Post Office Telegraphs form, Victoria",
+      "author": "Post Office Telegraphs (printed form)",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.335,
+        0.015,
+        0.985,
+        0.79
+      ],
+      "levels": [
+        90,
+        210
+      ]
+    },
+    "vignette-ticket": {
+      "page": "https://commons.wikimedia.org/wiki/File:MNRRamseyWaterfalls.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/MNRRamseyWaterfalls.jpg/1920px-MNRRamseyWaterfalls.jpg",
+      "title": "Manx Northern Railway return ticket, Ramsey to Waterfalls",
+      "author": "Manx Northern Railway Company (printed ticket)",
+      "date": "before 1905",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        0.722,
+        1.0
+      ],
+      "levels": [
+        40,
+        150
+      ]
+    },
+    "vignette-umbrella": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n911.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.2385,
+        0.149,
+        0.8675,
+        0.461
+      ],
+      "levels": [
+        50,
+        170
+      ]
+    },
+    "vignette-watch": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n566.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.165,
+        0.262,
+        0.835,
+        0.5885
+      ],
+      "levels": [
+        70,
+        165
+      ]
     }
   }
 }
