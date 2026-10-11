@@ -13,14 +13,21 @@ const shots = resolve(process.argv[2] ?? `${here}/screenshots`);
 mkdirSync(shots, { recursive: true });
 const PORT = 4179;
 
+// Its own process group, so stopping it stops vite too, not only npx.
 const server = spawn("npx", ["vite", "preview", "--port", String(PORT), "--strictPort"], {
   cwd: resolve(here, ".."),
   stdio: "pipe",
+  detached: true,
 });
 let stopping = false;
 const stop = () => {
+  if (stopping) return;
   stopping = true;
-  server.kill();
+  try {
+    process.kill(-server.pid, "SIGTERM");
+  } catch {
+    server.kill();
+  }
 };
 process.on("exit", stop);
 // If the port is taken, our server dies and we would test someone else's build.
