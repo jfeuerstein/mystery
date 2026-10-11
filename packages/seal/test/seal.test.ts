@@ -15,9 +15,16 @@ describe("seal", () => {
   });
 
   it("rejects tampering and non-sealed text", async () => {
-    const blob = await seal({ a: 1 });
-    const tampered = blob.slice(0, -6) + (blob.endsWith("A") ? "B" : "A") + blob.slice(-5);
-    await expect(unseal(tampered)).rejects.toThrow();
+    // Change one character inside the authentication tag (not in the last
+    // base64 group, where padding bits could absorb the change). It must
+    // become a different character, or the blob is untouched.
+    for (let i = 0; i < 64; i++) {
+      const blob = await seal({ a: 1 });
+      const at = blob.length - 6;
+      const tampered = blob.slice(0, at) + (blob[at] === "A" ? "B" : "A") + blob.slice(at + 1);
+      expect(tampered).not.toBe(blob);
+      await expect(unseal(tampered)).rejects.toThrow();
+    }
     await expect(unseal('{"a":1}')).rejects.toThrow("not a sealed blob");
   });
 });
