@@ -65,6 +65,11 @@
       "season": 2,
       "number": 5,
       "file": "s2/c5.sealed"
+    },
+    {
+      "season": 2,
+      "number": 6,
+      "file": "s2/c6.sealed"
     }
   ]
 }
