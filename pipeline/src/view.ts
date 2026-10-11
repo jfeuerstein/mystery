@@ -9,6 +9,7 @@ import {
   type FlawType,
   type Orientation,
 } from "@afoot/schema";
+import { fillFrame } from "@afoot/logic";
 
 export type Target = { slot: string; variant: string } | "finale";
 
@@ -198,6 +199,25 @@ export function playerView(c: Case, target: Target, flawOptions: readonly FlawTy
         'Reply with JSON only: {"steps": [{"card": "<fact id>"}, {"card": "<id>", "reading": <1-4>}, ...]}',
       );
       break;
+    case "missing-link": {
+      out.push(`## ${name(p.speaker)}'s argument`);
+      for (const s of p.sentences) out.push(`- ${s.text}`);
+      out.push(
+        "",
+        "## The unstated premise",
+        `The argument needs a premise it does not say. Complete it: "${fillFrame(p.frame, "[A]", "[B]")}"`,
+        "",
+        "## Phrase tiles",
+      );
+      for (const t of p.tiles) out.push(`- [${t.id}] ${t.text}`);
+      out.push(
+        "",
+        "Choose one tile for [A] and a different tile for [B], so that the completed sentence, added to the argument, makes its conclusion follow.",
+        "## How to answer",
+        'Reply with JSON only: {"a": "<tile id>", "b": "<tile id>"}',
+      );
+      break;
+    }
     case "arrangement": {
       out.push("## The rules");
       p.rules.forEach((r, i) => out.push(`${i + 1}. ${r.text}`));

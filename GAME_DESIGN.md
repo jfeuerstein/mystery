@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.4. Written from a design interview, October 2026
+**Status:** v1.5. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -428,13 +428,20 @@ The signature Holmes moment, and the opener of almost every case.
 
 - **Shown:** an argument with a visible gap between its premises and its
   conclusion.
-- **Built:** assemble the unstated premise from **phrase tiles** into a
-  sentence frame ("No one who ___ could have ___").
-- **Validation:** the assembled sentence is compiled into a logical form and
-  checked for whether it is *required* (Necessary Assumption) or *enough*
-  (Sufficient Assumption), depending on the prompt.
-- Introduced mid-curriculum, because it is the hardest type to construct
-  well.
+- **Built:** complete the unsaid premise by filling a sentence frame's two
+  blanks with **phrase tiles**: "If ___, then ___", "___ only if ___",
+  "___ unless ___" or "No one who ___ could have ___". Four to six tiles:
+  the two that link, and distractors from the case.
+- **Validation:** code, never the case, gives each frame its logical form
+  (`packages/logic/src/missinglink.ts`). The premise asked for is the one
+  that is *enough* (a sufficient assumption): added to the premises, it
+  makes the conclusion follow. The verifier checks that the premises alone
+  fall short, and that exactly one premise, up to logical equivalence,
+  closes the gap. The reversed link must not, so the converse is the
+  built-in trap. "No one who A could have B" and "A unless B" read either
+  way round say the same thing, and both orders are accepted.
+- Introduced last in tier 3 (`unstated-premise`), because it is the hardest
+  type to construct well.
 
 ### 8.8 The Reconstruction (Finale)
 *"Then let me tell you what happened at Darrow Hall."*
@@ -508,12 +515,13 @@ you.
   the Key* (treating a necessary condition as sufficient), *On the Shut
   Gate* (treating a sufficient condition as necessary), *On the Rooster and
   the Dawn* (correlation and causation), *On the Unrepresentative Witness*
-  (biased samples). Each logical error has exactly one entry, so a Flaw
+  (biased samples), *On Some, Most and All* (errors of quantity: "some"
+  read as "all", two "some" statements chained). Each logical error has exactly one entry, so a Flaw
   never has two defensible names.
 - **The Methods:** entries on reasoning tools, such as *On Turning a
   Statement About* (the contrapositive), *On Reversed Arrows* (why the
-  converse and inverse don't follow), *On "Unless"*, *On Some, Most and
-  All*, *On Ordering by Elimination*.
+  converse and inverse don't follow), *On "Only If" and "Unless"*, *On
+  Ordering by Elimination*, *On the Unstated Premise*.
 - **The Casebook Margins:** after you solve a deduction, it is appended to
   the relevant entry as a worked example in Holmes' hand. Your past cases
   become your textbook.
@@ -550,7 +558,13 @@ example, *Conditionals → Contrapositive → Converse trap → "Only if" → "U
 - A new concept's first appearance is a **gentle** variant: a single step,
   with the concept isolated from other complications.
 - The first appearance of each **puzzle type** comes with a one-time
-  **interaction demo**. This covers the UI only, never the logic.
+  **interaction guide** ("How this room works"), which covers the controls
+  only, never the logic. The candle and the solve clock wait until it is
+  read.
+- Within a tier, concepts arrive in the order of `CONCEPTS` in
+  `packages/schema/src/ids.ts`. Tier 3: the unrepresentative witness,
+  attacking the man, two doors only, the slippery word, some/most/all, and
+  last the unstated premise (the Missing Link).
 - Season 1 covers tiers 1–2 of Appendix A. Later seasons add tiers 3–4.
 
 ### 11.3 Adaptive difficulty
@@ -570,6 +584,15 @@ expected_success(variant) = σ(skill[concept] − difficulty[variant])
 score(variant) = −|expected_success − 0.70|        // aim for ~70% first-try success
                + 0.15 × weakness_bonus(concept)    // lean into weak concepts
 ```
+
+Built (`app/src/engine/adaptive.ts`): variant difficulty runs from 1
+(gentle) to 5, and a new player rates 2 in every concept. Each first
+Declare moves the ratings of the variant's concepts by 0.5 × (score −
+expected), where a right answer scores 1 (0.8 if slower than three
+minutes) and a wrong one 0; second tries teach nothing. The weakness bonus
+is how far a concept's rating sits below 2, capped at 1. A chapter's
+variants are chosen as it begins and stand until it restarts, when §9.2's
+swap takes precedence.
 
 **Between seasons: profile-guided generation.** The app can export a
 **player profile** (concept ratings, solve times, error patterns such as
@@ -1202,11 +1225,11 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | 2 | *On the Rooster and the Dawn* | Correlation versus causation | Causal flaw | Flaw, Objection (Weaken) |
 | 2 | *On the Other Explanation* | Alternative causes weaken causal claims | Weaken: alternative cause | Objection |
 | 2 | *On Who Stood Where* | Grouping and in/out selection | Grouping games | Arrangement |
-| 3 | *On Some, Most and All* | Quantifier logic | Formal logic: quantifiers | Chain, Flaw |
+| 3 | *On Some, Most and All* (Fallacy Index) | Quantifier logic | Formal logic: quantifiers | Flaw |
 | 3 | *On the Unrepresentative Witness* | Biased or small samples | Sampling flaw | Flaw |
 | 3 | *On Attacking the Man* | Source attacks instead of arguments | Ad hominem | Flaw |
 | 3 | *On the Slippery Word* | Equivocation | Equivocation | Flaw |
-| 3 | *On the Unstated Premise* | Necessary and sufficient assumptions | Assumption questions | Missing Link, Corroborate |
+| 3 | *On the Unstated Premise* | Sufficient assumptions | Assumption questions | Missing Link, Corroborate |
 | 3 | *On Two Doors Only* | False dichotomy | False choice | Flaw |
 | 4 | *On the Part and the Whole* | Composition and division | Part/whole flaw | Flaw |
 | 4 | *On Proportion and Number* | Percentages versus totals | Numbers vs. percentages | Flaw, Objection |
@@ -1259,6 +1282,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.5 | Season 2 groundwork. Tier 3's Notebook entries; *On Some, Most and All* moves to the Fallacy Index. The Missing Link is built as a sufficient-assumption puzzle with code-owned frames (§8.7). Adaptive variant selection and one-time room guides are built (§11.2, §11.3); variant difficulty is 1–5. |
 | v1.4 | M4 built. The test is never named in the app; the Notebook shows classic logic terms (decision 18). Audio is violin music and violin effects, with no ambience (decision 17, §13.5). Test Conditions is renamed By Candlelight, and Holmes' Ledger records every Declare (§12). Visual system, motion and the engraving build are written down (§13.1, §13.2); the grade seal's oxblood wax is the palette's one colour. |
 | v1.3 | M2 built. The art catalog is JSON. The Notebook moved into the shared schema package. Seal format: gzip + AES-GCM + base64 in `packages/seal`. Playtest records are tied to a hash of the puzzle. Blind playtest counts: three solvers and an adversary for argument puzzles, one solver for formal puzzles and the finale. Motif suggestions use a random seed so nothing outside a generation session can predict them. |
 | v1.2 | M1 built. Animation uses CSS instead of Framer Motion. The vertical slice uses placeholder engraving plates until the art catalog exists. The Missing Link puzzle type is deferred to the tier 3 curriculum. |

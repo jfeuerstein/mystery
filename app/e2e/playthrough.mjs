@@ -67,6 +67,16 @@ async function hold(page, locator) {
   await page.waitForTimeout(450);
 }
 
+/** The first visit to each room shows a one-time guide to its controls. */
+let guideShot = false;
+async function readGuide(page) {
+  const ok = page.getByTestId("room-guide-ok");
+  if (!(await ok.isVisible().catch(() => false))) return;
+  if (!guideShot) await shot(page, "room-guide");
+  guideShot = true;
+  await ok.click();
+}
+
 const byText = (page, text) => page.locator("button", { hasText: text }).first();
 
 /** Waits until the save in IndexedDB (idb-keyval's default store) matches. */
@@ -99,6 +109,7 @@ async function readNarration(page) {
 async function enterPalace(page, name) {
   await page.getByTestId("enter-palace").click();
   await page.getByTestId("palace").waitFor();
+  await readGuide(page);
   await page.waitForTimeout(650);
   if (name) await shot(page, name);
 }

@@ -2,6 +2,7 @@ import type { Puzzle } from "@afoot/schema";
 import { verifyArrangement } from "./arrangement.js";
 import { verifyChain } from "./chain.js";
 import { verifyFlaw } from "./flaw.js";
+import { verifyMissingLink } from "./missinglink.js";
 import { verifyObjection } from "./objection.js";
 import { verifyObservation } from "./observation.js";
 import type { VerifyResult } from "./result.js";
@@ -19,5 +20,7 @@ export function verifyPuzzle(puzzle: Puzzle): VerifyResult {
       return verifyArrangement(puzzle);
     case "observation":
       return verifyObservation(puzzle);
+    case "missing-link":
+      return verifyMissingLink(puzzle);
   }
 }

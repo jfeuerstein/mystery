@@ -8,6 +8,8 @@ export type Attempt = {
   /** Deduction slot id, or "finale". */
   slot: string;
   variant: string;
+  /** The variant's difficulty (1–5), for the skill ratings (§11.3). */
+  difficulty?: number;
   type: Puzzle["type"] | "reconstruction";
   concepts: ConceptId[];
   correct: boolean;

@@ -3,6 +3,7 @@ export * from "./case.js";
 export * from "./chain.js";
 export * from "./fairplay.js";
 export * from "./flaw.js";
+export * from "./missinglink.js";
 export * from "./objection.js";
 export * from "./observation.js";
 export * from "./propositional.js";

@@ -17,6 +17,8 @@ export function candleSeconds(puzzle: Puzzle | { type: "reconstruction"; reconst
       return BASE + 15 * puzzle.cards.length;
     case "arrangement":
       return 60 + 25 * puzzle.rules.length + 10 * puzzle.entities.length;
+    case "missing-link":
+      return BASE + 10 * Math.max(0, puzzle.tiles.length - 4) + 8 * Math.max(0, puzzle.sentences.length - 3);
     case "reconstruction":
       return 40 + 25 * puzzle.reconstruction.blanks.length;
   }

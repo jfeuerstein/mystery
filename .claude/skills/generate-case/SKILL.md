@@ -85,6 +85,10 @@ Structure (enforced by `afoot audit`):
   curriculum's `allowed` list; every Flaw answer from its `flawTypes`.
 - Arrangement and Chain slots need **2–3 variants** testing the same truth
   (a failed chapter swaps in another variant). Other slots need 1–2.
+- Every variant has a `difficulty` from 1 (gentle: one step, the concept on
+  its own) to 5 (many rules or distractors, a long chain). The app picks the
+  variant that suits the player (§11.3), so a slot's variants should differ
+  by 1–2 points. A new concept's first deduction needs a variant at 1–2.
 - Only art tags from `app/public/art/catalog.json`.
 
 Designing each puzzle type (the verifiers will hold you to these):
@@ -94,6 +98,22 @@ Designing each puzzle type (the verifiers will hold you to these):
 - **Flaw**: 3–6 sentences, the error at one sentence. For
   `necessary-as-sufficient` / `sufficient-as-necessary`, include `formal`
   (the verifier classifies it). The argument must contain no second flaw.
+  The informal names need the error to be unmistakable and the only one:
+  `unrepresentative-witness` (a few or hand-picked people stand for all),
+  `attacking-the-man` (a claim dismissed for its speaker), `two-doors-only`
+  (two options offered as the only ones, one ruled out), `slippery-word`
+  (one word in two senses across the step), `some-most-all` ("some" or
+  "most" treated as "all", or two "some" statements chained).
+- **Missing Link** (`missing-link`, for `unstated-premise`): an argument of
+  2–4 sentences whose `premises` (logical form) stop short of `conclusion`.
+  Pick a `frame` (`if`, `only-if`, `unless`, `no-one-who`); code gives it its
+  meaning, so write tile `text` that reads naturally in it (clauses for
+  `if`/`only-if`/`unless`, verb phrases for "No one who ___ could have
+  ___"). Give 4–6 `tiles`, each with the `literal` it asserts: the two link
+  phrases plus distractors from the case. The verifier requires that exactly
+  one premise closes the gap, so the reversed link must fail, and a tile for
+  the conclusion itself must not let a shortcut close it. Use `only-if` and
+  `unless` frames only once `only-if-and-unless` is known.
 - **Objection / Corroborate**: each testimony sentence `asserts` literals;
   each hand card `establishes` literals; `background` rules link them. Exactly
   one (sentence, card) pair may contradict (or support). Include 3–5 cards,

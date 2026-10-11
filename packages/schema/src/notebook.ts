@@ -160,6 +160,78 @@ export const ENTRIES: NotebookEntry[] = [
       "Every house in the street that keeps a dog has been burgled. Therefore dogs attract burglars. (Perhaps wealthy houses keep dogs, and burglars prefer wealthy houses.)",
     term: "Cum hoc ergo propter hoc: correlation taken for cause",
   },
+  {
+    id: "unrepresentative-witness",
+    title: "On the Unrepresentative Witness",
+    section: "fallacy",
+    gloss:
+      "Ask three gentlemen leaving the Diogenes Club whether London is a quiet city, Watson, and you will have learned a great deal about the Diogenes Club and nothing whatever about London.",
+    plain:
+      "A conclusion about a whole group is drawn from a few of its members, or from members chosen in a way that tilts the answer. Ask who was asked, how many, and whether they could have answered otherwise.",
+    example:
+      "Every guest the butler questioned swore the master was in high spirits that evening. The butler questioned only the guests at the master’s own birthday dinner.",
+    term: "Hasty generalization, or the biased sample",
+  },
+  {
+    id: "attacking-the-man",
+    title: "On Attacking the Man",
+    section: "fallacy",
+    gloss:
+      "The inspector tells me the witness is a drunkard and a debtor. Very likely. It does not follow that her clock was wrong. A liar may tell the time as well as an archbishop.",
+    plain:
+      "A claim is rejected because of who made it (his character, motive or past) instead of because of what it says. The speaker’s faults may be real; they don’t show that the claim is false.",
+    example:
+      "Mr. Hale says the gate was locked at ten. But Mr. Hale owes money all over the parish, so the gate was open.",
+    term: "Ad hominem",
+  },
+  {
+    id: "two-doors-only",
+    title: "On Two Doors Only",
+    section: "fallacy",
+    gloss:
+      "“Either the butler or the gardener,” says the inspector, and having cleared the gardener he arrests the butler. A room may have more than two doors, Watson, and this one has a window.",
+    plain:
+      "The argument offers two possibilities as if they were the only ones, then rules one out. If a third possibility is open, ruling out one proves nothing about the other.",
+    example:
+      "The letter was either posted in London or delivered by hand. It bears no London postmark, so it was delivered by hand. (It may have been posted in Croydon.)",
+    term: "False dilemma",
+  },
+  {
+    id: "slippery-word",
+    title: "On the Slippery Word",
+    section: "fallacy",
+    gloss:
+      "Lestrade’s reasoning is sound in every joint but one. He uses the word “light” to mean a lamp in one sentence and a small weight in the next, and the argument limps across the gap.",
+    plain:
+      "A key word shifts its meaning between the premises and the conclusion, so the argument only seems to follow. Pin each important word to one meaning and see whether the argument still holds.",
+    example:
+      "The will leaves the house to the nearest relation. The cousin lives nearest the house. Therefore the cousin inherits it.",
+    term: "Equivocation",
+  },
+  {
+    id: "some-most-all",
+    title: "On Some, Most and All",
+    section: "fallacy",
+    gloss:
+      "Some of the guests were in the library, and some of the guests were armed. It does not follow that anyone in the library was armed. “Some” is a small word, Watson, and it will bear very little weight.",
+    plain:
+      "Watch the words of quantity. “All A are B” tells you about every A; “some” and “most” do not. Two “some” statements never connect, and “some” or “most” never becomes “all”. But two “most” statements about the same group must overlap: if most A are B and most A are C, some B are C.",
+    example:
+      "Most of the servants were in the kitchen, and most of the servants heard the shot, so someone in the kitchen heard it: that follows. Some servants drink and some drinkers steal, so some servants steal: that does not.",
+    term: "Quantifiers, and the undistributed middle",
+  },
+  {
+    id: "unstated-premise",
+    title: "On the Unstated Premise",
+    section: "method",
+    gloss:
+      "Every argument that leaps a gap has built itself a bridge it does not show you. Find the bridge, Watson, and then ask whether it would bear the weight.",
+    plain:
+      "When the premises don’t quite reach the conclusion, the argument depends on a premise it leaves unsaid. Name the premise that, added to the others, makes the conclusion follow. Then ask whether that premise is true.",
+    example:
+      "“The mud on his boots is red, so he came by the quarry road.” Unsaid: anyone with red mud on his boots came by the quarry road. Is it so? The brickworks lane is red too.",
+    term: "The enthymeme: a suppressed premise",
+  },
 ];
 
 /** Entries open from the first case. Others unlock as their concepts arrive (§10). */

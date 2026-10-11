@@ -23,12 +23,14 @@ export const CONCEPTS = {
   "correlation-causation": 2,
   "other-explanation": 2,
   "who-stood-where": 2,
-  "some-most-all": 3,
+  // Within a tier, concepts are introduced in this order (§11.2): the
+  // Missing Link's unstated premise comes last, as the hardest to build.
   "unrepresentative-witness": 3,
   "attacking-the-man": 3,
-  "slippery-word": 3,
-  "unstated-premise": 3,
   "two-doors-only": 3,
+  "slippery-word": 3,
+  "some-most-all": 3,
+  "unstated-premise": 3,
   "part-and-whole": 4,
   "proportion-and-number": 4,
   "arguing-in-a-circle": 4,
@@ -49,6 +51,7 @@ export const FLAW_TYPES = [
   "necessary-as-sufficient", // affirming the consequent / mistaken reversal
   "sufficient-as-necessary", // denying the antecedent / mistaken negation
   "correlation-causation",
+  "some-most-all",
   "unrepresentative-witness",
   "attacking-the-man",
   "slippery-word",

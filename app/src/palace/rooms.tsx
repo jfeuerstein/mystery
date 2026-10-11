@@ -5,10 +5,12 @@ import {
   checkArrangementAnswer,
   checkChainAnswer,
   checkFlawAnswer,
+  checkMissingLinkAnswer,
   checkObjectionAnswer,
   checkObservationAnswer,
   checkReconstructionAnswer,
   compile,
+  FRAME_TEXT,
   orient,
   type ArrangementAnswer,
   type ChainStep,
@@ -23,6 +25,7 @@ import {
   type ConceptId,
   type FlawPuzzle,
   type FlawType,
+  type MissingLinkPuzzle,
   type ObjectionPuzzle,
   type ObservationPuzzle,
   type Reconstruction,
@@ -453,6 +456,79 @@ export function ReconstructionRoom(props: { reconstruction: Reconstruction; onDe
       <Footer
         ready={r.blanks.every((b) => fills[b.id])}
         onDeclare={() => props.onDeclare(checkReconstructionAnswer(r, fills))}
+      />
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+
+/** The Missing Link (§8.7): complete the premise the argument leaves unsaid. */
+export function MissingLinkRoom(props: { puzzle: MissingLinkPuzzle; speaker: string; onDeclare: Declare }) {
+  const { puzzle } = props;
+  const [fills, setFills] = useState<{ a?: string; b?: string }>({});
+  const [active, setActive] = useState<"a" | "b">("a");
+  const text = (id?: string) => puzzle.tiles.find((t) => t.id === id)?.text;
+  // The frame's words are code's, not the case's: split around the two blanks.
+  const parts = FRAME_TEXT[puzzle.frame].split(/(\{[ab]\})/);
+
+  const place = (tile: string) => {
+    const next = { ...fills, [active]: tile };
+    if (next.a === next.b) delete next[active === "a" ? "b" : "a"];
+    setFills(next);
+    if (!next.a) setActive("a");
+    else if (!next.b) setActive("b");
+  };
+
+  return (
+    <>
+      <Section>{props.speaker}'s reasoning</Section>
+      <div className="argument">
+        {puzzle.sentences.map((s) => (
+          <p key={s.id} className={s.role === "conclusion" ? "conclusion" : ""}>
+            {s.text}
+          </p>
+        ))}
+      </div>
+      <Section>The premise left unsaid</Section>
+      <p className="passage link-frame" data-testid="link-frame">
+        {parts.map((part, i) => {
+          const m = /^\{([ab])\}$/.exec(part);
+          const lead = i === 0 && part.length > 0;
+          if (!m) return <span key={i}>{lead ? part.charAt(0).toUpperCase() + part.slice(1) : part}</span>;
+          const blank = m[1] as "a" | "b";
+          const value = text(fills[blank]);
+          return (
+            <button
+              key={i}
+              className={`blank ${value ? "" : "empty"} ${active === blank ? "selected" : ""}`}
+              onClick={() => setActive(blank)}
+              data-testid={`link-${blank}`}
+            >
+              {value ?? " ? "}
+            </button>
+          );
+        })}
+      </p>
+      <Section>Phrases</Section>
+      <div className="list">
+        {puzzle.tiles.map((t) => {
+          const used = fills.a === t.id || fills.b === t.id;
+          return (
+            <button key={t.id} className={`pick ${used ? "selected" : ""}`} onClick={() => place(t.id)} data-testid={`tile-${t.id}`}>
+              {t.text}
+            </button>
+          );
+        })}
+      </div>
+      <div className="btn-row" style={{ marginTop: 10 }}>
+        <button className="btn ghost" onClick={() => (setFills({}), setActive("a"))} disabled={!fills.a && !fills.b}>
+          Clear
+        </button>
+      </div>
+      <Footer
+        ready={!!fills.a && !!fills.b}
+        onDeclare={() => props.onDeclare(checkMissingLinkAnswer(puzzle, { a: fills.a!, b: fills.b! }))}
       />
     </>
   );
