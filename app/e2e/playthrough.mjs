@@ -17,8 +17,19 @@ const server = spawn("npx", ["vite", "preview", "--port", String(PORT), "--stric
   cwd: resolve(here, ".."),
   stdio: "pipe",
 });
-const stop = () => server.kill();
+let stopping = false;
+const stop = () => {
+  stopping = true;
+  server.kill();
+};
 process.on("exit", stop);
+// If the port is taken, our server dies and we would test someone else's build.
+server.on("exit", (code) => {
+  if (!stopping) {
+    console.error(`vite preview exited (${code}): is port ${PORT} already in use?`);
+    process.exit(1);
+  }
+});
 
 async function waitForServer() {
   for (let i = 0; i < 60; i++) {
