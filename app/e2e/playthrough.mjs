@@ -13,14 +13,21 @@ const shots = resolve(process.argv[2] ?? `${here}/screenshots`);
 mkdirSync(shots, { recursive: true });
 const PORT = 4179;
 
+// Its own process group, so stopping it stops vite too, not only npx.
 const server = spawn("npx", ["vite", "preview", "--port", String(PORT), "--strictPort"], {
   cwd: resolve(here, ".."),
   stdio: "pipe",
+  detached: true,
 });
 let stopping = false;
 const stop = () => {
+  if (stopping) return;
   stopping = true;
-  server.kill();
+  try {
+    process.kill(-server.pid, "SIGTERM");
+  } catch {
+    server.kill();
+  }
 };
 process.on("exit", stop);
 // If the port is taken, our server dies and we would test someone else's build.
@@ -67,6 +74,16 @@ async function hold(page, locator) {
   await page.waitForTimeout(450);
 }
 
+/** The first visit to each room shows a one-time guide to its controls. */
+let guideShot = false;
+async function readGuide(page) {
+  const ok = page.getByTestId("room-guide-ok");
+  if (!(await ok.isVisible().catch(() => false))) return;
+  if (!guideShot) await shot(page, "room-guide");
+  guideShot = true;
+  await ok.click();
+}
+
 const byText = (page, text) => page.locator("button", { hasText: text }).first();
 
 /** Waits until the save in IndexedDB (idb-keyval's default store) matches. */
@@ -99,6 +116,7 @@ async function readNarration(page) {
 async function enterPalace(page, name) {
   await page.getByTestId("enter-palace").click();
   await page.getByTestId("palace").waitFor();
+  await readGuide(page);
   await page.waitForTimeout(650);
   if (name) await shot(page, name);
 }

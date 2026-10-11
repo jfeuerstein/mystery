@@ -4,6 +4,7 @@ import type {
   ChainPuzzle,
   Constraint,
   FlawPuzzle,
+  MissingLinkPuzzle,
   ObjectionPuzzle,
   ObservationPuzzle,
   Reconstruction,
@@ -12,6 +13,7 @@ import { describe, expect, it } from "vitest";
 import {
   checkArrangementAnswer,
   checkChainAnswer,
+  checkMissingLinkAnswer,
   classifyFormalArgument,
   closure,
   compile,
@@ -23,6 +25,7 @@ import {
   verifyChain,
   verifyFairPlay,
   verifyFlaw,
+  verifyMissingLink,
   verifyObjection,
   verifyObservation,
   verifyReconstruction,
@@ -334,5 +337,111 @@ describe("Observation, Reconstruction and fair play", () => {
       { kind: "clue", id: "boots" },
     ]);
     expect(r.errors).toEqual(['deduction "d1" needs "boots" before the player has it']);
+  });
+});
+
+describe("The Missing Link", () => {
+  // "Pike was in the stables at nine, so he cannot have stopped the clock."
+  // Unsaid: no one who was in the stables at nine could have stopped it.
+  const link: MissingLinkPuzzle = {
+    type: "missing-link",
+    speaker: "lestrade",
+    sentences: [
+      { id: "s1", text: "Pike was in the stables at nine.", role: "premise" },
+      { id: "s2", text: "So Pike cannot have stopped the clock.", role: "conclusion" },
+    ],
+    premises: [{ form: "fact", literal: "pike-in-stables" }],
+    conclusion: "!pike-stopped-clock",
+    frame: "no-one-who",
+    tiles: [
+      { id: "stables", text: "was in the stables at nine", literal: "pike-in-stables" },
+      { id: "clock", text: "stopped the clock", literal: "pike-stopped-clock" },
+      { id: "dogs", text: "heard the dogs", literal: "pike-heard-dogs" },
+      { id: "key", text: "had a key to the hall", literal: "pike-had-key" },
+    ],
+    answer: { a: "stables", b: "clock" },
+  };
+
+  it("verifies a link with one premise that closes the gap", () => {
+    const r = verifyMissingLink(link);
+    expect(r.errors).toEqual([]);
+    expect(checkMissingLinkAnswer(link, { a: "stables", b: "clock" })).toBe(true);
+    // "No one who stopped the clock was in the stables" says the same thing.
+    expect(checkMissingLinkAnswer(link, { a: "clock", b: "stables" })).toBe(true);
+    expect(checkMissingLinkAnswer(link, { a: "dogs", b: "clock" })).toBe(false);
+    expect(checkMissingLinkAnswer(link, { a: "stables", b: "stables" })).toBe(false);
+  });
+
+  it("rejects an argument with no gap", () => {
+    const closed = { ...link, premises: [...link.premises, { form: "if" as const, a: "pike-in-stables", b: "!pike-stopped-clock" }] };
+    expect(verifyMissingLink(closed).errors.join()).toMatch(/no gap/);
+  });
+
+  it("rejects a reversed if-then link, and accepts only the direction that follows", () => {
+    // "The clock was stopped on purpose, so the murderer wanted a false time of death."
+    const ifLink: MissingLinkPuzzle = {
+      ...link,
+      frame: "if",
+      premises: [{ form: "fact", literal: "stopped-on-purpose" }],
+      conclusion: "wanted-false-time",
+      tiles: [
+        { id: "purpose", text: "the clock was stopped on purpose", literal: "stopped-on-purpose" },
+        { id: "false", text: "the murderer wanted a false time of death", literal: "wanted-false-time" },
+        { id: "alibi", text: "the murderer had an alibi", literal: "had-alibi" },
+        { id: "servant", text: "the murderer was a servant", literal: "servant" },
+      ],
+      answer: { a: "purpose", b: "false" },
+    };
+    expect(verifyMissingLink(ifLink).errors).toEqual([]);
+    expect(checkMissingLinkAnswer(ifLink, { a: "false", b: "purpose" })).toBe(false);
+    const wrongWay = { ...ifLink, answer: { a: "false", b: "purpose" } };
+    expect(verifyMissingLink(wrongWay).errors.join()).toMatch(/intended filling does not close/);
+  });
+
+  it("rejects tiles that let two different premises close the gap", () => {
+    // With a fact A and a rule B → C, both A → B and A → C close it.
+    const twoWays: MissingLinkPuzzle = {
+      ...link,
+      frame: "if",
+      premises: [
+        { form: "fact", literal: "a" },
+        { form: "if", a: "b", b: "c" },
+      ],
+      conclusion: "c",
+      tiles: [
+        { id: "ta", text: "a", literal: "a" },
+        { id: "tb", text: "b", literal: "b" },
+        { id: "tc", text: "c", literal: "c" },
+        { id: "td", text: "d", literal: "d" },
+      ],
+      answer: { a: "ta", b: "tb" },
+    };
+    expect(verifyMissingLink(twoWays).errors.join()).toMatch(/more than one premise/);
+    const withoutC = { ...twoWays, tiles: twoWays.tiles.filter((t) => t.id !== "tc") };
+    expect(verifyMissingLink(withoutC).errors).toEqual([]);
+  });
+
+  it("reads 'unless' and 'only if' frames by code, not by the case", () => {
+    const unless: MissingLinkPuzzle = {
+      ...link,
+      frame: "unless",
+      premises: [{ form: "fact", literal: "!dogs-barked" }],
+      conclusion: "visitor-known",
+      tiles: [
+        { id: "known", text: "the visitor was known to the house", literal: "visitor-known" },
+        { id: "barked", text: "the dogs barked", literal: "dogs-barked" },
+        { id: "rain", text: "it was raining", literal: "raining" },
+        { id: "late", text: "the hour was late", literal: "late" },
+      ],
+      // "The visitor was known to the house unless the dogs barked": ¬barked → known.
+      answer: { a: "known", b: "barked" },
+    };
+    expect(verifyMissingLink(unless).errors).toEqual([]);
+    // "a unless b" is "a or b": read either way round, it is the same premise.
+    expect(checkMissingLinkAnswer(unless, { a: "barked", b: "known" })).toBe(true);
+    expect(checkMissingLinkAnswer(unless, { a: "known", b: "rain" })).toBe(false);
+    const onlyIf = { ...unless, frame: "only-if" as const, premises: [{ form: "fact" as const, literal: "visitor-known" }], conclusion: "!dogs-barked" };
+    // "The dogs barked only if the visitor was a stranger" is not offered; known → ¬barked needs "barked only if not known".
+    expect(verifyMissingLink(onlyIf).errors.join()).toMatch(/no filling/);
   });
 });

@@ -5,7 +5,15 @@ import { candleSeconds } from "../engine/candle";
 import * as engine from "../engine/progress";
 import { puzzleFor, variantFor, type CaseProgress } from "../engine/progress";
 import { useGame } from "../engine/store";
-import { ArrangementRoom, ChainRoom, FlawRoom, ObjectionRoom, ObservationRoom, ReconstructionRoom } from "../palace/rooms";
+import {
+  ArrangementRoom,
+  ChainRoom,
+  FlawRoom,
+  MissingLinkRoom,
+  ObjectionRoom,
+  ObservationRoom,
+  ReconstructionRoom,
+} from "../palace/rooms";
 import { Candle, PatienceMeter } from "../ui/common";
 import { holderKind, Notebook } from "../ui/icons";
 import { CaseFile, NotebookSheet } from "./Sheets";
@@ -16,7 +24,56 @@ const ROOM_NAMES = {
   chain: "Chain Hall",
   arrangement: "Map Room",
   observation: "Evidence Room",
+  "missing-link": "Gallery of Testimony",
 } as const;
+
+/**
+ * The one-time guide to each room's controls (§11.2). It explains how to
+ * build an answer here, never how to reason about one.
+ */
+const GUIDES: Record<string, string> = {
+  flaw: "Tap the sentence where the reasoning goes wrong, then the name of the error from the Fallacy Index. Press and hold Declare to commit.",
+  objection:
+    "Tap the statement you mean to challenge, then present a card from the hand of evidence. Press and hold Declare to commit.",
+  chain:
+    "Begin the chain with a fact, then lay cards one after another. Turn a card to read it another way; lift the last card to take it back. Where the chain ends is your answer.",
+  arrangement:
+    "Tap a person, then a place to put them there; tap a placed person to lift them. Press and hold Declare when the board says what you mean.",
+  observation:
+    "Tap an observation, then the inference you would draw from it. Tap a link again to undo it. Press and hold Declare to commit.",
+  "missing-link":
+    "Tap a blank in the unsaid sentence, then a phrase to fill it. Press and hold Declare when the sentence is complete.",
+  reconstruction:
+    "Tap a blank in the account, then a word or phrase to fill it. Press and hold Declare when every blank is filled.",
+};
+
+function needsGuide(room: string, seenRooms: readonly string[]): boolean {
+  return GUIDES[room] !== undefined && !seenRooms.includes(room);
+}
+
+function RoomGuide(props: { room: string; onRead: () => void }) {
+  const { seenRooms, markRoomSeen } = useGame();
+  const text = GUIDES[props.room];
+  if (!text || !needsGuide(props.room, seenRooms)) return null;
+  return (
+    <div className="room-guide" role="dialog" aria-label="How this room works">
+      <div className="room-guide-card">
+        <div className="palace-section">How this room works</div>
+        <p>{text}</p>
+        <button
+          className="btn"
+          onClick={() => {
+            markRoomSeen(props.room);
+            props.onRead();
+          }}
+          data-testid="room-guide-ok"
+        >
+          Understood
+        </button>
+      </div>
+    </div>
+  );
+}
 
 /** The time the Palace takes to collapse back into the scene after a right answer. */
 const CLOSE_MS = 560;
@@ -38,6 +95,10 @@ function Crack() {
 
 function PalaceFrame(props: {
   room: string;
+  /** The puzzle type, for the room's one-time guide. */
+  kind: string;
+  /** The guide has been read: the clock starts now. */
+  onGuideRead: () => void;
   prompt: string;
   c: Case;
   p: CaseProgress;
@@ -46,8 +107,10 @@ function PalaceFrame(props: {
   leaving: boolean;
   candle?: { seconds: number; onGutter: () => void } | undefined;
 }) {
-  const { sheet, openSheet } = useGame();
+  const { sheet, openSheet, seenRooms } = useGame();
   const holder = engine.patienceHolderPerson(props.c, props.p);
+  // The candle is lit only once the guide, if any, has been read.
+  const guiding = needsGuide(props.kind, seenRooms);
   const [shake, setShake] = useState(false);
   useEffect(() => {
     if (props.struck > 0) setShake(true);
@@ -79,7 +142,8 @@ function PalaceFrame(props: {
         </button>
       </div>
       {props.struck > 0 && <Crack key={props.struck} />}
-      {props.candle && <Candle seconds={props.candle.seconds} onGutter={props.candle.onGutter} />}
+      {props.candle && !guiding && <Candle seconds={props.candle.seconds} onGutter={props.candle.onGutter} />}
+      <RoomGuide room={props.kind} onRead={props.onGuideRead} />
       {sheet === "casefile" && <CaseFile c={props.c} p={props.p} onClose={() => openSheet(null)} />}
       {sheet === "notebook" && <NotebookSheet onClose={() => openSheet(null)} />}
     </div>
@@ -91,7 +155,7 @@ function PalaceFrame(props: {
  * glass on a miss, and on a hit lets the Palace collapse before the story
  * resumes.
  */
-function useDeclare(meta: { slot: string; variant: string; type: string; concepts: ConceptId[] }) {
+function useDeclare(meta: { slot: string; variant: string; difficulty?: number; type: string; concepts: ConceptId[] }) {
   const { step, recordAttempt, activeCase } = useGame();
   const [struck, setStruck] = useState(0);
   const [leaving, setLeaving] = useState(false);
@@ -103,6 +167,10 @@ function useDeclare(meta: { slot: string; variant: string; type: string; concept
   return {
     struck,
     leaving,
+    /** Restarts the solve clock, after a room guide has been read. */
+    startClock: () => {
+      opened.current = Date.now();
+    },
     declare: (correct: boolean, timedOut = false) => {
       if (leaving) return;
       attempts.current += 1;
@@ -110,6 +178,7 @@ function useDeclare(meta: { slot: string; variant: string; type: string; concept
         caseId: activeCase ?? "",
         slot: meta.slot,
         variant: meta.variant,
+        ...(meta.difficulty !== undefined ? { difficulty: meta.difficulty } : {}),
         type: meta.type as never,
         concepts: meta.concepts,
         correct,
@@ -139,9 +208,10 @@ export function DeductionPalace(props: { c: Case; p: CaseProgress }) {
   const variant = variantFor(p, slot);
   const puzzle = puzzleFor(p, slot);
   const name = (id: string) => c.cast.find((x) => x.id === id)?.name ?? id;
-  const { struck, leaving, declare } = useDeclare({
+  const { struck, leaving, declare, startClock } = useDeclare({
     slot: slot.id,
     variant: variant.id,
+    difficulty: variant.difficulty,
     type: puzzle.type,
     concepts: variant.concepts,
   });
@@ -169,6 +239,9 @@ export function DeductionPalace(props: { c: Case; p: CaseProgress }) {
     case "observation":
       room = <ObservationRoom puzzle={puzzle} onDeclare={onDeclare} />;
       break;
+    case "missing-link":
+      room = <MissingLinkRoom puzzle={puzzle} speaker={name(puzzle.speaker)} onDeclare={onDeclare} />;
+      break;
   }
 
   return (
@@ -176,6 +249,8 @@ export function DeductionPalace(props: { c: Case; p: CaseProgress }) {
     <PalaceFrame
       key={`${slot.id}/${variant.id}`}
       room={ROOM_NAMES[puzzle.type]}
+      kind={puzzle.type}
+      onGuideRead={startClock}
       prompt={slot.prompt}
       c={c}
       p={p}
@@ -191,11 +266,13 @@ export function DeductionPalace(props: { c: Case; p: CaseProgress }) {
 export function FinalePalace(props: { c: Case; p: CaseProgress }) {
   const { settings } = useGame();
   const reconstruction = props.c.finale.reconstruction;
-  const { struck, leaving, declare } = useDeclare({ slot: "finale", variant: "a", type: "reconstruction", concepts: [] });
+  const { struck, leaving, declare, startClock } = useDeclare({ slot: "finale", variant: "a", type: "reconstruction", concepts: [] });
   useEffect(() => audio.music("palace"), []);
   return (
     <PalaceFrame
       room="The Reconstruction"
+      kind="reconstruction"
+      onGuideRead={startClock}
       prompt="Then let me tell you what happened."
       c={props.c}
       p={props.p}

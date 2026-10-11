@@ -182,6 +182,47 @@ export const ObservationPuzzle = z.object({
 export type ObservationPuzzle = z.infer<typeof ObservationPuzzle>;
 
 // ---------------------------------------------------------------------------
+// The Missing Link (§8.7)
+// ---------------------------------------------------------------------------
+
+/**
+ * The sentence frames a Missing Link may use. Code, never the model, gives
+ * each its logical form (`@afoot/logic` missing-link.ts):
+ * - `if`:         "If a, then b."               a → b
+ * - `only-if`:    "a only if b."                a → b
+ * - `unless`:     "a unless b."                 ¬b → a
+ * - `no-one-who`: "No one who a could have b."  a → ¬b
+ */
+export const MISSING_LINK_FRAMES = ["if", "only-if", "unless", "no-one-who"] as const;
+export const MissingLinkFrame = z.enum(MISSING_LINK_FRAMES);
+export type MissingLinkFrame = z.infer<typeof MissingLinkFrame>;
+
+export const PhraseTile = z.object({
+  id: Id,
+  /** How the tile reads in the frame: a clause for `if`, `only-if` and `unless`; a verb phrase for `no-one-who`. */
+  text: z.string().min(1),
+  /** What the phrase asserts, as a literal. */
+  literal: Literal,
+});
+export type PhraseTile = z.infer<typeof PhraseTile>;
+
+export const MissingLinkPuzzle = z.object({
+  type: z.literal("missing-link"),
+  speaker: Id,
+  /** The argument as spoken, with a gap between its premises and its conclusion. */
+  sentences: z.array(ArgumentSentence).min(2),
+  /** Logical form of the argument's premises and conclusion. */
+  premises: z.array(Statement).min(1),
+  conclusion: Literal,
+  frame: MissingLinkFrame,
+  /** Phrase tiles for the frame's two blanks, distractors included. */
+  tiles: z.array(PhraseTile).min(3),
+  /** The tiles that complete the unstated premise. */
+  answer: z.object({ a: Id, b: Id }),
+});
+export type MissingLinkPuzzle = z.infer<typeof MissingLinkPuzzle>;
+
+// ---------------------------------------------------------------------------
 // Any Mind Palace puzzle
 // ---------------------------------------------------------------------------
 
@@ -191,6 +232,7 @@ export const Puzzle = z.discriminatedUnion("type", [
   ChainPuzzle,
   ArrangementPuzzle,
   ObservationPuzzle,
+  MissingLinkPuzzle,
 ]);
 export type Puzzle = z.infer<typeof Puzzle>;
 

@@ -4,6 +4,7 @@ import {
   checkArrangementAnswer,
   checkChainAnswer,
   checkFlawAnswer,
+  checkMissingLinkAnswer,
   checkObjectionAnswer,
   checkObservationAnswer,
   checkReconstructionAnswer,
@@ -63,5 +64,7 @@ export function checkAnswer(c: Case, target: Target, answer: Json): boolean {
             : { kind: "placement", slot: str(answer.slot) };
       return checkArrangementAnswer(p, a);
     }
+    case "missing-link":
+      return checkMissingLinkAnswer(p, { a: str(answer.a), b: str(answer.b) });
   }
 }

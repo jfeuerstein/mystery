@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist, type StateStorage } from "zustand/middleware";
 import { allCases } from "../content";
 import type { Attempt } from "./ledger";
+import { ratings, withVariants } from "./adaptive";
 import * as engine from "./progress";
 import type { CaseProgress, Grade } from "./progress";
 
@@ -24,8 +25,10 @@ type SaveData = {
   grades: Record<string, Grade>;
   unlocked: ConceptId[];
   settings: Settings;
-  /** Every Declare, for Holmes' Ledger and (in M3) adaptive difficulty. */
+  /** Every Declare, for Holmes' Ledger and adaptive difficulty (§11.3). */
   stats: Attempt[];
+  /** Mind Palace rooms whose one-time guide has been read (§11.2). */
+  seenRooms: string[];
 };
 
 const DEFAULT_SETTINGS: Settings = { textSize: "normal", candle: false, music: 0.6, sfx: 0.8 };
@@ -42,6 +45,7 @@ type State = SaveData & {
   step: (fn: (c: Case, p: CaseProgress) => CaseProgress) => void;
   unlock: (concepts: readonly ConceptId[]) => void;
   recordAttempt: (attempt: Attempt) => void;
+  markRoomSeen: (room: string) => void;
   completeCase: () => void;
   setSettings: (s: Partial<Settings>) => void;
   resetProgress: () => void;
@@ -61,6 +65,7 @@ const blankSave = (): SaveData => ({
   unlocked: [...STARTER_ENTRIES],
   settings: { ...DEFAULT_SETTINGS },
   stats: [],
+  seenRooms: [],
 });
 
 export function caseById(id: string): Case {
@@ -89,7 +94,7 @@ export const useGame = create<State>()(
           activeCase: caseId,
           screen: "case",
           sheet: null,
-          progress: fresh ? { ...progress, [caseId]: engine.startCase(c) } : progress,
+          progress: fresh ? { ...progress, [caseId]: withVariants(c, engine.startCase(c), ratings(getState().stats)) } : progress,
         });
       },
       step: (fn) => {
@@ -97,7 +102,9 @@ export const useGame = create<State>()(
         if (!activeCase) return;
         const p = progress[activeCase];
         if (!p) return;
-        const next = fn(caseById(activeCase), p);
+        const c = caseById(activeCase);
+        // Each chapter's variants are chosen for this player as it begins (§11.3).
+        const next = withVariants(c, fn(c, p), ratings(getState().stats));
         if (next !== p) setState({ progress: { ...progress, [activeCase]: next } });
       },
       unlock: (concepts) => {
@@ -106,6 +113,10 @@ export const useGame = create<State>()(
         if (add.length > 0) setState({ unlocked: [...unlocked, ...add] });
       },
       recordAttempt: (attempt) => setState({ stats: [...getState().stats, attempt] }),
+      markRoomSeen: (room) => {
+        const { seenRooms } = getState();
+        if (!seenRooms.includes(room)) setState({ seenRooms: [...seenRooms, room] });
+      },
       completeCase: () => {
         const { activeCase, progress, grades } = getState();
         const p = activeCase ? progress[activeCase] : undefined;
@@ -133,11 +144,17 @@ export const useGame = create<State>()(
       // Older saves lack the ledger and the newer settings.
       migrate: (persisted) => {
         const p = (persisted ?? {}) as Partial<SaveData>;
-        return { ...p, stats: p.stats ?? [], settings: { ...DEFAULT_SETTINGS, ...p.settings } };
+        return { ...p, stats: p.stats ?? [], seenRooms: p.seenRooms ?? [], settings: { ...DEFAULT_SETTINGS, ...p.settings } };
       },
       merge: (persisted, current) => {
         const p = (persisted ?? {}) as Partial<SaveData>;
-        return { ...current, ...p, settings: { ...DEFAULT_SETTINGS, ...p.settings }, stats: p.stats ?? [] };
+        return {
+          ...current,
+          ...p,
+          settings: { ...DEFAULT_SETTINGS, ...p.settings },
+          stats: p.stats ?? [],
+          seenRooms: p.seenRooms ?? [],
+        };
       },
       partialize: (s): SaveData & { activeCase: string | null } => ({
         progress: s.progress,
@@ -145,6 +162,7 @@ export const useGame = create<State>()(
         unlocked: s.unlocked,
         settings: s.settings,
         stats: s.stats,
+        seenRooms: s.seenRooms,
         activeCase: s.activeCase,
       }),
       onRehydrateStorage: () => () => useGame.setState({ hydrated: true }),
@@ -161,6 +179,6 @@ export function isUnlocked(caseIndex: number, grades: Record<string, Grade>): bo
 
 /** The whole save as JSON, for Export Save (§15.3). */
 export function exportSave(): string {
-  const { progress, grades, unlocked, settings, stats } = useGame.getState();
-  return JSON.stringify({ version: 2, progress, grades, unlocked, settings, stats }, null, 2);
+  const { progress, grades, unlocked, settings, stats, seenRooms } = useGame.getState();
+  return JSON.stringify({ version: 2, progress, grades, unlocked, settings, stats, seenRooms }, null, 2);
 }
