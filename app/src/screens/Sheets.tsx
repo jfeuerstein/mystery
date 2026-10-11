@@ -45,13 +45,13 @@ export function CaseFile(props: { c: Case; p: CaseProgress; onClose: () => void 
           ) : (
             <>
               {details.map((d) => (
-                <div key={d.id} className="card">
+                <div key={d.id} className="card clipping">
                   <div className="smallcaps muted">Observed</div>
                   {d.text}
                 </div>
               ))}
               {evidence.map((e) => (
-                <div key={e.id} className="card">
+                <div key={e.id} className="card clipping">
                   <div className="display">{e.name}</div>
                   {e.description}
                 </div>
@@ -63,13 +63,13 @@ export function CaseFile(props: { c: Case; p: CaseProgress; onClose: () => void 
             <p className="muted">No one has been questioned yet.</p>
           ) : (
             testimony.map(({ witness, topic }) => (
-              <div key={topic.id} className="card">
+              <div key={topic.id} className="card clipping">
                 <div className="smallcaps muted">
                   {name(witness)}, on {topic.label.toLowerCase()}
                 </div>
                 {topic.sentences.map((s) => (
                   <p key={s.id} className="speech" style={{ margin: "4px 0" }}>
-                    "{s.text}"
+                    “{s.text}”
                   </p>
                 ))}
               </div>
@@ -77,7 +77,7 @@ export function CaseFile(props: { c: Case; p: CaseProgress; onClose: () => void 
           ))}
         {tab === "persons" &&
           c.cast.map((person) => (
-            <div key={person.id} className="card">
+            <div key={person.id} className="card clipping">
               <div className="display">{person.name}</div>
               <div className="muted smallcaps">{person.role}</div>
               {person.description}
@@ -88,7 +88,7 @@ export function CaseFile(props: { c: Case; p: CaseProgress; onClose: () => void 
             <p className="muted">Nothing established yet.</p>
           ) : (
             facts.map((f) => (
-              <div key={f.id} className="card">
+              <div key={f.id} className="card clipping">
                 {f.text}
               </div>
             ))
@@ -107,40 +107,50 @@ export function NotebookSheet(props: { onClose: () => void }) {
 
   return (
     <Sheet onClose={props.onClose}>
-      <h2 className="display" style={{ margin: "0 0 8px", textAlign: "center" }}>
-        {entry ? entry.title : "Holmes' Notebook"}
-      </h2>
-      {entry ? (
-        <div>
-          <p style={{ fontStyle: "italic" }}>{entry.gloss}</p>
-          <p>{entry.plain}</p>
-          <div className="card" style={{ marginBottom: 12 }}>
-            <div className="smallcaps muted">For example</div>
-            {entry.example}
+      <div className="notebook" key={entry?.id ?? "index"}>
+        <div className="ribbon" aria-hidden="true" />
+        <h2 className="ink-in" style={{ textAlign: "left", paddingRight: 30 }}>
+          {entry ? entry.title : "Holmes’ Notebook"}
+        </h2>
+        {entry ? (
+          <div className="ink-in">
+            <p style={{ fontStyle: "italic" }}>{entry.gloss}</p>
+            <p>{entry.plain}</p>
+            <p>
+              <span className="smallcaps muted">For example: </span>
+              {entry.example}
+            </p>
+            <p className="smallcaps muted" style={{ fontSize: "0.8em" }}>
+              In the logic books: {entry.term}
+            </p>
+            <button className="btn" onClick={() => setOpen(undefined)}>
+              Back to the index
+            </button>
           </div>
-          <p className="smallcaps muted" style={{ fontSize: "0.8em" }}>
-            LSAT: {entry.lsat}
-          </p>
-          <button className="btn" onClick={() => setOpen(undefined)}>
-            Back to the index
-          </button>
-        </div>
-      ) : (
-        <div className="list">
-          {(["fallacy", "method"] as const).map((section) => (
-            <div key={section} className="list">
-              <div className="smallcaps muted">{section === "fallacy" ? "The Fallacy Index" : "The Methods"}</div>
-              {entries
-                .filter((e) => e.section === section)
-                .map((e) => (
-                  <button key={e.id} className="card" style={{ textAlign: "left" }} onClick={() => setOpen(e.id)}>
-                    <span className="display">{e.title}</span>
-                  </button>
-                ))}
-            </div>
-          ))}
-        </div>
-      )}
+        ) : (
+          <div>
+            {(["fallacy", "method"] as const).map((section) => (
+              <div key={section} style={{ marginBottom: 14 }}>
+                <div className="smallcaps muted" style={{ margin: "6px 0" }}>
+                  {section === "fallacy" ? "The Fallacy Index" : "The Methods"}
+                </div>
+                {entries
+                  .filter((e) => e.section === section)
+                  .map((e, i) => (
+                    <button
+                      key={e.id}
+                      className="entry-link ink-in"
+                      style={{ animationDelay: `${i * 40}ms` }}
+                      onClick={() => setOpen(e.id)}
+                    >
+                      {e.title}
+                    </button>
+                  ))}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </Sheet>
   );
 }

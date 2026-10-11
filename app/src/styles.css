@@ -1,25 +1,38 @@
 /* GAME_DESIGN.md §13: black ink, sepia and aged paper; the Mind Palace is
-   the inverse. No other colour, ever. */
+   the inverse. No other colour, ever. Motion is ink and paper: things settle,
+   draw themselves, spread and drain — they never bounce or glow in colour. */
+
 :root {
   --paper: #f3e9d2;
   --paper-deep: #e8dcc0;
+  --paper-shadow: #d9c9a6;
   --ink: #1f1a14;
   --ink-soft: #4a3d2c;
   --sepia: #7a5c38;
   --rule: #a08a68;
+  /* Sealing wax: the one colour on the page, kept for grades. */
+  --wax: #6b2119;
+  --wax-light: #9a3a2b;
+  --wax-dark: #3f120d;
   --palace-bg: #0f0d0b;
   --palace-ink: #efe6d3;
   --palace-dim: #8f8574;
   --palace-rule: #4a4338;
-  --palace-lines: #221e19;
+  --palace-lines: #201c17;
 
   --serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
   --display: "IM Fell English SC", "EB Garamond", Georgia, serif;
-  --text: 1.125rem; /* 18px; the doc's 17pt minimum */
+  --text: 1.125rem;
   --gutter: 16px;
-  --radius: 4px;
+  --radius: 3px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Paper grain and foxing, drawn by SVG turbulence: no image files. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .31 0 0 0 0 .17 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --foxing: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.008' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .22 0 0 0 .22 -.07'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --palace-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .93 0 0 0 0 .9 0 0 0 0 .82 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 :root[data-text="large"] {
@@ -34,12 +47,13 @@
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
 }
 
 body {
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: var(--grain);
   color: var(--ink);
   font-family: var(--serif);
   font-size: var(--text);
@@ -48,6 +62,18 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-user-select: none;
   user-select: none;
+}
+
+/* Age and foxing laid over every paper surface alike, so sticky bars and
+   sheets never show as cleaner rectangles. Beneath the Mind Palace (z 30). */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background-image: radial-gradient(ellipse at 50% 42%, transparent 52%, rgba(122, 92, 56, 0.2) 100%), var(--foxing);
+  mix-blend-mode: multiply;
 }
 
 button {
@@ -61,12 +87,48 @@ button {
 }
 
 .app {
-  min-height: 100%;
+  min-height: 100dvh;
   max-width: 520px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   padding: calc(var(--safe-top) + 8px) var(--gutter) calc(var(--safe-bottom) + 12px);
+}
+
+/* ---------- Motion primitives ---------- */
+
+/* Ink settling onto the page. */
+@keyframes ink-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(1.5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes draw-rule {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.page {
+  animation: ink-in 520ms var(--ease) both;
+}
+
+.ink-in {
+  animation: ink-in 520ms var(--ease) both;
 }
 
 /* ---------- Strand page furniture ---------- */
@@ -82,18 +144,30 @@ button {
   letter-spacing: 0.06em;
 }
 
-.rule {
-  border: none;
-  height: 1px;
-  background: var(--rule);
-  margin: 16px 0;
+.muted {
+  color: var(--ink-soft);
 }
 
-.fleuron {
-  text-align: center;
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--sepia);
-  margin: 12px 0;
-  font-size: 1.1em;
+  margin: 14px auto;
+  max-width: 260px;
+}
+
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+  transform-origin: center;
+  animation: draw-rule 900ms var(--ease) both;
+}
+
+.ornament svg {
+  animation: fade-in 700ms 300ms both;
 }
 
 .prose p {
@@ -101,39 +175,61 @@ button {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
+  animation: ink-in 600ms var(--ease) both;
 }
 
 .prose p.dropcap::first-letter {
   font-family: var(--display);
   float: left;
-  font-size: 3.4em;
-  line-height: 0.85;
-  padding: 0.06em 0.08em 0 0;
+  font-size: 3.5em;
+  line-height: 0.82;
+  padding: 0.07em 0.08em 0 0;
   color: var(--ink);
 }
 
-.muted {
-  color: var(--ink-soft);
+.chapter-head {
+  text-align: center;
+  margin: 6px 0 18px;
+}
+
+.chapter-head .chapter-number {
+  font-family: var(--display);
+  font-size: 0.85em;
+  letter-spacing: 0.3em;
+  color: var(--sepia);
+  animation: ink-in 600ms var(--ease) both;
+}
+
+.chapter-head h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.7em;
+  margin: 2px 0 0;
+  animation: ink-in 700ms 120ms var(--ease) both;
 }
 
 /* ---------- Buttons ---------- */
 
 .btn {
+  position: relative;
   display: block;
   width: 100%;
-  min-height: 48px;
+  min-height: 50px;
   padding: 10px 16px;
   border: 1px solid var(--ink);
   border-radius: var(--radius);
   font-variant: small-caps;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-size: 1.05em;
-  background: transparent;
+  background: rgba(243, 233, 210, 0.6);
   text-align: center;
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 4px rgba(31, 26, 20, 0.35);
+  transition: background 160ms, transform 120ms;
 }
 
 .btn:active {
   background: var(--paper-deep);
+  transform: translateY(1px);
 }
 
 .btn[disabled] {
@@ -161,11 +257,23 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 6px 0 10px;
-  border-bottom: 1px solid var(--rule);
+  gap: 6px;
+  padding: 4px 0 10px;
   margin-bottom: 14px;
   font-size: 0.9em;
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  opacity: 0.8;
 }
 
 .header .title {
@@ -182,6 +290,12 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  transition: background 160ms;
+}
+
+.icon-btn:active {
+  background: rgba(122, 92, 56, 0.15);
 }
 
 .patience {
@@ -189,44 +303,102 @@ button {
   flex-direction: column;
   align-items: flex-end;
   line-height: 1.1;
-  font-size: 0.8em;
+  font-size: 0.75em;
 }
 
 .patience .pips {
-  font-size: 1.1em;
-  letter-spacing: 0.15em;
+  display: flex;
+  gap: 2px;
 }
 
-/* ---------- Engravings (placeholders until the art catalog) ---------- */
+.pip {
+  display: inline-flex;
+  transition: opacity 400ms, transform 400ms;
+}
+
+.pip.spent {
+  opacity: 0.25;
+  animation: snuff 700ms var(--ease);
+}
+
+@keyframes snuff {
+  0% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  35% {
+    transform: translateY(-3px) rotate(-12deg);
+    filter: blur(0.5px);
+  }
+  100% {
+    opacity: 0.25;
+    transform: none;
+  }
+}
+
+/* ---------- Engravings ---------- */
 
 .engraving {
   position: relative;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   border: 1px solid var(--ink);
-  outline: 3px double var(--rule);
-  outline-offset: 3px;
-  background:
-    repeating-linear-gradient(135deg, transparent 0 5px, rgba(122, 92, 56, 0.16) 5px 6px),
-    repeating-linear-gradient(45deg, transparent 0 9px, rgba(122, 92, 56, 0.08) 9px 10px),
-    var(--paper-deep);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  outline: 1px solid var(--rule);
+  outline-offset: 4px;
+  background: var(--paper-deep);
   overflow: hidden;
+  box-shadow: 0 1px 0 var(--paper-shadow);
+  animation: ink-in 700ms var(--ease) both;
+}
+
+.engraving img,
+.engraving .plate {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.engraving img {
+  /* Every plate in one sepia treatment, printed onto the paper. */
+  mix-blend-mode: multiply;
+  filter: sepia(0.35) contrast(1.05);
+  opacity: 0;
+  transition: opacity 700ms var(--ease);
+}
+
+.engraving img.loaded {
+  opacity: 1;
+}
+
+.engraving.portrait {
+  border-radius: 50% / 46%;
+  outline: none;
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 5px var(--rule);
+  width: min(62%, 220px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.engraving.portrait figcaption {
+  display: none;
 }
 
 .engraving figcaption {
-  font-variant: small-caps;
-  letter-spacing: 0.08em;
-  font-size: 0.8em;
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  font-style: italic;
+  font-size: 0.78em;
   color: var(--ink-soft);
   background: var(--paper);
-  padding: 2px 10px;
-  margin-bottom: 8px;
+  padding: 1px 10px;
   border: 1px solid var(--rule);
+  white-space: nowrap;
 }
 
-/* ---------- Text panel & bottom actions ---------- */
+/* ---------- Stage & bottom actions ---------- */
 
 .stage {
   flex: 1;
@@ -241,8 +413,11 @@ button {
 .actions {
   position: sticky;
   bottom: 0;
-  padding: 12px 0 calc(var(--safe-bottom) * 0);
-  background: linear-gradient(to bottom, rgba(243, 233, 210, 0), var(--paper) 30%);
+  padding: 22px 0 0;
+  background-color: var(--paper);
+  background-image: var(--grain);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20px);
+  mask-image: linear-gradient(to bottom, transparent, #000 20px);
   display: grid;
   gap: 10px;
 }
@@ -265,7 +440,8 @@ button {
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 10px 12px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 252, 244, 0.35);
+  animation: ink-in 500ms var(--ease) both;
 }
 
 .list {
@@ -273,19 +449,235 @@ button {
   gap: 10px;
 }
 
+.list > :nth-child(2) {
+  animation-delay: 40ms;
+}
+.list > :nth-child(3) {
+  animation-delay: 80ms;
+}
+.list > :nth-child(4) {
+  animation-delay: 120ms;
+}
+.list > :nth-child(n + 5) {
+  animation-delay: 160ms;
+}
+
+/* Clippings pasted into the Case File. */
+.clipping {
+  background: #f8f1df;
+  box-shadow: 0 1px 2px rgba(31, 26, 20, 0.15);
+}
+.clipping:nth-child(odd) {
+  transform: rotate(-0.35deg);
+}
+.clipping:nth-child(even) {
+  transform: rotate(0.3deg);
+}
+
 .chip {
   display: inline-flex;
   align-items: center;
   min-height: 40px;
-  padding: 4px 12px;
+  padding: 4px 14px;
   border: 1px solid var(--ink);
   border-radius: 999px;
   font-size: 0.95em;
+  transition: background 160ms, color 160ms, transform 160ms;
 }
 
 .chip.selected {
   background: var(--ink);
   color: var(--paper);
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Title ---------- */
+
+.title-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.title-frame {
+  flex: 1;
+  margin: 10px 0 0;
+  padding: 28px 18px;
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--rule);
+  outline-offset: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-frame h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 2.9em;
+  line-height: 1.02;
+  margin: 10px 0;
+}
+
+.title-frame h1 span {
+  display: block;
+  animation: ink-in 1100ms var(--ease) both;
+}
+
+.title-frame h1 span:nth-child(2) {
+  animation-delay: 260ms;
+}
+
+.title-frame .kicker {
+  animation: fade-in 1200ms 600ms both;
+}
+
+.title-frame .epigraph {
+  animation: fade-in 1400ms 1000ms both;
+}
+
+/* London fog, drifting. */
+.fog {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 40% 25% at 30% 70%, rgba(160, 138, 104, 0.18), transparent 70%),
+    radial-gradient(ellipse 35% 20% at 75% 30%, rgba(160, 138, 104, 0.14), transparent 70%);
+  animation: fog-drift 26s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+  to {
+    transform: translate(6%, -4%) scale(1.08);
+  }
+}
+
+.corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  color: var(--sepia);
+}
+.corner.tl {
+  top: 6px;
+  left: 6px;
+}
+.corner.tr {
+  top: 6px;
+  right: 6px;
+  transform: scaleX(-1);
+}
+.corner.bl {
+  bottom: 6px;
+  left: 6px;
+  transform: scaleY(-1);
+}
+.corner.br {
+  bottom: 6px;
+  right: 6px;
+  transform: scale(-1);
+}
+
+/* ---------- Casebook ---------- */
+
+.folder {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 16px 14px 14px;
+  margin-top: 12px;
+  background: #ead9b3;
+  background-image: var(--grain);
+  border: 1px solid var(--sepia);
+  border-radius: 2px 4px 4px 4px;
+  box-shadow: 0 2px 0 var(--paper-shadow), 0 3px 6px rgba(31, 26, 20, 0.12);
+  animation: ink-in 520ms var(--ease) both;
+  transition: transform 160ms;
+}
+
+.folder:active {
+  transform: translateY(1px);
+}
+
+.folder .tab {
+  position: absolute;
+  top: -13px;
+  left: -1px;
+  padding: 0 12px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 0.7em;
+  letter-spacing: 0.12em;
+  font-variant: small-caps;
+  background: #ead9b3;
+  border: 1px solid var(--sepia);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  color: var(--ink-soft);
+}
+
+.folder.locked {
+  background: #ddc89c;
+  color: var(--ink-soft);
+}
+
+.folder .stamp {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  border: 2px solid var(--ink-soft);
+  padding: 2px 10px;
+  font-family: var(--display);
+  letter-spacing: 0.2em;
+  font-size: 0.85em;
+  opacity: 0.6;
+}
+
+.folder .twine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 62%;
+  width: 2px;
+  background: repeating-linear-gradient(180deg, var(--sepia) 0 3px, transparent 3px 5px);
+  opacity: 0.6;
+}
+
+.seal {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  filter: drop-shadow(0 1px 1.5px rgba(31, 26, 20, 0.35));
+}
+
+.seal.stamped {
+  animation: stamp 520ms 300ms var(--ease) both;
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(1.8) rotate(-12deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-50%) scale(0.94) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
 }
 
 /* ---------- Examine scene ---------- */
@@ -299,27 +691,68 @@ button {
   position: absolute;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  border: 1.5px solid var(--ink);
-  background: rgba(243, 233, 210, 0.45);
   min-width: 44px;
   min-height: 44px;
-  animation: ink-pulse 2.4s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hotspot.found {
-  animation: none;
+/* Without a drawn object, a hotspot shows as a faint lens-mark that breathes. */
+.hotspot.mark {
+  border: 1.5px dashed rgba(31, 26, 20, 0.55);
+  background: rgba(243, 233, 210, 0.35);
+  animation: breathe 3.2s ease-in-out infinite;
+}
+
+/* With an engraved object, the object itself is the target. */
+.hotspot.object {
+  background: none;
+}
+
+.hotspot.object img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: sepia(0.35) contrast(1.05);
+}
+
+.hotspot .tick {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   background: var(--ink);
   color: var(--paper);
-  opacity: 0.75;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  animation: stamp-small 380ms var(--ease) both;
 }
 
-@keyframes ink-pulse {
+.hotspot.found.mark {
+  animation: none;
+  border-style: solid;
+  background: rgba(31, 26, 20, 0.12);
+}
+
+@keyframes breathe {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(31, 26, 20, 0.35);
+    box-shadow: 0 0 0 0 rgba(31, 26, 20, 0.25);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(31, 26, 20, 0);
+    box-shadow: 0 0 0 9px rgba(31, 26, 20, 0);
+  }
+}
+
+@keyframes stamp-small {
+  from {
+    transform: scale(1.8);
+    opacity: 0;
   }
 }
 
@@ -327,29 +760,49 @@ button {
 
 .observe-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(68px, 84px));
+  justify-content: center;
+  gap: 18px;
+  margin: 6px 0 16px;
 }
 
 .lens {
+  position: relative;
   aspect-ratio: 1;
   border-radius: 50%;
   border: 2px solid var(--ink);
-  outline: 1px solid var(--rule);
-  outline-offset: 3px;
-  background:
-    repeating-linear-gradient(135deg, transparent 0 4px, rgba(122, 92, 56, 0.18) 4px 5px),
-    var(--paper-deep);
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--rule);
+  background: var(--paper-deep);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6em;
+  overflow: hidden;
+  animation: ink-in 500ms var(--ease) both;
+  transition: transform 200ms var(--ease);
+}
+
+.lens:active {
+  transform: scale(0.95);
+}
+
+.lens::after {
+  /* the glass */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.45), transparent 40%);
+  pointer-events: none;
 }
 
 .lens.done {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.3em;
+}
+
+.lens.done::after {
+  background: none;
 }
 
 /* ---------- Bottom sheet ---------- */
@@ -359,7 +812,7 @@ button {
   inset: 0;
   background: rgba(15, 13, 11, 0.45);
   z-index: 40;
-  animation: fade-in 160ms ease-out;
+  animation: fade-in 200ms ease-out;
 }
 
 .sheet {
@@ -372,26 +825,36 @@ button {
   max-height: 86vh;
   display: flex;
   flex-direction: column;
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: var(--grain);
   border-top: 1px solid var(--ink);
-  border-radius: 12px 12px 0 0;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -6px 24px rgba(15, 13, 11, 0.25);
   z-index: 41;
   padding: 10px var(--gutter) calc(var(--safe-bottom) + 14px);
-  animation: slide-up 220ms ease-out;
+  animation: drawer 320ms var(--ease);
+}
+
+@keyframes drawer {
+  from {
+    transform: translateY(100%);
+  }
 }
 
 .palace .sheet {
-  background: var(--palace-bg);
+  background-color: var(--palace-bg);
+  background-image: var(--palace-grain);
   color: var(--palace-ink);
   border-color: var(--palace-ink);
 }
 
 .sheet-handle {
-  width: 40px;
-  height: 4px;
-  border-radius: 2px;
+  width: 44px;
+  height: 5px;
+  border-radius: 3px;
   background: var(--rule);
-  margin: 0 auto 10px;
+  margin: 0 auto 12px;
+  display: block;
 }
 
 .sheet-body {
@@ -400,36 +863,74 @@ button {
   flex: 1;
 }
 
+.sheet h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+/* Index tabs for the Case File. */
 .tabs {
   display: flex;
   gap: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   border-bottom: 1px solid var(--rule);
 }
 
 .tab {
   flex: 1;
-  padding: 8px 2px;
+  padding: 8px 2px 6px;
   font-variant: small-caps;
   letter-spacing: 0.05em;
-  font-size: 0.9em;
-  border-bottom: 2px solid transparent;
+  font-size: 0.88em;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: -1px;
+  transition: background 160ms;
 }
 
 .tab.active {
-  border-bottom-color: currentColor;
+  border-color: var(--rule);
+  background: var(--paper);
 }
 
-@keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
+/* The Notebook: a ruled page with a ribbon. */
+.notebook {
+  position: relative;
+  background-image: linear-gradient(transparent 0 calc(1.5em - 1px), rgba(122, 92, 56, 0.22) calc(1.5em - 1px) 1.5em), var(--grain);
+  background-size: 100% 1.5em, auto;
+  padding-left: 14px;
+  border-left: 1px solid rgba(122, 92, 56, 0.4);
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
+.ribbon {
+  position: absolute;
+  top: -10px;
+  right: 18px;
+  width: 14px;
+  height: 46px;
+  background: var(--ink-soft);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+}
+
+.palace .notebook {
+  background-image: linear-gradient(transparent 0 calc(1.5em - 1px), rgba(239, 230, 211, 0.1) calc(1.5em - 1px) 1.5em);
+  border-left-color: var(--palace-rule);
+}
+
+.palace .ribbon {
+  background: var(--palace-dim);
+}
+
+.entry-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 0;
+  border-bottom: 1px dotted var(--rule);
+  font-family: var(--display);
 }
 
 /* ---------- The Mind Palace (§8.1) ---------- */
@@ -438,43 +939,79 @@ button {
   position: fixed;
   inset: 0;
   z-index: 30;
-  background: var(--palace-bg);
+  background-color: var(--palace-bg);
+  background-image: var(--palace-grain);
   color: var(--palace-ink);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  animation: palace-in 600ms ease-out;
+  /* The ink spreads out from where Holmes's attention fell. */
+  animation: palace-open 760ms var(--ease) both;
+}
+
+.palace.leaving {
+  animation: palace-close 560ms cubic-bezier(0.6, 0, 0.8, 0.4) both;
+}
+
+@keyframes palace-open {
+  from {
+    clip-path: circle(0% at 50% 58%);
+  }
+  to {
+    clip-path: circle(150% at 50% 58%);
+  }
+}
+
+@keyframes palace-close {
+  from {
+    clip-path: circle(150% at 50% 58%);
+  }
+  to {
+    clip-path: circle(0% at 50% 58%);
+    opacity: 0.6;
+  }
 }
 
 .palace-inner {
+  position: relative;
   max-width: 520px;
   margin: 0 auto;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   padding: calc(var(--safe-top) + 8px) var(--gutter) calc(var(--safe-bottom) + 16px);
-  background-image: linear-gradient(var(--palace-lines) 1px, transparent 1px);
-  background-size: 100% 36px;
-  background-position: 0 -1px;
-  background-attachment: local;
 }
 
-@keyframes palace-in {
-  0% {
-    background: var(--paper);
-    filter: invert(1) sepia(0.4);
+/* The architecture of the Palace: fine white lines that draw in. */
+.palace-lines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(var(--palace-lines) 1px, transparent 1px),
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(239, 230, 211, 0.04) calc(50% - 0.5px), rgba(239, 230, 211, 0.04) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+  background-size: 100% 36px, 100% 100%;
+  animation: lines-in 1200ms 200ms var(--ease) both;
+}
+
+@keyframes lines-in {
+  from {
     opacity: 0;
-  }
-  100% {
-    opacity: 1;
+    transform: scaleY(1.06);
   }
 }
 
-.palace .header {
-  border-bottom-color: var(--palace-rule);
+.palace-inner > * {
+  position: relative;
+  animation: fade-in 500ms 320ms both;
+}
+
+.palace .header::after {
+  border-color: var(--palace-rule);
 }
 
 .palace .btn {
   border-color: var(--palace-ink);
+  background: rgba(15, 13, 11, 0.6);
+  box-shadow: inset 0 0 0 3px var(--palace-bg), inset 0 0 0 4px rgba(239, 230, 211, 0.3);
 }
 
 .palace .btn:active {
@@ -502,42 +1039,56 @@ button {
 
 .palace-room {
   font-variant: small-caps;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   font-size: 0.85em;
   color: var(--palace-dim);
 }
 
 .palace-prompt {
   font-style: italic;
+  font-size: 1.05em;
   margin: 4px 0 16px;
-  background: var(--palace-bg);
 }
 
 .palace-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-variant: small-caps;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   font-size: 0.8em;
   color: var(--palace-dim);
-  margin: 18px 0 8px;
-  background: var(--palace-bg);
-  display: inline-block;
-  padding-right: 8px;
+  margin: 20px 0 10px;
+}
+
+.palace-section::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--palace-rule);
+  transform-origin: left;
+  animation: draw-rule 700ms 300ms var(--ease) both;
 }
 
 .pick {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 10px 12px;
+  padding: 11px 13px;
   border: 1px solid var(--palace-rule);
   border-radius: var(--radius);
   background: rgba(15, 13, 11, 0.9);
   line-height: 1.4;
+  transition: border-color 200ms, box-shadow 260ms var(--ease), transform 160ms;
+}
+
+.pick:active {
+  transform: scale(0.99);
 }
 
 .pick.selected {
   border-color: var(--palace-ink);
-  box-shadow: 0 0 0 1px var(--palace-ink), 0 0 18px rgba(239, 230, 211, 0.18);
+  box-shadow: 0 0 0 1px var(--palace-ink), 0 0 22px rgba(239, 230, 211, 0.16);
 }
 
 .pick .num {
@@ -562,13 +1113,12 @@ button {
 
 /* A wrong Declare: the glass cracks, and nothing else is said (decision 21). */
 .struck {
-  animation: struck 420ms ease-out;
+  animation: struck 440ms ease-out;
 }
 
 @keyframes struck {
   0% {
     transform: translateX(0);
-    filter: brightness(1.8);
   }
   20% {
     transform: translateX(-6px);
@@ -581,7 +1131,39 @@ button {
   }
   100% {
     transform: translateX(0);
-    filter: brightness(1);
+  }
+}
+
+.crack {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  animation: crack-fade 1500ms ease-in both;
+}
+
+.crack path {
+  stroke: var(--palace-ink);
+  stroke-width: 1.2;
+  fill: none;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: crack-draw 260ms ease-out forwards;
+}
+
+@keyframes crack-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes crack-fade {
+  0%,
+  45% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -591,26 +1173,27 @@ button {
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 56px;
+  min-height: 58px;
   border: 1px solid var(--palace-ink);
   border-radius: var(--radius);
   font-variant: small-caps;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   font-size: 1.05em;
   -webkit-touch-callout: none;
+  box-shadow: inset 0 0 0 3px var(--palace-bg), inset 0 0 0 4px rgba(239, 230, 211, 0.3);
 }
 
 .declare .fill {
   position: absolute;
   inset: 0;
-  background: var(--palace-ink);
+  background: linear-gradient(90deg, var(--palace-ink) 92%, rgba(239, 230, 211, 0.4));
   transform-origin: left;
   transform: scaleX(0);
 }
 
 .declare.holding .fill {
   transform: scaleX(1);
-  transition: transform 600ms linear;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 .declare .label {
@@ -627,22 +1210,99 @@ button {
   position: sticky;
   bottom: 0;
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 20px;
   background: linear-gradient(to bottom, rgba(15, 13, 11, 0), var(--palace-bg) 35%);
+}
+
+/* ---------- By Candlelight (§12) ---------- */
+
+.candle {
+  position: fixed;
+  right: max(6px, calc(50% - 260px + 4px));
+  top: calc(var(--safe-top) + 72px);
+  bottom: calc(var(--safe-bottom) + 96px);
+  width: 8px;
+  z-index: 31;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.candle-wax {
+  width: 100%;
+  border-radius: 2px 2px 1px 1px;
+  background: linear-gradient(90deg, #cfc4ad, var(--palace-ink) 40%, #b9ad94);
+  opacity: 0.75;
+  transition: height 300ms linear;
+}
+
+.candle-flame {
+  width: 8px;
+  height: 14px;
+  margin-bottom: 2px;
+  border-radius: 50% 50% 45% 45% / 65% 65% 35% 35%;
+  background: radial-gradient(ellipse at 50% 70%, var(--palace-ink), rgba(239, 230, 211, 0.2) 70%);
+  box-shadow: 0 0 10px rgba(239, 230, 211, 0.4);
+  animation: flicker 1.6s ease-in-out infinite alternate, fade-in 600ms;
+  transform-origin: 50% 100%;
+}
+
+@keyframes flicker {
+  0% {
+    transform: scale(1, 1) rotate(-2deg);
+  }
+  40% {
+    transform: scale(0.92, 1.08) rotate(2deg);
+  }
+  100% {
+    transform: scale(1.04, 0.95) rotate(-1deg);
+  }
 }
 
 /* ---------- Chain Hall ---------- */
 
 .chain-link {
   position: relative;
+  animation: ink-in 380ms var(--ease) both;
 }
 
 .chain-link + .chain-link::before {
-  content: "↓";
+  content: "";
   display: block;
-  text-align: center;
-  color: var(--palace-dim);
-  margin: 2px 0;
+  width: 1px;
+  height: 18px;
+  margin: 3px auto;
+  background: var(--palace-dim);
+  transform-origin: top;
+  animation: draw-down 300ms var(--ease) both;
+}
+
+@keyframes draw-down {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+.reading {
+  transition: opacity 180ms;
+}
+
+.reading.turning {
+  animation: turn-card 360ms var(--ease);
+}
+
+@keyframes turn-card {
+  0% {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(90deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: rotateX(0);
+  }
 }
 
 .therefore {
@@ -650,6 +1310,7 @@ button {
   padding: 10px 12px;
   border-left: 2px solid var(--palace-ink);
   font-style: italic;
+  animation: ink-in 400ms var(--ease) both;
 }
 
 /* ---------- Map Room ---------- */
@@ -658,17 +1319,19 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 48px;
+  min-height: 50px;
   padding: 6px 10px;
   border: 1px solid var(--palace-rule);
   border-radius: var(--radius);
   background: rgba(15, 13, 11, 0.9);
   width: 100%;
   text-align: left;
+  transition: border-color 200ms;
 }
 
 .slot-row.target {
   border-color: var(--palace-ink);
+  border-style: dashed;
 }
 
 .slot-row .slot-label {
@@ -678,8 +1341,24 @@ button {
   color: var(--palace-dim);
 }
 
+.slot-row .chip {
+  animation: place 300ms var(--ease) both;
+}
+
+@keyframes place {
+  from {
+    transform: translateY(-6px) scale(0.92);
+    opacity: 0;
+  }
+}
+
+.rule-item {
+  transition: opacity 200ms;
+}
+
 .rule-item.used {
   text-decoration: line-through;
+  text-decoration-color: var(--palace-dim);
   opacity: 0.45;
 }
 
@@ -694,7 +1373,7 @@ button {
   padding: 2px 8px;
   border-bottom: 1.5px solid var(--palace-ink);
   font-style: italic;
-  min-width: 4em;
+  transition: background 200ms, color 200ms;
 }
 
 .blank.empty {
@@ -706,14 +1385,193 @@ button {
   color: var(--palace-bg);
 }
 
+/* ---------- Holmes speaks / colour returns ---------- */
+
+.returning {
+  animation: colour-return 900ms var(--ease) both;
+}
+
+@keyframes colour-return {
+  from {
+    filter: brightness(0.35) blur(2px);
+    opacity: 0;
+  }
+  to {
+    filter: none;
+    opacity: 1;
+  }
+}
+
+.holmes-speaks p {
+  font-size: 1.05em;
+}
+
+/* ---------- Watson's Account ---------- */
+
+.letter {
+  position: relative;
+  padding: 18px 16px 70px;
+  background: #f8f1df;
+  border: 1px solid var(--rule);
+  box-shadow: 0 2px 8px rgba(31, 26, 20, 0.15);
+  transform: rotate(-0.4deg);
+  animation: ink-in 700ms var(--ease) both;
+}
+
+.letter .seal {
+  top: auto;
+  bottom: 10px;
+  right: 14px;
+  transform: none;
+  width: 64px;
+  height: 64px;
+}
+
+.letter .seal.stamped {
+  animation: stamp-letter 560ms 700ms var(--ease) both;
+}
+
+@keyframes stamp-letter {
+  0% {
+    opacity: 0;
+    transform: scale(1.9) rotate(-14deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.94) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Ledger ---------- */
+
+.ledger-row {
+  display: grid;
+  gap: 6px;
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.ledger-bar {
+  height: 4px;
+  background: rgba(122, 92, 56, 0.18);
+}
+
+.ledger-note {
+  color: var(--ink-soft);
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+.ledger-bar span {
+  display: block;
+  height: 100%;
+  background: var(--ink-soft);
+  transform-origin: left;
+  animation: draw-rule 800ms var(--ease) both;
+}
+
+/* ---------- Settings ---------- */
+
+/* A slider drawn as an engraved rule with an ink bead. */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 32px;
+  background: transparent;
+  margin: 2px 0;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  background: linear-gradient(var(--ink-soft), var(--ink-soft)) 0 / var(--fill, 50%) 100% no-repeat, var(--rule);
+  border-radius: 2px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 3px;
+  background: var(--rule);
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 3px;
+  background: var(--ink-soft);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -9.5px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 9px var(--ink);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 9px var(--ink);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  min-height: 44px;
+}
+
+.toggle .switch {
+  width: 46px;
+  height: 26px;
+  border: 1px solid var(--ink);
+  border-radius: 13px;
+  position: relative;
+  flex: none;
+  transition: background 200ms;
+}
+
+.toggle .switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ink);
+  transition: transform 220ms var(--ease), background 200ms;
+}
+
+.toggle[aria-pressed="true"] .switch {
+  background: var(--ink);
+}
+
+.toggle[aria-pressed="true"] .switch::after {
+  transform: translateX(20px);
+  background: var(--paper);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
     transition-duration: 1ms !important;
   }
-  .palace {
-    animation: fade-in 200ms ease-out !important;
+  .fog {
+    animation: none !important;
   }
 }

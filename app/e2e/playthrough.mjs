@@ -148,10 +148,15 @@ async function main() {
   await byText(page, "Miss Darrow herself tells us").click();
   await byText(page, "On the Gate and the Key").click();
   await hold(page, page.getByTestId("declare"));
-  const pips = await page.locator(".palace .patience .pips").textContent();
-  if (pips !== "●●○") throw new Error(`expected Patience ●●○ after a wrong Declare, got ${pips}`);
+  const lit = await page.locator(".palace .patience .pip.lit").count();
+  if (lit !== 2) throw new Error(`expected 2 of 3 Patience after a wrong Declare, got ${lit}`);
+  await shot(page, "palace-wrong");
   await byText(page, "It follows that Miss Darrow").click();
   await shot(page, "palace-flaw");
+  await page.getByTestId("palace").getByRole("button", { name: "Notebook" }).click();
+  await page.locator(".notebook").waitFor();
+  await shot(page, "notebook");
+  await page.locator(".sheet-close, [aria-label='Close']").first().click();
   await hold(page, page.getByTestId("declare"));
   await holmesSpeaks(page);
 
@@ -198,7 +203,7 @@ async function main() {
   await page.getByTestId("continue").click();
   await enterPalace(page);
   await byText(page, "I never left the stables").click();
-  await byText(page, "Pike's boots").click();
+  await byText(page, "Pike’s boots").click();
   await shot(page, "palace-objection");
   await hold(page, page.getByTestId("declare"));
   await holmesSpeaks(page);
@@ -228,11 +233,23 @@ async function main() {
   await page.getByTestId("solution").waitFor();
   await page.getByTestId("continue").click();
   await page.getByTestId("account").waitFor();
+  await page.waitForTimeout(1200); // let the seal stamp
   await shot(page, "account");
   const grade = await page.getByTestId("grade").textContent();
   if (grade !== "workmanlike") throw new Error(`expected a Workmanlike grade, got ${grade}`);
   await page.getByTestId("continue").click();
   await shot(page, "casebook-after");
+
+  // Holmes' Ledger: the finished case's deductions are counted.
+  await page.getByRole("button", { name: "Holmes’ Ledger" }).click();
+  await page.locator(".ledger-row").first().waitFor();
+  await shot(page, "ledger");
+  await page.getByRole("button", { name: "Back" }).click();
+  await page.getByRole("button", { name: "Settings" }).click();
+  await page.getByText("By Candlelight").waitFor();
+  await shot(page, "settings");
+  await page.getByRole("button", { name: "Credits" }).click();
+  await shot(page, "credits");
 
   if (errors.length) throw new Error(`browser errors:\n${errors.join("\n")}`);
   await browser.close();

@@ -1,0 +1,6 @@
+{
+  "$comment": "Public-domain audio (GAME_DESIGN.md §13.5). Filled by tools/audio/fetch.py; every entry records its source and licence. Missing cues are silent.",
+  "version": 1,
+  "music": {},
+  "sfx": {}
+}

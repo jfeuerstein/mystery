@@ -146,9 +146,11 @@ describe("audit and compose", () => {
     const bad = structuredClone(fixture);
     bad.cast[0]!.portrait.tag = "portrait-unicorn";
     bad.finale.solution.push("Moriarty smiled.");
+    bad.finale.intro.push("It was like a question on the LSAT.");
     const r = audit(bad, { catalog: new Set(catalog.map((a) => a.tag)), curriculum: curriculumFor(1, []) });
     expect(r.errors.join("\n")).toContain('art tag "portrait-unicorn"');
     expect(r.errors.join("\n")).toContain("Moriarty");
+    expect(r.errors.join("\n")).toContain("names the LSAT");
     expect(r.errors.join("\n")).toContain("5 deductions; a case has 6–10");
     expect(r.errors.join("\n")).toContain('deduction "d-clock-chain" needs at least 2 variants');
   });

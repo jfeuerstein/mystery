@@ -11,9 +11,9 @@ export type FormalVerdict = "valid" | "necessary-as-sufficient" | "sufficient-as
  *
  * - `valid`: the conclusion follows.
  * - `necessary-as-sufficient`: from a → b and b, concludes a (affirming the
- *   consequent; LSAT "mistaken reversal").
+ *   consequent).
  * - `sufficient-as-necessary`: from a → b and ¬a, concludes ¬b (denying the
- *   antecedent; LSAT "mistaken negation").
+ *   antecedent).
  */
 export function classifyFormalArgument(premises: readonly Statement[], conclusion: Literal): FormalVerdict {
   const { facts, rules } = compileAll(premises);
