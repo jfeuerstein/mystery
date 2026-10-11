@@ -1,6 +1,47 @@
 {
-  "$comment": "Public-domain audio (GAME_DESIGN.md §13.5). Filled by tools/audio/fetch.py; every entry records its source and licence. Missing cues are silent.",
+  "$comment": "Public-domain and restriction-free audio (GAME_DESIGN.md §13.5), written by `afoot audio build` from pipeline/audio/sounds.json. Every entry records its source and licence. Missing cues are silent.",
   "version": 1,
   "music": {},
-  "sfx": {}
+  "sfx": {
+    "pluck": {
+      "file": "pluck.m4a",
+      "credit": {
+        "title": "Violin, pizzicato",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.6
+    },
+    "seal": {
+      "file": "seal.m4a",
+      "credit": {
+        "title": "Violin, pizzicato on the G string",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.8
+    },
+    "reveal": {
+      "file": "reveal.m4a",
+      "credit": {
+        "title": "Violin, bowed, sounded as a chord",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.7
+    },
+    "discord": {
+      "file": "discord.m4a",
+      "credit": {
+        "title": "Violin, bowed fortissimo, sounded as a clash",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.55
+    }
+  }
 }

@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.3. Written from a design interview, October 2026
+**Status:** v1.4. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -22,7 +22,7 @@
 9. [Patience, Failure and Grading](#9-patience-failure-and-grading)
 10. [Holmes' Notebook](#10-holmes-notebook)
 11. [Progression: Curriculum and Adaptive Difficulty](#11-progression-curriculum-and-adaptive-difficulty)
-12. [Test Conditions Mode](#12-test-conditions-mode)
+12. [By Candlelight and Holmes' Ledger](#12-by-candlelight-and-holmes-ledger)
 13. [Presentation: Art, UI and Audio](#13-presentation-art-ui-and-audio)
 14. [Content Generation Pipeline](#14-content-generation-pipeline)
 15. [Technical Architecture](#15-technical-architecture)
@@ -49,8 +49,10 @@ in a lie by presenting the right piece of evidence, link conditional
 statements into a chain that names the killer, and work out from scattered
 testimony the order in which the household passed the hall clock. The logic
 draws heavily on the kinds of reasoning the LSAT tests: argument flaws,
-conditional logic, inference, and ordering and grouping. It is wrapped in a
-mystery that has to be satisfying in its own right.
+conditional logic, inference, and ordering and grouping. The game itself
+never names the test (decision 18): it should be good practice without
+feeling related to it. It is wrapped in a mystery that has to be satisfying
+in its own right.
 
 Cases are **generated, not hand-written**, so the player never knows the
 solution in advance, and they are **verified by machine before they ship**.
@@ -76,8 +78,10 @@ a Sidney Paget illustration, sized for a commute.*
    hinges on undisclosed facts, and the solution is unique. The pipeline
    enforces this mechanically.
 4. **Rigor with a light touch.** The logic is genuinely hard and grounded in
-   LSAT-style reasoning, but the game never feels like a test-prep app. LSAT
-   terminology is present (in the Notebook glossary) and never forced on you.
+   the reasoning the LSAT tests, but the game never feels like a test-prep
+   app and never names the test. The Notebook gives each concept its classic
+   name from the logic books (*modus tollens*, *affirming the consequent*),
+   small and never forced on you.
 5. **Built for the phone in your hand.** Portrait, one thumb, playable in
    5-minute bursts, with autosave at every beat. A 30-minute case survives
    being interrupted ten times.
@@ -103,11 +107,11 @@ Every design decision from the interview and the revisions that followed, with t
 | 11 | Platform | **PWA** (TypeScript + React), installed to the home screen | No App Store and no Mac required. Fastest to iterate. |
 | 12 | Content source | **AI-generated cases** drawing on a public-domain motif library *and* popular fandom tropes | The player can't author the cases without spoiling them. Personal use only. |
 | 13 | Generation timing | **Sealed batches, generated offline**, verified and encrypted | No bad puzzles at play time, the app works offline, and the player can't peek. |
-| 14 | Timing | **Untimed by default, plus an optional Test Conditions mode** | Thinking time is respected, and timed practice is available when wanted. |
+| 14 | Timing | **Untimed by default, plus an optional By Candlelight mode** | Thinking time is respected, and timed practice is available when wanted. |
 | 15 | Progression | **Notebook curriculum** plus **adaptive difficulty** | Concepts arrive gradually, and the game leans into your weak spots. |
 | 16 | Investigation | **All of them:** linear story spine, plus Observe (cold read), Examine scenes, and Interrogate set pieces | The story stays brisk, with hands-on moments at the key beats. |
-| 17 | Audio | **Ambient sound and music only**, no voice | Atmosphere without narration cost. |
-| 18 | LSAT fidelity | **LSAT-flavored only** | The mystery comes first. LSAT concepts inform design, and an internal tag system powers adaptivity. |
+| 17 | Audio | **Violin music and violin sound effects**, no voice | Atmosphere without narration cost. Revised in v1.4: public-domain string recordings for the music and violin samples for the effects; no location ambience. |
+| 18 | LSAT fidelity | **The concepts only; the test is never named in the app** | The mystery comes first. LSAT concepts inform design, and an internal tag system powers adaptivity, but play should not feel related to the test. Revised in v1.4: the Notebook's glossary shows each concept's classic name from the logic books instead of the test's category name, and a test fails the build if the word appears in the app, schema, logic package or fixtures. |
 | 19 | Title | **The Game Is Afoot** | Chosen by the player. |
 | 20 | Case order | **Strictly sequential**, one open case at a time | Keeps the curriculum and adaptive tuning in a fixed order. |
 | 21 | Wrong-answer feedback | **None**: a miss costs one Patience and reveals nothing | Purist, consistent with decision 8. Guessing teaches nothing. |
@@ -521,9 +525,9 @@ you.
 3. **A worked example:** a canonical miniature example, never taken from a
    current case.
 4. **Your examples:** solved deductions from your own cases.
-5. **Glossary note** (small caps, unobtrusive): the LSAT name for the
-   concept, such as "LSAT: *Mistaken Reversal*" or "*Sufficient/Necessary
-   Confusion*." This is the LSAT-flavored touch (decision 18).
+5. **In the logic books** (small, unobtrusive): the concept's classic name,
+   such as *The contrapositive, or modus tollens* or *Affirming the
+   consequent*. Never a test's name (decision 18).
 
 ### Unlocking
 Entries unlock **just before** a concept is first needed. Holmes recalls it
@@ -575,18 +579,26 @@ player keeps making become the next season's featured traps.
 
 ---
 
-## 12. Test Conditions Mode
+## 12. By Candlelight and Holmes' Ledger
 
-An optional toggle in Settings (decision 14), off by default.
+**By Candlelight** is an optional toggle in Settings (decision 14), off by
+default.
 
 - In the Mind Palace, a **candle** burns down along the edge of the screen.
-- Time per deduction is derived from LSAT pacing: about 1 minute 25 seconds
-  per standard argument-type deduction, scaled by difficulty and by the size
-  of Arrangements and Chains.
+- Its length follows the deduction: about 85 seconds for a standard
+  argument (a Flaw, an Objection, an Observation); 60 seconds plus 25 a rule
+  and 10 an entity for an Arrangement; 15 more a card for a Chain; and 40
+  plus 25 a blank for the Reconstruction (`app/src/engine/candle.ts`).
 - **When the candle gutters out, it counts as one wrong Declare** (it costs
   one Patience) and the candle relights. You continue the same deduction.
-- Solve times are always recorded, in either mode, and shown in a simple
-  per-concept stats screen ("Chains: 84% first try, 2m 10s median").
+
+**Holmes' Ledger** is reached from the Casebook. Every Declare is recorded
+in either mode (case, deduction, variant, concepts, attempt number, time
+since the Palace opened, and whether the candle went out). The Ledger shows,
+for each Notebook concept met so far, how many deductions were solved at the
+first Declare and the median time to a right answer ("2 of 3 at the first
+declaration · typically 1m 40s"). The same records travel in the exported
+save and feed adaptive difficulty (§11.3).
 
 ---
 
@@ -595,8 +607,9 @@ An optional toggle in Settings (decision 14), off by default.
 ### 13.1 Visual identity
 - **Palette:** black ink, sepia, and aged paper (#F3E9D2-ish) in scenes.
   Inverted (warm white line on near-black) in the Mind Palace. **No other
-  colour, ever.** Highlights in the Mind Palace use brightness and line
-  weight, not hue.
+  colour, with one exception:** the oxblood sealing wax of the grade seal
+  (chosen by the player in v1.4). Highlights in the Mind Palace use
+  brightness and line weight, not hue.
 - **Illustration style:** Sidney Paget / Strand Magazine pen-and-ink with
   halftone and cross-hatching.
 - **Typography:** a Caslon or Baskerville-style serif for body text (e.g.
@@ -605,6 +618,19 @@ An optional toggle in Settings (decision 14), off by default.
   user-adjustable size.
 - **Ornaments:** Strand-style rules, drop caps, fleurons, and chapter
   headings set like "THE ADVENTURE OF THE STOPPED CLOCK."
+- **Paper:** grain, foxing and a vignette drawn by SVG turbulence (no image
+  files), laid over every paper surface alike. Cases are manila folders with
+  a tab, twine when sealed, and an oxblood wax seal bearing the grade (M, W
+  or U). Watson's Account is a letter that is stamped with that seal.
+- **Printer's quotes:** case and Notebook text is set with curly quotes and
+  apostrophes when a case is opened.
+- **Motion** (CSS only; Reduce Motion turns it into cross-fades): pages ink
+  in; rules draw themselves; the Mind Palace opens and closes as an iris
+  from the centre; a wrong Declare shakes the board and cracks the glass,
+  and a Patience pip is snuffed; a right one lets the colour return to the
+  scene; Chain links draw and turned cards flip; placed entities settle into
+  their slots. Patience pips take the holder's emblem: a bowler for the
+  police, a clock for Mycroft, a teacup for anyone else.
 
 ### 13.2 Art production
 **All art comes from genuine public-domain Victorian engravings. There is
@@ -612,17 +638,24 @@ no AI image generation** (decision 23). This keeps the look authentic and
 consistent, and it means hotspot positions are always known, because the
 pipeline composes the scenes itself:
 
-1. **Asset library.** Public-domain Victorian engravings (Paget's Strand
-   illustrations, period catalogues, the *Illustrated London News*, and
-   similar sources) cleaned and normalized to one sepia halftone treatment.
-   This covers **figures, portraits, furniture, objects, and backgrounds**.
+1. **Asset library.** Public-domain Victorian engravings, Sidney Paget's
+   Strand illustrations first, then other period illustrators, encyclopedia
+   cuts and catalogues. `pipeline/art/plates.json` names each catalog tag's
+   source page, original file, crop, focus point and licence (public domain
+   or CC0 only). `afoot art build` downloads each original, crops it, takes
+   it to greyscale, sets ink to black and paper to white from its histogram,
+   and writes a WebP (portrait 560×640 for an oval frame, scene 720×960 for
+   the upright Examine frame, vignette 640×480). The app lays every plate
+   onto the paper with a multiply blend and one sepia filter, which is what
+   makes plates from different sources look like one magazine. `afoot art
+   check` (also a unit test) confirms every plate exists and is credited;
+   the Credits screen lists every artist, work and source.
 2. **Composition by the pipeline.** A scene is a background plus placed
    object layers. Because the pipeline *places* each evidence object, the
-   hotspot coordinates are known by construction.
-3. **Portraits** combine a base figure with detail overlays (the ticket in
-   the glove, the ink stain) for the cold read. Two or three expression
-   variants per character (neutral, agitated, defiant) come from cropping
-   and alternate engravings.
+   hotspot coordinates are known by construction. Each object's vignette is
+   drawn into the scene at its hotspot.
+3. **Portraits** are one figure from a plate, cropped for the oval. Detail
+   overlays and expression variants are later work.
 4. **The art catalog constrains the writing.** Every asset is tagged in a
    catalog (`app/public/art/catalog.json`): figure type, era, dress, pose,
    object, room type. The catalog is an input to pipeline stages 1–3, so a
@@ -630,7 +663,8 @@ pipeline composes the scenes itself:
    library can actually show. The consistency audit (stage 7) fails any case
    that references an art tag the catalog doesn't contain. When the stories
    start feeling limited by the art, the fix is to grow the library, not to
-   generate images.
+   generate images. A tag without a plate yet is drawn as a hatched
+   placeholder.
 
 ### 13.3 Portrait screen layouts
 
@@ -689,19 +723,25 @@ pipeline composes the scenes itself:
 - An accessibility text size setting, and Reduce Motion support (the Palace
   transition becomes a cross-fade).
 
-### 13.5 Audio (decision 17: ambient and music only)
-- **Ambience** per location: rain on the 221B window, the crackle of the
-  fire, street noise, a ticking clock, wind on the moor, railway carriages.
-  CC0 or public-domain sources.
-- **Music:** a solo violin leitmotif for 221B (Holmes' violin), sparse cello
-  or piano for tension. Public-domain compositions in CC0 recordings, or
-  commissioned or generated later.
-- **The Mind Palace is nearly silent:** a low sustained tone, a muffled
-  heartbeat, and a pen scratch on each interaction. A wrong Declare sounds a
-  struck-glass chime. A right one brings a rising string swell as the scene
-  returns.
-- Separate volume sliders for music and ambience. The game is fully
-  playable muted.
+### 13.5 Audio (decision 17: violin music and effects)
+- **Music** follows the story in four cues, crossfaded: *theme* (title and
+  Casebook), *investigation* (a case's scenes), *palace* (the Mind Palace)
+  and *finale* (the Reconstruction's aftermath and Watson's Account). Each is
+  an excerpt of a public-domain or CC0 string recording, faded at both ends
+  so the loop seam is a breath.
+- **Effects** are violin, from recordings released without restriction: a
+  pizzicato *pluck* when you inspect or find something, a bowed chord that
+  *reveals* a right Declare, a bowed minor-second *discord* for a wrong one,
+  a low pizzicato for the *seal* on Watson's Account, and a *page* turn.
+- `pipeline/audio/sounds.json` describes every cue as excerpts (source,
+  start, length, level, entry offset for chords) with its credit;
+  `afoot audio build` cuts, layers, fades and levels them with ffmpeg into
+  AAC files and the manifest the app reads. A cue without a file is silent.
+- In the app, effects are decoded once into memory; music streams from a
+  media element fed by the whole file fetched once, so it is cached for
+  offline play without holding a decoded track in memory.
+- Separate volume sliders for music and sound. The game is fully playable
+  muted.
 
 ---
 
@@ -1118,7 +1158,7 @@ from the Examine scene.
 | **M1: Vertical slice** ✓ | PWA shell, beat engine, Narration, Observe, Examine and Interrogate screens, all Mind Palace types, Case File, Notebook (5 entries), Patience and chapter restart, saves. Content: §16 hand-encoded. | §16 is playable start to finish on an iPhone from the home screen |
 | **M2: Pipeline v1** ✓ | The `afoot` CLI, the generate-case skill, blind-solver and adversary agents, motif library (~40 motifs), art catalog | One case generated in an unopened session passes every check and is played blind |
 | **M3: Season 1** | 8 cases, curriculum tiers 1–2, variants and adaptive selection, Watson's Account, grading | The season is played; tune difficulty from the exported profile |
-| **M4: Polish** | Mind Palace transition, audio, Test Conditions, stats screen, engraving library expansion | Feels like a finished game |
+| **M4: Polish** ✓ | Mind Palace transition, audio, By Candlelight, Holmes' Ledger, engraving library, visual pass | Feels like a finished game |
 | **Later** | Profile-guided Season 2, tiers 3–4, a possible season arc (deferred, decision 24) | — |
 
 ---
@@ -1144,8 +1184,9 @@ during building are added to the decisions log once they're settled.
 
 ## Appendix A: Logic Concept Taxonomy
 
-Tiers set the curriculum order. The LSAT names appear only in the Notebook
-glossary.
+Tiers set the curriculum order. The LSAT column is for design only and never
+appears in the app (decision 18); the Notebook shows each concept's classic
+name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 
 | Tier | Concept (Notebook title) | Plain meaning | LSAT glossary | Typical puzzle types |
 |------|--------------------------|---------------|---------------|----------------------|
@@ -1218,6 +1259,7 @@ glossary.
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.4 | M4 built. The test is never named in the app; the Notebook shows classic logic terms (decision 18). Audio is violin music and violin effects, with no ambience (decision 17, §13.5). Test Conditions is renamed By Candlelight, and Holmes' Ledger records every Declare (§12). Visual system, motion and the engraving build are written down (§13.1, §13.2); the grade seal's oxblood wax is the palette's one colour. |
 | v1.3 | M2 built. The art catalog is JSON. The Notebook moved into the shared schema package. Seal format: gzip + AES-GCM + base64 in `packages/seal`. Playtest records are tied to a hash of the puzzle. Blind playtest counts: three solvers and an adversary for argument puzzles, one solver for formal puzzles and the finale. Motif suggestions use a random seed so nothing outside a generation session can predict them. |
 | v1.2 | M1 built. Animation uses CSS instead of Framer Motion. The vertical slice uses placeholder engraving plates until the art catalog exists. The Missing Link puzzle type is deferred to the tier 3 curriculum. |
 | v1.1 | Corrections found while building the M0 checkers. The Chain's traps are now converse and inverse *readings* of true cards rather than separate trap cards (§8.4). The Fallacy Index splits necessary/sufficient errors into two entries so no Flaw has two right names (§10, Appendix A). The §16 Arrangement drops two redundant rules, and its Chain gains a real converse trap. |

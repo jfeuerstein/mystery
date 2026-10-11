@@ -1,0 +1,4 @@
+{
+  "$comment": "The source of every engraving in app/public/art (GAME_DESIGN.md §13.2). Public domain or CC0 only. `npm run afoot -- art build` prints them; crop and focus are fractions of the original.",
+  "plates": {}
+}

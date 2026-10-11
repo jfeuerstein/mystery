@@ -43,7 +43,11 @@ never see a generated case before playing it.
   sealed `ledger.sealed`. `content/.plain/` is git-ignored plaintext that
   exists only inside a generation session.
 - `app/public/art/catalog.json`: the engraving catalog; cases may only use
-  its tags.
+  its tags. `pipeline/art/plates.json` names each plate's public-domain
+  source and crop; `afoot art build` prints them into `app/public/art/`.
+- `pipeline/audio/sounds.json`: every music cue and violin effect as
+  excerpts of free recordings; `afoot audio build` (needs ffmpeg) cuts them
+  into `app/public/audio/` and its manifest.
 - `fixtures/`: hand-written test fixtures, including the full sample case.
 
 ## Commands
@@ -56,6 +60,7 @@ npm run typecheck # tsc only
 npm run dev       # the app at http://localhost:5173
 npm run e2e       # after `npm run build`: full playthrough in Chromium
 npm run afoot     # the generation CLI (prints its commands)
+NODE_USE_ENV_PROXY=1 npm run afoot -- art build    # behind a proxy
 ```
 
 Development sessions: never run `afoot next`, `view`, `verify` or `audit`
@@ -72,3 +77,8 @@ against real generated content, and don't print motif suggestions. Use
   strings are for tests and development only and must never reach the UI.
 - Every verifier must reject the puzzles it exists to catch: add a failing
   example to `packages/logic/test/logic.test.ts` alongside each new check.
+- The app never names the LSAT (decision 18); `app/src/no-lsat.test.ts`
+  enforces it. The Notebook's `term` is the concept's classic logic name.
+- Art and audio are public domain or CC0 (effects may also be free of all
+  restriction), credited in the catalog and manifest. Never images of
+  Moriarty.

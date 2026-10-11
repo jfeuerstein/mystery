@@ -303,38 +303,98 @@ function LedgerScreen() {
   );
 }
 
+/** Works grouped by artist: "Sidney Paget — The Naval Treaty (1893), …". */
+function byAuthor(credits: { title: string; author: string; date?: string }[]) {
+  const groups = new Map<string, Map<string, string | undefined>>();
+  for (const c of credits) {
+    const works = groups.get(c.author) ?? new Map<string, string | undefined>();
+    works.set(c.title, c.date);
+    groups.set(c.author, works);
+  }
+  return [...groups.entries()].sort((a, b) => b[1].size - a[1].size);
+}
+
+/** Recordings grouped by where they came from, so one sample library is credited once. */
+function soundGroups(credits: { title: string; author: string; source: string; license: string }[]) {
+  const groups = new Map<string, { key: string; author: string; source: string; license: string; titles: string[] }>();
+  for (const c of credits) {
+    const key = `${c.author}|${c.source}|${c.license}`;
+    const g = groups.get(key) ?? { key, author: c.author, source: c.source, license: c.license, titles: [] };
+    if (!g.titles.includes(c.title)) g.titles.push(c.title);
+    groups.set(key, g);
+  }
+  return groups;
+}
+
 function Credits() {
   const { go } = useGame();
   const art = ART.filter((a) => a.file && a.credit);
-  const music = [...Object.values(AUDIO_MANIFEST.music), ...Object.values(AUDIO_MANIFEST.sfx)].filter(Boolean);
+  const sounds = [...Object.entries(AUDIO_MANIFEST.music), ...Object.entries(AUDIO_MANIFEST.sfx)].filter(([, e]) => e) as [
+    string,
+    NonNullable<(typeof AUDIO_MANIFEST.music)["theme"]>,
+  ][];
   return (
     <>
       <ScreenHeader title="Credits" back={() => go("settings")} />
-      <div className="page prose">
+      <div className="page prose credits">
         <p>
-          Every engraving and recording here is in the public domain. Stories after Sir Arthur Conan Doyle; cases written
-          and verified by machine.
+          Stories after Sir Arthur Conan Doyle; cases written and verified by machine. Every engraving is in the public
+          domain, and every recording is in the public domain or free of all restriction.
         </p>
         <Ornament />
         <h3 className="smallcaps">Engravings</h3>
         {art.length === 0 ? (
           <p className="muted">Placeholder plates, until the engravings are sourced.</p>
         ) : (
-          art.map((a) => (
-            <p key={a.tag} style={{ fontSize: "0.85em", textAlign: "left" }}>
-              <i>{a.credit!.title}</i>, {a.credit!.author}. {a.credit!.license}. {a.credit!.source}
-            </p>
-          ))
+          <>
+            {byAuthor(art.map((a) => a.credit!)).map(([author, works]) => (
+              <p key={author} className="credit-group">
+                <span className="smallcaps">{author}</span>:{" "}
+                {[...works.entries()].map(([title, date], i) => (
+                  <span key={title}>
+                    {i > 0 && ", "}
+                    <i>{title}</i>
+                    {date && ` (${date})`}
+                  </span>
+                ))}
+                .
+              </p>
+            ))}
+            <details className="credit-list">
+              <summary className="smallcaps">Every plate and its source</summary>
+              <ul>
+                {art.map((a) => (
+                  <li key={a.tag}>
+                    {a.description}{" "}
+                    <a href={a.credit!.source} target="_blank" rel="noreferrer">
+                      {a.credit!.license}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </>
         )}
-        <h3 className="smallcaps">Music</h3>
-        {music.length === 0 ? (
+        <h3 className="smallcaps">Music and sound</h3>
+        {sounds.length === 0 ? (
           <p className="muted">Silence, until the recordings are sourced.</p>
         ) : (
-          music.map((m) => (
-            <p key={m!.file} style={{ fontSize: "0.85em", textAlign: "left" }}>
-              <i>{m!.credit.title}</i>, {m!.credit.author}. {m!.credit.license}. {m!.credit.source}
-            </p>
-          ))
+          <ul className="credit-list">
+            {[...soundGroups(sounds.map(([, e]) => e.credit)).values()].map((g) => (
+              <li key={g.key}>
+                {g.titles.map((t, i) => (
+                  <span key={t}>
+                    {i > 0 && "; "}
+                    <i>{t}</i>
+                  </span>
+                ))}
+                . {g.author}.{" "}
+                <a href={g.source} target="_blank" rel="noreferrer">
+                  {g.license}
+                </a>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </>

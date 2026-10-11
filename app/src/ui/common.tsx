@@ -6,13 +6,15 @@ import { HolderIcon, type HolderKind } from "./icons";
 // Engravings (GAME_DESIGN.md §13.2)
 // ---------------------------------------------------------------------------
 
-export type ArtCredit = { title: string; author: string; source: string; license: string };
+export type ArtCredit = { title: string; author: string; date?: string; source: string; license: string };
 type ArtAsset = {
   tag: string;
   kind: "portrait" | "scene" | "vignette";
   description: string;
   /** Processed engraving in public/art/, once sourced. */
   file?: string;
+  /** Where a narrow frame centres on the plate, as fractions [x, y]. */
+  focus?: [number, number];
   credit?: ArtCredit;
 };
 
@@ -99,6 +101,7 @@ export function Engraving(props: { tag: string; height?: number; children?: Reac
           src={artUrl(asset.file)}
           alt=""
           className={loaded ? "loaded" : ""}
+          style={asset.focus ? { objectPosition: `${asset.focus[0] * 100}% ${asset.focus[1] * 100}%` } : undefined}
           onLoad={() => setLoaded(true)}
           draggable={false}
         />

@@ -10,7 +10,7 @@
   --ink-soft: #4a3d2c;
   --sepia: #7a5c38;
   --rule: #a08a68;
-  /* Sealing wax: the one colour on the page, kept for grades. */
+  /* Oxblood sealing wax: the one colour on the page, kept for grade seals (§13.1). */
   --wax: #6b2119;
   --wax-light: #9a3a2b;
   --wax-dark: #3f120d;
@@ -369,6 +369,12 @@ button {
 
 .engraving img.loaded {
   opacity: 1;
+}
+
+/* An object is shown whole, on its own white, which the blend turns to paper. */
+.engraving.vignette img {
+  object-fit: contain;
+  background: #fff;
 }
 
 .engraving.portrait {
@@ -1472,6 +1478,34 @@ button {
   background: var(--ink-soft);
   transform-origin: left;
   animation: draw-rule 800ms var(--ease) both;
+}
+
+/* ---------- Credits ---------- */
+
+.credits .credit-group,
+.credits .credit-list {
+  font-size: 0.85em;
+  text-align: left;
+}
+
+.credits .credit-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.credits .credit-list li {
+  padding: 4px 0;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.credits details summary {
+  cursor: pointer;
+  color: var(--ink-soft);
+  padding: 6px 0;
+}
+
+.credits a {
+  color: var(--ink-soft);
 }
 
 /* ---------- Settings ---------- */
