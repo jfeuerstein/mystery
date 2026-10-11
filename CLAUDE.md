@@ -16,6 +16,8 @@ never see a generated case before playing it.
 - Generation sessions follow `GAME_DESIGN.md` §14.7: their final messages and
   commit messages use the metric-only template and contain no titles, names,
   motifs or plot.
+- Generating a case is done only by following
+  `.claude/skills/generate-case/SKILL.md` in a dedicated session.
 - Development works against the hand-written sample case in
   `fixtures/stopped-clock.case.json` (GAME_DESIGN.md §16), which is not a
   spoiler.
@@ -31,9 +33,18 @@ never see a generated case before playing it.
   the game engine as pure functions; `src/engine/store.ts` wraps it with
   Zustand and IndexedDB saves; `src/palace/rooms.tsx` holds the Mind Palace
   puzzle rooms; `e2e/playthrough.mjs` plays the sample case in Chromium.
+- `packages/seal` (`@afoot/seal`): seal/unseal (gzip + AES-GCM), shared by
+  the pipeline and the app.
+- `pipeline/` (`@afoot/pipeline`): the `afoot` CLI (`npm run afoot`), the
+  motif library (`pipeline/motifs/motifs.yaml`) and generator-side code.
+- `.claude/skills/generate-case/`: the procedure a generation session follows;
+  `.claude/agents/`: the blind-solver and adversary playtesters.
+- `content/sealed/`: sealed cases, the spoiler-free `index.json`, and the
+  sealed `ledger.sealed`. `content/.plain/` is git-ignored plaintext that
+  exists only inside a generation session.
+- `app/public/art/catalog.json`: the engraving catalog; cases may only use
+  its tags.
 - `fixtures/`: hand-written test fixtures, including the full sample case.
-- Planned (see GAME_DESIGN.md §15.2): `pipeline/` (the `afoot` CLI),
-  `.claude/skills/generate-case/`, `.claude/agents/`, `content/`.
 
 ## Commands
 
@@ -44,7 +55,12 @@ npm test          # vitest only
 npm run typecheck # tsc only
 npm run dev       # the app at http://localhost:5173
 npm run e2e       # after `npm run build`: full playthrough in Chromium
+npm run afoot     # the generation CLI (prints its commands)
 ```
+
+Development sessions: never run `afoot next`, `view`, `verify` or `audit`
+against real generated content, and don't print motif suggestions. Use
+`afoot sealed-check` (metrics only) to confirm sealed cases are sound.
 
 ## Conventions
 

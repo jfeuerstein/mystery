@@ -18,6 +18,7 @@
   "dependencies": {
     "@afoot/logic": "*",
     "@afoot/schema": "*",
+    "@afoot/seal": "*",
     "@fontsource/eb-garamond": "^5.3.0",
     "@fontsource/im-fell-english-sc": "^5.3.0",
     "idb-keyval": "^6.3.0",

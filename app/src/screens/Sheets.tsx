@@ -1,8 +1,7 @@
-import type { Case } from "@afoot/schema";
+import { ENTRIES, entryById, type Case } from "@afoot/schema";
 import { useState } from "react";
 import type { CaseProgress } from "../engine/progress";
 import { useGame } from "../engine/store";
-import { ENTRIES, entryById } from "../notebook/entries";
 import { Sheet } from "../ui/common";
 
 type Tab = "evidence" | "testimony" | "persons" | "established";

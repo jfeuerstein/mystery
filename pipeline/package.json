@@ -1,0 +1,16 @@
+{
+  "name": "@afoot/pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "afoot": "./src/cli.ts"
+  },
+  "dependencies": {
+    "@afoot/logic": "*",
+    "@afoot/schema": "*",
+    "@afoot/seal": "*",
+    "yaml": "^2.9.1",
+    "zod": "^3.25.76"
+  }
+}

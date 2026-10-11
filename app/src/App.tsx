@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CASES } from "./content";
+import { allCases, loadSealedCases } from "./content";
 import { caseById, exportSave, isUnlocked, useGame } from "./engine/store";
 import { CaseView } from "./screens/CaseView";
 import { Fleuron } from "./ui/common";
@@ -66,10 +66,11 @@ function Casebook() {
         </button>
       </div>
       <div className="list">
-        {CASES.map((c, i) => {
+        {allCases().map((c, i) => {
           const unlocked = isUnlocked(i, grades);
           const p = progress[c.id];
           const inProgress = p && p.stage.kind !== "account";
+          const label = c.season === 0 ? "The sample case" : `Season ${c.season}, case ${c.number}`;
           return (
             <button
               key={c.id}
@@ -79,9 +80,10 @@ function Casebook() {
               onClick={() => openCase(c.id)}
               data-testid={`case-${c.id}`}
             >
-              <div className="smallcaps muted">{c.season === 0 ? "The sample case" : `Season ${c.season}, case ${c.number}`}</div>
+              <div className="smallcaps muted">{label}</div>
               <div className="display" style={{ fontSize: "1.25em" }}>
-                {c.title}
+                {/* A sealed case's title stays hidden until it unlocks. */}
+                {unlocked ? c.title : "Sealed"}
               </div>
               <div className="muted">
                 {grades[c.id] ? `Best: ${grades[c.id]}` : inProgress ? "In progress" : unlocked ? "Unopened" : "Locked"}
@@ -90,7 +92,9 @@ function Casebook() {
           );
         })}
         <p className="muted" style={{ textAlign: "center", fontSize: "0.9em" }}>
-          Generated seasons will appear here, one case at a time.
+          {allCases().length === 1
+            ? "Generated seasons will appear here, one case at a time."
+            : "Cases open one at a time, in order."}
         </p>
       </div>
     </>
@@ -175,12 +179,17 @@ function Settings() {
 
 export function App() {
   const { hydrated, screen, activeCase, progress, settings } = useGame();
+  const [casesReady, setCasesReady] = useState(false);
 
   useEffect(() => {
     document.documentElement.dataset.text = settings.textSize;
   }, [settings.textSize]);
 
-  if (!hydrated) return <div className="app" />;
+  useEffect(() => {
+    void loadSealedCases().finally(() => setCasesReady(true));
+  }, []);
+
+  if (!hydrated || !casesReady) return <div className="app" />;
 
   let body: React.ReactNode;
   const p = activeCase ? progress[activeCase] : undefined;

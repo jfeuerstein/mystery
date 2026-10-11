@@ -1,6 +1,6 @@
 // Holmes' Notebook (GAME_DESIGN.md §10). Concepts, never answers: no entry
 // mentions any case. Each entry's worked example is a standalone miniature.
-import type { ConceptId } from "@afoot/schema";
+import type { ConceptId } from "./ids.js";
 
 export type NotebookEntry = {
   id: ConceptId;
@@ -99,6 +99,30 @@ export const ENTRIES: NotebookEntry[] = [
     example:
       "A, B and C in a row. B is not first. C is immediately after A. A–C must be a block, B can't lead it, so the order is A, C, B.",
     lsat: "Ordering games",
+  },
+  {
+    id: "other-explanation",
+    title: "On the Other Explanation",
+    section: "method",
+    gloss:
+      "When a man tells you that one thing caused another, ask what else might have caused it. If you can name a second author as plausible as the first, his case is weakened, however confidently he states it.",
+    plain:
+      "A claim that X caused Y is weakened by evidence of a different cause that explains Y just as well. To undermine such a claim, look for the evidence that supplies the alternative.",
+    example:
+      "\"The window was broken, so a burglar came in.\" A cricket ball lying on the carpet weakens it. A broken lock on the door does not; that only suggests a second way in.",
+    lsat: "Weaken: alternative cause",
+  },
+  {
+    id: "who-stood-where",
+    title: "On Who Stood Where",
+    section: "method",
+    gloss:
+      "When people must be divided among rooms, parties or carriages, begin with whoever is most constrained. Each placement narrows the rest; the last few place themselves.",
+    plain:
+      "In grouping puzzles, find the rules that tie people together (\"with\") or keep them apart (\"never with\"), and any limits on how many fit in a place. Fill the tightest places first.",
+    example:
+      "Three guests, two rooms, the blue room holds one. Ames is never with Blake. Then Ames and Blake can't share the green room, so one of them is in the blue room and Clay is in the green.",
+    lsat: "Grouping games",
   },
   {
     id: "necessary-as-sufficient",

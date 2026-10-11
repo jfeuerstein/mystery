@@ -14,6 +14,7 @@ import {
   type ChainStep,
 } from "@afoot/logic";
 import {
+  entryById,
   FLAW_TYPES,
   ORIENTATIONS,
   type ArrangementPuzzle,
@@ -27,7 +28,6 @@ import {
   type Reconstruction,
 } from "@afoot/schema";
 import { useState, type ReactNode } from "react";
-import { entryById } from "../notebook/entries";
 import { HoldToDeclare } from "../ui/common";
 
 type Declare = (correct: boolean) => void;

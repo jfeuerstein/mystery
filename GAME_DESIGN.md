@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.2. Written from a design interview, October 2026
+**Status:** v1.3. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -624,7 +624,7 @@ pipeline composes the scenes itself:
    variants per character (neutral, agitated, defiant) come from cropping
    and alternate engravings.
 4. **The art catalog constrains the writing.** Every asset is tagged in a
-   catalog (`app/public/art/catalog.yaml`): figure type, era, dress, pose,
+   catalog (`app/public/art/catalog.json`): figure type, era, dress, pose,
    object, room type. The catalog is an input to pipeline stages 1–3, so a
    case may only call for people, places, objects and cold-read details the
    library can actually show. The consistency audit (stage 7) fails any case
@@ -824,11 +824,11 @@ written. Generation uses up plan usage limits instead of money.
 
 | Piece | Where | What it does |
 |-------|-------|--------------|
-| **`afoot` CLI** | `pipeline/` (TypeScript, Node) | All the deterministic stages: `validate`, `verify`, `player-view`, `check-answer`, `audit`, `compose`, `seal`. Free to run, and the only judge of pass or fail. |
+| **`afoot` CLI** | `pipeline/` (TypeScript, Node; `npm run afoot`) | All the deterministic stages: `next`, `validate`, `verify`, `audit`, `compose`, `view`, `check`, `adversary`, `status`, `seal`, `sealed-check`, `motifs`. Free to run, and the only judge of pass or fail. |
 | **Generation skill** | `.claude/skills/generate-case/SKILL.md` | The step-by-step procedure the session follows for stages 1–8, including the retry rules and the spoiler protocol. |
-| **Blind-solver agent** | `.claude/agents/blind-solver.md` | A sub-agent definition **with no file or shell tools**, so it can't open the plaintext case even by accident. It receives only the player view, passed into its prompt. |
+| **Blind-solver agent** | `.claude/agents/blind-solver.md` | A sub-agent definition **with no file or shell tools** (Claude Code can't define a sub-agent with zero tools, so it gets only web search, which can't reach the unpushed plaintext). It receives only the player view, passed into its prompt. |
 | **Adversary agent** | `.claude/agents/adversary.md` | Same restrictions. Given the player view *and* the intended answer, it tries to argue for a second defensible answer. |
-| **Motif library and art catalog** | `pipeline/motifs/`, `app/public/art/catalog.yaml` | The inputs the session draws from. |
+| **Motif library and art catalog** | `pipeline/motifs/motifs.yaml`, `app/public/art/catalog.json` | The inputs the session draws from. |
 
 **One case per session.** Each session generates exactly one case, from
 concept to sealed bundle, then commits and ends:
@@ -839,11 +839,12 @@ concept to sealed bundle, then commits and ends:
    `content/.plain/`. Run `afoot validate` and `afoot verify`, and fix and
    re-run until everything passes.
 3. Write the prose. Run `afoot audit`.
-4. For each deduction variant, run `afoot player-view` to export only what
-   the player would see. Give it to three blind solvers and one adversary.
-   Check each solver's answer with `afoot check-answer`. If any solver
-   misses or the adversary finds a defensible alternative, revise or
-   replace that deduction and test it again.
+4. For each deduction variant, run `afoot view` to export only what the
+   player would see. Argument puzzles (Flaw, Objection, Observation) go to
+   three blind solvers and one adversary; formal puzzles and the finale to
+   one blind solver. Check each answer with `afoot check --solver`, which
+   records the result against a hash of the puzzle, so revising a puzzle
+   voids its old results and a failed puzzle must change before it can pass.
 5. Run `afoot compose` and `afoot seal`, delete `content/.plain/`, and
    commit only the sealed case.
 6. If a case still fails after a set number of revision rounds (default 3
@@ -923,8 +924,9 @@ So:
 │   ├── skills/generate-case/  ← the generation procedure (§14.5)
 │   └── agents/             ← blind-solver and adversary (no file tools)
 ├── packages/
-│   ├── schema/             ← Zod case schema and types (shared)
-│   └── logic/              ← solvers and validators (shared, unit-tested)
+│   ├── schema/             ← Zod case schema, types and Notebook entries (shared)
+│   ├── logic/              ← solvers and validators (shared, unit-tested)
+│   └── seal/               ← seal/unseal, shared by the pipeline and the app
 ├── app/                    ← the PWA
 │   ├── src/
 │   │   ├── scenes/         ← Narration, Observe, Examine, Interrogate
@@ -932,7 +934,7 @@ So:
 │   │   ├── notebook/
 │   │   ├── casefile/
 │   │   └── engine/         ← beat runner, save system, Patience, adaptivity
-│   └── public/art/         ← the engraving asset library
+│   └── public/art/         ← the engraving catalog (and, later, the engravings)
 ├── pipeline/
 │   ├── motifs/             ← motif library (YAML)
 │   └── src/                ← the afoot CLI: validate, verify, player-view,
@@ -1114,7 +1116,7 @@ from the Examine scene.
 |-----------|-------|-----------|
 | **M0: Foundations** ✓ | Repo scaffold, `CLAUDE.md` with the spoiler rule, Zod schema, the logic package (Arrangement solver, Chain checker) with unit tests | The solvers verify §16's puzzles in CI |
 | **M1: Vertical slice** ✓ | PWA shell, beat engine, Narration, Observe, Examine and Interrogate screens, all Mind Palace types, Case File, Notebook (5 entries), Patience and chapter restart, saves. Content: §16 hand-encoded. | §16 is playable start to finish on an iPhone from the home screen |
-| **M2: Pipeline v1** | The `afoot` CLI, the generate-case skill, blind-solver and adversary agents, motif library (~40 motifs), art catalog | One case generated in an unopened session passes every check and is played blind |
+| **M2: Pipeline v1** ✓ | The `afoot` CLI, the generate-case skill, blind-solver and adversary agents, motif library (~40 motifs), art catalog | One case generated in an unopened session passes every check and is played blind |
 | **M3: Season 1** | 8 cases, curriculum tiers 1–2, variants and adaptive selection, Watson's Account, grading | The season is played; tune difficulty from the exported profile |
 | **M4: Polish** | Mind Palace transition, audio, Test Conditions, stats screen, engraving library expansion | Feels like a finished game |
 | **Later** | Profile-guided Season 2, tiers 3–4, a possible season arc (deferred, decision 24) | — |
@@ -1216,5 +1218,6 @@ glossary.
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.3 | M2 built. The art catalog is JSON. The Notebook moved into the shared schema package. Seal format: gzip + AES-GCM + base64 in `packages/seal`. Playtest records are tied to a hash of the puzzle. Blind playtest counts: three solvers and an adversary for argument puzzles, one solver for formal puzzles and the finale. Motif suggestions use a random seed so nothing outside a generation session can predict them. |
 | v1.2 | M1 built. Animation uses CSS instead of Framer Motion. The vertical slice uses placeholder engraving plates until the art catalog exists. The Missing Link puzzle type is deferred to the tier 3 curriculum. |
 | v1.1 | Corrections found while building the M0 checkers. The Chain's traps are now converse and inverse *readings* of true cards rather than separate trap cards (§8.4). The Fallacy Index splits necessary/sufficient errors into two entries so no Flaw has two right names (§10, Appendix A). The §16 Arrangement drops two redundant rules, and its Chain gains a real converse trap. |

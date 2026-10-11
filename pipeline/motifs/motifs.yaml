@@ -1,0 +1,523 @@
+# The motif library (GAME_DESIGN.md §14.2, Appendix B).
+#
+# Plot devices abstracted to premise level: from the public-domain Doyle
+# canon, other public-domain Golden Age mysteries, and popular fandom
+# premises. Never text from specific works. Moriarty and long-running
+# conspiracies are excluded (decision 24).
+#
+# kind:    central-trick | complication | premise
+# source:  canon-pd | golden-age-pd | fandom-trope | original
+# art:     catalog tags the motif usually needs (checked against the catalog)
+# concepts: logic concepts the motif lends itself to (GAME_DESIGN.md Appendix A)
+
+# ---------------------------------------------------------------- central tricks
+
+- id: tampered-clock
+  source: golden-age-pd
+  kind: central-trick
+  summary: >
+    A clock is set to a false time and stopped, to fix a time of death for which the
+    culprit holds an alibi.
+  fair-play-tells:
+    - a physical sign the stop was staged (glass pattern, winding state, swept debris)
+    - an independent time source contradicts the clock (a cold meal, a train, a church bell)
+  art: [vignette-clock, scene-hall]
+  pairs-well-with: [alibi-by-company, servant-red-herring, timetable-alibi]
+  concepts: [if-and-then, contrapositive, order-by-elimination]
+
+- id: staged-noise
+  source: golden-age-pd
+  kind: central-trick
+  summary: >
+    A sound the whole house heard (a shot, a crash, a scream) fixes the time of the
+    crime, but it was staged later, or by a contrivance, to give the culprit company.
+  fair-play-tells:
+    - the means of staging is present in the scene (a cord, a fallen object, a gramophone)
+    - one witness noticed something before the noise that only fits an earlier crime
+  art: [vignette-pistol, vignette-rope]
+  pairs-well-with: [alibi-by-company, servant-red-herring]
+  concepts: [order-by-elimination, other-explanation]
+
+- id: impersonation
+  source: canon-pd
+  kind: central-trick
+  summary: >
+    Someone is not who they claim to be: a returned heir, a new secretary, a visiting
+    cousin. The real person is absent, dead, or abroad.
+  fair-play-tells:
+    - a habit or skill the real person had and the impostor lacks (handedness, a language, a scar)
+    - a witness who knew the real person is kept away
+  art: [vignette-photograph, portrait-young-gentleman]
+  pairs-well-with: [inheritance-motive, letters-unanswered]
+  concepts: [plain-contradiction, seeing-and-observing]
+
+- id: dog-that-did-nothing
+  source: canon-pd
+  kind: central-trick
+  summary: >
+    Something that should have happened did not: a dog did not bark, a door did not
+    creak, a light was not seen. The absence proves the intruder was familiar.
+  fair-play-tells:
+    - the normal behaviour is established early (the dog barks at strangers)
+    - the absence is reported in passing, not highlighted
+  art: [vignette-dog]
+  pairs-well-with: [inside-job, servant-red-herring]
+  concepts: [contrapositive, if-and-then]
+
+- id: locked-room-second-way
+  source: golden-age-pd
+  kind: central-trick
+  summary: >
+    A room locked from inside, but there is a second way in or out: a ventilator, a
+    connecting door behind a wardrobe, a window catch worked with thread.
+  fair-play-tells:
+    - the second way is visible in the scene but its significance is not stated
+    - a small trace (a thread, scratches, dust disturbed) at the second way
+  art: [vignette-lock, vignette-window, vignette-thread]
+  pairs-well-with: [false-suicide, the-wrong-victim]
+  concepts: [necessary-as-sufficient, plain-contradiction]
+
+- id: false-suicide
+  source: canon-pd
+  kind: central-trick
+  summary: >
+    A death staged as suicide; one physical detail is inconsistent with the dead
+    person having done it themselves.
+  fair-play-tells:
+    - the victim's handedness, eyesight or habit established early
+    - the weapon, note or position contradicts that habit
+  art: [vignette-pistol, vignette-letter]
+  pairs-well-with: [locked-room-second-way, insurance-motive]
+  concepts: [plain-contradiction, seeing-and-observing]
+
+- id: timetable-alibi
+  source: golden-age-pd
+  kind: central-trick
+  summary: >
+    An alibi rests on a train or coach timetable; a faster connection, a change of
+    trains, or a stopped clock at the station breaks it.
+  fair-play-tells:
+    - the timetable is given to the player in full
+    - one witness mentions the faster connection without knowing its importance
+  art: [scene-station-platform, vignette-ticket]
+  pairs-well-with: [tampered-clock, impersonation]
+  concepts: [order-by-elimination, who-stood-where]
+
+- id: the-wrong-victim
+  source: golden-age-pd
+  kind: central-trick
+  summary: >
+    The person killed was not the intended victim: a borrowed coat, a swapped room,
+    a cup handed to the wrong guest.
+  fair-play-tells:
+    - the swap is mentioned early as a trivial courtesy
+    - the true target had the stronger enemies
+  art: [vignette-glass, vignette-hat]
+  pairs-well-with: [poisoned-cup, inheritance-motive]
+  concepts: [other-explanation, who-stood-where]
+
+- id: poisoned-cup
+  source: golden-age-pd
+  kind: central-trick
+  summary: >
+    Poison in a drink, and the question is who could have reached that cup in the
+    window available.
+  fair-play-tells:
+    - the order of service is reconstructible from testimony
+    - one person's opportunity is narrower than it first appears
+  art: [vignette-teacup, vignette-bottle, vignette-poison-label]
+  pairs-well-with: [the-wrong-victim, inside-job]
+  concepts: [order-by-elimination, who-stood-where]
+
+- id: forged-document
+  source: canon-pd
+  kind: central-trick
+  summary: >
+    A will, deed, or letter is forged; the forgery betrays itself through paper, ink,
+    a date, or a turn of phrase the supposed writer would never use.
+  fair-play-tells:
+    - a genuine specimen of the writer's hand or habit is shown first
+    - the anachronism or slip is in plain sight
+  art: [vignette-deed, vignette-will, vignette-letter]
+  pairs-well-with: [inheritance-motive, impersonation]
+  concepts: [plain-contradiction, seeing-and-observing]
+
+- id: alibi-by-company
+  source: original
+  kind: central-trick
+  summary: >
+    The culprit's alibi is the best in the house because they engineered it: they made
+    sure of company at the false time.
+  fair-play-tells:
+    - the culprit steers the company's attention to the time
+    - the true time of the crime is earlier, and the culprit was then alone
+  art: [scene-drawing-room, vignette-card]
+  pairs-well-with: [tampered-clock, timetable-alibi]
+  concepts: [if-and-then, contrapositive]
+
+- id: substituted-object
+  source: canon-pd
+  kind: central-trick
+  summary: >
+    A valuable is replaced by a copy; everyone thinks the theft happened when the copy
+    was discovered, but it happened earlier.
+  fair-play-tells:
+    - a small flaw in the copy is visible to a careful observer
+    - the real moment of access is in someone's routine testimony
+  art: [vignette-safe, vignette-ring]
+  pairs-well-with: [inside-job, timetable-alibi]
+  concepts: [order-by-elimination, plain-contradiction]
+
+- id: footprints-tell
+  source: canon-pd
+  kind: central-trick
+  summary: >
+    Footprints, hoof marks or wheel ruts show something the witnesses deny: a
+    direction, a weight, a stride, a horse shod backwards.
+  fair-play-tells:
+    - the ground conditions (rain, frost) are established
+    - the tracks are described precisely, without interpretation
+  art: [vignette-footprint, vignette-horse, vignette-carriage-wheel]
+  pairs-well-with: [timetable-alibi, impersonation]
+  concepts: [seeing-and-observing, plain-contradiction]
+
+- id: cipher-message
+  source: canon-pd
+  kind: central-trick
+  summary: >
+    Messages pass in plain sight (a newspaper column, dancing chalk marks, a flower in a
+    window), and the pattern reveals who was signalling to whom.
+  fair-play-tells:
+    - enough instances of the signal are shown to infer the rule
+    - the key (who could place the signal) is constrained by testimony
+  art: [vignette-newspaper, vignette-window]
+  pairs-well-with: [inside-job, impersonation]
+  concepts: [who-stood-where, if-and-then]
+
+- id: hidden-in-plain-sight
+  source: golden-age-pd
+  kind: central-trick
+  summary: >
+    The missing thing (a letter, a jewel, a body of evidence) was never hidden at all;
+    it is in the most obvious place, disguised as itself.
+  fair-play-tells:
+    - the object is seen in the scene early
+    - its slight wrongness (re-addressed, re-folded) is described
+  art: [vignette-envelope, vignette-letter]
+  pairs-well-with: [substituted-object, cipher-message]
+  concepts: [seeing-and-observing, necessary-as-sufficient]
+
+# ---------------------------------------------------------------- complications
+
+- id: servant-red-herring
+  source: original
+  kind: complication
+  summary: >
+    A servant lies about where they were, for an innocent but embarrassing reason
+    (a sweetheart, a pint, a sick relative). The lie is broken and found harmless.
+  fair-play-tells:
+    - physical evidence of where they really were
+    - the innocent reason is plausible once revealed
+  art: [vignette-boots, vignette-mud]
+  pairs-well-with: [tampered-clock, poisoned-cup, dog-that-did-nothing]
+  concepts: [plain-contradiction]
+
+- id: inside-job
+  source: canon-pd
+  kind: complication
+  summary: >
+    The crime required knowledge only a member of the household could have: the
+    routine, the dog, the hiding place.
+  fair-play-tells:
+    - the routine is described to the player
+    - outsiders are ruled out by a necessary condition
+  art: [scene-hall, portrait-butler]
+  pairs-well-with: [dog-that-did-nothing, substituted-object]
+  concepts: [necessary-as-sufficient, contrapositive]
+
+- id: inheritance-motive
+  source: canon-pd
+  kind: complication
+  summary: >
+    A will, an entail or a trust makes the death profitable, but not to the person it
+    seems to favour.
+  fair-play-tells:
+    - the terms of the will are given in full
+    - a second beneficiary is mentioned in passing
+  art: [vignette-will]
+  pairs-well-with: [forged-document, the-wrong-victim]
+  concepts: [if-and-then, sufficient-as-necessary]
+
+- id: insurance-motive
+  source: golden-age-pd
+  kind: complication
+  summary: >
+    A policy pays out only under certain conditions (not suicide, not before a date),
+    which explains why the death was staged as it was.
+  fair-play-tells:
+    - the policy's conditions are stated
+    - the date matters and is given
+  art: [vignette-ledger]
+  pairs-well-with: [false-suicide, tampered-clock]
+  concepts: [only-if-and-unless, if-and-then]
+
+- id: blackmail-letters
+  source: canon-pd
+  kind: complication
+  summary: >
+    Several people had reason to fear the victim's letters; the motive is shared, so
+    opportunity decides it.
+  fair-play-tells:
+    - each suspect's secret is established
+    - the letters' hiding place restricts who could reach them
+  art: [vignette-letter, vignette-safe]
+  pairs-well-with: [poisoned-cup, hidden-in-plain-sight]
+  concepts: [who-stood-where, correlation-causation]
+
+- id: letters-unanswered
+  source: canon-pd
+  kind: complication
+  summary: >
+    Someone has stopped writing, or their letters have changed: shorter, in another hand,
+    from another place.
+  fair-play-tells:
+    - an earlier letter is shown for comparison
+    - the change is concrete (postmark, paper, phrasing)
+  art: [vignette-letter, vignette-envelope]
+  pairs-well-with: [impersonation, forged-document]
+  concepts: [seeing-and-observing, other-explanation]
+
+- id: false-confession
+  source: golden-age-pd
+  kind: complication
+  summary: >
+    Someone confesses to protect another; their account contains a detail only the
+    real culprit would get wrong, or right.
+  fair-play-tells:
+    - the true detail is established by evidence first
+    - the confession contradicts it
+  art: [portrait-young-gentleman]
+  pairs-well-with: [inheritance-motive, the-wrong-victim]
+  concepts: [plain-contradiction]
+
+- id: police-wrong-man
+  source: canon-pd
+  kind: complication
+  summary: >
+    The police have already arrested someone on reasoning that sounds solid and is
+    subtly flawed; Holmes must take the theory apart first.
+  fair-play-tells:
+    - the police theory is stated as an argument
+    - its flaw is a classic error the Notebook names
+  art: [portrait-inspector]
+  pairs-well-with: [inside-job, timetable-alibi]
+  concepts: [necessary-as-sufficient, sufficient-as-necessary, correlation-causation]
+
+- id: superstition-cover
+  source: canon-pd
+  kind: complication
+  summary: >
+    A local legend (a curse, a phantom hound, a haunted wing) is used to frighten
+    witnesses and explain away the evidence.
+  fair-play-tells:
+    - the legend's details are given
+    - the physical evidence fits a human agent better
+  art: [scene-moor, scene-churchyard]
+  pairs-well-with: [footprints-tell, inheritance-motive]
+  concepts: [correlation-causation, other-explanation]
+
+- id: two-crimes-one-night
+  source: golden-age-pd
+  kind: complication
+  summary: >
+    Two unrelated wrongs happened the same night (a theft and a death), and the
+    evidence of one is mistaken for evidence of the other.
+  fair-play-tells:
+    - each crime's evidence is internally consistent
+    - the timeline separates them
+  art: [vignette-safe, vignette-candle]
+  pairs-well-with: [servant-red-herring, substituted-object]
+  concepts: [correlation-causation, order-by-elimination]
+
+- id: unreliable-sample
+  source: original
+  kind: complication
+  summary: >
+    A conclusion rests on too few or too selective witnesses: "everyone at the inn
+    saw him", when only his friends were asked.
+  fair-play-tells:
+    - who was asked is recorded
+    - the omitted witnesses are mentioned elsewhere
+  art: [scene-inn]
+  pairs-well-with: [police-wrong-man, timetable-alibi]
+  concepts: [correlation-causation]
+
+# ---------------------------------------------------------------- premises
+
+- id: client-in-danger
+  source: canon-pd
+  kind: premise
+  summary: >
+    The client comes not about a crime done but about one they fear: strange
+    instructions, an odd employment, a sound in the night.
+  fair-play-tells:
+    - the client's account contains the key detail without knowing it
+  art: [portrait-governess, scene-sitting-room]
+  pairs-well-with: [inheritance-motive, impersonation]
+  concepts: [seeing-and-observing]
+
+- id: odd-employment
+  source: canon-pd
+  kind: premise
+  summary: >
+    Someone is paid generously for a strange, pointless task (copying a book, wearing a
+    dress, sitting in a window); the task exists to keep them somewhere.
+  fair-play-tells:
+    - the task's conditions are specific and odd
+    - what lies near the place they are kept away from is mentioned
+  art: [portrait-clerk, scene-lodging-room]
+  pairs-well-with: [substituted-object, impersonation]
+  concepts: [other-explanation, if-and-then]
+
+- id: country-house-weekend
+  source: golden-age-pd
+  kind: premise
+  summary: >
+    A closed circle of guests and servants at a country house; nobody could have come
+    or gone unseen.
+  fair-play-tells:
+    - the house's layout and who slept where are given
+  art: [scene-country-house, scene-drawing-room]
+  pairs-well-with: [poisoned-cup, tampered-clock, alibi-by-company]
+  concepts: [who-stood-where, order-by-elimination]
+
+- id: railway-journey
+  source: golden-age-pd
+  kind: premise
+  summary: >
+    A crime aboard or around a train; the compartments and stops bound who could have
+    done it.
+  fair-play-tells:
+    - the stops and who boarded where are given
+  art: [scene-railway-carriage, scene-station-platform]
+  pairs-well-with: [timetable-alibi, impersonation]
+  concepts: [order-by-elimination, who-stood-where]
+
+- id: city-bank
+  source: canon-pd
+  kind: premise
+  summary: >
+    A bank, a strongroom, and a weekend; something is being dug, moved, or copied.
+  fair-play-tells:
+    - the neighbouring premises are described
+  art: [scene-bank-office, scene-london-street]
+  pairs-well-with: [odd-employment, substituted-object]
+  concepts: [other-explanation]
+
+- id: village-secrets
+  source: golden-age-pd
+  kind: premise
+  summary: >
+    A small village where everyone knows everyone's business, except the one thing
+    that matters.
+  fair-play-tells:
+    - the village's gossip network is shown to be reliable on most matters
+  art: [scene-village-street, portrait-clergyman]
+  pairs-well-with: [unreliable-sample, superstition-cover]
+  concepts: [unrepresentative-witness]
+
+- id: theatre-world
+  source: original
+  kind: premise
+  summary: >
+    A theatre company: costumes, understudies, and everyone pretending to be someone.
+  fair-play-tells:
+    - the cast list and who could wear which costume are given
+  art: [scene-theatre, portrait-actress]
+  pairs-well-with: [impersonation, the-wrong-victim]
+  concepts: [who-stood-where]
+
+- id: river-and-docks
+  source: canon-pd
+  kind: premise
+  summary: >
+    The river, the docks, and a ship due to sail on the tide; the deadline is real.
+  fair-play-tells:
+    - the tide table or sailing time is given
+  art: [scene-docks, portrait-sea-captain]
+  pairs-well-with: [timetable-alibi, cipher-message]
+  concepts: [order-by-elimination]
+
+# ---------------------------------------------------------------- fandom premises
+
+- id: watson-is-the-client
+  source: fandom-trope
+  kind: premise
+  summary: >
+    Watson brings Holmes a personal matter (an old army friend, a patient) and his
+    closeness to it clouds his reasoning, making him a natural source of flawed arguments.
+  fair-play-tells:
+    - Watson's loyalty is stated early
+  art: [portrait-watson, portrait-doctor]
+  pairs-well-with: [police-wrong-man, false-confession]
+  concepts: [necessary-as-sufficient, correlation-causation]
+
+- id: holmes-was-wrong-once
+  source: fandom-trope
+  kind: premise
+  summary: >
+    An old case Holmes thought closed returns: the wrong person may have hanged, and
+    the original reasoning must be re-examined.
+  fair-play-tells:
+    - the old reasoning is shown as an argument with a flaw
+  art: [vignette-newspaper, scene-sitting-room]
+  pairs-well-with: [police-wrong-man, false-confession]
+  concepts: [sufficient-as-necessary, necessary-as-sufficient]
+
+- id: mycroft-commission
+  source: fandom-trope
+  kind: premise
+  summary: >
+    Mycroft needs deniable help: a missing paper, a diplomat's indiscretion, and no
+    police allowed.
+  fair-play-tells:
+    - Mycroft's facts are complete but compressed
+  art: [portrait-mycroft, scene-club]
+  pairs-well-with: [hidden-in-plain-sight, cipher-message]
+  concepts: [if-and-then, contrapositive]
+
+- id: mrs-hudsons-past
+  source: fandom-trope
+  kind: premise
+  summary: >
+    Someone from Mrs. Hudson's past arrives at Baker Street, and the trouble follows
+    them to the door.
+  fair-play-tells:
+    - Mrs. Hudson's account of the past is honest but partial
+  art: [portrait-mrs-hudson, scene-sitting-room]
+  pairs-well-with: [letters-unanswered, impersonation]
+  concepts: [seeing-and-observing]
+
+- id: irregulars-witness
+  source: fandom-trope
+  kind: premise
+  summary: >
+    One of the Baker Street Irregulars saw something and is not believed by the
+    police; their testimony is better than it looks.
+  fair-play-tells:
+    - the boy's account is concrete and checkable
+  art: [portrait-street-urchin, scene-london-street]
+  pairs-well-with: [police-wrong-man, unreliable-sample]
+  concepts: [plain-contradiction, other-explanation]
+
+- id: holmes-meets-his-equal
+  source: fandom-trope
+  kind: premise
+  summary: >
+    The culprit is a genuinely brilliant adversary for this one case only,
+    who anticipates the obvious deductions and plants false ones.
+  fair-play-tells:
+    - the planted clue is subtly too convenient
+  art: [portrait-professor, portrait-lady-of-quality]
+  pairs-well-with: [hidden-in-plain-sight, alibi-by-company]
+  concepts: [necessary-as-sufficient, other-explanation]
