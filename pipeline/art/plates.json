@@ -127,6 +127,24 @@
         0.42
       ]
     },
+    "portrait-constable": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f333.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Bpt6k10470488_f333.jpg/1920px-Bpt6k10470488_f333.jpg",
+      "title": "London: A Pilgrimage (Gustave Doré and Blanchard Jerrold): The Bull's-Eye",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.525,
+        0.352,
+        0.765,
+        0.572
+      ],
+      "levels": [
+        15,
+        185
+      ]
+    },
     "portrait-doctor": {
       "page": "https://commons.wikimedia.org/wiki/File:Houn-08.jpg",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Houn-08.jpg/960px-Houn-08.jpg",
@@ -1031,6 +1049,24 @@
         0.62
       ]
     },
+    "vignette-bloodstain": {
+      "page": "https://archive.org/details/criminalinvestig00grosuoft",
+      "image": "https://archive.org/download/criminalinvestig00grosuoft/page/n614.jpg",
+      "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 104a: a splash of blood",
+      "author": "Hans Gross",
+      "date": "1906",
+      "license": "Public domain",
+      "crop": [
+        0.64,
+        0.488,
+        0.84,
+        0.613
+      ],
+      "levels": [
+        40,
+        195
+      ]
+    },
     "vignette-boots": {
       "page": "https://commons.wikimedia.org/wiki/File:Paar_laarzen,_RP-P-1943-163.jpg",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Paar_laarzen%2C_RP-P-1943-163.jpg/1920px-Paar_laarzen%2C_RP-P-1943-163.jpg",
@@ -1277,6 +1313,38 @@
         0.776
       ]
     },
+    "vignette-glove": {
+      "page": "https://archive.org/details/sears-roebuck-catalogue-111",
+      "image": "https://archive.org/download/sears-roebuck-catalogue-111/page/n580.jpg",
+      "title": "Sears, Roebuck and Co. Catalogue No. 111: ladies' kid gauntlets",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1902",
+      "license": "Public domain",
+      "crop": [
+        0.705,
+        0.853,
+        0.964,
+        0.915
+      ],
+      "erase": [
+        [
+          0.15,
+          0,
+          1,
+          0.05
+        ],
+        [
+          0.1,
+          0,
+          0.16,
+          0.045
+        ]
+      ],
+      "levels": [
+        15,
+        220
+      ]
+    },
     "vignette-hand": {
       "page": "https://commons.wikimedia.org/wiki/File:Studie_van_een_hand,_RP-P-1878-A-515.jpg",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Studie_van_een_hand%2C_RP-P-1878-A-515.jpg/1920px-Studie_van_een_hand%2C_RP-P-1878-A-515.jpg",
@@ -1295,6 +1363,20 @@
         222
       ]
     },
+    "vignette-handkerchief": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n244.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104: ladies' embroidered handkerchief",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.346,
+        0.207,
+        0.494,
+        0.338
+      ]
+    },
     "vignette-hat": {
       "page": "https://commons.wikimedia.org/wiki/File:Hoed,_RP-P-1906-3739.jpg",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Hoed%2C_RP-P-1906-3739.jpg/1920px-Hoed%2C_RP-P-1906-3739.jpg",
@@ -1307,6 +1389,24 @@
         0.215,
         0.75,
         0.742
+      ]
+    },
+    "vignette-horse": {
+      "page": "https://archive.org/details/handbookofhorses00doll",
+      "image": "https://archive.org/download/handbookofhorses00doll/page/n265.jpg",
+      "title": "A Handbook of Horse-Shoeing (J. A. W. Dollar), fig. 212: fullered front shoe for a hunter",
+      "author": "Unknown engraver",
+      "date": "1898",
+      "license": "Public domain",
+      "crop": [
+        0.285,
+        0.412,
+        0.705,
+        0.69
+      ],
+      "levels": [
+        20,
+        215
       ]
     },
     "vignette-ink": {
@@ -1345,6 +1445,44 @@
         232
       ]
     },
+    "vignette-knife": {
+      "page": "https://archive.org/details/criminalinvestig00grosuoft",
+      "image": "https://archive.org/download/criminalinvestig00grosuoft/page/n673.jpg",
+      "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 115: position of a knife when cutting",
+      "author": "Hans Gross",
+      "date": "1906",
+      "license": "Public domain",
+      "crop": [
+        0.205,
+        0.66,
+        0.465,
+        0.805
+      ],
+      "levels": [
+        40,
+        195
+      ],
+      "erase": [
+        [
+          0.335,
+          0.62,
+          0.4,
+          0.695
+        ],
+        [
+          0,
+          0.85,
+          0.05,
+          1
+        ],
+        [
+          0.055,
+          0.96,
+          0.11,
+          1
+        ]
+      ]
+    },
     "vignette-ladder": {
       "page": "https://commons.wikimedia.org/wiki/File:FOURNEL(1887)_p056_Fig.30.jpg",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/FOURNEL%281887%29_p056_Fig.30.jpg/1920px-FOURNEL%281887%29_p056_Fig.30.jpg",
@@ -1375,6 +1513,32 @@
         0.347,
         0.975,
         0.628
+      ]
+    },
+    "vignette-ledger": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n458.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: ledger",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.605,
+        0.528,
+        0.795,
+        0.842
+      ],
+      "erase": [
+        [
+          0.7,
+          0.9,
+          0.78,
+          0.96
+        ]
+      ],
+      "levels": [
+        35,
+        185
       ]
     },
     "vignette-letter": {
@@ -1419,6 +1583,50 @@
         1
       ]
     },
+    "vignette-matchbox": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n442.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: vesta match box",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.472,
+        0.558,
+        0.566,
+        0.68
+      ],
+      "levels": [
+        35,
+        195
+      ],
+      "erase": [
+        [
+          0,
+          0.84,
+          1,
+          1
+        ]
+      ]
+    },
+    "vignette-mud": {
+      "page": "https://archive.org/details/criminalinvestig00grosuoft",
+      "image": "https://archive.org/download/criminalinvestig00grosuoft/page/n628.jpg",
+      "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 109: a stain on the corner of a waistcoat",
+      "author": "Hans Gross",
+      "date": "1906",
+      "license": "Public domain",
+      "crop": [
+        0.662,
+        0.25,
+        0.872,
+        0.349
+      ],
+      "levels": [
+        30,
+        200
+      ]
+    },
     "vignette-newspaper": {
       "page": "https://commons.wikimedia.org/wiki/File:The_Morning_Post,_No._39841,_London,_February_12,_1900.jpg",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/The_Morning_Post%2C_No._39841%2C_London%2C_February_12%2C_1900.jpg/1920px-The_Morning_Post%2C_No._39841%2C_London%2C_February_12%2C_1900.jpg",
@@ -1431,6 +1639,24 @@
         0.062,
         0.43,
         0.2253
+      ]
+    },
+    "vignette-photograph": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n455.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: gilt moulded cabinet photograph frame",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.528,
+        0.411,
+        0.664,
+        0.573
+      ],
+      "levels": [
+        20,
+        195
       ]
     },
     "vignette-pipe": {
@@ -1631,6 +1857,32 @@
       "levels": [
         70,
         165
+      ]
+    },
+    "vignette-window": {
+      "page": "https://archive.org/details/criminalinvestig00grosuoft",
+      "image": "https://archive.org/download/criminalinvestig00grosuoft/page/n781.jpg",
+      "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 133: a barred window forced",
+      "author": "Hans Gross",
+      "date": "1906",
+      "license": "Public domain",
+      "crop": [
+        0.1,
+        0.462,
+        0.392,
+        0.656
+      ],
+      "levels": [
+        40,
+        195
+      ],
+      "erase": [
+        [
+          0.8,
+          0.3,
+          0.92,
+          0.45
+        ]
       ]
     }
   }
