@@ -1284,7 +1284,15 @@
     {
       "tag": "vignette-pistol",
       "kind": "vignette",
-      "description": "A revolver."
+      "description": "A revolver.",
+      "file": "vignette-pistol.webp",
+      "credit": {
+        "title": "The Gun and Its Development (W. W. Greener): Colt's Derringer pistol",
+        "author": "Unknown engraver",
+        "date": "1897",
+        "source": "https://archive.org/details/TheGun/page/n529/mode/1up",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-knife",
@@ -1294,12 +1302,32 @@
     {
       "tag": "vignette-rope",
       "kind": "vignette",
-      "description": "A coil of rope."
+      "description": "A coil of rope.",
+      "file": "vignette-rope.webp",
+      "credit": {
+        "title": "Twenty Years Before the Mast (Charles Erskine): coil of rope",
+        "author": "Unknown engraver",
+        "date": "1896",
+        "source": "https://commons.wikimedia.org/wiki/File:Abaca_rope.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-ladder",
       "kind": "vignette",
-      "description": "A ladder against a wall."
+      "description": "A ladder against a wall.",
+      "file": "vignette-ladder.webp",
+      "focus": [
+        0.45,
+        0.72
+      ],
+      "credit": {
+        "title": "Le Vieux Paris (Victor Fournel), fig. 30: bill-sticker on a ladder",
+        "author": "After Edme Bouchardon",
+        "date": "1887",
+        "source": "https://commons.wikimedia.org/wiki/File:FOURNEL(1887)_p056_Fig.30.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-window",
@@ -1309,17 +1337,41 @@
     {
       "tag": "vignette-lock",
       "kind": "vignette",
-      "description": "A door lock with scratches."
+      "description": "A door lock with scratches.",
+      "file": "vignette-lock.webp",
+      "credit": {
+        "title": "Rudimentary Treatise on the Construction of Locks (A. C. Hobbs, ed. C. Tomlinson)",
+        "author": "Unknown engraver",
+        "date": "1853",
+        "source": "https://commons.wikimedia.org/w/index.php?title=File:Rudimentary_Treatise_on_the_Construction_of_Locks_(1853).djvu&page=48",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-safe",
       "kind": "vignette",
-      "description": "A small safe, open."
+      "description": "A small safe, open.",
+      "file": "vignette-safe.webp",
+      "credit": {
+        "title": "Rudimentary Treatise on the Construction of Locks (A. C. Hobbs, ed. C. Tomlinson)",
+        "author": "Unknown engraver",
+        "date": "1853",
+        "source": "https://commons.wikimedia.org/w/index.php?title=File:Rudimentary_Treatise_on_the_Construction_of_Locks_(1853).djvu&page=55",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-map",
       "kind": "vignette",
-      "description": "A hand-drawn map."
+      "description": "A hand-drawn map.",
+      "file": "vignette-map.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_05,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-photograph",
@@ -1329,12 +1381,28 @@
     {
       "tag": "vignette-coin",
       "kind": "vignette",
-      "description": "A foreign coin."
+      "description": "A foreign coin.",
+      "file": "vignette-coin.webp",
+      "credit": {
+        "title": "Seven new coins of the Kingdom of the Netherlands (Rijksmuseum RP-P-OB-87.425)",
+        "author": "Unknown engraver",
+        "date": "c. 1825",
+        "source": "https://commons.wikimedia.org/wiki/File:Zeven_nieuwe_munten,_ca._1825,_RP-P-OB-87.425.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-button",
       "kind": "vignette",
-      "description": "A torn-off button."
+      "description": "A torn-off button.",
+      "file": "vignette-button.webp",
+      "credit": {
+        "title": "Boutonnier, Passementier (Encyclopédie de Diderot et d'Alembert), fig. 4",
+        "author": "A. J. Defehrt after Goussier",
+        "date": "1751-1772",
+        "source": "https://commons.wikimedia.org/wiki/File:Boutonnier,_Passementier._(titel_op_object)_Encyclop%C3%A9die_de_Diderot_et_d%27Alembert_1751-1772,_RP-P-2009-2091-6.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-thread",
@@ -1349,7 +1417,15 @@
     {
       "tag": "vignette-dog",
       "kind": "vignette",
-      "description": "A dog on a chain."
+      "description": "A dog on a chain.",
+      "file": "vignette-dog.webp",
+      "credit": {
+        "title": "Seated dog on a chain by a kennel (Rijksmuseum RP-P-1885-A-8469)",
+        "author": "Christiaan Wilhelmus Moorrees",
+        "date": "1811-1867",
+        "source": "https://commons.wikimedia.org/wiki/File:Zittende_hond_aan_de_ketting_bij_een_hondenhok,_RP-P-1885-A-8469.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-horse",
@@ -1359,7 +1435,15 @@
     {
       "tag": "vignette-carriage-wheel",
       "kind": "vignette",
-      "description": "A wheel rut in a lane."
+      "description": "A wheel rut in a lane.",
+      "file": "vignette-carriage-wheel.webp",
+      "credit": {
+        "title": "Country lane in the Kempen (Rijksmuseum RP-P-1911-5661)",
+        "author": "Jean Pierre François Lamorinière",
+        "date": "1838-1911",
+        "source": "https://commons.wikimedia.org/wiki/File:Landweg_in_de_Kempen,_RP-P-1911-5661.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-handkerchief",
@@ -1369,7 +1453,15 @@
     {
       "tag": "vignette-diary",
       "kind": "vignette",
-      "description": "An open diary."
+      "description": "An open diary.",
+      "file": "vignette-diary.webp",
+      "credit": {
+        "title": "Open book on a table (Rijksmuseum RP-P-OB-30.776)",
+        "author": "Isaac Weissenbruch",
+        "date": "1860-1899",
+        "source": "https://commons.wikimedia.org/wiki/File:Opengeslagen_boek_op_een_tafel,_RP-P-OB-30.776.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-ledger",
@@ -1389,12 +1481,28 @@
     {
       "tag": "vignette-glass",
       "kind": "vignette",
-      "description": "A wine glass."
+      "description": "A wine glass.",
+      "file": "vignette-glass.webp",
+      "credit": {
+        "title": "The Wine-Glass (Rijksmuseum RP-P-1940-226)",
+        "author": "James McNeill Whistler",
+        "date": "1858",
+        "source": "https://commons.wikimedia.org/wiki/File:Wijnglas_The_Wine-Glass,_RP-P-1940-226.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-card",
       "kind": "vignette",
-      "description": "A playing card."
+      "description": "A playing card.",
+      "file": "vignette-card.webp",
+      "credit": {
+        "title": "Facts and Speculations on the Origin and History of Playing Cards (W. A. Chatto): Valet de Cour",
+        "author": "Unknown engraver",
+        "date": "1848",
+        "source": "https://commons.wikimedia.org/wiki/File:History_of_Playing_Cards_(1848)_43.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-calling-card",
