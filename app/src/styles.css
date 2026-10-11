@@ -351,15 +351,15 @@ button {
   animation: ink-in 700ms var(--ease) both;
 }
 
-.engraving img,
-.engraving .plate {
+.engraving > img,
+.engraving > .plate {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.engraving img {
+.engraving > img {
   /* Every plate in one sepia treatment, printed onto the paper. */
   mix-blend-mode: multiply;
   filter: sepia(0.35) contrast(1.05);
@@ -367,12 +367,12 @@ button {
   transition: opacity 700ms var(--ease);
 }
 
-.engraving img.loaded {
+.engraving > img.loaded {
   opacity: 1;
 }
 
 /* An object is shown whole, on its own white, which the blend turns to paper. */
-.engraving.vignette img {
+.engraving.vignette > img {
   object-fit: contain;
   background: #fff;
 }
@@ -711,18 +711,53 @@ button {
   animation: breathe 3.2s ease-in-out infinite;
 }
 
-/* With an engraved object, the object itself is the target. */
+/* With an engraved object, a paper medallion holds it, legible on any plate. */
 .hotspot.object {
-  background: none;
+  min-width: 56px;
+  min-height: 56px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--rule), 0 3px 8px rgba(31, 26, 20, 0.35);
+}
+
+/* A faint ring breathes out from an unfound medallion; the target itself stays still. */
+.hotspot.object::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  animation: ring 3.2s ease-out infinite;
+}
+
+.hotspot.object.found::after {
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
 }
 
 .hotspot.object img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  border-radius: 50%;
+  object-fit: cover;
   mix-blend-mode: multiply;
   filter: sepia(0.35) contrast(1.05);
 }
+
+
 
 .hotspot .tick {
   position: absolute;

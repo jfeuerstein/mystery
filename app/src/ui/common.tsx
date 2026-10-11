@@ -109,7 +109,8 @@ export function Engraving(props: { tag: string; height?: number; children?: Reac
         <Plate kind={kind} />
       )}
       {props.children}
-      {props.caption !== false && <figcaption>{captionFor(props.tag)}</figcaption>}
+      {/* The tag's caption labels a placeholder; a real plate needs none. */}
+      {props.caption !== false && !asset?.file && <figcaption>{captionFor(props.tag)}</figcaption>}
     </figure>
   );
 }

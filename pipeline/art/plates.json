@@ -1,4 +1,1637 @@
 {
-  "$comment": "The source of every engraving in app/public/art (GAME_DESIGN.md §13.2). Public domain or CC0 only. `npm run afoot -- art build` prints them; crop and focus are fractions of the original.",
-  "plates": {}
+  "$comment": "The source of every engraving in app/public/art (GAME_DESIGN.md §13.2). Public domain or CC0 only. `image` is the file the build prints from: a large Commons rendering (thumb.wikimedia.org) or the original. `npm run afoot -- art build` prints them; crop and focus are fractions of the image.",
+  "plates": {
+    "portrait-actress": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_A_Case_of_Identity_01.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Sidney_Paget_-_A_Case_of_Identity_01.jpg/1920px-Sidney_Paget_-_A_Case_of_Identity_01.jpg",
+      "title": "A Case of Identity (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.5056,
+        0.13,
+        0.8544,
+        0.48
+      ]
+    },
+    "portrait-aristocrat": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._390_-_Lord_Robert_St_Simon.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/The_Strand_Magazine_vol._3%2C_no._16%2C_pg._390_-_Lord_Robert_St_Simon.png/960px-The_Strand_Magazine_vol._3%2C_no._16%2C_pg._390_-_Lord_Robert_St_Simon.png",
+      "title": "The Noble Bachelor (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.1137,
+        0.0,
+        0.7463,
+        0.42
+      ]
+    },
+    "portrait-artist": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Lenton_Croft_Robberies_1.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/The_Lenton_Croft_Robberies_1.jpg/960px-The_Lenton_Croft_Robberies_1.jpg",
+      "title": "The Lenton Croft Robberies (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1894",
+      "license": "CC0",
+      "crop": [
+        0.2532,
+        0.03,
+        0.7468,
+        0.5
+      ]
+    },
+    "portrait-banker": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Case_of_Mr._Foggatt_1.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/The_Case_of_Mr._Foggatt_1.jpg/500px-The_Case_of_Mr._Foggatt_1.jpg",
+      "title": "The Case of Mr. Foggatt (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1894",
+      "license": "Public domain",
+      "crop": [
+        0.1299,
+        0.0,
+        0.7101,
+        0.5
+      ]
+    },
+    "portrait-butler": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-21_-_Hound_of_Baskervilles,_page_118.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Houn-21_-_Hound_of_Baskervilles%2C_page_118.jpg/1280px-Houn-21_-_Hound_of_Baskervilles%2C_page_118.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.4639,
+        0.2,
+        0.8461,
+        0.56
+      ]
+    },
+    "portrait-cabman": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._9,_pg._252_-_There_Was_No_One_There.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/The_Strand_Magazine_vol._2%2C_no._9%2C_pg._252_-_There_Was_No_One_There.png/1280px-The_Strand_Magazine_vol._2%2C_no._9%2C_pg._252_-_There_Was_No_One_There.png",
+      "title": "A Case of Identity (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.4605,
+        0.16,
+        0.7795,
+        0.62
+      ]
+    },
+    "portrait-clergyman": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand2-070-ASimpleMindedClergyman.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Strand2-070-ASimpleMindedClergyman.jpg/500px-Strand2-070-ASimpleMindedClergyman.jpg",
+      "title": "A Scandal in Bohemia (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.0467,
+        0.0,
+        0.7933,
+        0.5
+      ]
+    },
+    "portrait-clerk": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p283.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/The_Strand_Magazine_%28Volume_5%29_-_p283.png/1280px-The_Strand_Magazine_%28Volume_5%29_-_p283.png",
+      "title": "The Stockbroker's Clerk (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.5811,
+        0.0,
+        0.9989,
+        0.36
+      ]
+    },
+    "portrait-colonel": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_10,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/The_Naval_Treaty_10%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_10%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.3068,
+        0.08,
+        0.6032,
+        0.42
+      ]
+    },
+    "portrait-doctor": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-08.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Houn-08.jpg/960px-Houn-08.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.1878,
+        0.02,
+        0.6522,
+        0.5
+      ]
+    },
+    "portrait-elderly-woman": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._23,_pg._467_-_She_Said,_Hoarsely,_Go.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Strand_Magazine_vol._4%2C_no._23%2C_pg._467_-_She_Said%2C_Hoarsely%2C_Go.png/960px-The_Strand_Magazine_vol._4%2C_no._23%2C_pg._467_-_She_Said%2C_Hoarsely%2C_Go.png",
+      "title": "The Chamber of Shadows (The Strand Magazine)",
+      "author": "Paul Hardy",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.4749,
+        0.22,
+        0.9651,
+        0.6
+      ]
+    },
+    "portrait-foreigner": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_03,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/The_Resident_Patient_03%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Resident_Patient_03%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Resident Patient (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.5802,
+        0.0,
+        0.9598,
+        0.45
+      ]
+    },
+    "portrait-gamekeeper": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-26.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Houn-26.jpg/960px-Houn-26.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.5073,
+        0.05,
+        0.9727,
+        0.44
+      ]
+    },
+    "portrait-gentleman": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_03,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/The_Naval_Treaty_03%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_03%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.037,
+        0.0,
+        0.503,
+        0.42
+      ]
+    },
+    "portrait-governess": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._5,_no._25,_pg._25.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/The_Strand_Magazine_vol._5%2C_no._25%2C_pg._25.png/960px-The_Strand_Magazine_vol._5%2C_no._25%2C_pg._25.png",
+      "title": "A Little Surprise (The Strand Magazine)",
+      "author": "W. S. Stacey",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.427,
+        0.13,
+        0.873,
+        0.52
+      ]
+    },
+    "portrait-groom": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._7,_pg._67_-_A_drunken-looking_groom.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/The_Strand_Magazine_vol._2%2C_no._7%2C_pg._67_-_A_drunken-looking_groom.png/500px-The_Strand_Magazine_vol._2%2C_no._7%2C_pg._67_-_A_drunken-looking_groom.png",
+      "title": "A Scandal in Bohemia (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.1359,
+        0.0,
+        0.8641,
+        0.45
+      ]
+    },
+    "portrait-holmes": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg/1280px-Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg",
+      "title": "The Man with the Twisted Lip (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.2376,
+        0.03,
+        0.8824,
+        0.75
+      ]
+    },
+    "portrait-housekeeper": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._8,_pg._115_-_First_Earnings.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/The_Strand_Magazine_vol._2%2C_no._8%2C_pg._115_-_First_Earnings.png/1280px-The_Strand_Magazine_vol._2%2C_no._8%2C_pg._115_-_First_Earnings.png",
+      "title": "Illustrated Interviews: Henry Stacy Marks (The Strand Magazine)",
+      "author": "Henry Stacy Marks or W. S. Stacey",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.1505,
+        0.06,
+        0.6895,
+        0.55
+      ]
+    },
+    "portrait-inspector": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg/1920px-The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg",
+      "title": "The Cardboard Box (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.115,
+        0.18,
+        0.485,
+        0.55
+      ]
+    },
+    "portrait-labourer": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._18,_pg._571_-_He_Proved_His_Assertion.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/The_Strand_Magazine_vol._3%2C_no._18%2C_pg._571_-_He_Proved_His_Assertion.png/1280px-The_Strand_Magazine_vol._3%2C_no._18%2C_pg._571_-_He_Proved_His_Assertion.png",
+      "title": "The Bride of Felix Armstrong (The Strand Magazine)",
+      "author": "W. S. Stacey",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.1258,
+        0.18,
+        0.4742,
+        0.52
+      ]
+    },
+    "portrait-lady-of-quality": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p423--Brotherhood_of_7_kings--ch_10.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Strand_Mag_1898%2C_p423--Brotherhood_of_7_kings--ch_10.jpg/1280px-Strand_Mag_1898%2C_p423--Brotherhood_of_7_kings--ch_10.jpg",
+      "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1898",
+      "license": "Public domain",
+      "crop": [
+        0.3864,
+        0.16,
+        0.8536,
+        0.56
+      ]
+    },
+    "portrait-landlady": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_06,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/The_Naval_Treaty_06%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_06%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.5421,
+        0.03,
+        0.8579,
+        0.5
+      ]
+    },
+    "portrait-maid": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg/1920px-Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg",
+      "title": "The Boscombe Valley Mystery (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.5775,
+        0.08,
+        0.8925,
+        0.5
+      ]
+    },
+    "portrait-mrs-hudson": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._20,_pg._160_-_Yes,_He_Answered_Musingly.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/The_Strand_Magazine_vol._4%2C_no._20%2C_pg._160_-_Yes%2C_He_Answered_Musingly.png/1280px-The_Strand_Magazine_vol._4%2C_no._20%2C_pg._160_-_Yes%2C_He_Answered_Musingly.png",
+      "title": "There's Many a Slip (The Strand Magazine)",
+      "author": "W. S. Stacey",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.0567,
+        0.15,
+        0.4433,
+        0.55
+      ]
+    },
+    "portrait-mycroft": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Greek_Interpreter_07,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/The_Greek_Interpreter_07%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Greek_Interpreter_07%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Greek Interpreter (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.4299,
+        0.18,
+        0.8901,
+        0.66
+      ]
+    },
+    "portrait-professor": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Stanway_Cameo_Mystery_1.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/The_Stanway_Cameo_Mystery_1.jpg/960px-The_Stanway_Cameo_Mystery_1.jpg",
+      "title": "The Stanway Cameo Mystery (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1894",
+      "license": "Public domain",
+      "crop": [
+        0.4673,
+        0.17,
+        0.8927,
+        0.62
+      ]
+    },
+    "portrait-publican": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._370_-_There,_Sir,_He_Said_Solemnly.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/The_Strand_Magazine_vol._3%2C_no._16%2C_pg._370_-_There%2C_Sir%2C_He_Said_Solemnly.png/1280px-The_Strand_Magazine_vol._3%2C_no._16%2C_pg._370_-_There%2C_Sir%2C_He_Said_Solemnly.png",
+      "title": "Lady Florry's Gems (The Strand Magazine)",
+      "author": "Paul Hardy",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.3314,
+        0.2,
+        0.7886,
+        0.56
+      ]
+    },
+    "portrait-sailor": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_05.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/The_Adventure_of_the_Cardboard_Box_05.jpg/1280px-The_Adventure_of_the_Cardboard_Box_05.jpg",
+      "title": "The Cardboard Box (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.1361,
+        0.0,
+        0.8039,
+        0.36
+      ]
+    },
+    "portrait-sea-captain": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._196_-_Samuel_Watson_-_Driver.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/The_Strand_Magazine_vol._3%2C_no._14%2C_pg._196_-_Samuel_Watson_-_Driver.png/960px-The_Strand_Magazine_vol._3%2C_no._14%2C_pg._196_-_Samuel_Watson_-_Driver.png",
+      "title": "A Night Ride on the Flying Scotchman (The Strand Magazine)",
+      "author": "Unknown engraver",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.3039,
+        0.06,
+        0.7961,
+        0.5
+      ]
+    },
+    "portrait-shopkeeper": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f286.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bpt6k10470488_f286.jpg/1280px-Bpt6k10470488_f286.jpg",
+      "title": "London: A Pilgrimage",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.1986,
+        0.14,
+        0.6414,
+        0.52
+      ]
+    },
+    "portrait-solicitor": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_02,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/The_Resident_Patient_02%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Resident_Patient_02%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Resident Patient (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.0413,
+        0.12,
+        0.4787,
+        0.55
+      ]
+    },
+    "portrait-street-urchin": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._13,_pg._67_-_Hurdy-Gurdy.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/The_Strand_Magazine_vol._3%2C_no._13%2C_pg._67_-_Hurdy-Gurdy.png/960px-The_Strand_Magazine_vol._3%2C_no._13%2C_pg._67_-_Hurdy-Gurdy.png",
+      "title": "Street Musicians (The Strand Magazine)",
+      "author": "Frank Feller",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.1531,
+        0.22,
+        0.5669,
+        0.64
+      ]
+    },
+    "portrait-watson": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg/1920px-Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg",
+      "title": "The Greek Interpreter (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.0651,
+        0.05,
+        0.4049,
+        0.4
+      ]
+    },
+    "portrait-young-gentleman": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-09.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Houn-09.jpg/960px-Houn-09.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.0101,
+        0.06,
+        0.4299,
+        0.5
+      ]
+    },
+    "portrait-young-woman": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p305--Brotherhood_of_7_kings--ch_9.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Strand_Mag_1898%2C_p305--Brotherhood_of_7_kings--ch_9.jpg/960px-Strand_Mag_1898%2C_p305--Brotherhood_of_7_kings--ch_9.jpg",
+      "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1898",
+      "license": "Public domain",
+      "crop": [
+        0.1024,
+        0.05,
+        0.8376,
+        0.5
+      ]
+    },
+    "scene-attic": {
+      "page": "https://commons.wikimedia.org/wiki/File:Tubaspeler_op_een_zolderkamer,_RP-P-1912-1041.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Tubaspeler_op_een_zolderkamer%2C_RP-P-1912-1041.jpg/1920px-Tubaspeler_op_een_zolderkamer%2C_RP-P-1912-1041.jpg",
+      "title": "Tuba player in an attic (Rijksmuseum RP-P-1912-1041)",
+      "author": "Romain Looymans",
+      "date": "1890",
+      "license": "CC0",
+      "crop": [
+        0.32,
+        0.05,
+        0.803,
+        0.95
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-bank-office": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=316",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page316-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: The Prerogative Office, Doctors' Commons, 1860",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1784,
+        0.205,
+        0.6616,
+        0.65
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-bedroom": {
+      "page": "https://commons.wikimedia.org/wiki/File:Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png/1920px-Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png",
+      "title": "Apartment of Princess Clotilde, Durazzo Palace (L'Illustration)",
+      "author": "Édouard Riou",
+      "date": "1859",
+      "license": "Public domain",
+      "crop": [
+        0.44,
+        0.05,
+        0.92,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-cellar": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=351",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Old_and_New_London%2C_vol._2.djvu/page351-1920px-Old_and_New_London%2C_vol._2.djvu.jpg",
+      "title": "Old and New London, vol. 2: The Crypt of St. John's, Clerkenwell",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.2312,
+        0.205,
+        0.7688,
+        0.69
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-church": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=150",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page150-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Interior of Kensington Church, 1850",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2538,
+        0.252,
+        0.7062,
+        0.668
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-churchyard": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=609",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page609-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Edmonton Church, 1790",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.1474,
+        0.245,
+        0.6126,
+        0.671
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-cliffs": {
+      "page": "https://commons.wikimedia.org/wiki/File:George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg/1920px-George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg",
+      "title": "Dover, from Shakespeare's Cliff (Yale Center for British Art B1977.14.6693)",
+      "author": "George Cooke",
+      "date": "1826",
+      "license": "CC0",
+      "crop": [
+        0.1,
+        0.21,
+        0.455,
+        0.85
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-club": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=285",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Old_and_New_London%2C_vol._3.djvu/page285-1920px-Old_and_New_London%2C_vol._3.djvu.jpg",
+      "title": "Old and New London, vol. 3: Dining-room of the Garrick Club",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2171,
+        0.215,
+        0.8229,
+        0.765
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-country-house": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=204",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page204-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Holland House, from the North",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2816,
+        0.255,
+        0.7184,
+        0.655
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-dining-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-22.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Houn-22.jpg/1920px-Houn-22.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.1,
+        0.015,
+        0.9,
+        0.9
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-docks": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f92.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Bpt6k10470488_f92.jpg/1920px-Bpt6k10470488_f92.jpg",
+      "title": "London: A Pilgrimage",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.015,
+        1.0,
+        0.962
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-drawing-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=170",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page170-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Queen Caroline's Drawing-room, Kensington Palace",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2179,
+        0.235,
+        0.6821,
+        0.66
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-garden": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=555",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page555-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: Drapers' Hall Garden",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1084,
+        0.33,
+        0.5316,
+        0.715
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-hall": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=205",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page205-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Grand Staircase, Holland House",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2998,
+        0.215,
+        0.895,
+        0.76
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-inn": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=339",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Old_and_New_London%2C_vol._2.djvu/page339-1920px-Old_and_New_London%2C_vol._2.djvu.jpg",
+      "title": "Old and New London, vol. 2: Coffee-room at St. John's Gate",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1672,
+        0.255,
+        0.6328,
+        0.675
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-kitchen": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=476",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page476-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: The Mansion House Kitchen",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1374,
+        0.245,
+        0.5826,
+        0.655
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-laboratory": {
+      "page": "https://commons.wikimedia.org/wiki/File:Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif/1920px-Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif.jpg",
+      "title": "Faraday's Laboratory at the Royal Institution (The Life and Letters of Faraday)",
+      "author": "Unknown engraver",
+      "date": "1870",
+      "license": "Public domain",
+      "crop": [
+        0.22,
+        0.07,
+        0.58,
+        0.92
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-library": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._4.djvu?page=86",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Old_and_New_London%2C_vol._4.djvu/page86-1920px-Old_and_New_London%2C_vol._4.djvu.jpg",
+      "title": "Old and New London, vol. 4: The King's Library, Buckingham House, 1775",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2015,
+        0.205,
+        0.7585,
+        0.735
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-lodging-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=564",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Old_and_New_London%2C_vol._2.djvu/page564-1920px-Old_and_New_London%2C_vol._2.djvu.jpg",
+      "title": "Old and New London, vol. 2: Room of a House in Fulwood's Rents",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.2927,
+        0.285,
+        0.7473,
+        0.695
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-london-street": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f319.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Bpt6k10470488_f319.jpg/1920px-Bpt6k10470488_f319.jpg",
+      "title": "London: A Pilgrimage (Bluegate Fields)",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.05,
+        0.0,
+        0.956,
+        0.96
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-moor": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-35.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Houn-35.jpg/1920px-Houn-35.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.38,
+        0.005,
+        0.99,
+        0.518
+      ],
+      "focus": [
+        0.5,
+        0.42
+      ]
+    },
+    "scene-railway-carriage": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand_paget.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Strand_paget.jpg/1920px-Strand_paget.jpg",
+      "title": "Silver Blaze (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.162,
+        0.03,
+        0.798,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.35
+      ]
+    },
+    "scene-riverbank": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=357",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page357-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: The Fleet River, near St. Pancras, 1825",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.1961,
+        0.25,
+        0.6439,
+        0.66
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-shop": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=450",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page450-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: Birch's Shop, Cornhill",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.2882,
+        0.25,
+        0.7118,
+        0.64
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-sitting-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_26)_-_p385.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/The_Strand_Magazine_%28Volume_26%29_-_p385.png/1920px-The_Strand_Magazine_%28Volume_26%29_-_p385.png",
+      "title": "The Adventure of the Empty House (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1903",
+      "license": "Public domain",
+      "crop": [
+        0.2,
+        0.01,
+        0.97,
+        0.99
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "scene-stables": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=32",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page32-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Court-yard of Old Tattersall's",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.261,
+        0.205,
+        0.839,
+        0.765
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-station-platform": {
+      "page": "https://commons.wikimedia.org/wiki/File:Birmingham_New_Street_station_in_1854.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Birmingham_New_Street_station_in_1854.jpg/1920px-Birmingham_New_Street_station_in_1854.jpg",
+      "title": "New Street Station, Birmingham (Illustrated London News)",
+      "author": "Unknown engraver",
+      "date": "1854",
+      "license": "Public domain",
+      "crop": [
+        0.5,
+        0.02,
+        0.98,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    "scene-study": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=50",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page50-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: The Room over Temple Bar, 1876",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.4055,
+        0.27,
+        0.8345,
+        0.665
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-theatre": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=248",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Old_and_New_London%2C_vol._3.djvu/page248-1920px-Old_and_New_London%2C_vol._3.djvu.jpg",
+      "title": "Old and New London, vol. 3: Interior of Drury Lane Theatre",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.233,
+        0.181,
+        0.787,
+        0.684
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-village-street": {
+      "page": "https://commons.wikimedia.org/wiki/File:Coaching_days_and_coaching_ways_(Page_70)_BHL18772111.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Coaching_days_and_coaching_ways_%28Page_70%29_BHL18772111.jpg/1920px-Coaching_days_and_coaching_ways_%28Page_70%29_BHL18772111.jpg",
+      "title": "Coaching Days and Coaching Ways (The Bear at Devizes)",
+      "author": "Herbert Railton",
+      "date": "1888",
+      "license": "Public domain",
+      "crop": [
+        0.04,
+        0.19,
+        0.636,
+        0.69
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ]
+    },
+    "vignette-boots": {
+      "page": "https://commons.wikimedia.org/wiki/File:Paar_laarzen,_RP-P-1943-163.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Paar_laarzen%2C_RP-P-1943-163.jpg/1920px-Paar_laarzen%2C_RP-P-1943-163.jpg",
+      "title": "A pair of boots (Rijksmuseum)",
+      "author": "Henri Guérard",
+      "date": "1856-1897",
+      "license": "CC0",
+      "crop": [
+        0.15,
+        0.11,
+        0.85,
+        0.76
+      ],
+      "levels": [
+        35,
+        145
+      ]
+    },
+    "vignette-bottle": {
+      "page": "https://wellcomecollection.org/works/yvpdehkx",
+      "image": "https://iiif.wellcomecollection.org/image/b22267761_0126.jp2/full/max/0/default.jpg",
+      "title": "Book of illustrations to S. Maw, Son & Thompson's quarterly price-current (Wellcome Collection)",
+      "author": "S. Maw, Son & Thompson",
+      "date": "1870",
+      "license": "Public domain",
+      "crop": [
+        0.055,
+        0.3617,
+        0.344,
+        0.507
+      ],
+      "levels": [
+        30,
+        185
+      ]
+    },
+    "vignette-button": {
+      "page": "https://commons.wikimedia.org/wiki/File:Boutonnier,_Passementier._(titel_op_object)_Encyclop%C3%A9die_de_Diderot_et_d%27Alembert_1751-1772,_RP-P-2009-2091-6.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Boutonnier%2C_Passementier._%28titel_op_object%29_Encyclop%C3%A9die_de_Diderot_et_d%27Alembert_1751-1772%2C_RP-P-2009-2091-6.jpg/1920px-Boutonnier%2C_Passementier._%28titel_op_object%29_Encyclop%C3%A9die_de_Diderot_et_d%27Alembert_1751-1772%2C_RP-P-2009-2091-6.jpg",
+      "title": "Boutonnier, Passementier (Encyclopédie de Diderot et d'Alembert), fig. 4",
+      "author": "A. J. Defehrt after Goussier",
+      "date": "1751-1772",
+      "license": "CC0",
+      "crop": [
+        0.252,
+        0.3874,
+        0.5218,
+        0.5174
+      ],
+      "levels": [
+        35,
+        190
+      ],
+      "erase": [
+        [
+          0.25,
+          0,
+          0.75,
+          0.1
+        ]
+      ]
+    },
+    "vignette-candle": {
+      "page": "https://commons.wikimedia.org/wiki/File:Brandende_kaars_Moraliserende_liefdesemblemen_(serietitel)_Devises_et_emblesmes_d%27amovr_moralisez_(serietitel),_RP-P-1926-380.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Brandende_kaars_Moraliserende_liefdesemblemen_%28serietitel%29_Devises_et_emblesmes_d%27amovr_moralisez_%28serietitel%29%2C_RP-P-1926-380.jpg/1920px-Brandende_kaars_Moraliserende_liefdesemblemen_%28serietitel%29_Devises_et_emblesmes_d%27amovr_moralisez_%28serietitel%29%2C_RP-P-1926-380.jpg",
+      "title": "A burning candle, Devises et emblesmes d'amour moralisez (Rijksmuseum)",
+      "author": "Albert Flamen",
+      "date": "1672",
+      "license": "CC0",
+      "crop": [
+        0.255,
+        0.385,
+        0.795,
+        0.6843
+      ]
+    },
+    "vignette-cane": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n666.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.343,
+        0.444,
+        0.781,
+        0.653
+      ],
+      "levels": [
+        50,
+        170
+      ]
+    },
+    "vignette-card": {
+      "page": "https://commons.wikimedia.org/wiki/File:History_of_Playing_Cards_(1848)_43.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/History_of_Playing_Cards_%281848%29_43.png/1920px-History_of_Playing_Cards_%281848%29_43.png",
+      "title": "Facts and Speculations on the Origin and History of Playing Cards (W. A. Chatto): Valet de Cour",
+      "author": "Unknown engraver",
+      "date": "1848",
+      "license": "Public domain",
+      "crop": [
+        0,
+        0.015,
+        1,
+        0.4569
+      ]
+    },
+    "vignette-carriage-wheel": {
+      "page": "https://commons.wikimedia.org/wiki/File:Landweg_in_de_Kempen,_RP-P-1911-5661.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Landweg_in_de_Kempen%2C_RP-P-1911-5661.jpg/1920px-Landweg_in_de_Kempen%2C_RP-P-1911-5661.jpg",
+      "title": "Country lane in the Kempen (Rijksmuseum RP-P-1911-5661)",
+      "author": "Jean Pierre François Lamorinière",
+      "date": "1838-1911",
+      "license": "CC0",
+      "crop": [
+        0.16,
+        0.195,
+        0.79,
+        0.775
+      ]
+    },
+    "vignette-clock": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n590.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.386,
+        0.137,
+        0.856,
+        0.361
+      ],
+      "levels": [
+        55,
+        175
+      ]
+    },
+    "vignette-coin": {
+      "page": "https://commons.wikimedia.org/wiki/File:Zeven_nieuwe_munten,_ca._1825,_RP-P-OB-87.425.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Zeven_nieuwe_munten%2C_ca._1825%2C_RP-P-OB-87.425.jpg/1920px-Zeven_nieuwe_munten%2C_ca._1825%2C_RP-P-OB-87.425.jpg",
+      "title": "Seven new coins of the Kingdom of the Netherlands (Rijksmuseum RP-P-OB-87.425)",
+      "author": "Unknown engraver",
+      "date": "c. 1825",
+      "license": "CC0",
+      "crop": [
+        0.4345,
+        0.4779,
+        0.618,
+        0.8637
+      ],
+      "levels": [
+        30,
+        205
+      ]
+    },
+    "vignette-deed": {
+      "page": "https://commons.wikimedia.org/wiki/File:Magna_Carta_-_John_Pine_engraving_1733.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Magna_Carta_-_John_Pine_engraving_1733.jpg/1920px-Magna_Carta_-_John_Pine_engraving_1733.jpg",
+      "title": "Magna Carta (facsimile of the fire-damaged Cotton charter)",
+      "author": "John Pine",
+      "date": "1733",
+      "license": "Public domain",
+      "crop": [
+        0.155,
+        0.185,
+        0.655,
+        0.455
+      ]
+    },
+    "vignette-diary": {
+      "page": "https://commons.wikimedia.org/wiki/File:Opengeslagen_boek_op_een_tafel,_RP-P-OB-30.776.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Opengeslagen_boek_op_een_tafel%2C_RP-P-OB-30.776.jpg/1920px-Opengeslagen_boek_op_een_tafel%2C_RP-P-OB-30.776.jpg",
+      "title": "Open book on a table (Rijksmuseum RP-P-OB-30.776)",
+      "author": "Isaac Weissenbruch",
+      "date": "1860-1899",
+      "license": "CC0",
+      "crop": [
+        0.11,
+        0.06,
+        0.92,
+        0.9
+      ]
+    },
+    "vignette-dog": {
+      "page": "https://commons.wikimedia.org/wiki/File:Zittende_hond_aan_de_ketting_bij_een_hondenhok,_RP-P-1885-A-8469.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Zittende_hond_aan_de_ketting_bij_een_hondenhok%2C_RP-P-1885-A-8469.jpg/1920px-Zittende_hond_aan_de_ketting_bij_een_hondenhok%2C_RP-P-1885-A-8469.jpg",
+      "title": "Seated dog on a chain by a kennel (Rijksmuseum RP-P-1885-A-8469)",
+      "author": "Christiaan Wilhelmus Moorrees",
+      "date": "1811-1867",
+      "license": "CC0",
+      "crop": [
+        0.152,
+        0.31,
+        0.858,
+        0.74
+      ]
+    },
+    "vignette-envelope": {
+      "page": "https://commons.wikimedia.org/wiki/File:Penny_Pink_(1841).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Penny_Pink_%281841%29.jpg/1920px-Penny_Pink_%281841%29.jpg",
+      "title": "Penny Pink postal envelope",
+      "author": "General Post Office (used envelope)",
+      "date": "1842",
+      "license": "Public domain",
+      "crop": [
+        0.123,
+        0.0,
+        0.877,
+        1.0
+      ]
+    },
+    "vignette-footprint": {
+      "page": "https://archive.org/details/criminalinvestig00grosuoft",
+      "image": "https://archive.org/download/criminalinvestig00grosuoft/page/n580.jpg",
+      "title": "Criminal Investigation (Hans Gross, tr. J. Adam)",
+      "author": "Hans Gross",
+      "date": "1906",
+      "license": "Public domain",
+      "crop": [
+        0.065,
+        0.33,
+        0.88,
+        0.716
+      ],
+      "levels": [
+        40,
+        215
+      ]
+    },
+    "vignette-glass": {
+      "page": "https://commons.wikimedia.org/wiki/File:Wijnglas_The_Wine-Glass,_RP-P-1940-226.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Wijnglas_The_Wine-Glass%2C_RP-P-1940-226.jpg/1920px-Wijnglas_The_Wine-Glass%2C_RP-P-1940-226.jpg",
+      "title": "The Wine-Glass (Rijksmuseum RP-P-1940-226)",
+      "author": "James McNeill Whistler",
+      "date": "1858",
+      "license": "CC0",
+      "crop": [
+        0,
+        0.262,
+        1,
+        0.776
+      ]
+    },
+    "vignette-hand": {
+      "page": "https://commons.wikimedia.org/wiki/File:Studie_van_een_hand,_RP-P-1878-A-515.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Studie_van_een_hand%2C_RP-P-1878-A-515.jpg/1920px-Studie_van_een_hand%2C_RP-P-1878-A-515.jpg",
+      "title": "Study of a hand (Rijksmuseum)",
+      "author": "Johannes Bemme after D. P. G. Humbert de Superville",
+      "date": "1813",
+      "license": "CC0",
+      "crop": [
+        0.25,
+        0.09,
+        0.912,
+        0.885
+      ],
+      "levels": [
+        8,
+        222
+      ]
+    },
+    "vignette-hat": {
+      "page": "https://commons.wikimedia.org/wiki/File:Hoed,_RP-P-1906-3739.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Hoed%2C_RP-P-1906-3739.jpg/1920px-Hoed%2C_RP-P-1906-3739.jpg",
+      "title": "A hat (Rijksmuseum)",
+      "author": "Johann Friedrich Morgenstern",
+      "date": "1797",
+      "license": "CC0",
+      "crop": [
+        0.25,
+        0.215,
+        0.75,
+        0.742
+      ]
+    },
+    "vignette-ink": {
+      "page": "https://commons.wikimedia.org/wiki/File:Rechterhand_met_ganzenpen,_RP-P-1896-A-19245-36(R).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Rechterhand_met_ganzenpen%2C_RP-P-1896-A-19245-36%28R%29.jpg/1920px-Rechterhand_met_ganzenpen%2C_RP-P-1896-A-19245-36%28R%29.jpg",
+      "title": "Right hand with a quill pen, Spieghel der schrijfkonste (Rijksmuseum)",
+      "author": "After Jan van de Velde",
+      "date": "1605",
+      "license": "CC0",
+      "crop": [
+        0.355,
+        0.14,
+        0.735,
+        0.592
+      ],
+      "levels": [
+        14,
+        220
+      ]
+    },
+    "vignette-key": {
+      "page": "https://commons.wikimedia.org/wiki/File:Drie_sleutels,_RP-P-1929-12.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Drie_sleutels%2C_RP-P-1929-12.jpg/1920px-Drie_sleutels%2C_RP-P-1929-12.jpg",
+      "title": "Three keys, Collection Sauvageot (Rijksmuseum)",
+      "author": "Edouard Lièvre",
+      "date": "1863",
+      "license": "CC0",
+      "crop": [
+        0.15,
+        0.274,
+        0.84,
+        0.6427
+      ],
+      "levels": [
+        60,
+        232
+      ]
+    },
+    "vignette-ladder": {
+      "page": "https://commons.wikimedia.org/wiki/File:FOURNEL(1887)_p056_Fig.30.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/FOURNEL%281887%29_p056_Fig.30.jpg/1920px-FOURNEL%281887%29_p056_Fig.30.jpg",
+      "title": "Le Vieux Paris (Victor Fournel), fig. 30: bill-sticker on a ladder",
+      "author": "After Edme Bouchardon",
+      "date": "1887",
+      "license": "Public domain",
+      "crop": [
+        0.04,
+        0.04,
+        0.96,
+        0.95
+      ],
+      "focus": [
+        0.45,
+        0.72
+      ]
+    },
+    "vignette-lamp": {
+      "page": "https://archive.org/details/sherwood12085_20240130",
+      "image": "https://archive.org/download/sherwood12085_20240130/page/n21.jpg",
+      "title": "Catalogue of lamps, burners & accessories (Sherwood)",
+      "author": "Unknown engraver (trade catalogue)",
+      "date": "c. 1900",
+      "license": "Public domain",
+      "crop": [
+        0.525,
+        0.347,
+        0.975,
+        0.628
+      ]
+    },
+    "vignette-letter": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p612.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/The_Strand_Magazine_%28Volume_5%29_-_p612.png/1920px-The_Strand_Magazine_%28Volume_5%29_-_p612.png",
+      "title": "The Reigate Squire (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        0.728,
+        1.0
+      ]
+    },
+    "vignette-lock": {
+      "page": "https://commons.wikimedia.org/w/index.php?title=File:Rudimentary_Treatise_on_the_Construction_of_Locks_(1853).djvu&page=48",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Rudimentary_Treatise_on_the_Construction_of_Locks_%281853%29.djvu/page48-1280px-Rudimentary_Treatise_on_the_Construction_of_Locks_%281853%29.djvu.jpg",
+      "title": "Rudimentary Treatise on the Construction of Locks (A. C. Hobbs, ed. C. Tomlinson)",
+      "author": "Unknown engraver",
+      "date": "1853",
+      "license": "Public domain",
+      "crop": [
+        0.165,
+        0.245,
+        0.855,
+        0.547
+      ]
+    },
+    "vignette-map": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_05,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/The_Naval_Treaty_05%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_05%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0,
+        0,
+        0.752,
+        1
+      ]
+    },
+    "vignette-newspaper": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Morning_Post,_No._39841,_London,_February_12,_1900.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/The_Morning_Post%2C_No._39841%2C_London%2C_February_12%2C_1900.jpg/1920px-The_Morning_Post%2C_No._39841%2C_London%2C_February_12%2C_1900.jpg",
+      "title": "The Morning Post, front page",
+      "author": "The Morning Post",
+      "date": "1900",
+      "license": "Public domain",
+      "crop": [
+        0.148,
+        0.062,
+        0.43,
+        0.2253
+      ]
+    },
+    "vignette-pipe": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n176.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.177,
+        0.378,
+        0.749,
+        0.65
+      ],
+      "levels": [
+        60,
+        180
+      ]
+    },
+    "vignette-pistol": {
+      "page": "https://archive.org/details/TheGun/page/n529/mode/1up",
+      "image": "https://archive.org/download/TheGun/page/n529.jpg",
+      "title": "The Gun and Its Development (W. W. Greener): Colt's Derringer pistol",
+      "author": "Unknown engraver",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.1323,
+        0.6372,
+        0.4463,
+        0.8165
+      ],
+      "levels": [
+        30,
+        185
+      ],
+      "erase": [
+        [
+          0.225,
+          0.84,
+          0.86,
+          1
+        ]
+      ]
+    },
+    "vignette-poison-label": {
+      "page": "https://wellcomecollection.org/works/evtbv6zp",
+      "image": "https://iiif.wellcomecollection.org/image/b15456821_0001.jp2/full/1600,/0/default.jpg",
+      "title": "Poison label, Fowke & Aston, Chemists, Stafford (Wellcome Collection)",
+      "author": "Fowke & Aston (printed label)",
+      "date": "1890s",
+      "license": "Public domain",
+      "crop": [
+        0.07,
+        0.05,
+        0.93,
+        0.55
+      ]
+    },
+    "vignette-ring": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n416.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.4912,
+        0.8225,
+        0.6448,
+        0.9125
+      ]
+    },
+    "vignette-rope": {
+      "page": "https://commons.wikimedia.org/wiki/File:Abaca_rope.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Abaca_rope.png/1920px-Abaca_rope.png",
+      "title": "Twenty Years Before the Mast (Charles Erskine): coil of rope",
+      "author": "Unknown engraver",
+      "date": "1896",
+      "license": "Public domain",
+      "crop": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "vignette-safe": {
+      "page": "https://commons.wikimedia.org/w/index.php?title=File:Rudimentary_Treatise_on_the_Construction_of_Locks_(1853).djvu&page=55",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Rudimentary_Treatise_on_the_Construction_of_Locks_%281853%29.djvu/page55-1280px-Rudimentary_Treatise_on_the_Construction_of_Locks_%281853%29.djvu.jpg",
+      "title": "Rudimentary Treatise on the Construction of Locks (A. C. Hobbs, ed. C. Tomlinson)",
+      "author": "Unknown engraver",
+      "date": "1853",
+      "license": "Public domain",
+      "crop": [
+        0.02,
+        0.302,
+        1,
+        0.722
+      ]
+    },
+    "vignette-teacup": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n609.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.346,
+        0.3022,
+        0.519,
+        0.3729
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.08,
+          0.16
+        ],
+        [
+          0.85,
+          0,
+          1,
+          0.22
+        ]
+      ]
+    },
+    "vignette-telegram": {
+      "page": "https://commons.wikimedia.org/wiki/File:1873_1_shilling_telegraph_form.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/1873_1_shilling_telegraph_form.jpg/1920px-1873_1_shilling_telegraph_form.jpg",
+      "title": "Post Office Telegraphs form, Victoria",
+      "author": "Post Office Telegraphs (printed form)",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.335,
+        0.015,
+        0.985,
+        0.79
+      ],
+      "levels": [
+        90,
+        210
+      ]
+    },
+    "vignette-ticket": {
+      "page": "https://commons.wikimedia.org/wiki/File:MNRRamseyWaterfalls.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/MNRRamseyWaterfalls.jpg/1920px-MNRRamseyWaterfalls.jpg",
+      "title": "Manx Northern Railway return ticket, Ramsey to Waterfalls",
+      "author": "Manx Northern Railway Company (printed ticket)",
+      "date": "before 1905",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        0.722,
+        1.0
+      ],
+      "levels": [
+        40,
+        150
+      ]
+    },
+    "vignette-umbrella": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n911.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.2385,
+        0.149,
+        0.8675,
+        0.461
+      ],
+      "levels": [
+        50,
+        170
+      ]
+    },
+    "vignette-watch": {
+      "page": "https://archive.org/details/Junior5026",
+      "image": "https://archive.org/download/Junior5026/page/n566.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.165,
+        0.262,
+        0.835,
+        0.5885
+      ],
+      "levels": [
+        70,
+        165
+      ]
+    }
+  }
 }

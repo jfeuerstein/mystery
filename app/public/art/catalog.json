@@ -1,161 +1,409 @@
 {
-  "$comment": "The engraving catalog (GAME_DESIGN.md \u00a713.2). Cases may only use these tags. Until real public-domain engravings are added, the app draws a captioned placeholder plate for each tag.",
+  "$comment": "The engraving catalog (GAME_DESIGN.md §13.2). Cases may only use these tags. Until real public-domain engravings are added, the app draws a captioned placeholder plate for each tag.",
   "version": 1,
   "assets": [
     {
       "tag": "portrait-young-woman",
       "kind": "portrait",
-      "description": "A young woman in a dark travelling dress, composed."
+      "description": "A young woman in a dark travelling dress, composed.",
+      "file": "portrait-young-woman.webp",
+      "credit": {
+        "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1898",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p305--Brotherhood_of_7_kings--ch_9.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-elderly-woman",
       "kind": "portrait",
-      "description": "An elderly lady in widow's black with a cane."
+      "description": "An elderly lady in widow's black with a cane.",
+      "file": "portrait-elderly-woman.webp",
+      "credit": {
+        "title": "The Chamber of Shadows (The Strand Magazine)",
+        "author": "Paul Hardy",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._23,_pg._467_-_She_Said,_Hoarsely,_Go.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-governess",
       "kind": "portrait",
-      "description": "A governess in a plain grey dress, hair severely drawn back."
+      "description": "A governess in a plain grey dress, hair severely drawn back.",
+      "file": "portrait-governess.webp",
+      "credit": {
+        "title": "A Little Surprise (The Strand Magazine)",
+        "author": "W. S. Stacey",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._5,_no._25,_pg._25.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-housekeeper",
       "kind": "portrait",
-      "description": "A small, upright housekeeper with a chatelaine of keys."
+      "description": "A small, upright housekeeper with a chatelaine of keys.",
+      "file": "portrait-housekeeper.webp",
+      "credit": {
+        "title": "Illustrated Interviews: Henry Stacy Marks (The Strand Magazine)",
+        "author": "Henry Stacy Marks or W. S. Stacey",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._8,_pg._115_-_First_Earnings.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-maid",
       "kind": "portrait",
-      "description": "A housemaid in cap and apron."
+      "description": "A housemaid in cap and apron.",
+      "file": "portrait-maid.webp",
+      "credit": {
+        "title": "The Boscombe Valley Mystery (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-landlady",
       "kind": "portrait",
-      "description": "A stout London landlady in a shawl."
+      "description": "A stout London landlady in a shawl.",
+      "file": "portrait-landlady.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_06,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-actress",
       "kind": "portrait",
-      "description": "An actress in an extravagant hat and furs."
+      "description": "An actress in an extravagant hat and furs.",
+      "file": "portrait-actress.webp",
+      "credit": {
+        "title": "A Case of Identity (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_A_Case_of_Identity_01.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-lady-of-quality",
       "kind": "portrait",
-      "description": "A lady of quality in evening dress and pearls."
+      "description": "A lady of quality in evening dress and pearls.",
+      "file": "portrait-lady-of-quality.webp",
+      "credit": {
+        "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1898",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p423--Brotherhood_of_7_kings--ch_10.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-gentleman",
       "kind": "portrait",
-      "description": "A smooth, well-tailored gentleman in a frock coat."
+      "description": "A smooth, well-tailored gentleman in a frock coat.",
+      "file": "portrait-gentleman.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_03,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-young-gentleman",
       "kind": "portrait",
-      "description": "A nervous young gentleman, hat in hand."
+      "description": "A nervous young gentleman, hat in hand.",
+      "file": "portrait-young-gentleman.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-09.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-colonel",
       "kind": "portrait",
-      "description": "A retired army colonel with white moustaches and a stiff back."
+      "description": "A retired army colonel with white moustaches and a stiff back.",
+      "file": "portrait-colonel.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_10,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-aristocrat",
       "kind": "portrait",
-      "description": "A peer of the realm, cold and immaculate."
+      "description": "A peer of the realm, cold and immaculate.",
+      "file": "portrait-aristocrat.webp",
+      "credit": {
+        "title": "The Noble Bachelor (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._390_-_Lord_Robert_St_Simon.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-banker",
       "kind": "portrait",
-      "description": "A portly City banker with a watch-chain."
+      "description": "A portly City banker with a watch-chain.",
+      "file": "portrait-banker.webp",
+      "credit": {
+        "title": "The Case of Mr. Foggatt (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1894",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Case_of_Mr._Foggatt_1.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-solicitor",
       "kind": "portrait",
-      "description": "A thin, dry solicitor with pince-nez."
+      "description": "A thin, dry solicitor with pince-nez.",
+      "file": "portrait-solicitor.webp",
+      "credit": {
+        "title": "The Resident Patient (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_02,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-clerk",
       "kind": "portrait",
-      "description": "A copying clerk with ink-stained cuffs."
+      "description": "A copying clerk with ink-stained cuffs.",
+      "file": "portrait-clerk.webp",
+      "credit": {
+        "title": "The Stockbroker's Clerk (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p283.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-doctor",
       "kind": "portrait",
-      "description": "A country doctor with a black bag."
+      "description": "A country doctor with a black bag.",
+      "file": "portrait-doctor.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-08.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-clergyman",
       "kind": "portrait",
-      "description": "A clergyman in a shovel hat and dog collar."
+      "description": "A clergyman in a shovel hat and dog collar.",
+      "file": "portrait-clergyman.webp",
+      "credit": {
+        "title": "A Scandal in Bohemia (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand2-070-ASimpleMindedClergyman.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-professor",
       "kind": "portrait",
-      "description": "A stooping academic with a high forehead."
+      "description": "A stooping academic with a high forehead.",
+      "file": "portrait-professor.webp",
+      "credit": {
+        "title": "The Stanway Cameo Mystery (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1894",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Stanway_Cameo_Mystery_1.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-artist",
       "kind": "portrait",
-      "description": "A bohemian painter in a loose velvet coat."
+      "description": "A bohemian painter in a loose velvet coat.",
+      "file": "portrait-artist.webp",
+      "credit": {
+        "title": "The Lenton Croft Robberies (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1894",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Lenton_Croft_Robberies_1.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "portrait-sailor",
       "kind": "portrait",
-      "description": "A weathered sailor in a pea jacket."
+      "description": "A weathered sailor in a pea jacket.",
+      "file": "portrait-sailor.webp",
+      "credit": {
+        "title": "The Cardboard Box (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_05.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-sea-captain",
       "kind": "portrait",
-      "description": "A sea captain with a beard and a peaked cap."
+      "description": "A sea captain with a beard and a peaked cap.",
+      "file": "portrait-sea-captain.webp",
+      "credit": {
+        "title": "A Night Ride on the Flying Scotchman (The Strand Magazine)",
+        "author": "Unknown engraver",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._196_-_Samuel_Watson_-_Driver.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-groom",
       "kind": "portrait",
-      "description": "A young groom in a waistcoat and shirtsleeves."
+      "description": "A young groom in a waistcoat and shirtsleeves.",
+      "file": "portrait-groom.webp",
+      "credit": {
+        "title": "A Scandal in Bohemia (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._7,_pg._67_-_A_drunken-looking_groom.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-butler",
       "kind": "portrait",
-      "description": "An elderly butler, impassive."
+      "description": "An elderly butler, impassive.",
+      "file": "portrait-butler.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-21_-_Hound_of_Baskervilles,_page_118.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-gamekeeper",
       "kind": "portrait",
-      "description": "A gamekeeper with a shotgun broken over his arm."
+      "description": "A gamekeeper with a shotgun broken over his arm.",
+      "file": "portrait-gamekeeper.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-26.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-labourer",
       "kind": "portrait",
-      "description": "A navvy or labourer in a moleskin coat."
+      "description": "A navvy or labourer in a moleskin coat.",
+      "file": "portrait-labourer.webp",
+      "credit": {
+        "title": "The Bride of Felix Armstrong (The Strand Magazine)",
+        "author": "W. S. Stacey",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._18,_pg._571_-_He_Proved_His_Assertion.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-cabman",
       "kind": "portrait",
-      "description": "A London cabman in a many-caped greatcoat."
+      "description": "A London cabman in a many-caped greatcoat.",
+      "file": "portrait-cabman.webp",
+      "credit": {
+        "title": "A Case of Identity (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._9,_pg._252_-_There_Was_No_One_There.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-street-urchin",
       "kind": "portrait",
-      "description": "A ragged boy of the Baker Street Irregulars."
+      "description": "A ragged boy of the Baker Street Irregulars.",
+      "file": "portrait-street-urchin.webp",
+      "credit": {
+        "title": "Street Musicians (The Strand Magazine)",
+        "author": "Frank Feller",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._13,_pg._67_-_Hurdy-Gurdy.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-publican",
       "kind": "portrait",
-      "description": "A publican in shirtsleeves behind a bar."
+      "description": "A publican in shirtsleeves behind a bar.",
+      "file": "portrait-publican.webp",
+      "credit": {
+        "title": "Lady Florry's Gems (The Strand Magazine)",
+        "author": "Paul Hardy",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._370_-_There,_Sir,_He_Said_Solemnly.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-shopkeeper",
       "kind": "portrait",
-      "description": "A shopkeeper in a long apron."
+      "description": "A shopkeeper in a long apron.",
+      "file": "portrait-shopkeeper.webp",
+      "credit": {
+        "title": "London: A Pilgrimage",
+        "author": "Gustave Doré",
+        "date": "1872",
+        "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f286.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-foreigner",
       "kind": "portrait",
-      "description": "A gentleman in foreign cut of clothes, watchful."
+      "description": "A gentleman in foreign cut of clothes, watchful.",
+      "file": "portrait-foreigner.webp",
+      "credit": {
+        "title": "The Resident Patient (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_03,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-inspector",
       "kind": "portrait",
-      "description": "A Scotland Yard inspector in a bowler and overcoat."
+      "description": "A Scotland Yard inspector in a bowler and overcoat.",
+      "file": "portrait-inspector.webp",
+      "credit": {
+        "title": "The Cardboard Box (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-constable",
@@ -165,242 +413,746 @@
     {
       "tag": "portrait-holmes",
       "kind": "portrait",
-      "description": "Sherlock Holmes in a dressing gown, pipe in hand."
+      "description": "Sherlock Holmes in a dressing gown, pipe in hand.",
+      "file": "portrait-holmes.webp",
+      "credit": {
+        "title": "The Man with the Twisted Lip (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-watson",
       "kind": "portrait",
-      "description": "Dr. Watson, moustached, in a tweed suit."
+      "description": "Dr. Watson, moustached, in a tweed suit.",
+      "file": "portrait-watson.webp",
+      "credit": {
+        "title": "The Greek Interpreter (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-mycroft",
       "kind": "portrait",
-      "description": "Mycroft Holmes, heavy and still, in a club armchair."
+      "description": "Mycroft Holmes, heavy and still, in a club armchair.",
+      "file": "portrait-mycroft.webp",
+      "credit": {
+        "title": "The Greek Interpreter (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Greek_Interpreter_07,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-mrs-hudson",
       "kind": "portrait",
-      "description": "Mrs. Hudson with a tea tray."
+      "description": "Mrs. Hudson with a tea tray.",
+      "file": "portrait-mrs-hudson.webp",
+      "credit": {
+        "title": "There's Many a Slip (The Strand Magazine)",
+        "author": "W. S. Stacey",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._20,_pg._160_-_Yes,_He_Answered_Musingly.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-sitting-room",
       "kind": "scene",
-      "description": "221B Baker Street: the sitting room, fire, chemicals and books."
+      "description": "221B Baker Street: the sitting room, fire, chemicals and books.",
+      "file": "scene-sitting-room.webp",
+      "focus": [
+        0.5,
+        0.4
+      ],
+      "credit": {
+        "title": "The Adventure of the Empty House (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1903",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_26)_-_p385.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-study",
       "kind": "scene",
-      "description": "A private study: desk, bookcases, a long-case clock in the hall beyond."
+      "description": "A private study: desk, bookcases, a long-case clock in the hall beyond.",
+      "file": "scene-study.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: The Room over Temple Bar, 1876",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=50",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-drawing-room",
       "kind": "scene",
-      "description": "A drawing room with a card table and a piano."
+      "description": "A drawing room with a card table and a piano.",
+      "file": "scene-drawing-room.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Queen Caroline's Drawing-room, Kensington Palace",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=170",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-library",
       "kind": "scene",
-      "description": "A country-house library with a ladder and tall windows."
+      "description": "A country-house library with a ladder and tall windows.",
+      "file": "scene-library.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 4: The King's Library, Buckingham House, 1775",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._4.djvu?page=86",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-bedroom",
       "kind": "scene",
-      "description": "A bedroom with a four-poster and a washstand."
+      "description": "A bedroom with a four-poster and a washstand.",
+      "file": "scene-bedroom.webp",
+      "focus": [
+        0.5,
+        0.55
+      ],
+      "credit": {
+        "title": "Apartment of Princess Clotilde, Durazzo Palace (L'Illustration)",
+        "author": "Édouard Riou",
+        "date": "1859",
+        "source": "https://commons.wikimedia.org/wiki/File:Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-dining-room",
       "kind": "scene",
-      "description": "A dining room laid for dinner."
+      "description": "A dining room laid for dinner.",
+      "file": "scene-dining-room.webp",
+      "focus": [
+        0.5,
+        0.45
+      ],
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-22.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-hall",
       "kind": "scene",
-      "description": "An entrance hall with a staircase and a long-case clock."
+      "description": "An entrance hall with a staircase and a long-case clock.",
+      "file": "scene-hall.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Grand Staircase, Holland House",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=205",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-kitchen",
       "kind": "scene",
-      "description": "A great kitchen below stairs, range and copper pans."
+      "description": "A great kitchen below stairs, range and copper pans.",
+      "file": "scene-kitchen.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: The Mansion House Kitchen",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=476",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-cellar",
       "kind": "scene",
-      "description": "A brick wine cellar lit by a single candle."
+      "description": "A brick wine cellar lit by a single candle.",
+      "file": "scene-cellar.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 2: The Crypt of St. John's, Clerkenwell",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=351",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-attic",
       "kind": "scene",
-      "description": "An attic of trunks and sloping beams."
+      "description": "An attic of trunks and sloping beams.",
+      "file": "scene-attic.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Tuba player in an attic (Rijksmuseum RP-P-1912-1041)",
+        "author": "Romain Looymans",
+        "date": "1890",
+        "source": "https://commons.wikimedia.org/wiki/File:Tubaspeler_op_een_zolderkamer,_RP-P-1912-1041.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "scene-country-house",
       "kind": "scene",
-      "description": "A long, low country house among wet lawns."
+      "description": "A long, low country house among wet lawns.",
+      "file": "scene-country-house.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Holland House, from the North",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=204",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-garden",
       "kind": "scene",
-      "description": "A walled garden with a sundial and gravel paths."
+      "description": "A walled garden with a sundial and gravel paths.",
+      "file": "scene-garden.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: Drapers' Hall Garden",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=555",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-stables",
       "kind": "scene",
-      "description": "A stable yard with loose-boxes and a pump."
+      "description": "A stable yard with loose-boxes and a pump.",
+      "file": "scene-stables.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Court-yard of Old Tattersall's",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=32",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-churchyard",
       "kind": "scene",
-      "description": "A village churchyard with leaning stones."
+      "description": "A village churchyard with leaning stones.",
+      "file": "scene-churchyard.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Edmonton Church, 1790",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=609",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-village-street",
       "kind": "scene",
-      "description": "A village street with an inn sign."
+      "description": "A village street with an inn sign.",
+      "file": "scene-village-street.webp",
+      "focus": [
+        0.5,
+        0.62
+      ],
+      "credit": {
+        "title": "Coaching Days and Coaching Ways (The Bear at Devizes)",
+        "author": "Herbert Railton",
+        "date": "1888",
+        "source": "https://commons.wikimedia.org/wiki/File:Coaching_days_and_coaching_ways_(Page_70)_BHL18772111.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-inn",
       "kind": "scene",
-      "description": "The taproom of a country inn."
+      "description": "The taproom of a country inn.",
+      "file": "scene-inn.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 2: Coffee-room at St. John's Gate",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=339",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-railway-carriage",
       "kind": "scene",
-      "description": "A first-class railway compartment."
+      "description": "A first-class railway compartment.",
+      "file": "scene-railway-carriage.webp",
+      "focus": [
+        0.5,
+        0.35
+      ],
+      "credit": {
+        "title": "Silver Blaze (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand_paget.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-station-platform",
       "kind": "scene",
-      "description": "A railway platform under a glass roof."
+      "description": "A railway platform under a glass roof.",
+      "file": "scene-station-platform.webp",
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "credit": {
+        "title": "New Street Station, Birmingham (Illustrated London News)",
+        "author": "Unknown engraver",
+        "date": "1854",
+        "source": "https://commons.wikimedia.org/wiki/File:Birmingham_New_Street_station_in_1854.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-london-street",
       "kind": "scene",
-      "description": "A foggy London street of gas lamps and hansoms."
+      "description": "A foggy London street of gas lamps and hansoms.",
+      "file": "scene-london-street.webp",
+      "focus": [
+        0.5,
+        0.45
+      ],
+      "credit": {
+        "title": "London: A Pilgrimage (Bluegate Fields)",
+        "author": "Gustave Doré",
+        "date": "1872",
+        "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f319.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-docks",
       "kind": "scene",
-      "description": "The London docks: warehouses, cranes and masts."
+      "description": "The London docks: warehouses, cranes and masts.",
+      "file": "scene-docks.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "London: A Pilgrimage",
+        "author": "Gustave Doré",
+        "date": "1872",
+        "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f92.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-riverbank",
       "kind": "scene",
-      "description": "A riverbank with reeds and a towpath."
+      "description": "A riverbank with reeds and a towpath.",
+      "file": "scene-riverbank.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: The Fleet River, near St. Pancras, 1825",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=357",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-moor",
       "kind": "scene",
-      "description": "A bleak moor with a tor on the skyline."
+      "description": "A bleak moor with a tor on the skyline.",
+      "file": "scene-moor.webp",
+      "focus": [
+        0.5,
+        0.42
+      ],
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-35.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-cliffs",
       "kind": "scene",
-      "description": "Chalk cliffs above a grey sea."
+      "description": "Chalk cliffs above a grey sea.",
+      "file": "scene-cliffs.webp",
+      "focus": [
+        0.5,
+        0.45
+      ],
+      "credit": {
+        "title": "Dover, from Shakespeare's Cliff (Yale Center for British Art B1977.14.6693)",
+        "author": "George Cooke",
+        "date": "1826",
+        "source": "https://commons.wikimedia.org/wiki/File:George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "scene-bank-office",
       "kind": "scene",
-      "description": "A bank's private office with a strongroom door."
+      "description": "A bank's private office with a strongroom door.",
+      "file": "scene-bank-office.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: The Prerogative Office, Doctors' Commons, 1860",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=316",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-shop",
       "kind": "scene",
-      "description": "A small shop with a counter and shelves."
+      "description": "A small shop with a counter and shelves.",
+      "file": "scene-shop.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: Birch's Shop, Cornhill",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=450",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-lodging-room",
       "kind": "scene",
-      "description": "A shabby lodging-house room."
+      "description": "A shabby lodging-house room.",
+      "file": "scene-lodging-room.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 2: Room of a House in Fulwood's Rents",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=564",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-club",
       "kind": "scene",
-      "description": "The silent reading room of a gentlemen's club."
+      "description": "The silent reading room of a gentlemen's club.",
+      "file": "scene-club.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 3: Dining-room of the Garrick Club",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=285",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-theatre",
       "kind": "scene",
-      "description": "Backstage at a theatre."
+      "description": "Backstage at a theatre.",
+      "file": "scene-theatre.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 3: Interior of Drury Lane Theatre",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=248",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-laboratory",
       "kind": "scene",
-      "description": "A chemical laboratory with retorts."
+      "description": "A chemical laboratory with retorts.",
+      "file": "scene-laboratory.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Faraday's Laboratory at the Royal Institution (The Life and Letters of Faraday)",
+        "author": "Unknown engraver",
+        "date": "1870",
+        "source": "https://commons.wikimedia.org/wiki/File:Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-church",
       "kind": "scene",
-      "description": "The nave of a village church."
+      "description": "The nave of a village church.",
+      "file": "scene-church.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Interior of Kensington Church, 1850",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=150",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-clock",
       "kind": "vignette",
-      "description": "A long-case clock, glass broken."
+      "description": "A long-case clock, glass broken.",
+      "file": "vignette-clock.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-watch",
       "kind": "vignette",
-      "description": "A pocket watch, stopped."
+      "description": "A pocket watch, stopped.",
+      "file": "vignette-watch.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-teacup",
       "kind": "vignette",
-      "description": "A cup and saucer."
+      "description": "A cup and saucer.",
+      "file": "vignette-teacup.webp",
+      "credit": {
+        "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+        "author": "Sears, Roebuck and Co. (catalogue engraving)",
+        "date": "1897",
+        "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-key",
       "kind": "vignette",
-      "description": "A large iron key."
+      "description": "A large iron key.",
+      "file": "vignette-key.webp",
+      "credit": {
+        "title": "Three keys, Collection Sauvageot (Rijksmuseum)",
+        "author": "Edouard Lièvre",
+        "date": "1863",
+        "source": "https://commons.wikimedia.org/wiki/File:Drie_sleutels,_RP-P-1929-12.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-boots",
       "kind": "vignette",
-      "description": "A pair of muddy boots."
+      "description": "A pair of muddy boots.",
+      "file": "vignette-boots.webp",
+      "credit": {
+        "title": "A pair of boots (Rijksmuseum)",
+        "author": "Henri Guérard",
+        "date": "1856-1897",
+        "source": "https://commons.wikimedia.org/wiki/File:Paar_laarzen,_RP-P-1943-163.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-deed",
       "kind": "vignette",
-      "description": "A legal document, half burned."
+      "description": "A legal document, half burned.",
+      "file": "vignette-deed.webp",
+      "credit": {
+        "title": "Magna Carta (facsimile of the fire-damaged Cotton charter)",
+        "author": "John Pine",
+        "date": "1733",
+        "source": "https://commons.wikimedia.org/wiki/File:Magna_Carta_-_John_Pine_engraving_1733.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-letter",
       "kind": "vignette",
-      "description": "A folded letter."
+      "description": "A folded letter.",
+      "file": "vignette-letter.webp",
+      "credit": {
+        "title": "The Reigate Squire (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p612.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-envelope",
       "kind": "vignette",
-      "description": "An envelope with a broken seal."
+      "description": "An envelope with a broken seal.",
+      "file": "vignette-envelope.webp",
+      "credit": {
+        "title": "Penny Pink postal envelope",
+        "author": "General Post Office (used envelope)",
+        "date": "1842",
+        "source": "https://commons.wikimedia.org/wiki/File:Penny_Pink_(1841).jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-telegram",
       "kind": "vignette",
-      "description": "A telegraph form."
+      "description": "A telegraph form.",
+      "file": "vignette-telegram.webp",
+      "credit": {
+        "title": "Post Office Telegraphs form, Victoria",
+        "author": "Post Office Telegraphs (printed form)",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:1873_1_shilling_telegraph_form.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-newspaper",
       "kind": "vignette",
-      "description": "A folded newspaper column."
+      "description": "A folded newspaper column.",
+      "file": "vignette-newspaper.webp",
+      "credit": {
+        "title": "The Morning Post, front page",
+        "author": "The Morning Post",
+        "date": "1900",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Morning_Post,_No._39841,_London,_February_12,_1900.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-ticket",
       "kind": "vignette",
-      "description": "A railway ticket."
+      "description": "A railway ticket.",
+      "file": "vignette-ticket.webp",
+      "credit": {
+        "title": "Manx Northern Railway return ticket, Ramsey to Waterfalls",
+        "author": "Manx Northern Railway Company (printed ticket)",
+        "date": "before 1905",
+        "source": "https://commons.wikimedia.org/wiki/File:MNRRamseyWaterfalls.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-ink",
       "kind": "vignette",
-      "description": "A hand with an ink stain."
+      "description": "A hand with an ink stain.",
+      "file": "vignette-ink.webp",
+      "credit": {
+        "title": "Right hand with a quill pen, Spieghel der schrijfkonste (Rijksmuseum)",
+        "author": "After Jan van de Velde",
+        "date": "1605",
+        "source": "https://commons.wikimedia.org/wiki/File:Rechterhand_met_ganzenpen,_RP-P-1896-A-19245-36(R).jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-hand",
       "kind": "vignette",
-      "description": "A hand showing calluses."
+      "description": "A hand showing calluses.",
+      "file": "vignette-hand.webp",
+      "credit": {
+        "title": "Study of a hand (Rijksmuseum)",
+        "author": "Johannes Bemme after D. P. G. Humbert de Superville",
+        "date": "1813",
+        "source": "https://commons.wikimedia.org/wiki/File:Studie_van_een_hand,_RP-P-1878-A-515.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-ring",
       "kind": "vignette",
-      "description": "A signet ring."
+      "description": "A signet ring.",
+      "file": "vignette-ring.webp",
+      "credit": {
+        "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104",
+        "author": "Sears, Roebuck and Co. (catalogue engraving)",
+        "date": "1897",
+        "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-glove",
@@ -410,22 +1162,54 @@
     {
       "tag": "vignette-hat",
       "kind": "vignette",
-      "description": "A hat with a band."
+      "description": "A hat with a band.",
+      "file": "vignette-hat.webp",
+      "credit": {
+        "title": "A hat (Rijksmuseum)",
+        "author": "Johann Friedrich Morgenstern",
+        "date": "1797",
+        "source": "https://commons.wikimedia.org/wiki/File:Hoed,_RP-P-1906-3739.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-cane",
       "kind": "vignette",
-      "description": "A walking stick with a silver head."
+      "description": "A walking stick with a silver head.",
+      "file": "vignette-cane.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-umbrella",
       "kind": "vignette",
-      "description": "A furled umbrella."
+      "description": "A furled umbrella.",
+      "file": "vignette-umbrella.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-pipe",
       "kind": "vignette",
-      "description": "A briar pipe."
+      "description": "A briar pipe.",
+      "file": "vignette-pipe.webp",
+      "credit": {
+        "title": "Junior Army and Navy Stores catalogue no. 25",
+        "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+        "date": "1892",
+        "source": "https://archive.org/details/Junior5026",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-cigar-ash",
@@ -435,32 +1219,80 @@
     {
       "tag": "vignette-footprint",
       "kind": "vignette",
-      "description": "A footprint in soft earth."
+      "description": "A footprint in soft earth.",
+      "file": "vignette-footprint.webp",
+      "credit": {
+        "title": "Criminal Investigation (Hans Gross, tr. J. Adam)",
+        "author": "Hans Gross",
+        "date": "1906",
+        "source": "https://archive.org/details/criminalinvestig00grosuoft",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-candle",
       "kind": "vignette",
-      "description": "A candle burned low."
+      "description": "A candle burned low.",
+      "file": "vignette-candle.webp",
+      "credit": {
+        "title": "A burning candle, Devises et emblesmes d'amour moralisez (Rijksmuseum)",
+        "author": "Albert Flamen",
+        "date": "1672",
+        "source": "https://commons.wikimedia.org/wiki/File:Brandende_kaars_Moraliserende_liefdesemblemen_(serietitel)_Devises_et_emblesmes_d%27amovr_moralisez_(serietitel),_RP-P-1926-380.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-lamp",
       "kind": "vignette",
-      "description": "An oil lamp."
+      "description": "An oil lamp.",
+      "file": "vignette-lamp.webp",
+      "credit": {
+        "title": "Catalogue of lamps, burners & accessories (Sherwood)",
+        "author": "Unknown engraver (trade catalogue)",
+        "date": "c. 1900",
+        "source": "https://archive.org/details/sherwood12085_20240130",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-bottle",
       "kind": "vignette",
-      "description": "A small medicine bottle."
+      "description": "A small medicine bottle.",
+      "file": "vignette-bottle.webp",
+      "credit": {
+        "title": "Book of illustrations to S. Maw, Son & Thompson's quarterly price-current (Wellcome Collection)",
+        "author": "S. Maw, Son & Thompson",
+        "date": "1870",
+        "source": "https://wellcomecollection.org/works/yvpdehkx",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-poison-label",
       "kind": "vignette",
-      "description": "A chemist's label."
+      "description": "A chemist's label.",
+      "file": "vignette-poison-label.webp",
+      "credit": {
+        "title": "Poison label, Fowke & Aston, Chemists, Stafford (Wellcome Collection)",
+        "author": "Fowke & Aston (printed label)",
+        "date": "1890s",
+        "source": "https://wellcomecollection.org/works/evtbv6zp",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-pistol",
       "kind": "vignette",
-      "description": "A revolver."
+      "description": "A revolver.",
+      "file": "vignette-pistol.webp",
+      "credit": {
+        "title": "The Gun and Its Development (W. W. Greener): Colt's Derringer pistol",
+        "author": "Unknown engraver",
+        "date": "1897",
+        "source": "https://archive.org/details/TheGun/page/n529/mode/1up",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-knife",
@@ -470,12 +1302,32 @@
     {
       "tag": "vignette-rope",
       "kind": "vignette",
-      "description": "A coil of rope."
+      "description": "A coil of rope.",
+      "file": "vignette-rope.webp",
+      "credit": {
+        "title": "Twenty Years Before the Mast (Charles Erskine): coil of rope",
+        "author": "Unknown engraver",
+        "date": "1896",
+        "source": "https://commons.wikimedia.org/wiki/File:Abaca_rope.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-ladder",
       "kind": "vignette",
-      "description": "A ladder against a wall."
+      "description": "A ladder against a wall.",
+      "file": "vignette-ladder.webp",
+      "focus": [
+        0.45,
+        0.72
+      ],
+      "credit": {
+        "title": "Le Vieux Paris (Victor Fournel), fig. 30: bill-sticker on a ladder",
+        "author": "After Edme Bouchardon",
+        "date": "1887",
+        "source": "https://commons.wikimedia.org/wiki/File:FOURNEL(1887)_p056_Fig.30.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-window",
@@ -485,17 +1337,41 @@
     {
       "tag": "vignette-lock",
       "kind": "vignette",
-      "description": "A door lock with scratches."
+      "description": "A door lock with scratches.",
+      "file": "vignette-lock.webp",
+      "credit": {
+        "title": "Rudimentary Treatise on the Construction of Locks (A. C. Hobbs, ed. C. Tomlinson)",
+        "author": "Unknown engraver",
+        "date": "1853",
+        "source": "https://commons.wikimedia.org/w/index.php?title=File:Rudimentary_Treatise_on_the_Construction_of_Locks_(1853).djvu&page=48",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-safe",
       "kind": "vignette",
-      "description": "A small safe, open."
+      "description": "A small safe, open.",
+      "file": "vignette-safe.webp",
+      "credit": {
+        "title": "Rudimentary Treatise on the Construction of Locks (A. C. Hobbs, ed. C. Tomlinson)",
+        "author": "Unknown engraver",
+        "date": "1853",
+        "source": "https://commons.wikimedia.org/w/index.php?title=File:Rudimentary_Treatise_on_the_Construction_of_Locks_(1853).djvu&page=55",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-map",
       "kind": "vignette",
-      "description": "A hand-drawn map."
+      "description": "A hand-drawn map.",
+      "file": "vignette-map.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_05,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-photograph",
@@ -505,12 +1381,28 @@
     {
       "tag": "vignette-coin",
       "kind": "vignette",
-      "description": "A foreign coin."
+      "description": "A foreign coin.",
+      "file": "vignette-coin.webp",
+      "credit": {
+        "title": "Seven new coins of the Kingdom of the Netherlands (Rijksmuseum RP-P-OB-87.425)",
+        "author": "Unknown engraver",
+        "date": "c. 1825",
+        "source": "https://commons.wikimedia.org/wiki/File:Zeven_nieuwe_munten,_ca._1825,_RP-P-OB-87.425.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-button",
       "kind": "vignette",
-      "description": "A torn-off button."
+      "description": "A torn-off button.",
+      "file": "vignette-button.webp",
+      "credit": {
+        "title": "Boutonnier, Passementier (Encyclopédie de Diderot et d'Alembert), fig. 4",
+        "author": "A. J. Defehrt after Goussier",
+        "date": "1751-1772",
+        "source": "https://commons.wikimedia.org/wiki/File:Boutonnier,_Passementier._(titel_op_object)_Encyclop%C3%A9die_de_Diderot_et_d%27Alembert_1751-1772,_RP-P-2009-2091-6.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-thread",
@@ -525,7 +1417,15 @@
     {
       "tag": "vignette-dog",
       "kind": "vignette",
-      "description": "A dog on a chain."
+      "description": "A dog on a chain.",
+      "file": "vignette-dog.webp",
+      "credit": {
+        "title": "Seated dog on a chain by a kennel (Rijksmuseum RP-P-1885-A-8469)",
+        "author": "Christiaan Wilhelmus Moorrees",
+        "date": "1811-1867",
+        "source": "https://commons.wikimedia.org/wiki/File:Zittende_hond_aan_de_ketting_bij_een_hondenhok,_RP-P-1885-A-8469.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-horse",
@@ -535,7 +1435,15 @@
     {
       "tag": "vignette-carriage-wheel",
       "kind": "vignette",
-      "description": "A wheel rut in a lane."
+      "description": "A wheel rut in a lane.",
+      "file": "vignette-carriage-wheel.webp",
+      "credit": {
+        "title": "Country lane in the Kempen (Rijksmuseum RP-P-1911-5661)",
+        "author": "Jean Pierre François Lamorinière",
+        "date": "1838-1911",
+        "source": "https://commons.wikimedia.org/wiki/File:Landweg_in_de_Kempen,_RP-P-1911-5661.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-handkerchief",
@@ -545,7 +1453,15 @@
     {
       "tag": "vignette-diary",
       "kind": "vignette",
-      "description": "An open diary."
+      "description": "An open diary.",
+      "file": "vignette-diary.webp",
+      "credit": {
+        "title": "Open book on a table (Rijksmuseum RP-P-OB-30.776)",
+        "author": "Isaac Weissenbruch",
+        "date": "1860-1899",
+        "source": "https://commons.wikimedia.org/wiki/File:Opengeslagen_boek_op_een_tafel,_RP-P-OB-30.776.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-ledger",
@@ -565,12 +1481,28 @@
     {
       "tag": "vignette-glass",
       "kind": "vignette",
-      "description": "A wine glass."
+      "description": "A wine glass.",
+      "file": "vignette-glass.webp",
+      "credit": {
+        "title": "The Wine-Glass (Rijksmuseum RP-P-1940-226)",
+        "author": "James McNeill Whistler",
+        "date": "1858",
+        "source": "https://commons.wikimedia.org/wiki/File:Wijnglas_The_Wine-Glass,_RP-P-1940-226.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "vignette-card",
       "kind": "vignette",
-      "description": "A playing card."
+      "description": "A playing card.",
+      "file": "vignette-card.webp",
+      "credit": {
+        "title": "Facts and Speculations on the Origin and History of Playing Cards (W. A. Chatto): Valet de Cour",
+        "author": "Unknown engraver",
+        "date": "1848",
+        "source": "https://commons.wikimedia.org/wiki/File:History_of_Playing_Cards_(1848)_43.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-calling-card",

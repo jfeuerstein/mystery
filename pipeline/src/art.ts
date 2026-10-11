@@ -18,7 +18,7 @@ const Fraction = z.number().min(0).max(1);
 export const Plate = z.object({
   /** The page that documents the image and its licence (a Commons file page, say). */
   page: z.string().url(),
-  /** The original image file. */
+  /** The file the build prints from: a large Commons rendering (thumb.wikimedia.org) or the original. */
   image: z.string().url(),
   title: z.string().min(1),
   author: z.string().min(1),
@@ -30,6 +30,8 @@ export const Plate = z.object({
   focus: z.tuple([Fraction, Fraction]).optional(),
   /** Mirror the plate, so a figure faces into the page. */
   flip: z.boolean().optional(),
+  /** Rectangles to whiten before toning (scan marks, a neighbouring cut), as fractions of the crop: [left, top, right, bottom]. */
+  erase: z.array(z.tuple([Fraction, Fraction, Fraction, Fraction])).optional(),
   /** Black and white points (0–255) after greyscale; by default taken from the histogram. */
   levels: z.tuple([z.number().int().min(0).max(255), z.number().int().min(0).max(255)]).optional(),
 });
@@ -120,32 +122,53 @@ export async function printPlate(source: Buffer, plate: Plate, kind: Kind): Prom
     height: Math.max(1, Math.round((b - t) * h)),
   };
   const { width, height } = SIZES[kind];
-  let img = sharp(source).rotate().extract(region).greyscale();
+  const cut = await sharp(source).rotate().extract(region).greyscale().extractChannel(0).raw().toBuffer({ resolveWithObject: true });
+  for (const [el, et, er, eb] of plate.erase ?? []) {
+    const cw = cut.info.width;
+    const ch = cut.info.height;
+    for (let y = Math.floor(et * ch); y < Math.ceil(eb * ch); y++) {
+      for (let x = Math.floor(el * cw); x < Math.ceil(er * cw); x++) cut.data[y * cw + x] = 255;
+    }
+  }
+  let img = sharp(cut.data, { raw: { width: cut.info.width, height: cut.info.height, channels: 1 } });
   if (plate.flip) img = img.flop();
   // A touch of blur before the reduction tames the halftone screen of magazine scans.
   const scale = Math.min(region.width / width, region.height / height);
   if (scale > 2) img = img.blur(Math.min(1.2, 0.3 * scale));
+  // Portraits and scenes fill their frame (cover-fit around the focus point,
+  // by hand, so the focus survives); a vignette's object is shown whole, on
+  // white paper (contain-fit).
+  const whole = kind === "vignette";
+  const fit = whole
+    ? Math.min(width / region.width, height / region.height)
+    : Math.max(width / region.width, height / region.height);
+  const scaledW = Math.max(1, Math.round(region.width * fit));
+  const scaledH = Math.max(1, Math.round(region.height * fit));
+  const innerW = Math.min(width, scaledW);
+  const innerH = Math.min(height, scaledH);
   const fx = plate.focus?.[0] ?? 0.5;
   const fy = plate.focus?.[1] ?? 0.5;
-  // Cover-fit around the focus point, by hand, so the focus survives the crop.
-  const cover = Math.max(width / region.width, height / region.height);
-  const scaledW = Math.round(region.width * cover);
-  const scaledH = Math.round(region.height * cover);
-  const left = Math.min(scaledW - width, Math.max(0, Math.round(fx * scaledW - width / 2)));
-  const top = Math.min(scaledH - height, Math.max(0, Math.round(fy * scaledH - height / 2)));
+  const left = Math.min(scaledW - innerW, Math.max(0, Math.round(fx * scaledW - innerW / 2)));
+  const top = Math.min(scaledH - innerH, Math.max(0, Math.round(fy * scaledH - innerH / 2)));
   const sized = await img
     .resize(scaledW, scaledH, { kernel: "lanczos3" })
-    .extract({ left, top, width, height })
+    .extract({ left, top, width: innerW, height: innerH })
+    .extractChannel(0)
     .raw()
     .toBuffer({ resolveWithObject: true });
   const pixels = sized.data;
-  // Ink to black, paper to white: the page's own colour comes from the app.
+  // Ink to black, paper to white, measured on the plate itself (before any
+  // padding): the page's own colour comes from the app.
   const [black, white] = plate.levels ?? [percentile(pixels, 0.005), Math.max(percentile(pixels, 0.95) - 4, 40)];
   const span = Math.max(1, white - black);
-  const out = Buffer.alloc(pixels.length);
-  for (let i = 0; i < pixels.length; i++) {
-    const v = (pixels[i]! - black) / span;
-    out[i] = Math.round(255 * Math.min(1, Math.max(0, v)));
+  const out = Buffer.alloc(width * height, 255);
+  const ox = Math.floor((width - innerW) / 2);
+  const oy = Math.floor((height - innerH) / 2);
+  for (let y = 0; y < innerH; y++) {
+    for (let x = 0; x < innerW; x++) {
+      const v = (pixels[y * innerW + x]! - black) / span;
+      out[(y + oy) * width + x + ox] = Math.round(255 * Math.min(1, Math.max(0, v)));
+    }
   }
   return sharp(out, { raw: { width, height, channels: 1 } })
     .sharpen({ sigma: 0.6 })
