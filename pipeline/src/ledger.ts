@@ -5,6 +5,7 @@ import type { ConceptId } from "@afoot/schema";
 import { seal, unseal, type SealedIndex } from "@afoot/seal";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { PATHS } from "./paths.js";
+import type { Carry, SeasonArc } from "./plan.js";
 
 export type LedgerEntry = {
   season: number;
@@ -14,6 +15,9 @@ export type LedgerEntry = {
   central: string;
   introduces?: ConceptId | undefined;
   reinforces: ConceptId[];
+  /** Serial seasons (decision 27): the season's thread as this case left it, and what it handed on. */
+  arc?: SeasonArc | undefined;
+  carry?: Carry | undefined;
 };
 
 export function readIndex(path = PATHS.index): SealedIndex {

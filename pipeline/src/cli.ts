@@ -22,6 +22,7 @@ import { centralIsFresh, curriculumFor, suggestMotifs } from "./next.js";
 import { caseDir, PATHS, ROOT } from "./paths.js";
 import { Concept, WorldModel } from "./plan.js";
 import { coverage, puzzleHash, readLog, targetKey, writeLog } from "./playtest.js";
+import { continuityGates, continuityTemplate, seasonSoFar, seasonStyle } from "./seasons.js";
 import { checkMotifs, loadCatalog, loadMotifs } from "./sources.js";
 import { parseTarget, playerView } from "./view.js";
 
@@ -116,6 +117,7 @@ async function main(argv: string[]): Promise<number> {
       // (e.g. while developing) can predict a case's motifs.
       const seed = args.flags.seed ? Number(args.flags.seed) : randomInt(2 ** 31);
       const motifs = suggestMotifs(loadMotifs(), ledger, curriculum, seed);
+      const style = seasonStyle(slot.season);
       const summary = {
         caseId,
         ...slot,
@@ -125,6 +127,8 @@ async function main(argv: string[]): Promise<number> {
           complications: motifs.complications,
           ...(motifs.premise ? { premise: motifs.premise } : {}),
         },
+        // A serial season (decision 27) hands this case the thread and what each earlier case left behind.
+        continuity: style.serial ? { serial: true, length: style.length, ...seasonSoFar(ledger, slot.season) } : { serial: false },
         artCatalog: relative(ROOT, PATHS.catalog),
       };
       console.log(JSON.stringify(summary, null, 2));
@@ -145,6 +149,7 @@ async function main(argv: string[]): Promise<number> {
             reinforces: curriculum.reinforces,
           },
           synopsis: "WRITE THE SECRET SYNOPSIS HERE",
+          ...(style.serial ? continuityTemplate(ledger, slot.season) : {}),
         };
         writeFileSync(files.concept, JSON.stringify(concept, null, 2) + "\n");
         console.log(`\nwrote ${relative(ROOT, files.concept)}`);
@@ -267,6 +272,7 @@ async function main(argv: string[]): Promise<number> {
       const expected = nextSlot(index, concept.season);
       if (concept.number !== expected.number) gates.push(`slot: expected case ${expected.number} of season ${concept.season}`);
       if (!centralIsFresh(concept.motifs.central, ledger)) gates.push("novelty: the central trick was used too recently");
+      gates.push(...continuityGates(concept, ledger));
       const verified = verifyCase(theCase);
       if (!verified.ok) gates.push(`verify: ${verified.errors.length} errors`);
       const audited = audit(theCase, {
@@ -298,6 +304,7 @@ async function main(argv: string[]): Promise<number> {
         motifs: [concept.motifs.central, ...concept.motifs.complications, ...(concept.motifs.premise ? [concept.motifs.premise] : [])],
         ...(concept.curriculum.introduces ? { introduces: concept.curriculum.introduces } : {}),
         reinforces: concept.curriculum.reinforces,
+        ...(seasonStyle(concept.season).serial ? { arc: concept.arc, carry: concept.carry } : {}),
       });
       await writeLedger(ledger);
       if (!args.flags.keep) rmSync(c.files.dir, { recursive: true, force: true });

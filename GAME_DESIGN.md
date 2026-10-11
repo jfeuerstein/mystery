@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.6. Written from a design interview, October 2026
+**Status:** v1.7. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -117,9 +117,10 @@ Every design decision from the interview and the revisions that followed, with t
 | 21 | Wrong-answer feedback | **None**: a miss costs one Patience and reveals nothing | Purist, consistent with decision 8. Guessing teaches nothing. |
 | 22 | Patience budget | **3 per chapter**, 3 for the finale, for every patience-holder | Confirmed by the player after the first draft. |
 | 23 | Art source | **Public-domain engravings only**, with no AI image generation | Authentic period look. The pipeline writes cases to fit the art catalog. |
-| 24 | Story arc | **Standalone cases, no Moriarty storyline yet.** Moriarty is excluded from the motif library for now. | Keeps every case self-contained. An arc can be revisited later. |
+| 24 | Story arc | **Standalone cases, no Moriarty storyline yet.** Moriarty is excluded from the motif library for now. | Keeps every case self-contained. An arc can be revisited later. Revised in v1.7: Season 2 tries a serial thread as an experiment (decision 27); still no Moriarty. |
 | 25 | Generation runner | **Claude Code sessions on the player's existing subscription**, not the Claude API | No per-case cost. The writing steps run in a session that follows a repo skill, and the code checks stay the same. |
 | 26 | Reading Comprehension | **Out of scope**, not planned for any season | Keeps the game focused on argument, conditional and ordering logic. Documents (letters, wills, newspaper columns) remain clue sources only. |
+| 27 | Season 2 | **A serial season, as an experiment:** one thread and its people carry from case to case and resolve in the season's last case (§5) | Proposed by the player, to try more carry-over between cases. Seasons stay standalone by default; each case keeps its own culprit and is solved from its own text. |
 
 ---
 
@@ -174,7 +175,7 @@ Season (a sealed batch of ~8 cases)
 | Unit | Size | Notes |
 |------|------|-------|
 | **Season** | 6–10 cases | One sealed content bundle. **Strictly sequential:** only one unsolved case is open at a time, and the next unlocks when the current one is solved. Replaying finished cases is allowed. |
-| **Case** | 3–4 chapters, 6–10 deductions | One self-contained mystery. |
+| **Case** | 3–4 chapters, 6–10 deductions | One self-contained mystery (in a serial season, one that also carries the season's thread). |
 | **Chapter** | 5–10 minutes, 2–3 deductions | The unit of failure (decision 7) and a natural stopping point. |
 | **Beat** | 30 seconds to 3 minutes | The unit of autosave. Closing the app mid-beat resumes at the start of that beat. |
 
@@ -193,6 +194,31 @@ Season (a sealed batch of ~8 cases)
 
 The generator may vary this template (a case might open at the crime scene,
 or include a second victim mid-case), but all four phases are always present.
+
+### Serial seasons (decision 27)
+Seasons are standalone by default. Season 2 is an experiment in carry-over:
+
+- **One thread runs through the season.** Its first case plans it (the
+  secret truth, how it surfaces in each case, how it ends), and the
+  season's last case resolves it, as its main mystery or as the twist in
+  its own. The thread is human-scale: a recurring adversary, a client whose
+  trouble runs deeper than one case, linked incidents, a matter touching
+  Watson, Mrs. Hudson or an inspector. Never Moriarty or a stand-in for him.
+- **People and consequences return.** From the second case on, every case
+  brings back someone or something from an earlier one.
+- **Each case still stands on its own.** It has its own crime and culprit,
+  and a short recollection in Watson's voice reminds the player of what
+  matters. Every fact a deduction needs is in that case's text, so nothing
+  depends on remembering an earlier case (and the blind solvers, who see
+  only one case, check this).
+- **The thread travels sealed.** Each case records what it hands on (how it
+  ended, what it showed of the thread, who could return, loose ends) in the
+  sealed ledger, and `afoot next` gives it to the next generation session.
+  `afoot seal` refuses a serial case that changes what was already played,
+  calls back to nothing, or leaves the season's end with loose ends.
+
+If the experiment works, later seasons can adopt it in
+`pipeline/src/seasons.ts`.
 
 ---
 
@@ -819,7 +845,9 @@ The **motif library** (`pipeline/motifs/`, format in Appendix B) holds:
   telegram conventions, and social settings.
 
 The library excludes Moriarty and any motif that depends on a long-running
-conspiracy (decision 24). Every case is self-contained.
+conspiracy (decision 24). Every case is self-contained. A serial
+season's thread (decision 27) is the generation session's own invention, not
+a library motif, and is never Moriarty or a stand-in for him.
 
 Each case combines 2–3 motifs (one central trick and one or two
 complications), a setting, and the curriculum targets. A **novelty check**
@@ -1288,6 +1316,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). |
 | v1.6 | The engraving library: 112 of 116 catalog tags have a public-domain plate (Paget's Strand illustrations, Cassell's *Old and New London*, Doré, Gross's *Criminal Investigation*, trade catalogues, museum prints). Evidence objects sit in paper medallions in Examine scenes (§13.2). |
 | v1.5 | Season 2 groundwork. Tier 3's Notebook entries; *On Some, Most and All* moves to the Fallacy Index. The Missing Link is built as a sufficient-assumption puzzle with code-owned frames (§8.7). Adaptive variant selection and one-time room guides are built (§11.2, §11.3); variant difficulty is 1–5. |
 | v1.4 | M4 built. The test is never named in the app; the Notebook shows classic logic terms (decision 18). Audio is violin music and violin effects, with no ambience (decision 17, §13.5). Test Conditions is renamed By Candlelight, and Holmes' Ledger records every Declare (§12). Visual system, motion and the engraving build are written down (§13.1, §13.2); the grade seal's oxblood wax is the palette's one colour. |
