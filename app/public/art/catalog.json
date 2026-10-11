@@ -408,7 +408,15 @@
     {
       "tag": "portrait-constable",
       "kind": "portrait",
-      "description": "A uniformed constable with helmet and lantern."
+      "description": "A uniformed constable with helmet and lantern.",
+      "file": "portrait-constable.webp",
+      "credit": {
+        "title": "London: A Pilgrimage (Gustave Doré and Blanchard Jerrold): The Bull's-Eye",
+        "author": "Gustave Doré",
+        "date": "1872",
+        "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f333.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-holmes",
@@ -1157,7 +1165,15 @@
     {
       "tag": "vignette-glove",
       "kind": "vignette",
-      "description": "A lady's glove."
+      "description": "A lady's glove.",
+      "file": "vignette-glove.webp",
+      "credit": {
+        "title": "Sears, Roebuck and Co. Catalogue No. 111: ladies' kid gauntlets",
+        "author": "Sears, Roebuck and Co. (catalogue engraving)",
+        "date": "1902",
+        "source": "https://archive.org/details/sears-roebuck-catalogue-111",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-hat",
@@ -1297,7 +1313,15 @@
     {
       "tag": "vignette-knife",
       "kind": "vignette",
-      "description": "A knife."
+      "description": "A knife.",
+      "file": "vignette-knife.webp",
+      "credit": {
+        "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 115: position of a knife when cutting",
+        "author": "Hans Gross",
+        "date": "1906",
+        "source": "https://archive.org/details/criminalinvestig00grosuoft",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-rope",
@@ -1332,7 +1356,15 @@
     {
       "tag": "vignette-window",
       "kind": "vignette",
-      "description": "A window with a broken catch."
+      "description": "A window with a broken catch.",
+      "file": "vignette-window.webp",
+      "credit": {
+        "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 133: a barred window forced",
+        "author": "Hans Gross",
+        "date": "1906",
+        "source": "https://archive.org/details/criminalinvestig00grosuoft",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-lock",
@@ -1376,7 +1408,15 @@
     {
       "tag": "vignette-photograph",
       "kind": "vignette",
-      "description": "A cabinet photograph."
+      "description": "A cabinet photograph.",
+      "file": "vignette-photograph.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: gilt moulded cabinet photograph frame",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-coin",
@@ -1412,7 +1452,15 @@
     {
       "tag": "vignette-mud",
       "kind": "vignette",
-      "description": "A splash of mud on cloth."
+      "description": "A splash of mud on cloth.",
+      "file": "vignette-mud.webp",
+      "credit": {
+        "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 109: a stain on the corner of a waistcoat",
+        "author": "Hans Gross",
+        "date": "1906",
+        "source": "https://archive.org/details/criminalinvestig00grosuoft",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-dog",
@@ -1430,7 +1478,15 @@
     {
       "tag": "vignette-horse",
       "kind": "vignette",
-      "description": "A horse's hoof and shoe."
+      "description": "A horse's hoof and shoe.",
+      "file": "vignette-horse.webp",
+      "credit": {
+        "title": "A Handbook of Horse-Shoeing (J. A. W. Dollar), fig. 212: fullered front shoe for a hunter",
+        "author": "Unknown engraver",
+        "date": "1898",
+        "source": "https://archive.org/details/handbookofhorses00doll",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-carriage-wheel",
@@ -1448,7 +1504,15 @@
     {
       "tag": "vignette-handkerchief",
       "kind": "vignette",
-      "description": "A monogrammed handkerchief."
+      "description": "A monogrammed handkerchief.",
+      "file": "vignette-handkerchief.webp",
+      "credit": {
+        "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104: ladies' embroidered handkerchief",
+        "author": "Sears, Roebuck and Co. (catalogue engraving)",
+        "date": "1897",
+        "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-diary",
@@ -1466,7 +1530,15 @@
     {
       "tag": "vignette-ledger",
       "kind": "vignette",
-      "description": "An account book."
+      "description": "An account book.",
+      "file": "vignette-ledger.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: ledger",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-will",
@@ -1476,7 +1548,15 @@
     {
       "tag": "vignette-bloodstain",
       "kind": "vignette",
-      "description": "A dark stain on floorboards."
+      "description": "A dark stain on floorboards.",
+      "file": "vignette-bloodstain.webp",
+      "credit": {
+        "title": "Criminal Investigation (Hans Gross, tr. J. Adam), fig. 104a: a splash of blood",
+        "author": "Hans Gross",
+        "date": "1906",
+        "source": "https://archive.org/details/criminalinvestig00grosuoft",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-glass",
@@ -1512,7 +1592,15 @@
     {
       "tag": "vignette-matchbox",
       "kind": "vignette",
-      "description": "A matchbox."
+      "description": "A matchbox.",
+      "file": "vignette-matchbox.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: vesta match box",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889",
+        "license": "Public domain"
+      }
     }
   ]
 }
