@@ -180,7 +180,10 @@ For each target:
    and read it. This is everything the player knows, and nothing more.
 2. Spawn **separate** `blind-solver` sub-agents (in parallel), each given the
    full view text pasted into its prompt. Never give a file path, the case
-   id, the intended answer, or any hint.
+   id, the intended answer, or any hint. Launch every playtest agent in the
+   foreground (`run_in_background: false`): several in one message still run
+   in parallel, and their answers come back in the same turn. A session that
+   ends its turn while agents run in the background may never be woken.
 3. Save each solver's reply to a temp file and record it:
    `npm run -s afoot -- check <caseId> <target> /tmp/afoot-answer-N.json --solver solver-N`
    (use distinct solver names; it prints CORRECT or WRONG).
