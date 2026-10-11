@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.7. Written from a design interview, October 2026
+**Status:** v1.8. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -704,9 +704,14 @@ pipeline composes the scenes itself:
    the upright Examine frame, vignette 640×480, the object shown whole on
    white). A plate may whiten scan marks or a neighbouring cut (`erase`).
    Images come from large Commons renderings (`thumb.wikimedia.org`), the
-   Internet Archive and museum collections. 112 of the 116 tags have a
+   Internet Archive and museum collections. 147 of the 151 tags have a
    plate; cigar ash, a thread, a will and a calling card keep their
-   placeholder until a plate good enough turns up. The app lays every plate
+   placeholder until a plate good enough turns up. A tag may carry several
+   plates (`tag#2`, `tag#3`, … in `plates.json`, listed as `variants` in the
+   catalog), 167 in all. A case shows one plate per tag throughout, people,
+   places or objects that share a tag get different plates while there are
+   enough, and which plate comes first varies from case to case
+   (`app/src/ui/plates.ts`). The app lays every plate
    onto the paper with a multiply blend and one sepia filter, which is what
    makes plates from different sources look like one magazine. `afoot art
    check` (also a unit test) confirms every plate exists and is credited;
@@ -1333,6 +1338,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.8 | The engraving library grows: 35 new subjects (14 kinds of person, 14 places, 9 objects) and second plates for 20 existing subjects; a tag may carry several plates, chosen per case (§13.2). |
 | v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). Generation sessions keep their status lines content-free and their deduction slot ids neutral (§14.7). The story so far (§6), the forward button's settle, and the status-bar strip (§13.4). |
 | v1.6 | The engraving library: 112 of 116 catalog tags have a public-domain plate (Paget's Strand illustrations, Cassell's *Old and New London*, Doré, Gross's *Criminal Investigation*, trade catalogues, museum prints). Evidence objects sit in paper medallions in Examine scenes (§13.2). |
 | v1.5 | Season 2 groundwork. Tier 3's Notebook entries; *On Some, Most and All* moves to the Fallacy Index. The Missing Link is built as a sufficient-assumption puzzle with code-owned frames (§8.7). Adaptive variant selection and one-time room guides are built (§11.2, §11.3); variant difficulty is 1–5. |
