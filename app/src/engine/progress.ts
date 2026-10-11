@@ -132,6 +132,80 @@ export function advance(c: Case, p: CaseProgress): CaseProgress {
   return { ...p, ...fresh, stage: { kind: "finale", step: "intro" } };
 }
 
+/** One page of what the player has read so far (§6: looking back). */
+export type StoryPage =
+  | { kind: "chapter"; number: number; title: string }
+  | { kind: "narration"; paragraphs: string[] }
+  | { kind: "observed"; subject: string; notes: string[] }
+  | { kind: "examined"; place: string; items: { name: string; text: string }[] }
+  | { kind: "questioned"; witness: string; answers: { topic: string; sentences: string[] }[] }
+  | { kind: "deduction"; prompt: string; conclusion?: string }
+  | { kind: "finale"; paragraphs: string[] };
+
+/** What the player has read of one beat: all of it if finished, else what its phase has shown. */
+function pageFor(c: Case, beat: Beat, phase: BeatPhase | undefined, known: Set<string>): StoryPage | undefined {
+  const name = (id: string) => c.cast.find((x) => x.id === id)?.name ?? id;
+  switch (beat.kind) {
+    case "narration": {
+      const shown = phase?.kind === "narration" ? phase.paragraph + 1 : beat.paragraphs.length;
+      return { kind: "narration", paragraphs: beat.paragraphs.slice(0, shown) };
+    }
+    case "observe": {
+      const seen = (id: string) => (phase?.kind === "observe" ? phase.inspected.includes(id) : known.has(id));
+      const notes = beat.details.filter((d) => seen(d.id)).map((d) => d.text);
+      return notes.length ? { kind: "observed", subject: name(beat.subject), notes } : undefined;
+    }
+    case "examine": {
+      const seen = (id: string) => (phase?.kind === "examine" ? phase.found.includes(id) : known.has(id));
+      const items = beat.hotspots
+        .filter(seen)
+        .flatMap((id) => c.evidence.filter((e) => e.id === id))
+        .map((e) => ({ name: e.name, text: e.description }));
+      const place = c.locations.find((l) => l.id === beat.location)?.name ?? beat.location;
+      return items.length ? { kind: "examined", place, items } : undefined;
+    }
+    case "interrogate": {
+      const seen = (id: string) => (phase?.kind === "interrogate" ? phase.asked.includes(id) : known.has(id));
+      const answers = beat.topics.filter((t) => seen(t.id)).map((t) => ({ topic: t.label, sentences: t.sentences.map((x) => x.text) }));
+      return answers.length ? { kind: "questioned", witness: name(beat.witness), answers } : undefined;
+    }
+    case "deduction": {
+      const solved = phase?.kind === "deduction" ? phase.step === "speaks" : true;
+      return { kind: "deduction", prompt: beat.slot.prompt, ...(solved ? { conclusion: beat.slot.onSolved.holmesSpeaks } : {}) };
+    }
+  }
+}
+
+/**
+ * Everything the player has read in this case, in order, up to where they are
+ * now: so a page tapped past too quickly can be read again. It reveals nothing
+ * the player has not already been shown.
+ */
+export function storySoFar(c: Case, p: CaseProgress): StoryPage[] {
+  const s = p.stage;
+  const known = new Set(p.known);
+  // A cold chapter starts again, so only the chapters before it stand as read.
+  const lastChapter = s.kind === "chapter" ? s.chapter : s.kind === "cold" ? s.chapter - 1 : c.chapters.length - 1;
+  const pages: StoryPage[] = [];
+  for (let ch = 0; ch <= lastChapter; ch++) {
+    const chapter = c.chapters[ch]!;
+    pages.push({ kind: "chapter", number: ch, title: chapter.title });
+    const here = s.kind === "chapter" && s.chapter === ch;
+    const lastBeat = here ? s.beat : chapter.beats.length - 1;
+    for (let b = 0; b <= lastBeat; b++) {
+      const page = pageFor(c, chapter.beats[b]!, here && b === lastBeat ? s.phase : undefined, known);
+      if (page) pages.push(page);
+    }
+  }
+  if (s.kind === "finale" || s.kind === "finale-cold" || s.kind === "account") {
+    pages.push({ kind: "finale", paragraphs: c.finale.intro });
+    if (s.kind === "account" || (s.kind === "finale" && s.step === "solution")) {
+      pages.push({ kind: "finale", paragraphs: c.finale.solution });
+    }
+  }
+  return pages;
+}
+
 export function nextParagraph(c: Case, p: CaseProgress): CaseProgress {
   const beat = currentBeat(c, p);
   if (p.stage.kind !== "chapter" || beat?.kind !== "narration" || p.stage.phase.kind !== "narration") return p;

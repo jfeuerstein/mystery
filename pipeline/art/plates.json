@@ -1884,6 +1884,1016 @@
           0.45
         ]
       ]
+    },
+    "portrait-holmes#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:Portrait_of_Sherlock_Holmes_by_Sidney_Paget.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Portrait_of_Sherlock_Holmes_by_Sidney_Paget.jpg/1920px-Portrait_of_Sherlock_Holmes_by_Sidney_Paget.jpg",
+      "title": "Portrait of Sherlock Holmes (original ink and wash drawing)",
+      "author": "Sidney Paget",
+      "date": "1904",
+      "license": "Public domain",
+      "crop": [
+        0.25,
+        0.1,
+        0.8,
+        0.92
+      ]
+    },
+    "portrait-watson#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Crooked_Man_03,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/The_Crooked_Man_03%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Crooked_Man_03%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Crooked Man (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.19,
+        0.0,
+        0.51,
+        0.516
+      ]
+    },
+    "portrait-mycroft#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Greek_Interpreter_01,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/The_Greek_Interpreter_01%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Greek_Interpreter_01%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Greek Interpreter (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.15,
+        0.0,
+        0.95,
+        0.465
+      ]
+    },
+    "portrait-gentleman#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p285.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/The_Strand_Magazine_%28Volume_5%29_-_p285.png/1920px-The_Strand_Magazine_%28Volume_5%29_-_p285.png",
+      "title": "The Stockbroker's Clerk (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.58,
+        0.03,
+        0.97,
+        0.348
+      ]
+    },
+    "portrait-inspector#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_26)_-_p505.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/The_Strand_Magazine_%28Volume_26%29_-_p505.png/1920px-The_Strand_Magazine_%28Volume_26%29_-_p505.png",
+      "title": "The Norwood Builder (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1903",
+      "license": "Public domain",
+      "crop": [
+        0.55,
+        0.1,
+        0.98,
+        0.477
+      ]
+    },
+    "portrait-aristocrat#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_The_Adventure_of_the_Noble_Bachelor_02.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Sidney_Paget_-_The_Adventure_of_the_Noble_Bachelor_02.jpg/1920px-Sidney_Paget_-_The_Adventure_of_the_Noble_Bachelor_02.jpg",
+      "title": "The Noble Bachelor (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.66,
+        0.0,
+        0.98,
+        0.481
+      ]
+    },
+    "portrait-young-woman#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._22,_pg._401_-_Phyllis.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/The_Strand_Magazine_vol._4%2C_no._22%2C_pg._401_-_Phyllis.png/1920px-The_Strand_Magazine_vol._4%2C_no._22%2C_pg._401_-_Phyllis.png",
+      "title": "Phyllis (The Strand Magazine)",
+      "author": "Unknown illustrator",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.06,
+        0.012,
+        0.94,
+        0.989
+      ]
+    },
+    "scene-sitting-room#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._7,_pg._62_-_Then_he_stood_before_the_fire.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/The_Strand_Magazine_vol._2%2C_no._7%2C_pg._62_-_Then_he_stood_before_the_fire.png/1920px-The_Strand_Magazine_vol._2%2C_no._7%2C_pg._62_-_Then_he_stood_before_the_fire.png",
+      "title": "A Scandal in Bohemia (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.01,
+        0.0,
+        0.99,
+        0.911
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-library#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Musgrave_Ritual_03,_The_Strand_Magazine,_Vol_5.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/The_Musgrave_Ritual_03%2C_The_Strand_Magazine%2C_Vol_5.jpg/1920px-The_Musgrave_Ritual_03%2C_The_Strand_Magazine%2C_Vol_5.jpg",
+      "title": "The Musgrave Ritual (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.05,
+        0.035,
+        1.0,
+        0.819
+      ],
+      "focus": [
+        0.6,
+        0.35
+      ]
+    },
+    "scene-hall#2": {
+      "page": "https://archive.org/details/henrywadsworthlo00unde",
+      "image": "https://archive.org/download/henrywadsworthlo00unde/page/n137.jpg",
+      "title": "Henry Wadsworth Longfellow: a Biographical Sketch (The Old Clock on the Stairs)",
+      "author": "Unknown engraver",
+      "date": "1882",
+      "license": "Public domain",
+      "crop": [
+        0.226,
+        0.268,
+        0.861,
+        0.804
+      ],
+      "focus": [
+        0.45,
+        0.45
+      ],
+      "erase": [
+        [
+          0,
+          0.797,
+          0.274,
+          0.927
+        ],
+        [
+          0,
+          0.918,
+          0.416,
+          1.0
+        ]
+      ]
+    },
+    "scene-cellar#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Musgrave_Ritual_06,_The_Strand_Magazine,_Vol_5.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/The_Musgrave_Ritual_06%2C_The_Strand_Magazine%2C_Vol_5.jpg/1920px-The_Musgrave_Ritual_06%2C_The_Strand_Magazine%2C_Vol_5.jpg",
+      "title": "The Musgrave Ritual (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.015,
+        0.14,
+        1.0,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-study#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_26)_-_p376.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/The_Strand_Magazine_%28Volume_26%29_-_p376.png/1920px-The_Strand_Magazine_%28Volume_26%29_-_p376.png",
+      "title": "The Adventure of the Empty House (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1903",
+      "license": "Public domain",
+      "crop": [
+        0.05,
+        0.0,
+        0.94,
+        1.0
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "scene-drawing-room#2": {
+      "page": "https://www.oldbookillustrations.com/illustrations/colin/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1866/colin-rawscan.jpg",
+      "title": "Wives and Daughters (Cornhill Magazine): You'll Be Sorry",
+      "author": "George du Maurier (engraved by Joseph Swain)",
+      "date": "1866",
+      "license": "Public domain",
+      "crop": [
+        0.005,
+        0.045,
+        0.98,
+        0.9
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "scene-drawing-room#3": {
+      "page": "https://www.oldbookillustrations.com/illustrations/know-weakness/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1879/know-weakness-rawscan.jpg",
+      "title": "The Cornhill Magazine: You Know My Weakness",
+      "author": "Frank Dicksee (engraved by Joseph Swain)",
+      "date": "1879",
+      "license": "Public domain",
+      "crop": [
+        0.005,
+        0.03,
+        0.97,
+        0.927
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "scene-dining-room#2": {
+      "page": "https://www.oldbookillustrations.com/illustrations/assemblage-countenances/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1886/assemblage-countenances-rawscan.jpg",
+      "title": "Old Christmas (Washington Irving): Assemblage of Countenances",
+      "author": "Randolph Caldecott (engraved by James D. Cooper)",
+      "date": "1886",
+      "license": "Public domain",
+      "crop": [
+        0.03,
+        0.03,
+        0.975,
+        0.9115
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-country-house#2": {
+      "page": "https://www.oldbookillustrations.com/illustrations/old-family-mansion/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1886/old-family-mansion-rawscan.jpg",
+      "title": "Old Christmas (Washington Irving): The Old Family Mansion",
+      "author": "Randolph Caldecott (engraved by James D. Cooper)",
+      "date": "1886",
+      "license": "Public domain",
+      "crop": [
+        0.03,
+        0.05,
+        0.97,
+        0.905
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-churchyard#2": {
+      "page": "https://www.oldbookillustrations.com/illustrations/niton-church/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/n-d-1834/niton-church-rawscan.jpg",
+      "title": "Barber's Picturesque Illustrations of the Isle of Wight: Niton Church",
+      "author": "Henry Winkles",
+      "date": "1834",
+      "license": "Public domain",
+      "crop": [
+        0.235,
+        0.02,
+        0.7268,
+        0.94
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    "scene-churchyard#3": {
+      "page": "https://www.oldbookillustrations.com/illustrations/single-field/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1901/single-field-rawscan.jpg",
+      "title": "The Witch of Prague: That Single Field",
+      "author": "William John Hennessy",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.2,
+        0.02,
+        0.824,
+        0.97
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "erase": [
+        [
+          0,
+          0.93,
+          1,
+          1
+        ]
+      ]
+    },
+    "scene-stables#2": {
+      "page": "https://www.oldbookillustrations.com/illustrations/farm-yard/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1895/farm-yard-rawscan.jpg",
+      "title": "Pictures of Rustic Landscape: Farm-Yard",
+      "author": "Myles Birket Foster (engraved by the Dalziel brothers)",
+      "date": "1895",
+      "license": "Public domain",
+      "crop": [
+        0.02,
+        0.0,
+        0.9625,
+        0.96
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    "scene-sitting-room#3": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_01,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/The_Naval_Treaty_01%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_01%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.09,
+        0.0,
+        0.984,
+        1.0
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "portrait-stationmaster": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Greek_Interpreter_06,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/The_Greek_Interpreter_06%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Greek_Interpreter_06%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Greek Interpreter (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.57,
+        0.055,
+        0.95,
+        0.4
+      ],
+      "focus": [
+        0.5,
+        0.42
+      ]
+    },
+    "portrait-widow": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._143_-_She_Raised_her_Veil.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/The_Strand_Magazine_vol._3%2C_no._14%2C_pg._143_-_She_Raised_her_Veil.png/1920px-The_Strand_Magazine_vol._3%2C_no._14%2C_pg._143_-_She_Raised_her_Veil.png",
+      "title": "The Adventure of the Speckled Band (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.1,
+        0.13,
+        0.45,
+        0.66
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "portrait-old-soldier": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._19,_pg._71_-_The_Colonel.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Strand_Magazine_vol._4%2C_no._19%2C_pg._71_-_The_Colonel.png/1920px-The_Strand_Magazine_vol._4%2C_no._19%2C_pg._71_-_The_Colonel.png",
+      "title": "The Strand Magazine, vol. 4: \"The Colonel\"",
+      "author": "Paul Hardy",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.13,
+        0.005,
+        0.73,
+        0.33
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "portrait-footman": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._389_-_She_was_Ejected_by_the_Butler_and_the_Footman.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/The_Strand_Magazine_vol._3%2C_no._16%2C_pg._389_-_She_was_Ejected_by_the_Butler_and_the_Footman.png/1920px-The_Strand_Magazine_vol._3%2C_no._16%2C_pg._389_-_She_was_Ejected_by_the_Butler_and_the_Footman.png",
+      "title": "The Adventure of the Noble Bachelor (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.52,
+        0.165,
+        0.84,
+        0.44
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "portrait-tramp": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._12,_pg._629_-_He_is_a_Professional_Beggar.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/The_Strand_Magazine_vol._2%2C_no._12%2C_pg._629_-_He_is_a_Professional_Beggar.png/1920px-The_Strand_Magazine_vol._2%2C_no._12%2C_pg._629_-_He_is_a_Professional_Beggar.png",
+      "title": "The Strand Magazine, vol. 2: \"He is a professional beggar\"",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.29,
+        0.12,
+        0.89,
+        0.66
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "portrait-nurse": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._6,_no._36,_pg._606_-_The_Nurse_Started.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/The_Strand_Magazine_vol._6%2C_no._36%2C_pg._606_-_The_Nurse_Started.png/1920px-The_Strand_Magazine_vol._6%2C_no._36%2C_pg._606_-_The_Nurse_Started.png",
+      "title": "The Strand Magazine, vol. 6: \"The nurse started\"",
+      "author": "Alfred Pearse",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.12,
+        0.035,
+        0.53,
+        0.45
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "portrait-squire": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-11_-_Sir_Henry_Baskerville_(Hound_of_Baskervilles,_page_58).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Houn-11_-_Sir_Henry_Baskerville_%28Hound_of_Baskervilles%2C_page_58%29.jpg/1920px-Houn-11_-_Sir_Henry_Baskerville_%28Hound_of_Baskervilles%2C_page_58%29.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.22,
+        0.05,
+        0.88,
+        0.475
+      ],
+      "focus": [
+        0.5,
+        0.42
+      ]
+    },
+    "portrait-page-boy": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._11,_pg._514_-_Buttons.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/The_Strand_Magazine_vol._2%2C_no._11%2C_pg._514_-_Buttons.png/1920px-The_Strand_Magazine_vol._2%2C_no._11%2C_pg._514_-_Buttons.png",
+      "title": "The Strand Magazine, vol. 2: \"Buttons\"",
+      "author": "Unknown illustrator",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.5,
+        0.0,
+        0.97,
+        0.47
+      ],
+      "focus": [
+        0.5,
+        0.0
+      ]
+    },
+    "portrait-pawnbroker": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._8,_pg._190_-_Mr_Jabez_Wilson.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/The_Strand_Magazine_vol._2%2C_no._8%2C_pg._190_-_Mr_Jabez_Wilson.png/1920px-The_Strand_Magazine_vol._2%2C_no._8%2C_pg._190_-_Mr_Jabez_Wilson.png",
+      "title": "The Red-Headed League (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.4,
+        0.08,
+        0.88,
+        0.67
+      ],
+      "focus": [
+        0.5,
+        0.42
+      ]
+    },
+    "portrait-magistrate": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._1,_no._4,_pg._403_-_Mr_Justice_Stephen.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/The_Strand_Magazine_vol._1%2C_no._4%2C_pg._403_-_Mr_Justice_Stephen.png/1920px-The_Strand_Magazine_vol._1%2C_no._4%2C_pg._403_-_Mr_Justice_Stephen.png",
+      "title": "The Strand Magazine, vol. 1: \"Mr Justice Stephen\"",
+      "author": "Unknown illustrator (A. L.)",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.05,
+        0.0,
+        0.75,
+        0.7
+      ],
+      "focus": [
+        0.42,
+        0.45
+      ]
+    },
+    "portrait-child": {
+      "page": "https://commons.wikimedia.org/wiki/File:Little_Lord_Fauntleroy_-_page_30.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Little_Lord_Fauntleroy_-_page_30.png/1920px-Little_Lord_Fauntleroy_-_page_30.png",
+      "title": "Little Lord Fauntleroy",
+      "author": "Reginald B. Birch",
+      "date": "1886",
+      "license": "Public domain",
+      "crop": [
+        0.1,
+        0.265,
+        0.42,
+        0.61
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "portrait-engineer": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._6,_no._36,_pg._601_-_He_Tore_It_Into_Several_Pieces.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Strand_Magazine_vol._6%2C_no._36%2C_pg._601_-_He_Tore_It_Into_Several_Pieces.png/1920px-The_Strand_Magazine_vol._6%2C_no._36%2C_pg._601_-_He_Tore_It_Into_Several_Pieces.png",
+      "title": "Stories from the Diary of a Doctor (The Strand Magazine)",
+      "author": "Alfred Pearse",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.115,
+        0.06,
+        0.49,
+        0.46
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "scene-billiard-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:Interior_of_the_billiard_room_at_Lupton_House,_Devonshire,_designed_by_George_Wrightwick_for_Sir_J.B.Y._Buller_MET_DP805111.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Interior_of_the_billiard_room_at_Lupton_House%2C_Devonshire%2C_designed_by_George_Wrightwick_for_Sir_J.B.Y._Buller_MET_DP805111.jpg/1920px-Interior_of_the_billiard_room_at_Lupton_House%2C_Devonshire%2C_designed_by_George_Wrightwick_for_Sir_J.B.Y._Buller_MET_DP805111.jpg",
+      "title": "Interior of the Billiard Room at Lupton House, Devonshire (Metropolitan Museum of Art)",
+      "author": "Reid Turner",
+      "date": "1838",
+      "license": "CC0",
+      "crop": [
+        0.15,
+        0.12,
+        0.7,
+        0.97
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    "scene-courtroom": {
+      "page": "https://wellcomecollection.org/works/aa2hj45d",
+      "image": "https://iiif.wellcomecollection.org/image/V0041662/full/max/0/default.jpg",
+      "title": "The trial of Dr G. H. Lamson at the Central Criminal Court (Wellcome Collection)",
+      "author": "Unknown engraver",
+      "date": "1882",
+      "license": "Public domain",
+      "crop": [
+        0.43,
+        0.03,
+        0.955,
+        0.935
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-hospital-ward": {
+      "page": "https://wellcomecollection.org/works/w9wvw6xq",
+      "image": "https://iiif.wellcomecollection.org/image/V0013739/full/max/0/default.jpg",
+      "title": "The Hospital of Bethlem, St George's Fields: the men's ward of the infirmary (Wellcome Collection)",
+      "author": "F. Vizetelly",
+      "date": "1860",
+      "license": "Public domain",
+      "crop": [
+        0.38,
+        0.02,
+        0.93,
+        0.97
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-pawnshop": {
+      "page": "https://wellcomecollection.org/works/rejh8scb",
+      "image": "https://iiif.wellcomecollection.org/image/V0039471/full/max/0/default.jpg",
+      "title": "The Pawnbroker's Shop, from Sketches by Boz (Wellcome Collection)",
+      "author": "George Cruikshank",
+      "date": "1836",
+      "license": "Public domain",
+      "crop": [
+        0.08,
+        0.06,
+        0.96,
+        0.9
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-museum": {
+      "page": "https://wellcomecollection.org/works/k8rknk47",
+      "image": "https://iiif.wellcomecollection.org/image/V0013525/full/max/0/default.jpg",
+      "title": "The British Museum: the Egyptian Room (Wellcome Collection)",
+      "author": "Radclyffe, after B. Sly",
+      "date": "1844",
+      "license": "Public domain",
+      "crop": [
+        0.25,
+        0.1,
+        0.73,
+        0.815
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-ship-deck": {
+      "page": "https://wellcomecollection.org/works/b9tke2cp",
+      "image": "https://iiif.wellcomecollection.org/image/V0010491/full/max/0/default.jpg",
+      "title": "The Cholera in Egypt: quarantine examination at Brindisi (Wellcome Collection)",
+      "author": "Unknown engraver",
+      "date": "1883",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        0.962
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-night-street": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f295.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Bpt6k10470488_f295.jpg/1920px-Bpt6k10470488_f295.jpg",
+      "title": "London: A Pilgrimage (Houndsditch, Harrow Alley)",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.06,
+        0.11,
+        0.83,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-market": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f360.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Bpt6k10470488_f360.jpg/1920px-Bpt6k10470488_f360.jpg",
+      "title": "London: A Pilgrimage (Borough Market)",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        0.965
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    "scene-conservatory": {
+      "page": "https://commons.wikimedia.org/wiki/File:Gezicht_op_de_orangerie_van_Somerleyton_Hall,_RP-P-2018-1987.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Gezicht_op_de_orangerie_van_Somerleyton_Hall%2C_RP-P-2018-1987.jpg/1920px-Gezicht_op_de_orangerie_van_Somerleyton_Hall%2C_RP-P-2018-1987.jpg",
+      "title": "The Winter Garden, at Somerleyton (The Illustrated London News)",
+      "author": "Unknown engraver",
+      "date": "1857",
+      "license": "CC0",
+      "crop": [
+        0.03,
+        0.02,
+        0.97,
+        0.915
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    "scene-ballroom": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f403.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Bpt6k10470488_f403.jpg/1920px-Bpt6k10470488_f403.jpg",
+      "title": "London: A Pilgrimage (A Ball at the Mansion House)",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        0.94
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-embankment": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f427.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Bpt6k10470488_f427.jpg/1920px-Bpt6k10470488_f427.jpg",
+      "title": "London: A Pilgrimage (Under the Arches)",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.025,
+        0.035,
+        0.975,
+        0.92
+      ],
+      "focus": [
+        0.55,
+        0.5
+      ]
+    },
+    "scene-country-lane": {
+      "page": "https://archive.org/details/birketfosterspic00tayl/page/n18/mode/1up",
+      "image": "https://archive.org/download/birketfosterspic00tayl/page/n18_w4000.jpg",
+      "title": "Birket Foster's Pictures of English Landscape: The Green Lane",
+      "author": "Myles Birket Foster, engraved by the Dalziel Brothers",
+      "date": "1863",
+      "license": "Public domain",
+      "crop": [
+        0.068,
+        0.078,
+        0.935,
+        0.878
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    "scene-lighthouse": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bell_Rock_light_house_during_a_storm_from_the_North_East_-_drawn_by_J.M._W._Turner,_R.A.;_engraved_by_J._Horsburgh._LCCN2005688383.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Bell_Rock_light_house_during_a_storm_from_the_North_East_-_drawn_by_J.M._W._Turner%2C_R.A.%3B_engraved_by_J._Horsburgh._LCCN2005688383.jpg/1920px-Bell_Rock_light_house_during_a_storm_from_the_North_East_-_drawn_by_J.M._W._Turner%2C_R.A.%3B_engraved_by_J._Horsburgh._LCCN2005688383.jpg",
+      "title": "Bell Rock Light House during a Storm from the North East (Stevenson, Account of the Bell Rock Light-House)",
+      "author": "J. Horsburgh after J. M. W. Turner",
+      "date": "1824",
+      "license": "Public domain",
+      "crop": [
+        0.162,
+        0.23,
+        0.846,
+        0.79
+      ],
+      "focus": [
+        0.62,
+        0.5
+      ]
+    },
+    "scene-police-station": {
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Scotland_Yard_(14540031605).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Great_Scotland_Yard_%2814540031605%29.jpg/1920px-Great_Scotland_Yard_%2814540031605%29.jpg",
+      "title": "Taking Out Cab Licences at the Metropolitan Police Offices, Scotland Yard (The Illustrated London News)",
+      "author": "Unknown engraver",
+      "date": "1880",
+      "license": "Public domain",
+      "crop": [
+        0.2,
+        0.0,
+        0.745,
+        0.985
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "vignette-medal": {
+      "page": "https://archive.org/details/Junior5026/page/n860/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n860.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: miniature war medals (Afghanistan Medal, Kabul to Kandahar Star)",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.085,
+        0.188,
+        0.47,
+        0.44
+      ],
+      "levels": [
+        60,
+        165
+      ]
+    },
+    "vignette-locket": {
+      "page": "https://archive.org/details/Junior5026/page/n462/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n462.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: engraved gold locket",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.338,
+        0.548,
+        0.576,
+        0.81
+      ],
+      "levels": [
+        60,
+        165
+      ]
+    },
+    "vignette-scissors": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n124/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n124.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104: Heinisch straight trimmers",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.04,
+        0.6,
+        0.325,
+        0.694
+      ]
+    },
+    "vignette-magnifying-glass": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n465/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n465.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104: reading glass",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.36,
+        0.569,
+        0.4788,
+        0.752
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.07,
+          1
+        ]
+      ]
+    },
+    "vignette-telescope": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n464/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n464.jpg",
+      "title": "Sears, Roebuck and Co. Consumers Guide, Catalogue No. 104: tourists' spy glass",
+      "author": "Sears, Roebuck and Co. (catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.346,
+        0.312,
+        0.641,
+        0.393
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.04,
+          1
+        ]
+      ]
+    },
+    "vignette-bell-pull": {
+      "page": "https://archive.org/details/Junior5026/page/n988/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n988.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: hand bell",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.095,
+        0.309,
+        0.379,
+        0.632
+      ],
+      "levels": [
+        60,
+        165
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.3,
+          0.07
+        ]
+      ]
+    },
+    "vignette-birdcage": {
+      "page": "https://archive.org/details/Junior5026/page/n993/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n993.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: bird cage",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.5,
+        0.455,
+        0.94,
+        0.755
+      ],
+      "levels": [
+        60,
+        165
+      ]
+    },
+    "vignette-snuffbox": {
+      "page": "https://archive.org/details/Junior5026/page/n178/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n178.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: cigar case",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.24,
+        0.2,
+        0.69,
+        0.605
+      ],
+      "levels": [
+        60,
+        165
+      ]
+    },
+    "vignette-spectacles": {
+      "page": "https://archive.org/details/Junior5026/page/n610/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n610.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: pince-nez folders",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.245,
+        0.15,
+        0.77,
+        0.32
+      ],
+      "erase": [
+        [
+          0.41,
+          0.6,
+          0.58,
+          0.75
+        ],
+        [
+          0.0,
+          0.74,
+          0.83,
+          1.0
+        ]
+      ],
+      "levels": [
+        60,
+        165
+      ]
     }
   }
 }

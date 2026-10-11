@@ -64,6 +64,24 @@ body {
   user-select: none;
 }
 
+/* The strip under the iPhone's status bar. iOS paints the status bar itself
+   in the flat theme colour (or Safari tints it with that colour), but the page
+   beneath was grained, foxed and vignetted, so the strip read as a pale veil
+   across the top. Plain paper there, fading into the texture just below,
+   meets the status bar without a seam. Above the foxing (z 20), beneath the
+   Mind Palace (z 30), which sets its own theme colour. */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--safe-top) + 10px);
+  z-index: 21;
+  pointer-events: none;
+  background: linear-gradient(var(--paper) calc(100% - 10px), transparent);
+}
+
 /* Age and foxing laid over every paper surface alike, so sticky bars and
    sheets never show as cleaner rectangles. Beneath the Mind Palace (z 30). */
 body::after {
@@ -124,11 +142,11 @@ button {
 }
 
 .page {
-  animation: ink-in 520ms var(--ease) both;
+  animation: ink-in 520ms var(--ease) backwards;
 }
 
 .ink-in {
-  animation: ink-in 520ms var(--ease) both;
+  animation: ink-in 520ms var(--ease) backwards;
 }
 
 /* ---------- Strand page furniture ---------- */
@@ -175,7 +193,7 @@ button {
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
-  animation: ink-in 600ms var(--ease) both;
+  animation: ink-in 600ms var(--ease) backwards;
 }
 
 .prose p.dropcap::first-letter {
@@ -192,12 +210,13 @@ button {
   margin: 6px 0 18px;
 }
 
-.chapter-head .chapter-number {
+.chapter-head .chapter-number,
+.story-chapter .chapter-number {
   font-family: var(--display);
   font-size: 0.85em;
   letter-spacing: 0.3em;
   color: var(--sepia);
-  animation: ink-in 600ms var(--ease) both;
+  animation: ink-in 600ms var(--ease) backwards;
 }
 
 .chapter-head h2 {
@@ -205,7 +224,7 @@ button {
   font-weight: 400;
   font-size: 1.7em;
   margin: 2px 0 0;
-  animation: ink-in 700ms 120ms var(--ease) both;
+  animation: ink-in 700ms 120ms var(--ease) backwards;
 }
 
 /* ---------- Buttons ---------- */
@@ -234,6 +253,11 @@ button {
 
 .btn[disabled] {
   opacity: 0.35;
+}
+
+/* A forward button settling after the page turns: inert, but not greyed. */
+.btn.settling[disabled] {
+  opacity: 1;
 }
 
 .btn-row {
@@ -348,7 +372,7 @@ button {
   background: var(--paper-deep);
   overflow: hidden;
   box-shadow: 0 1px 0 var(--paper-shadow);
-  animation: ink-in 700ms var(--ease) both;
+  animation: ink-in 700ms var(--ease) backwards;
 }
 
 .engraving > img,
@@ -388,6 +412,17 @@ button {
 
 .engraving.portrait figcaption {
   display: none;
+}
+
+/* The plate clips itself to the oval. Safari does not apply an ancestor's
+   rounded overflow clip to a child while the child is composited (as the
+   plate is during its fade-in), so on load the square plate showed past the
+   frame until the fade ended. */
+.engraving.portrait > img,
+.engraving.portrait > .plate {
+  border-radius: inherit;
+  -webkit-clip-path: inset(0 round 50% / 46%);
+  clip-path: inset(0 round 50% / 46%);
 }
 
 .engraving figcaption {
@@ -447,7 +482,7 @@ button {
   border-radius: var(--radius);
   padding: 10px 12px;
   background: rgba(255, 252, 244, 0.35);
-  animation: ink-in 500ms var(--ease) both;
+  animation: ink-in 500ms var(--ease) backwards;
 }
 
 .list {
@@ -534,7 +569,7 @@ button {
 
 .title-frame h1 span {
   display: block;
-  animation: ink-in 1100ms var(--ease) both;
+  animation: ink-in 1100ms var(--ease) backwards;
 }
 
 .title-frame h1 span:nth-child(2) {
@@ -604,7 +639,7 @@ button {
   border: 1px solid var(--sepia);
   border-radius: 2px 4px 4px 4px;
   box-shadow: 0 2px 0 var(--paper-shadow), 0 3px 6px rgba(31, 26, 20, 0.12);
-  animation: ink-in 520ms var(--ease) both;
+  animation: ink-in 520ms var(--ease) backwards;
   transition: transform 160ms;
 }
 
@@ -818,8 +853,19 @@ button {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  animation: ink-in 500ms var(--ease) both;
+  animation: ink-in 500ms var(--ease) backwards;
   transition: transform 200ms var(--ease);
+}
+
+/* Clipped to the circle by itself, for the same Safari reason as portraits. */
+.lens-plate {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  border-radius: 50%;
+  -webkit-clip-path: circle(50%);
+  clip-path: circle(50%);
 }
 
 .lens:active {
@@ -847,6 +893,51 @@ button {
 }
 
 /* ---------- Bottom sheet ---------- */
+
+/* The story so far (§6): the case's pages again, read-only, quiet. */
+.story p {
+  animation: none;
+}
+
+.story-chapter {
+  text-align: center;
+  margin: 18px 0 10px;
+}
+
+.story-chapter h3 {
+  font-weight: 400;
+  margin: 2px 0 0;
+}
+
+.story-aside {
+  border-left: 2px solid var(--rule);
+  padding-left: 12px;
+  margin: 0 0 0.9em;
+}
+
+.story-aside p {
+  margin: 4px 0 8px;
+}
+
+.story-deduction {
+  text-align: center;
+  margin: 0 0 0.9em;
+}
+
+.story-deduction p {
+  text-align: center;
+}
+
+.holmes-line::before {
+  content: "Holmes: ";
+  font-variant: small-caps;
+  color: var(--ink-soft);
+}
+
+.story p.story-here {
+  text-align: center;
+  margin-bottom: 4px;
+}
 
 .sheet-backdrop {
   position: fixed;
@@ -1305,7 +1396,7 @@ button {
 
 .chain-link {
   position: relative;
-  animation: ink-in 380ms var(--ease) both;
+  animation: ink-in 380ms var(--ease) backwards;
 }
 
 .chain-link + .chain-link::before {
@@ -1351,7 +1442,7 @@ button {
   padding: 10px 12px;
   border-left: 2px solid var(--palace-ink);
   font-style: italic;
-  animation: ink-in 400ms var(--ease) both;
+  animation: ink-in 400ms var(--ease) backwards;
 }
 
 /* ---------- Map Room ---------- */
@@ -1477,7 +1568,7 @@ button {
 /* ---------- Holmes speaks / colour returns ---------- */
 
 .returning {
-  animation: colour-return 900ms var(--ease) both;
+  animation: colour-return 900ms var(--ease) backwards;
 }
 
 @keyframes colour-return {
@@ -1504,7 +1595,7 @@ button {
   border: 1px solid var(--rule);
   box-shadow: 0 2px 8px rgba(31, 26, 20, 0.15);
   transform: rotate(-0.4deg);
-  animation: ink-in 700ms var(--ease) both;
+  animation: ink-in 700ms var(--ease) backwards;
 }
 
 .letter .seal {

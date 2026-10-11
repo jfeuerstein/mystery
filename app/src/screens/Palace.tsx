@@ -14,9 +14,12 @@ import {
   ObservationRoom,
   ReconstructionRoom,
 } from "../palace/rooms";
-import { Candle, PatienceMeter } from "../ui/common";
+import { Candle, PatienceMeter, SheetHost, useThemeColor } from "../ui/common";
 import { holderKind, Notebook } from "../ui/icons";
 import { CaseFile, NotebookSheet } from "./Sheets";
+
+/** The Palace's ground (styles.css `--palace-bg`), for the status bar. */
+const PALACE_BG = "#0f0d0b";
 
 const ROOM_NAMES = {
   flaw: "Gallery of Testimony",
@@ -109,6 +112,7 @@ function PalaceFrame(props: {
 }) {
   const { sheet, openSheet, seenRooms } = useGame();
   const holder = engine.patienceHolderPerson(props.c, props.p);
+  useThemeColor(PALACE_BG);
   // The candle is lit only once the guide, if any, has been read.
   const guiding = needsGuide(props.kind, seenRooms);
   const [shake, setShake] = useState(false);
@@ -144,8 +148,11 @@ function PalaceFrame(props: {
       {props.struck > 0 && <Crack key={props.struck} />}
       {props.candle && !guiding && <Candle seconds={props.candle.seconds} onGutter={props.candle.onGutter} />}
       <RoomGuide room={props.kind} onRead={props.onGuideRead} />
-      {sheet === "casefile" && <CaseFile c={props.c} p={props.p} onClose={() => openSheet(null)} />}
-      {sheet === "notebook" && <NotebookSheet onClose={() => openSheet(null)} />}
+      {/* The Palace's sheets stay inside it, where its dark styles dress them. */}
+      <SheetHost.Provider value="inline">
+        {sheet === "casefile" && <CaseFile c={props.c} p={props.p} onClose={() => openSheet(null)} />}
+        {sheet === "notebook" && <NotebookSheet onClose={() => openSheet(null)} />}
+      </SheetHost.Provider>
     </div>
   );
 }

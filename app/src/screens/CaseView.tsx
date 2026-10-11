@@ -1,15 +1,14 @@
 import type { Beat, Case } from "@afoot/schema";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { audio, type MusicCue } from "../audio/director";
 import * as engine from "../engine/progress";
 import type { CaseProgress } from "../engine/progress";
 import { useGame } from "../engine/store";
-import { artFor, artUrl, Engraving, GradeSeal, Ornament, PatienceMeter, Sheet } from "../ui/common";
-import { Back, Folder, holderKind, Lens, Notebook } from "../ui/icons";
+import { ArtChoice, artFor, artUrl, Engraving, Forward, GradeSeal, Ornament, PatienceMeter, ROMAN, Sheet, useArtChooser, useSettling } from "../ui/common";
+import { chooserFor } from "../ui/plates";
+import { Back, Folder, holderKind, Lens, Notebook, OpenBook } from "../ui/icons";
 import { DeductionPalace, FinalePalace } from "./Palace";
-import { CaseFile, NotebookSheet } from "./Sheets";
-
-const ROMAN = ["I", "II", "III", "IV", "V", "VI"];
+import { CaseFile, NotebookSheet, StorySheet } from "./Sheets";
 
 function Header(props: { c: Case; p: CaseProgress; title: string; inert: boolean }) {
   const { go, openSheet } = useGame();
@@ -21,6 +20,9 @@ function Header(props: { c: Case; p: CaseProgress; title: string; inert: boolean
         <Back />
       </button>
       <div className="title smallcaps">{props.title}</div>
+      <button className="icon-btn" onClick={() => openSheet("story")} aria-label="The story so far" data-testid="open-story">
+        <OpenBook />
+      </button>
       <button className="icon-btn" onClick={() => openSheet("notebook")} aria-label="Notebook">
         <Notebook />
       </button>
@@ -64,14 +66,20 @@ function Narration(props: {
 }) {
   const { step } = useGame();
   const phase = props.p.stage.kind === "chapter" && props.p.stage.phase.kind === "narration" ? props.p.stage.phase : null;
-  const shown = props.beat.paragraphs.slice(0, (phase?.paragraph ?? 0) + 1);
-  const last = (phase?.paragraph ?? 0) >= props.beat.paragraphs.length - 1;
+  const paragraph = phase?.paragraph ?? 0;
+  const shown = props.beat.paragraphs.slice(0, paragraph + 1);
+  const last = paragraph >= props.beat.paragraphs.length - 1;
+  const settling = useSettling(paragraph);
+  const turn = () => {
+    if (last) audio.sfx("page");
+    step(engine.nextParagraph);
+  };
   return (
     <div
       className="stage page"
+      // A tap anywhere reads on; leaving the page takes the button itself.
       onClick={() => {
-        if (last) audio.sfx("page");
-        step(engine.nextParagraph);
+        if (!last && !settling) turn();
       }}
       data-testid="narration"
     >
@@ -85,9 +93,9 @@ function Narration(props: {
         ))}
       </div>
       <Actions>
-        <button className="btn" data-testid="continue">
+        <Forward settleKey={paragraph} onClick={turn}>
           {last ? "Continue" : "Read on"}
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -100,17 +108,18 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
   const subject = props.c.cast.find((x) => x.id === props.beat.subject);
   const detail = props.beat.details.find((d) => d.id === open);
   const ready = engine.canAdvance(props.c, props.p);
+  const choose = useArtChooser();
   return (
     <div className="stage page">
       <div className="stage-body">
-        <Engraving tag={subject?.portrait.tag ?? "portrait"} height={250} />
+        <Engraving tag={subject?.portrait.tag ?? "portrait"} owner={subject?.id} height={250} />
         <p className="muted" style={{ textAlign: "center", margin: "0 0 12px", fontStyle: "italic" }}>
           You see, but do you observe? Examine {subject?.name ?? "them"} closely.
         </p>
         <div className="observe-grid">
           {props.beat.details.map((d, i) => {
             const done = phase?.inspected.includes(d.id);
-            const art = artFor(d.vignette.tag);
+            const art = choose(d.vignette.tag, d.id);
             return (
               <button
                 key={d.id}
@@ -125,7 +134,7 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
                 }}
               >
                 {art?.file && !done ? (
-                  <img src={artUrl(art.file)} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "multiply" }} />
+                  <img className="lens-plate" src={artUrl(art.file)} alt="" />
                 ) : done ? (
                   "✓"
                 ) : (
@@ -138,13 +147,13 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+        <Forward disabled={!ready} settleKey={ready} onClick={() => step(engine.advance)}>
           {ready ? "Continue" : `${phase?.inspected.length ?? 0} of ${props.beat.details.length} observed`}
-        </button>
+        </Forward>
       </Actions>
       {detail && (
         <Sheet onClose={() => setOpen(undefined)}>
-          <Engraving tag={detail.vignette.tag} height={170} caption={false} />
+          <Engraving tag={detail.vignette.tag} owner={detail.id} height={170} caption={false} />
           <p style={{ fontStyle: "italic" }}>{detail.text}</p>
           <button className="btn" onClick={() => setOpen(undefined)} data-testid="close-detail">
             Noted
@@ -164,19 +173,20 @@ function Examine(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
   const card = open ? evidence(open) : undefined;
   const found = phase?.found.length ?? 0;
   const ready = engine.canAdvance(props.c, props.p);
+  const choose = useArtChooser();
   return (
     <div className="stage page">
       <div className="stage-body">
         <div className="smallcaps muted" style={{ textAlign: "center", marginBottom: 10 }}>
           {location?.name} · {found} of {props.beat.hotspots.length} found
         </div>
-        <Engraving tag={location?.scene.tag ?? "scene"} className="scene" caption={false}>
+        <Engraving tag={location?.scene.tag ?? "scene"} owner={location?.id} className="scene" caption={false}>
           {props.beat.hotspots.map((id) => {
             const e = evidence(id);
             const spot = e?.hotspot ?? { x: 0.5, y: 0.5, r: 0.08 };
             const done = phase?.found.includes(id);
             // An engraved object is its own tap target; without one, a faint lens-mark.
-            const art = e ? artFor(e.vignette.tag) : undefined;
+            const art = e ? choose(e.vignette.tag, e.id) : undefined;
             return (
               <button
                 key={id}
@@ -199,13 +209,13 @@ function Examine(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+        <Forward disabled={!ready} settleKey={ready} onClick={() => step(engine.advance)}>
           {ready ? "Continue" : "Search the room"}
-        </button>
+        </Forward>
       </Actions>
       {card && (
         <Sheet onClose={() => setOpen(undefined)}>
-          <Engraving tag={card.vignette.tag} height={170} caption={false} />
+          <Engraving tag={card.vignette.tag} owner={card.id} height={170} caption={false} />
           <h3 className="display" style={{ margin: "0 0 6px" }}>
             {card.name}
           </h3>
@@ -229,7 +239,7 @@ function Interrogate(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { ki
   return (
     <div className="stage page">
       <div className="stage-body">
-        <Engraving tag={witness?.portrait.tag ?? "portrait"} height={200} />
+        <Engraving tag={witness?.portrait.tag ?? "portrait"} owner={witness?.id} height={200} />
         {open ? (
           <div className="prose" key={open.id}>
             {open.sentences.map((s) => (
@@ -260,9 +270,9 @@ function Interrogate(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { ki
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+        <Forward disabled={!ready} settleKey={ready} onClick={() => step(engine.advance)}>
           {ready ? "Continue" : "Ask about everything"}
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -280,9 +290,7 @@ function Deduction(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind
           <p>{props.beat.slot.onSolved.holmesSpeaks}</p>
         </div>
         <Actions>
-          <button className="btn" onClick={() => step(engine.advance)} data-testid="continue">
-            Continue
-          </button>
+          <Forward onClick={() => step(engine.advance)}>Continue</Forward>
         </Actions>
       </div>
     );
@@ -295,9 +303,9 @@ function Deduction(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" onClick={() => step((_, p) => engine.enterPalace(p))} data-testid="enter-palace">
+        <Forward onClick={() => step((_, p) => engine.enterPalace(p))} testid="enter-palace">
           Enter the Mind Palace
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -324,13 +332,9 @@ function Cold(props: { c: Case; p: CaseProgress; finale: boolean }) {
         </p>
       </div>
       <Actions>
-        <button
-          className="btn"
-          data-testid="restart"
-          onClick={() => step((c, p) => (props.finale ? engine.restartFinale(p) : engine.restartChapter(c, p)))}
-        >
+        <Forward testid="restart" onClick={() => step((c, p) => (props.finale ? engine.restartFinale(p) : engine.restartChapter(c, p)))}>
           Begin again
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -352,9 +356,7 @@ function Finale(props: { c: Case; p: CaseProgress }) {
           ))}
         </div>
         <Actions>
-          <button className="btn" onClick={() => step((_, pp) => engine.finish(pp))} data-testid="continue">
-            Continue
-          </button>
+          <Forward onClick={() => step((_, pp) => engine.finish(pp))}>Continue</Forward>
         </Actions>
       </div>
     );
@@ -383,16 +385,14 @@ function Finale(props: { c: Case; p: CaseProgress }) {
           </p>
         </div>
         <Actions>
-          <button
-            className="btn"
+          <Forward
             onClick={() => {
               audio.sfx("seal");
               completeCase();
             }}
-            data-testid="continue"
           >
             Close the case
-          </button>
+          </Forward>
         </Actions>
       </div>
     );
@@ -412,9 +412,9 @@ function Finale(props: { c: Case; p: CaseProgress }) {
       </div>
       <Actions>
         <CaseFileButton />
-        <button className="btn" onClick={() => step((_, pp) => engine.enterPalace(pp))} data-testid="enter-palace">
+        <Forward onClick={() => step((_, pp) => engine.enterPalace(pp))} testid="enter-palace">
           Enter the Mind Palace
-        </button>
+        </Forward>
       </Actions>
     </div>
   );
@@ -432,6 +432,8 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
   const { sheet, openSheet } = useGame();
   const s = p.stage;
   const cue = musicFor(p);
+  // One plate per tag for the whole case, different plates for people who share one.
+  const choose = useMemo(() => chooserFor(c, artFor), [c]);
   const inPalace =
     (s.kind === "chapter" && s.phase.kind === "deduction" && s.phase.step === "palace") ||
     (s.kind === "finale" && s.step === "palace");
@@ -478,11 +480,12 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
   }
 
   return (
-    <>
+    <ArtChoice.Provider value={choose}>
       <Header c={c} p={p} title={title} inert={inPalace} />
       {body}
       {!inPalace && sheet === "casefile" && <CaseFile c={c} p={p} onClose={() => openSheet(null)} />}
       {!inPalace && sheet === "notebook" && <NotebookSheet onClose={() => openSheet(null)} />}
-    </>
+      {!inPalace && sheet === "story" && <StorySheet c={c} p={p} onClose={() => openSheet(null)} />}
+    </ArtChoice.Provider>
   );
 }

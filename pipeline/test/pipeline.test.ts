@@ -7,7 +7,7 @@ import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import caseJson from "../../fixtures/stopped-clock.case.json";
 import { checkAnswer } from "../src/answers.js";
-import { checkArt, Plate } from "../src/art.js";
+import { checkArt, Plate, plateKey } from "../src/art.js";
 import { checkAudio, ffmpegArgs, Sound } from "../src/audio.js";
 import { audit } from "../src/audit.js";
 import { compose } from "../src/compose.js";
@@ -390,6 +390,12 @@ describe("art and audio", () => {
     expect(Plate.safeParse({ ...plate, license: "CC0" }).success).toBe(true);
     expect(Plate.safeParse({ ...plate, license: "CC BY-SA 4.0" }).success).toBe(false);
     expect(Plate.safeParse({ ...plate, crop: [0, 0, 1.2, 1] }).success).toBe(false);
+  });
+
+  it("reads a plates key as a tag and its variant number", () => {
+    expect(plateKey("portrait-holmes")).toEqual({ tag: "portrait-holmes", n: 1 });
+    expect(plateKey("portrait-holmes#2")).toEqual({ tag: "portrait-holmes", n: 2 });
+    expect(plateKey("scene-moor#12")).toEqual({ tag: "scene-moor", n: 12 });
   });
 
   it("takes only free recordings, and layers them in one ffmpeg graph", () => {

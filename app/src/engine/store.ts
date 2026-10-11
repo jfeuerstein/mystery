@@ -9,7 +9,7 @@ import * as engine from "./progress";
 import type { CaseProgress, Grade } from "./progress";
 
 export type Screen = "title" | "casebook" | "case" | "settings" | "ledger" | "credits";
-export type Sheet = "casefile" | "notebook" | null;
+export type Sheet = "casefile" | "notebook" | "story" | null;
 
 export type Settings = {
   textSize: "normal" | "large";
