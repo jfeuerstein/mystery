@@ -230,8 +230,13 @@ function StoryPageView({ page }: { page: StoryPage }) {
 export function StorySheet(props: { c: Case; p: CaseProgress; onClose: () => void }) {
   const pages = useMemo(() => storySoFar(props.c, props.p), [props.c, props.p]);
   const end = useRef<HTMLDivElement>(null);
-  // Open at the most recent page.
-  useEffect(() => end.current?.scrollIntoView({ block: "end" }), []);
+  // Open at the most recent page: scroll the sheet, not the window. (A block
+  // body, not an expression: newer browsers' scroll methods return a Promise,
+  // which React would take for a cleanup function and call on close.)
+  useEffect(() => {
+    const body = end.current?.closest(".sheet-body");
+    if (body) body.scrollTop = body.scrollHeight;
+  }, []);
   return (
     <Sheet onClose={props.onClose} className="story-sheet">
       <h2 className="display" style={{ margin: "0 0 8px", textAlign: "center" }}>
