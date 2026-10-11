@@ -1,26 +1,30 @@
 import type { Beat, Case } from "@afoot/schema";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { audio, type MusicCue } from "../audio/director";
 import * as engine from "../engine/progress";
 import type { CaseProgress } from "../engine/progress";
 import { useGame } from "../engine/store";
-import { Engraving, Fleuron, PatienceMeter, Sheet } from "../ui/common";
+import { artFor, artUrl, Engraving, GradeSeal, Ornament, PatienceMeter, Sheet } from "../ui/common";
+import { Back, Folder, holderKind, Lens, Notebook } from "../ui/icons";
 import { DeductionPalace, FinalePalace } from "./Palace";
 import { CaseFile, NotebookSheet } from "./Sheets";
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI"];
 
-function Header(props: { c: Case; p: CaseProgress; title: string }) {
+function Header(props: { c: Case; p: CaseProgress; title: string; inert: boolean }) {
   const { go, openSheet } = useGame();
+  const holder = engine.patienceHolderPerson(props.c, props.p);
   return (
-    <div className="header">
+    // Behind the Mind Palace the scene is frozen: nothing in it can be reached.
+    <div className="header" inert={props.inert}>
       <button className="icon-btn" aria-label="Casebook" onClick={() => go("casebook")}>
-        ‹
+        <Back />
       </button>
       <div className="title smallcaps">{props.title}</div>
-      <button className="icon-btn smallcaps" onClick={() => openSheet("notebook")} aria-label="Notebook">
-        Notes
+      <button className="icon-btn" onClick={() => openSheet("notebook")} aria-label="Notebook">
+        <Notebook />
       </button>
-      <PatienceMeter holder={engine.patienceHolder(props.c, props.p)} patience={props.p.patience} />
+      <PatienceMeter holder={holder.name} kind={holderKind(holder)} patience={props.p.patience} />
     </div>
   );
 }
@@ -33,24 +37,49 @@ function CaseFileButton() {
   const { openSheet } = useGame();
   return (
     <button className="btn" onClick={() => openSheet("casefile")} data-testid="open-casefile">
-      ︿ Case File
+      <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+        <Folder size={18} /> Case File
+      </span>
     </button>
+  );
+}
+
+function ChapterHead(props: { number: number; title: string }) {
+  return (
+    <div className="chapter-head">
+      <div className="chapter-number">CHAPTER {ROMAN[props.number]}</div>
+      <h2>{props.title}</h2>
+      <Ornament />
+    </div>
   );
 }
 
 // ---------------------------------------------------------------------------
 
-function Narration(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: "narration" }>; first: boolean }) {
+function Narration(props: {
+  c: Case;
+  p: CaseProgress;
+  beat: Extract<Beat, { kind: "narration" }>;
+  chapter?: { number: number; title: string } | undefined;
+}) {
   const { step } = useGame();
   const phase = props.p.stage.kind === "chapter" && props.p.stage.phase.kind === "narration" ? props.p.stage.phase : null;
   const shown = props.beat.paragraphs.slice(0, (phase?.paragraph ?? 0) + 1);
   const last = (phase?.paragraph ?? 0) >= props.beat.paragraphs.length - 1;
   return (
-    <div className="stage" onClick={() => step(engine.nextParagraph)} data-testid="narration">
+    <div
+      className="stage page"
+      onClick={() => {
+        if (last) audio.sfx("page");
+        step(engine.nextParagraph);
+      }}
+      data-testid="narration"
+    >
       <div className="stage-body prose">
-        {props.beat.art && <Engraving tag={props.beat.art.tag} height={180} />}
+        {props.chapter && <ChapterHead {...props.chapter} />}
+        {props.beat.art && <Engraving tag={props.beat.art.tag} height={190} />}
         {shown.map((text, i) => (
-          <p key={i} className={props.first && i === 0 ? "dropcap" : ""}>
+          <p key={i} className={props.chapter && i === 0 ? "dropcap" : ""}>
             {text}
           </p>
         ))}
@@ -70,28 +99,38 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
   const phase = props.p.stage.kind === "chapter" && props.p.stage.phase.kind === "observe" ? props.p.stage.phase : null;
   const subject = props.c.cast.find((x) => x.id === props.beat.subject);
   const detail = props.beat.details.find((d) => d.id === open);
+  const ready = engine.canAdvance(props.c, props.p);
   return (
-    <div className="stage">
+    <div className="stage page">
       <div className="stage-body">
-        <Engraving tag={subject?.portrait.tag ?? "portrait"} height={220} />
-        <p className="muted" style={{ textAlign: "center", margin: "0 0 12px" }}>
+        <Engraving tag={subject?.portrait.tag ?? "portrait"} height={250} />
+        <p className="muted" style={{ textAlign: "center", margin: "0 0 12px", fontStyle: "italic" }}>
           You see, but do you observe? Examine {subject?.name ?? "them"} closely.
         </p>
         <div className="observe-grid">
           {props.beat.details.map((d, i) => {
             const done = phase?.inspected.includes(d.id);
+            const art = artFor(d.vignette.tag);
             return (
               <button
                 key={d.id}
                 className={`lens ${done ? "done" : ""}`}
+                style={{ animationDelay: `${i * 90}ms` }}
                 aria-label={`Detail ${i + 1}`}
                 data-testid={`detail-${d.id}`}
                 onClick={() => {
+                  if (!done) audio.sfx("pluck");
                   step((c, p) => engine.inspect(c, p, d.id));
                   setOpen(d.id);
                 }}
               >
-                {done ? "✓" : "⌕"}
+                {art?.file && !done ? (
+                  <img src={artUrl(art.file)} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", mixBlendMode: "multiply" }} />
+                ) : done ? (
+                  "✓"
+                ) : (
+                  <Lens size={28} />
+                )}
               </button>
             );
           })}
@@ -99,19 +138,14 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </div>
       <Actions>
         <CaseFileButton />
-        <button
-          className="btn"
-          disabled={!engine.canAdvance(props.c, props.p)}
-          onClick={() => step(engine.advance)}
-          data-testid="continue"
-        >
-          {engine.canAdvance(props.c, props.p) ? "Continue" : `${phase?.inspected.length ?? 0} of ${props.beat.details.length} observed`}
+        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+          {ready ? "Continue" : `${phase?.inspected.length ?? 0} of ${props.beat.details.length} observed`}
         </button>
       </Actions>
       {detail && (
         <Sheet onClose={() => setOpen(undefined)}>
-          <Engraving tag={detail.vignette.tag} height={160} />
-          <p>{detail.text}</p>
+          <Engraving tag={detail.vignette.tag} height={170} caption={false} />
+          <p style={{ fontStyle: "italic" }}>{detail.text}</p>
           <button className="btn" onClick={() => setOpen(undefined)} data-testid="close-detail">
             Noted
           </button>
@@ -129,30 +163,35 @@ function Examine(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
   const evidence = (id: string) => props.c.evidence.find((e) => e.id === id);
   const card = open ? evidence(open) : undefined;
   const found = phase?.found.length ?? 0;
+  const ready = engine.canAdvance(props.c, props.p);
   return (
-    <div className="stage">
+    <div className="stage page">
       <div className="stage-body">
-        <div className="smallcaps muted" style={{ textAlign: "center", marginBottom: 8 }}>
-          {location?.name}: {found} of {props.beat.hotspots.length} found
+        <div className="smallcaps muted" style={{ textAlign: "center", marginBottom: 10 }}>
+          {location?.name} · {found} of {props.beat.hotspots.length} found
         </div>
-        <Engraving tag={location?.scene.tag ?? "scene"} className="scene">
+        <Engraving tag={location?.scene.tag ?? "scene"} className="scene" caption={false}>
           {props.beat.hotspots.map((id) => {
             const e = evidence(id);
             const spot = e?.hotspot ?? { x: 0.5, y: 0.5, r: 0.08 };
             const done = phase?.found.includes(id);
+            // An engraved object is its own tap target; without one, a faint lens-mark.
+            const art = e ? artFor(e.vignette.tag) : undefined;
             return (
               <button
                 key={id}
-                className={`hotspot ${done ? "found" : ""}`}
+                className={`hotspot ${art?.file ? "object" : "mark"} ${done ? "found" : ""}`}
                 style={{ left: `${spot.x * 100}%`, top: `${spot.y * 100}%`, width: `${spot.r * 200}%`, aspectRatio: "1" }}
                 aria-label={done ? e?.name : "Something here"}
                 data-testid={`hotspot-${id}`}
                 onClick={() => {
+                  if (!done) audio.sfx("pluck");
                   step((c, p) => engine.find(c, p, id));
                   setOpen(id);
                 }}
               >
-                {done ? "✓" : ""}
+                {art?.file && <img src={artUrl(art.file)} alt="" draggable={false} />}
+                {done && <span className="tick">✓</span>}
               </button>
             );
           })}
@@ -160,18 +199,13 @@ function Examine(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </div>
       <Actions>
         <CaseFileButton />
-        <button
-          className="btn"
-          disabled={!engine.canAdvance(props.c, props.p)}
-          onClick={() => step(engine.advance)}
-          data-testid="continue"
-        >
-          {engine.canAdvance(props.c, props.p) ? "Continue" : "Search the room"}
+        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+          {ready ? "Continue" : "Search the room"}
         </button>
       </Actions>
       {card && (
         <Sheet onClose={() => setOpen(undefined)}>
-          <Engraving tag={card.vignette.tag} height={160} />
+          <Engraving tag={card.vignette.tag} height={170} caption={false} />
           <h3 className="display" style={{ margin: "0 0 6px" }}>
             {card.name}
           </h3>
@@ -191,21 +225,22 @@ function Interrogate(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { ki
   const witness = props.c.cast.find((x) => x.id === props.beat.witness);
   const topics = engine.availableTopics(props.c, props.p);
   const open = props.beat.topics.find((t) => t.id === phase?.open);
+  const ready = engine.canAdvance(props.c, props.p);
   return (
-    <div className="stage">
+    <div className="stage page">
       <div className="stage-body">
-        <Engraving tag={witness?.portrait.tag ?? "portrait"} height={170} />
+        <Engraving tag={witness?.portrait.tag ?? "portrait"} height={200} />
         {open ? (
-          <div className="prose">
+          <div className="prose" key={open.id}>
             {open.sentences.map((s) => (
               <p key={s.id} className="speech">
-                "{s.text}"
+                “{s.text}”
               </p>
             ))}
             <div className="speaker">{witness?.name}</div>
           </div>
         ) : (
-          <p className="muted" style={{ textAlign: "center" }}>
+          <p className="muted" style={{ textAlign: "center", fontStyle: "italic" }}>
             {witness?.name}, {witness?.role}. What will you ask?
           </p>
         )}
@@ -225,13 +260,8 @@ function Interrogate(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { ki
       </div>
       <Actions>
         <CaseFileButton />
-        <button
-          className="btn"
-          disabled={!engine.canAdvance(props.c, props.p)}
-          onClick={() => step(engine.advance)}
-          data-testid="continue"
-        >
-          {engine.canAdvance(props.c, props.p) ? "Continue" : "Ask about everything"}
+        <button className="btn" disabled={!ready} onClick={() => step(engine.advance)} data-testid="continue">
+          {ready ? "Continue" : "Ask about everything"}
         </button>
       </Actions>
     </div>
@@ -244,9 +274,9 @@ function Deduction(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind
   if (phase?.step === "palace") return <DeductionPalace c={props.c} p={props.p} />;
   if (phase?.step === "speaks") {
     return (
-      <div className="stage">
-        <div className="stage-body prose" data-testid="holmes-speaks">
-          <Fleuron />
+      <div className="stage returning">
+        <div className="stage-body prose holmes-speaks" data-testid="holmes-speaks">
+          <Ornament />
           <p>{props.beat.slot.onSolved.holmesSpeaks}</p>
         </div>
         <Actions>
@@ -258,9 +288,9 @@ function Deduction(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind
     );
   }
   return (
-    <div className="stage">
+    <div className="stage page">
       <div className="stage-body prose">
-        <Fleuron />
+        <Ornament />
         <p style={{ fontStyle: "italic", textAlign: "center" }}>{props.beat.slot.prompt}</p>
       </div>
       <Actions>
@@ -279,15 +309,17 @@ function Cold(props: { c: Case; p: CaseProgress; finale: boolean }) {
   const { step } = useGame();
   const holder = engine.patienceHolder(props.c, props.p);
   return (
-    <div className="stage">
+    <div className="stage page">
       <div className="stage-body prose" style={{ textAlign: "center" }}>
-        <Fleuron />
-        <h2 className="display">The case has gone cold</h2>
-        <p>
-          {holder} has lost all patience. "I have heard enough theories for one day, Mr. Holmes," and with that the
-          door closes.
+        <Ornament />
+        <h2 className="display" style={{ fontWeight: 400 }}>
+          The case has gone cold
+        </h2>
+        <p style={{ textAlign: "center" }}>
+          {holder} has lost all patience. “I have heard enough theories for one day, Mr. Holmes,” and with that the door
+          closes.
         </p>
-        <p className="muted">
+        <p className="muted" style={{ textAlign: "center" }}>
           {props.finale ? "Begin the finale again." : "The chapter begins again. Some of what you face may have changed."}
         </p>
       </div>
@@ -310,11 +342,13 @@ function Finale(props: { c: Case; p: CaseProgress }) {
   if (p.stage.kind === "finale" && p.stage.step === "palace") return <FinalePalace c={c} p={p} />;
   if (p.stage.kind === "finale" && p.stage.step === "solution") {
     return (
-      <div className="stage">
+      <div className="stage returning">
         <div className="stage-body prose" data-testid="solution">
-          <Fleuron />
+          <Ornament />
           {c.finale.solution.map((t, i) => (
-            <p key={i}>{t}</p>
+            <p key={i} style={{ animationDelay: `${i * 160}ms` }}>
+              {t}
+            </p>
           ))}
         </div>
         <Actions>
@@ -328,14 +362,19 @@ function Finale(props: { c: Case; p: CaseProgress }) {
   if (p.stage.kind === "account") {
     const g = engine.grade(p);
     return (
-      <div className="stage">
-        <div className="stage-body prose" data-testid="account">
-          <h2 className="display" style={{ textAlign: "center" }}>
-            Watson's Account
+      <div className="stage page">
+        <div className="stage-body" data-testid="account">
+          <h2 className="display" style={{ textAlign: "center", fontWeight: 400, margin: "4px 0 14px" }}>
+            Watson’s Account
           </h2>
-          <p className="dropcap">{c.account[g]}</p>
-          <div className="fleuron">❦</div>
-          <p className="smallcaps" style={{ textAlign: "center" }} data-testid="grade">
+          <div className="letter prose">
+            <p className="dropcap">{c.account[g]}</p>
+            <p className="smallcaps muted" style={{ textAlign: "left", margin: 0 }}>
+              — J. H. W.
+            </p>
+            <GradeSeal grade={g} stamped />
+          </div>
+          <p className="smallcaps" style={{ textAlign: "center", marginTop: 18 }} data-testid="grade">
             {g}
           </p>
           <p className="muted" style={{ textAlign: "center" }}>
@@ -344,7 +383,14 @@ function Finale(props: { c: Case; p: CaseProgress }) {
           </p>
         </div>
         <Actions>
-          <button className="btn" onClick={completeCase} data-testid="continue">
+          <button
+            className="btn"
+            onClick={() => {
+              audio.sfx("seal");
+              completeCase();
+            }}
+            data-testid="continue"
+          >
             Close the case
           </button>
         </Actions>
@@ -352,11 +398,16 @@ function Finale(props: { c: Case; p: CaseProgress }) {
     );
   }
   return (
-    <div className="stage">
+    <div className="stage page">
       <div className="stage-body prose">
-        <Fleuron />
+        <div className="chapter-head">
+          <div className="chapter-number">THE FINALE</div>
+          <Ornament />
+        </div>
         {c.finale.intro.map((t, i) => (
-          <p key={i}>{t}</p>
+          <p key={i} className={i === 0 ? "dropcap" : ""}>
+            {t}
+          </p>
         ))}
       </div>
       <Actions>
@@ -371,10 +422,23 @@ function Finale(props: { c: Case; p: CaseProgress }) {
 
 // ---------------------------------------------------------------------------
 
+function musicFor(p: CaseProgress): MusicCue {
+  if (p.stage.kind === "finale" || p.stage.kind === "account" || p.stage.kind === "finale-cold") return "finale";
+  return "investigation";
+}
+
 export function CaseView(props: { c: Case; p: CaseProgress }) {
   const { c, p } = props;
   const { sheet, openSheet } = useGame();
   const s = p.stage;
+  const cue = musicFor(p);
+  const inPalace =
+    (s.kind === "chapter" && s.phase.kind === "deduction" && s.phase.step === "palace") ||
+    (s.kind === "finale" && s.step === "palace");
+
+  useEffect(() => {
+    if (!inPalace) audio.music(cue);
+  }, [cue, inPalace]);
 
   let title = c.title;
   let body: React.ReactNode;
@@ -382,22 +446,24 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
     const chapter = c.chapters[s.chapter]!;
     title = `${ROMAN[s.chapter]}. ${chapter.title}`;
     const beat = chapter.beats[s.beat]!;
-    const first = s.beat === 0;
+    const key = `${s.chapter}/${s.beat}`;
     switch (beat.kind) {
       case "narration":
-        body = <Narration key={`${s.chapter}/${s.beat}`} c={c} p={p} beat={beat} first={first} />;
+        body = (
+          <Narration key={key} c={c} p={p} beat={beat} chapter={s.beat === 0 ? { number: s.chapter, title: chapter.title } : undefined} />
+        );
         break;
       case "observe":
-        body = <Observe key={`${s.chapter}/${s.beat}`} c={c} p={p} beat={beat} />;
+        body = <Observe key={key} c={c} p={p} beat={beat} />;
         break;
       case "examine":
-        body = <Examine key={`${s.chapter}/${s.beat}`} c={c} p={p} beat={beat} />;
+        body = <Examine key={key} c={c} p={p} beat={beat} />;
         break;
       case "interrogate":
-        body = <Interrogate key={`${s.chapter}/${s.beat}`} c={c} p={p} beat={beat} />;
+        body = <Interrogate key={key} c={c} p={p} beat={beat} />;
         break;
       case "deduction":
-        body = <Deduction key={`${s.chapter}/${s.beat}`} c={c} p={p} beat={beat} />;
+        body = <Deduction key={key} c={c} p={p} beat={beat} />;
         break;
     }
   } else if (s.kind === "cold") {
@@ -408,16 +474,12 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
     body = <Cold c={c} p={p} finale />;
   } else {
     title = s.kind === "account" ? c.title : "The Reconstruction";
-    body = <Finale c={c} p={p} />;
+    body = <Finale key={s.kind === "finale" ? s.step : s.kind} c={c} p={p} />;
   }
-
-  const inPalace =
-    (s.kind === "chapter" && s.phase.kind === "deduction" && s.phase.step === "palace") ||
-    (s.kind === "finale" && s.step === "palace");
 
   return (
     <>
-      <Header c={c} p={p} title={title} />
+      <Header c={c} p={p} title={title} inert={inPalace} />
       {body}
       {!inPalace && sheet === "casefile" && <CaseFile c={c} p={p} onClose={() => openSheet(null)} />}
       {!inPalace && sheet === "notebook" && <NotebookSheet onClose={() => openSheet(null)} />}

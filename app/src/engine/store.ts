@@ -3,20 +3,32 @@ import { del, get, set } from "idb-keyval";
 import { create } from "zustand";
 import { createJSONStorage, persist, type StateStorage } from "zustand/middleware";
 import { allCases } from "../content";
+import type { Attempt } from "./ledger";
 import * as engine from "./progress";
 import type { CaseProgress, Grade } from "./progress";
 
-export type Screen = "title" | "casebook" | "case" | "settings";
+export type Screen = "title" | "casebook" | "case" | "settings" | "ledger" | "credits";
 export type Sheet = "casefile" | "notebook" | null;
 
-type Settings = { textSize: "normal" | "large" };
+export type Settings = {
+  textSize: "normal" | "large";
+  /** By Candlelight: a burning candle times each deduction (§12). */
+  candle: boolean;
+  /** 0–1. */
+  music: number;
+  sfx: number;
+};
 
 type SaveData = {
   progress: Record<string, CaseProgress>;
   grades: Record<string, Grade>;
   unlocked: ConceptId[];
   settings: Settings;
+  /** Every Declare, for Holmes' Ledger and (in M3) adaptive difficulty. */
+  stats: Attempt[];
 };
+
+const DEFAULT_SETTINGS: Settings = { textSize: "normal", candle: false, music: 0.6, sfx: 0.8 };
 
 type State = SaveData & {
   screen: Screen;
@@ -29,6 +41,7 @@ type State = SaveData & {
   /** Applies an engine step to the active case. */
   step: (fn: (c: Case, p: CaseProgress) => CaseProgress) => void;
   unlock: (concepts: readonly ConceptId[]) => void;
+  recordAttempt: (attempt: Attempt) => void;
   completeCase: () => void;
   setSettings: (s: Partial<Settings>) => void;
   resetProgress: () => void;
@@ -46,7 +59,8 @@ const blankSave = (): SaveData => ({
   progress: {},
   grades: {},
   unlocked: [...STARTER_ENTRIES],
-  settings: { textSize: "normal" },
+  settings: { ...DEFAULT_SETTINGS },
+  stats: [],
 });
 
 export function caseById(id: string): Case {
@@ -91,6 +105,7 @@ export const useGame = create<State>()(
         const add = concepts.filter((x) => !unlocked.includes(x));
         if (add.length > 0) setState({ unlocked: [...unlocked, ...add] });
       },
+      recordAttempt: (attempt) => setState({ stats: [...getState().stats, attempt] }),
       completeCase: () => {
         const { activeCase, progress, grades } = getState();
         const p = activeCase ? progress[activeCase] : undefined;
@@ -105,20 +120,31 @@ export const useGame = create<State>()(
       resetProgress: () => setState({ ...blankSave(), screen: "title", activeCase: null }),
       importSave: (data) => {
         if (!data || typeof data !== "object" || !("progress" in data) || !("grades" in data)) return false;
-        const d = data as SaveData;
-        setState({ ...blankSave(), ...d, screen: "casebook", activeCase: null });
+        const d = data as Partial<SaveData>;
+        const blank = blankSave();
+        setState({ ...blank, ...d, settings: { ...blank.settings, ...d.settings }, screen: "casebook", activeCase: null });
         return true;
       },
     }),
     {
       name: "afoot-save",
-      version: 1,
+      version: 2,
       storage: createJSONStorage(() => idbStorage),
+      // Older saves lack the ledger and the newer settings.
+      migrate: (persisted) => {
+        const p = (persisted ?? {}) as Partial<SaveData>;
+        return { ...p, stats: p.stats ?? [], settings: { ...DEFAULT_SETTINGS, ...p.settings } };
+      },
+      merge: (persisted, current) => {
+        const p = (persisted ?? {}) as Partial<SaveData>;
+        return { ...current, ...p, settings: { ...DEFAULT_SETTINGS, ...p.settings }, stats: p.stats ?? [] };
+      },
       partialize: (s): SaveData & { activeCase: string | null } => ({
         progress: s.progress,
         grades: s.grades,
         unlocked: s.unlocked,
         settings: s.settings,
+        stats: s.stats,
         activeCase: s.activeCase,
       }),
       onRehydrateStorage: () => () => useGame.setState({ hydrated: true }),
@@ -135,6 +161,6 @@ export function isUnlocked(caseIndex: number, grades: Record<string, Grade>): bo
 
 /** The whole save as JSON, for Export Save (§15.3). */
 export function exportSave(): string {
-  const { progress, grades, unlocked, settings } = useGame.getState();
-  return JSON.stringify({ version: 1, progress, grades, unlocked, settings }, null, 2);
+  const { progress, grades, unlocked, settings, stats } = useGame.getState();
+  return JSON.stringify({ version: 2, progress, grades, unlocked, settings, stats }, null, 2);
 }

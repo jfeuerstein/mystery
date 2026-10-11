@@ -29,6 +29,7 @@ import {
 } from "@afoot/schema";
 import { useState, type ReactNode } from "react";
 import { HoldToDeclare } from "../ui/common";
+import { Turn } from "../ui/icons";
 
 type Declare = (correct: boolean) => void;
 
@@ -224,7 +225,7 @@ export function ChainRoom(props: { puzzle: ChainPuzzle; onDeclare: Declare }) {
 
   return (
     <>
-      <Section>The board: start from a fact; tap ⟲ to turn a card</Section>
+      <Section>The board: start from a fact; turn a card to read it another way</Section>
       {steps.length === 0 && <p className="muted">Lay a card from the deck below.</p>}
       <div>
         {steps.map((s, i) => {
@@ -233,10 +234,12 @@ export function ChainRoom(props: { puzzle: ChainPuzzle; onDeclare: Declare }) {
           return (
             <div key={s.cardId} className="chain-link">
               <div className="pick selected" style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                <span style={{ flex: 1 }}>{readingOf(c, s)}</span>
+                <span key={s.orientation ?? "stated"} className={`reading ${s.orientation && s.orientation !== "stated" ? "turning" : ""}`} style={{ flex: 1 }}>
+                  {readingOf(c, s)}
+                </span>
                 {turnable && (
                   <button className="icon-btn" aria-label="Turn card" onClick={() => turn(i)} data-testid={`turn-${c.id}`}>
-                    ⟲
+                    <Turn size={20} />
                   </button>
                 )}
               </div>

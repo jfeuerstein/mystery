@@ -1,13 +1,30 @@
 import { useEffect, useRef, useState } from "react";
+import { audio, AUDIO_MANIFEST } from "./audio/director";
 import { allCases, loadSealedCases } from "./content";
+import { formatDuration, summarize } from "./engine/ledger";
 import { caseById, exportSave, isUnlocked, useGame } from "./engine/store";
 import { CaseView } from "./screens/CaseView";
-import { Fleuron } from "./ui/common";
+import { ART, Corner, GradeSeal, Ornament } from "./ui/common";
+import { Back, Cog, Ledger as LedgerIcon } from "./ui/icons";
 
 function isStandalone(): boolean {
   return (
     window.matchMedia("(display-mode: standalone)").matches ||
     (navigator as Navigator & { standalone?: boolean }).standalone === true
+  );
+}
+
+function ScreenHeader(props: { title: string; back: () => void; right?: React.ReactNode }) {
+  return (
+    <div className="header">
+      <button className="icon-btn" aria-label="Back" onClick={props.back}>
+        <Back />
+      </button>
+      <div className="title smallcaps" style={{ textAlign: "center" }}>
+        {props.title}
+      </div>
+      {props.right ?? <span className="icon-btn" />}
+    </div>
   );
 }
 
@@ -17,31 +34,54 @@ function Title() {
   const p = activeCase ? progress[activeCase] : undefined;
   const resumable = activeCase && p && p.stage.kind !== "account" ? caseById(activeCase) : undefined;
   return (
-    <div className="stage" style={{ justifyContent: "center", textAlign: "center" }}>
-      <div className="stage-body" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <div className="smallcaps muted">A Casebook of Deduction</div>
-        <h1 className="display" style={{ fontSize: "2.6em", lineHeight: 1.05, margin: "12px 0" }}>
-          The Game
-          <br />
-          Is Afoot
+    <div className="title-screen">
+      <div className="title-frame">
+        <div className="fog" />
+        <Corner pos="tl" />
+        <Corner pos="tr" />
+        <Corner pos="bl" />
+        <Corner pos="br" />
+        <div className="smallcaps muted kicker">A Casebook of Deduction</div>
+        <h1>
+          <span>The Game</span>
+          <span>Is Afoot</span>
         </h1>
-        <Fleuron />
-        <p style={{ fontStyle: "italic", maxWidth: "22em", margin: "0 auto" }}>
-          "You see, but you do not observe. The distinction is clear."
-        </p>
-        <p className="smallcaps muted">A Scandal in Bohemia</p>
+        <Ornament />
+        <div className="epigraph">
+          <p style={{ fontStyle: "italic", maxWidth: "20em", margin: "0 auto" }}>
+            “You see, but you do not observe. The distinction is clear.”
+          </p>
+          <p className="smallcaps muted" style={{ marginBottom: 0 }}>
+            A Scandal in Bohemia
+          </p>
+        </div>
       </div>
       <div className="actions">
         {resumable && (
-          <button className="btn" onClick={() => openCase(resumable.id)} data-testid="resume">
+          <button
+            className="btn"
+            onClick={() => {
+              audio.unlock();
+              openCase(resumable.id);
+            }}
+            data-testid="resume"
+          >
             Resume: <i>{resumable.title.replace(/^The Adventure of /, "")}</i>
           </button>
         )}
-        <button className="btn" onClick={() => go("casebook")} data-testid="begin">
+        <button
+          className="btn"
+          onClick={() => {
+            // iOS only allows sound to start from a tap (§15.3).
+            audio.unlock();
+            go("casebook");
+          }}
+          data-testid="begin"
+        >
           {resumable ? "The Casebook" : "Begin"}
         </button>
         {!installed && (
-          <p className="muted" style={{ fontSize: "0.8em", margin: 0 }}>
+          <p className="muted" style={{ fontSize: "0.8em", margin: 0, textAlign: "center" }}>
             On iPhone, tap Share, then <i>Add to Home Screen</i>, to play full screen and offline.
           </p>
         )}
@@ -56,48 +96,67 @@ function Casebook() {
     <>
       <div className="header">
         <button className="icon-btn" aria-label="Title" onClick={() => go("title")}>
-          ‹
+          <Back />
         </button>
         <div className="title smallcaps" style={{ textAlign: "center" }}>
           The Casebook
         </div>
-        <button className="icon-btn smallcaps" onClick={() => go("settings")}>
-          Settings
+        <button className="icon-btn" aria-label="Holmes’ Ledger" onClick={() => go("ledger")}>
+          <LedgerIcon />
+        </button>
+        <button className="icon-btn" aria-label="Settings" onClick={() => go("settings")}>
+          <Cog />
         </button>
       </div>
-      <div className="list">
+      <div className="list page">
         {allCases().map((c, i) => {
           const unlocked = isUnlocked(i, grades);
           const p = progress[c.id];
           const inProgress = p && p.stage.kind !== "account";
-          const label = c.season === 0 ? "The sample case" : `Season ${c.season}, case ${c.number}`;
+          const grade = grades[c.id];
+          const label = c.season === 0 ? "The sample case" : `Season ${c.season} · No. ${c.number}`;
           return (
             <button
               key={c.id}
-              className="card"
-              style={{ textAlign: "left", opacity: unlocked ? 1 : 0.45 }}
+              className={`folder ${unlocked ? "" : "locked"}`}
+              style={{ animationDelay: `${i * 70}ms` }}
               disabled={!unlocked}
               onClick={() => openCase(c.id)}
               data-testid={`case-${c.id}`}
             >
-              <div className="smallcaps muted">{label}</div>
-              <div className="display" style={{ fontSize: "1.25em" }}>
+              <span className="tab">{label}</span>
+              {!unlocked && <span className="twine" aria-hidden="true" />}
+              <div className="display" style={{ fontSize: "1.2em", paddingRight: grade || !unlocked ? 64 : 0 }}>
                 {/* A sealed case's title stays hidden until it unlocks. */}
                 {unlocked ? c.title : "Sealed"}
               </div>
-              <div className="muted">
-                {grades[c.id] ? `Best: ${grades[c.id]}` : inProgress ? "In progress" : unlocked ? "Unopened" : "Locked"}
+              <div className="muted" style={{ fontSize: "0.9em", fontStyle: "italic" }}>
+                {grade ? `Best: ${grade}` : inProgress ? "In progress" : unlocked ? "Unopened" : "Opens when the case before it is closed"}
               </div>
+              {grade && <GradeSeal grade={grade} />}
+              {!unlocked && <span className="stamp">SEALED</span>}
             </button>
           );
         })}
-        <p className="muted" style={{ textAlign: "center", fontSize: "0.9em" }}>
-          {allCases().length === 1
-            ? "Generated seasons will appear here, one case at a time."
-            : "Cases open one at a time, in order."}
+        <p className="muted" style={{ textAlign: "center", fontSize: "0.9em", fontStyle: "italic" }}>
+          {allCases().length === 1 ? "New cases will appear here, one at a time." : "Cases open one at a time, in order."}
         </p>
       </div>
     </>
+  );
+}
+
+function Toggle(props: { on: boolean; onChange: (on: boolean) => void; label: string; hint: string }) {
+  return (
+    <button className="toggle" aria-pressed={props.on} onClick={() => props.onChange(!props.on)}>
+      <span>
+        <span style={{ display: "block" }}>{props.label}</span>
+        <span className="muted" style={{ fontSize: "0.85em", fontStyle: "italic" }}>
+          {props.hint}
+        </span>
+      </span>
+      <span className="switch" />
+    </button>
   );
 }
 
@@ -115,16 +174,45 @@ function Settings() {
   };
   return (
     <>
-      <div className="header">
-        <button className="icon-btn" aria-label="Back" onClick={() => go("casebook")}>
-          ‹
-        </button>
-        <div className="title smallcaps" style={{ textAlign: "center" }}>
-          Settings
+      <ScreenHeader title="Settings" back={() => go("casebook")} />
+      <div className="list page">
+        <div className="card">
+          <Toggle
+            on={settings.candle}
+            onChange={(candle) => setSettings({ candle })}
+            label="By Candlelight"
+            hint="A candle burns down while Holmes thinks. If it gutters, his patience costs a point."
+          />
         </div>
-        <span className="icon-btn" />
-      </div>
-      <div className="list">
+        <div className="card">
+          <div className="smallcaps muted">Music</div>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.05}
+            value={settings.music}
+            style={{ "--fill": `${settings.music * 100}%` } as React.CSSProperties}
+            onChange={(e) => setSettings({ music: Number(e.target.value) })}
+            aria-label="Music volume"
+          />
+          <div className="smallcaps muted" style={{ marginTop: 8 }}>
+            Sound
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.05}
+            value={settings.sfx}
+            style={{ "--fill": `${settings.sfx * 100}%` } as React.CSSProperties}
+            onChange={(e) => {
+              setSettings({ sfx: Number(e.target.value) });
+              audio.sfx("pluck");
+            }}
+            aria-label="Sound effects volume"
+          />
+        </div>
         <div className="card">
           <div className="smallcaps muted">Text size</div>
           <div className="btn-row" style={{ marginTop: 8 }}>
@@ -137,9 +225,7 @@ function Settings() {
         </div>
         <div className="card">
           <div className="smallcaps muted">Your save</div>
-          <p style={{ margin: "6px 0 10px" }}>
-            Safari can clear a website's data. Export your save to the Files app now and then.
-          </p>
+          <p style={{ margin: "6px 0 10px" }}>Safari can clear a website’s data. Export your save to the Files app now and then.</p>
           <div className="list">
             <button className="btn" onClick={download}>
               Export save
@@ -156,22 +242,160 @@ function Settings() {
                 const file = e.target.files?.[0];
                 if (!file) return;
                 try {
-                  if (!importSave(JSON.parse(await file.text()))) alert("That file isn't a save from this game.");
+                  if (!importSave(JSON.parse(await file.text()))) alert("That file isn’t a save from this game.");
                 } catch {
-                  alert("That file couldn't be read.");
+                  alert("That file couldn’t be read.");
                 }
               }}
             />
             <button
               className="btn"
               onClick={() => {
-                if (confirm("Erase all progress? This can't be undone.")) resetProgress();
+                if (confirm("Erase all progress? This can’t be undone.")) resetProgress();
               }}
             >
               Erase all progress
             </button>
           </div>
         </div>
+        <button className="link" style={{ justifySelf: "center", margin: "6px 0 12px" }} onClick={() => go("credits")}>
+          Credits: the engravings and music
+        </button>
+      </div>
+    </>
+  );
+}
+
+/** Holmes' Ledger (§12): how each line of reasoning is going. Concepts only, by their Notebook names. */
+function LedgerScreen() {
+  const { stats, go } = useGame();
+  const rows = summarize(stats);
+  return (
+    <>
+      <ScreenHeader title="Holmes’ Ledger" back={() => go("casebook")} />
+      <div className="page">
+        <p className="muted" style={{ fontStyle: "italic", marginTop: 0 }}>
+          “I have a turn both for observation and for deduction.” How each has fared, by the Notebook’s reckoning:
+        </p>
+        {rows.length === 0 ? (
+          <p className="muted">Nothing entered yet. Solve a deduction and it will be recorded here.</p>
+        ) : (
+          rows.map((r, i) => (
+            <div key={r.concept} className="ledger-row ink-in" style={{ animationDelay: `${i * 50}ms` }}>
+              <span className="display">{r.title}</span>
+              <div className="ledger-bar">
+                <span style={{ width: `${r.firstTry * 100}%`, animationDelay: `${200 + i * 50}ms` }} />
+              </div>
+              <span className="ledger-note">
+                {Math.round(r.firstTry * r.faced)} of {r.faced} at the first declaration
+                {r.medianMs !== undefined && ` · typically ${formatDuration(r.medianMs)}`}
+              </span>
+            </div>
+          ))
+        )}
+        {rows.length > 0 && (
+          <p className="muted" style={{ fontSize: "0.85em", fontStyle: "italic", marginTop: 14 }}>
+            The bar is the share of deductions solved at the first declaration; the time is the median to a right answer.
+          </p>
+        )}
+      </div>
+    </>
+  );
+}
+
+/** Works grouped by artist: "Sidney Paget — The Naval Treaty (1893), …". */
+function byAuthor(credits: { title: string; author: string; date?: string }[]) {
+  const groups = new Map<string, Map<string, string | undefined>>();
+  for (const c of credits) {
+    const works = groups.get(c.author) ?? new Map<string, string | undefined>();
+    works.set(c.title, c.date);
+    groups.set(c.author, works);
+  }
+  return [...groups.entries()].sort((a, b) => b[1].size - a[1].size);
+}
+
+/** Recordings grouped by where they came from, so one sample library is credited once. */
+function soundGroups(credits: { title: string; author: string; source: string; license: string }[]) {
+  const groups = new Map<string, { key: string; author: string; source: string; license: string; titles: string[] }>();
+  for (const c of credits) {
+    const key = `${c.author}|${c.source}|${c.license}`;
+    const g = groups.get(key) ?? { key, author: c.author, source: c.source, license: c.license, titles: [] };
+    if (!g.titles.includes(c.title)) g.titles.push(c.title);
+    groups.set(key, g);
+  }
+  return groups;
+}
+
+function Credits() {
+  const { go } = useGame();
+  const art = ART.filter((a) => a.file && a.credit);
+  const sounds = [...Object.entries(AUDIO_MANIFEST.music), ...Object.entries(AUDIO_MANIFEST.sfx)].filter(([, e]) => e) as [
+    string,
+    NonNullable<(typeof AUDIO_MANIFEST.music)["theme"]>,
+  ][];
+  return (
+    <>
+      <ScreenHeader title="Credits" back={() => go("settings")} />
+      <div className="page prose credits">
+        <p>
+          Stories after Sir Arthur Conan Doyle; cases written and verified by machine. Every engraving is in the public
+          domain, and every recording is in the public domain or free of all restriction.
+        </p>
+        <Ornament />
+        <h3 className="smallcaps">Engravings</h3>
+        {art.length === 0 ? (
+          <p className="muted">Placeholder plates, until the engravings are sourced.</p>
+        ) : (
+          <>
+            {byAuthor(art.map((a) => a.credit!)).map(([author, works]) => (
+              <p key={author} className="credit-group">
+                <span className="smallcaps">{author}</span>:{" "}
+                {[...works.entries()].map(([title, date], i) => (
+                  <span key={title}>
+                    {i > 0 && ", "}
+                    <i>{title}</i>
+                    {date && ` (${date})`}
+                  </span>
+                ))}
+                .
+              </p>
+            ))}
+            <details className="credit-list">
+              <summary className="smallcaps">Every plate and its source</summary>
+              <ul>
+                {art.map((a) => (
+                  <li key={a.tag}>
+                    {a.description}{" "}
+                    <a href={a.credit!.source} target="_blank" rel="noreferrer">
+                      {a.credit!.license}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </>
+        )}
+        <h3 className="smallcaps">Music and sound</h3>
+        {sounds.length === 0 ? (
+          <p className="muted">Silence, until the recordings are sourced.</p>
+        ) : (
+          <ul className="credit-list">
+            {[...soundGroups(sounds.map(([, e]) => e.credit)).values()].map((g) => (
+              <li key={g.key}>
+                {g.titles.map((t, i) => (
+                  <span key={t}>
+                    {i > 0 && "; "}
+                    <i>{t}</i>
+                  </span>
+                ))}
+                . {g.author}.{" "}
+                <a href={g.source} target="_blank" rel="noreferrer">
+                  {g.license}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
@@ -186,8 +410,16 @@ export function App() {
   }, [settings.textSize]);
 
   useEffect(() => {
+    audio.setVolumes(settings.music, settings.sfx);
+  }, [settings.music, settings.sfx]);
+
+  useEffect(() => {
     void loadSealedCases().finally(() => setCasesReady(true));
   }, []);
+
+  useEffect(() => {
+    if (screen !== "case") audio.music("theme");
+  }, [screen]);
 
   if (!hydrated || !casesReady) return <div className="app" />;
 
@@ -195,8 +427,14 @@ export function App() {
   const p = activeCase ? progress[activeCase] : undefined;
   if (screen === "case" && activeCase && p) body = <CaseView c={caseById(activeCase)} p={p} />;
   else if (screen === "settings") body = <Settings />;
+  else if (screen === "ledger") body = <LedgerScreen />;
+  else if (screen === "credits") body = <Credits />;
   else if (screen === "casebook" || screen === "case") body = <Casebook />;
   else body = <Title />;
 
-  return <div className="app">{body}</div>;
+  return (
+    <div className="app" key={screen}>
+      {body}
+    </div>
+  );
 }

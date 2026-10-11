@@ -1,0 +1,194 @@
+{
+  "$comment": "Every music cue and sound effect, as excerpts of free recordings (GAME_DESIGN.md §13.5). Times are seconds into the original. `npm run afoot -- audio build` cuts them into app/public/audio.",
+  "cues": {
+    "pluck": {
+      "kind": "sfx",
+      "layers": [
+        {
+          "url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Strings/violin2012/Violin.pizz.ff.sulD.A4A5.stereo.aif",
+          "start": 14.6,
+          "duration": 0.8
+        }
+      ],
+      "fadeOut": 0.4,
+      "gain": 0.6,
+      "credit": {
+        "title": "Violin, pizzicato",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      }
+    },
+    "seal": {
+      "kind": "sfx",
+      "layers": [
+        {
+          "url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Strings/violin2012/Violin.pizz.ff.sulG.G3B3.stereo.aif",
+          "start": 0.32,
+          "duration": 1.2
+        }
+      ],
+      "fadeOut": 0.7,
+      "gain": 0.8,
+      "credit": {
+        "title": "Violin, pizzicato on the G string",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      }
+    },
+    "reveal": {
+      "kind": "sfx",
+      "layers": [
+        {
+          "url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Strings/violin2012/Violin.arco.mf.sulD.D4B4.stereo.aif",
+          "start": 6.5,
+          "duration": 2.6
+        },
+        {
+          "url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Strings/violin2012/Violin.arco.mf.sulD.D4B4.stereo.aif",
+          "start": 32.7,
+          "duration": 2.5,
+          "offset": 0.07
+        },
+        {
+          "url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Strings/violin2012/Violin.arco.mf.sulD.D4B4.stereo.aif",
+          "start": 54.4,
+          "duration": 2.4,
+          "offset": 0.14,
+          "gain": 6
+        }
+      ],
+      "fadeOut": 1.4,
+      "gain": 0.7,
+      "credit": {
+        "title": "Violin, bowed, sounded as a chord",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      }
+    },
+    "discord": {
+      "kind": "sfx",
+      "layers": [
+        {
+          "url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Strings/violin2012/Violin.arco.ff.sulG.G3B3.stereo.aif",
+          "start": 6.28,
+          "duration": 1.5
+        },
+        {
+          "url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Strings/violin2012/Violin.arco.ff.sulG.G3B3.stereo.aif",
+          "start": 11.23,
+          "duration": 1.5,
+          "offset": 0.03
+        }
+      ],
+      "fadeOut": 0.8,
+      "gain": 0.55,
+      "credit": {
+        "title": "Violin, bowed fortissimo, sounded as a clash",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      }
+    },
+    "theme": {
+      "kind": "music",
+      "layers": [
+        {
+          "url": "https://archive.org/download/MusopenCollectionAsFlac/Borodin_StringQuartetNo.2inDMajor/AlexanderBorodin-StringQuartetNo.2InDMajor-03-NocturneAndante.mp3",
+          "start": 0,
+          "duration": 155.5
+        }
+      ],
+      "fadeIn": 2,
+      "fadeOut": 5,
+      "loop": true,
+      "gain": 0.8,
+      "credit": {
+        "title": "Borodin, String Quartet No. 2 in D major: III. Notturno",
+        "author": "Musopen",
+        "source": "https://archive.org/details/MusopenCollectionAsFlac",
+        "license": "Public domain"
+      }
+    },
+    "investigation": {
+      "kind": "music",
+      "layers": [
+        {
+          "url": "https://archive.org/download/BachAllemanda_18042013/Mixes/Bach_1.mp3",
+          "start": 0,
+          "duration": 180
+        }
+      ],
+      "fadeIn": 1,
+      "fadeOut": 3,
+      "loop": true,
+      "gain": 0.7,
+      "credit": {
+        "title": "Bach, Partita No. 2 in D minor, BWV 1004: I. Allemanda",
+        "author": "Recorded in the MAT Listening Room, Queen Mary University of London (2013)",
+        "source": "https://archive.org/details/BachAllemanda_18042013",
+        "license": "CC0"
+      }
+    },
+    "palace": {
+      "kind": "music",
+      "layers": [
+        {
+          "url": "https://archive.org/download/Bach1stViolinSonata_112014/Mixes/Bach_1.mp3",
+          "start": 0,
+          "duration": 244.5
+        }
+      ],
+      "fadeIn": 2,
+      "fadeOut": 4,
+      "loop": true,
+      "gain": 0.55,
+      "credit": {
+        "title": "Bach, Violin Sonata No. 1 in G minor, BWV 1001: I. Adagio",
+        "author": "Recorded at William Goodenough House, London (2014)",
+        "source": "https://archive.org/details/Bach1stViolinSonata_112014",
+        "license": "CC0"
+      }
+    },
+    "finale": {
+      "kind": "music",
+      "layers": [
+        {
+          "url": "https://archive.org/download/MusopenCollectionAsFlac/Haydn_StringQuartetInDMajorOp.64/JosephHaydn-StringQuartetInDOp.645H363Lark-01-AllegroModerato.mp3",
+          "start": 0,
+          "duration": 92
+        }
+      ],
+      "fadeIn": 0.5,
+      "fadeOut": 4,
+      "loop": true,
+      "gain": 0.8,
+      "credit": {
+        "title": "Haydn, String Quartet in D major, Op. 64 No. 5, “The Lark”: I. Allegro moderato",
+        "author": "Musopen",
+        "source": "https://archive.org/details/MusopenCollectionAsFlac",
+        "license": "Public domain"
+      }
+    },
+    "page": {
+      "kind": "sfx",
+      "layers": [
+        {
+          "url": "https://archive.org/download/book-sound-effects/pg3.wav",
+          "start": 0.2,
+          "duration": 0.75
+        }
+      ],
+      "fadeOut": 0.25,
+      "gain": 0.5,
+      "credit": {
+        "title": "Book sound effects: a page turned",
+        "author": "Book sound effects collection, Internet Archive",
+        "source": "https://archive.org/details/book-sound-effects",
+        "license": "CC0"
+      }
+    }
+  }
+}

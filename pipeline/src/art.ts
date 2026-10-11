@@ -1,0 +1,229 @@
+// The engraving library (GAME_DESIGN.md §13.2). `pipeline/art/plates.json`
+// names a public-domain source for each catalog tag; `afoot art build`
+// downloads it, crops it and prints it in the house manner (greyscale ink on
+// white, so the app's multiply blend lays it onto the paper), then records the
+// file and its credit in the catalog.
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+import sharp from "sharp";
+import { z } from "zod";
+import { PATHS, ROOT } from "./paths.js";
+
+/** Only plates free of all restrictions: the public domain, or dedicated to it. */
+export const PUBLIC_DOMAIN = /^(public domain|cc0|pdm)\b/i;
+
+const Fraction = z.number().min(0).max(1);
+
+export const Plate = z.object({
+  /** The page that documents the image and its licence (a Commons file page, say). */
+  page: z.string().url(),
+  /** The original image file. */
+  image: z.string().url(),
+  title: z.string().min(1),
+  author: z.string().min(1),
+  date: z.string().min(1),
+  license: z.string().regex(PUBLIC_DOMAIN, "plates must be public domain or CC0"),
+  /** Crop as fractions of the original: [left, top, right, bottom]. */
+  crop: z.tuple([Fraction, Fraction, Fraction, Fraction]).optional(),
+  /** Where narrow frames centre on the plate, as fractions [x, y]. Defaults to the middle. */
+  focus: z.tuple([Fraction, Fraction]).optional(),
+  /** Mirror the plate, so a figure faces into the page. */
+  flip: z.boolean().optional(),
+  /** Black and white points (0–255) after greyscale; by default taken from the histogram. */
+  levels: z.tuple([z.number().int().min(0).max(255), z.number().int().min(0).max(255)]).optional(),
+});
+export type Plate = z.infer<typeof Plate>;
+
+export const PlateBook = z.object({ $comment: z.string().optional(), plates: z.record(Plate) });
+
+export const ART_PATHS = {
+  plates: resolve(ROOT, "pipeline/art/plates.json"),
+  out: resolve(ROOT, "app/public/art"),
+  cache: resolve(ROOT, "pipeline/.cache/art"),
+};
+
+/** Output size by kind: portraits fill an oval, scenes the 3:4 Examine frame, vignettes a small plate. */
+export const SIZES = {
+  portrait: { width: 560, height: 640 },
+  scene: { width: 720, height: 960 },
+  vignette: { width: 640, height: 480 },
+} as const;
+
+type Kind = keyof typeof SIZES;
+
+export type CatalogAsset = {
+  tag: string;
+  kind: Kind;
+  description: string;
+  file?: string;
+  focus?: [number, number];
+  credit?: { title: string; author: string; date: string; source: string; license: string };
+};
+
+type Catalog = { $comment?: string; version: number; assets: CatalogAsset[] };
+
+export function readPlates(path = ART_PATHS.plates): Record<string, Plate> {
+  if (!existsSync(path)) return {};
+  return PlateBook.parse(JSON.parse(readFileSync(path, "utf8"))).plates;
+}
+
+function readCatalog(): Catalog {
+  return JSON.parse(readFileSync(PATHS.catalog, "utf8")) as Catalog;
+}
+
+// Behind an HTTPS proxy, run with NODE_USE_ENV_PROXY=1 so fetch honours it.
+const UA = "AfootArtTool/1.0 (https://github.com/jfeuerstein/mystery)";
+
+async function download(url: string): Promise<Buffer> {
+  mkdirSync(ART_PATHS.cache, { recursive: true });
+  const file = resolve(ART_PATHS.cache, createHash("sha256").update(url).digest("hex").slice(0, 24));
+  if (existsSync(file)) return readFileSync(file);
+  let wait = 4000;
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const res = await fetch(url, { headers: { "User-Agent": UA } });
+    if (res.ok) {
+      const buf = Buffer.from(await res.arrayBuffer());
+      writeFileSync(file, buf);
+      return buf;
+    }
+    if (res.status !== 429 && res.status !== 503) throw new Error(`${url}: HTTP ${res.status}`);
+    const after = Number(res.headers.get("retry-after"));
+    await new Promise((r) => setTimeout(r, Math.max(wait, after * 1000 || 0)));
+    wait *= 2;
+  }
+  throw new Error(`${url}: still rate-limited after retries`);
+}
+
+/** The pth percentile (0–1) of an 8-bit greyscale buffer. */
+function percentile(pixels: Buffer, p: number): number {
+  const hist = new Array<number>(256).fill(0);
+  for (const v of pixels) hist[v]!++;
+  let target = p * pixels.length;
+  for (let v = 0; v < 256; v++) {
+    target -= hist[v]!;
+    if (target <= 0) return v;
+  }
+  return 255;
+}
+
+/** Crops, tones and sizes one plate. Returns webp bytes. */
+export async function printPlate(source: Buffer, plate: Plate, kind: Kind): Promise<Buffer> {
+  const meta = await sharp(source).metadata();
+  const w = meta.width!;
+  const h = meta.height!;
+  const [l, t, r, b] = plate.crop ?? [0, 0, 1, 1];
+  const region = {
+    left: Math.round(l * w),
+    top: Math.round(t * h),
+    width: Math.max(1, Math.round((r - l) * w)),
+    height: Math.max(1, Math.round((b - t) * h)),
+  };
+  const { width, height } = SIZES[kind];
+  let img = sharp(source).rotate().extract(region).greyscale();
+  if (plate.flip) img = img.flop();
+  // A touch of blur before the reduction tames the halftone screen of magazine scans.
+  const scale = Math.min(region.width / width, region.height / height);
+  if (scale > 2) img = img.blur(Math.min(1.2, 0.3 * scale));
+  const fx = plate.focus?.[0] ?? 0.5;
+  const fy = plate.focus?.[1] ?? 0.5;
+  // Cover-fit around the focus point, by hand, so the focus survives the crop.
+  const cover = Math.max(width / region.width, height / region.height);
+  const scaledW = Math.round(region.width * cover);
+  const scaledH = Math.round(region.height * cover);
+  const left = Math.min(scaledW - width, Math.max(0, Math.round(fx * scaledW - width / 2)));
+  const top = Math.min(scaledH - height, Math.max(0, Math.round(fy * scaledH - height / 2)));
+  const sized = await img
+    .resize(scaledW, scaledH, { kernel: "lanczos3" })
+    .extract({ left, top, width, height })
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const pixels = sized.data;
+  // Ink to black, paper to white: the page's own colour comes from the app.
+  const [black, white] = plate.levels ?? [percentile(pixels, 0.005), Math.max(percentile(pixels, 0.95) - 4, 40)];
+  const span = Math.max(1, white - black);
+  const out = Buffer.alloc(pixels.length);
+  for (let i = 0; i < pixels.length; i++) {
+    const v = (pixels[i]! - black) / span;
+    out[i] = Math.round(255 * Math.min(1, Math.max(0, v)));
+  }
+  return sharp(out, { raw: { width, height, channels: 1 } })
+    .sharpen({ sigma: 0.6 })
+    .webp({ quality: 74, effort: 6 })
+    .toBuffer();
+}
+
+export async function buildArt(tags: string[], log: (line: string) => void): Promise<number> {
+  const plates = readPlates();
+  const catalog = readCatalog();
+  const wanted = tags.length ? tags : Object.keys(plates);
+  let failed = 0;
+  mkdirSync(ART_PATHS.out, { recursive: true });
+  for (const tag of wanted) {
+    const plate = plates[tag];
+    const asset = catalog.assets.find((a) => a.tag === tag);
+    if (!plate || !asset) {
+      log(`${tag}: ${plate ? "not in the catalog" : "no plate in plates.json"}`);
+      failed++;
+      continue;
+    }
+    try {
+      const webp = await printPlate(await download(plate.image), plate, asset.kind);
+      const file = `${tag}.webp`;
+      writeFileSync(resolve(ART_PATHS.out, file), webp);
+      asset.file = file;
+      if (plate.focus) asset.focus = plate.focus;
+      else delete asset.focus;
+      asset.credit = { title: plate.title, author: plate.author, date: plate.date, source: plate.page, license: plate.license };
+      log(`${tag}: ${Math.round(webp.length / 1024)} KB`);
+    } catch (e) {
+      failed++;
+      log(`${tag}: FAILED ${(e as Error).message}`);
+    }
+  }
+  writeFileSync(PATHS.catalog, `${JSON.stringify(catalog, null, 2)}\n`);
+  return failed;
+}
+
+/** Prints plates from another plates file into a directory, leaving the catalog alone: for choosing crops. */
+export async function previewArt(platesPath: string, outDir: string, log: (line: string) => void): Promise<number> {
+  const plates = readPlates(resolve(platesPath));
+  const kinds = new Map(readCatalog().assets.map((a) => [a.tag, a.kind]));
+  mkdirSync(resolve(outDir), { recursive: true });
+  let failed = 0;
+  for (const [tag, plate] of Object.entries(plates)) {
+    const kind = kinds.get(tag);
+    if (!kind) {
+      log(`${tag}: not in the catalog`);
+      failed++;
+      continue;
+    }
+    try {
+      const webp = await printPlate(await download(plate.image), plate, kind);
+      const file = resolve(outDir, `${tag}.png`);
+      await sharp(webp).png().toFile(file);
+      log(`${tag}: ${file}`);
+    } catch (e) {
+      failed++;
+      log(`${tag}: FAILED ${(e as Error).message}`);
+    }
+  }
+  return failed;
+}
+
+/** Offline consistency: every plate has a catalog tag; every catalog file exists and is credited as public domain. */
+export function checkArt(): string[] {
+  const problems: string[] = [];
+  const plates = readPlates();
+  const catalog = readCatalog();
+  const tags = new Set(catalog.assets.map((a) => a.tag));
+  for (const tag of Object.keys(plates)) if (!tags.has(tag)) problems.push(`plate "${tag}" has no catalog tag`);
+  for (const a of catalog.assets) {
+    if (!a.file) continue;
+    if (!existsSync(resolve(ART_PATHS.out, a.file))) problems.push(`${a.tag}: ${a.file} is missing`);
+    if (!a.credit) problems.push(`${a.tag}: no credit`);
+    else if (!PUBLIC_DOMAIN.test(a.credit.license)) problems.push(`${a.tag}: licence "${a.credit.license}" is not public domain`);
+    if (!plates[a.tag]) problems.push(`${a.tag}: has a file but no plate in plates.json`);
+  }
+  return problems;
+}

@@ -123,6 +123,7 @@ export function audit(
 
   // Prose hygiene.
   if (/moriarty/i.test(JSON.stringify(c))) errors.push("Moriarty appears (decision 24)");
+  if (/\blsat\b/i.test(JSON.stringify(c))) errors.push("the case names the LSAT; the game never does (decision 18)");
   for (const marker of ["TODO", "TBD", "XXX", "lorem ipsum"]) {
     if (joined.includes(marker)) errors.push(`placeholder text "${marker}" left in the prose`);
   }

@@ -10,6 +10,7 @@
     "@afoot/logic": "*",
     "@afoot/schema": "*",
     "@afoot/seal": "*",
+    "sharp": "^0.34.5",
     "yaml": "^2.9.1",
     "zod": "^3.25.76"
   }

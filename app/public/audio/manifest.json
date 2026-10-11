@@ -1,0 +1,102 @@
+{
+  "$comment": "Public-domain and restriction-free audio (GAME_DESIGN.md §13.5), written by `afoot audio build` from pipeline/audio/sounds.json. Every entry records its source and licence. Missing cues are silent.",
+  "version": 1,
+  "music": {
+    "theme": {
+      "file": "theme.m4a",
+      "credit": {
+        "title": "Borodin, String Quartet No. 2 in D major: III. Notturno",
+        "author": "Musopen",
+        "source": "https://archive.org/details/MusopenCollectionAsFlac",
+        "license": "Public domain"
+      },
+      "gain": 0.8,
+      "loop": true
+    },
+    "investigation": {
+      "file": "investigation.m4a",
+      "credit": {
+        "title": "Bach, Partita No. 2 in D minor, BWV 1004: I. Allemanda",
+        "author": "Recorded in the MAT Listening Room, Queen Mary University of London (2013)",
+        "source": "https://archive.org/details/BachAllemanda_18042013",
+        "license": "CC0"
+      },
+      "gain": 0.7,
+      "loop": true
+    },
+    "palace": {
+      "file": "palace.m4a",
+      "credit": {
+        "title": "Bach, Violin Sonata No. 1 in G minor, BWV 1001: I. Adagio",
+        "author": "Recorded at William Goodenough House, London (2014)",
+        "source": "https://archive.org/details/Bach1stViolinSonata_112014",
+        "license": "CC0"
+      },
+      "gain": 0.55,
+      "loop": true
+    },
+    "finale": {
+      "file": "finale.m4a",
+      "credit": {
+        "title": "Haydn, String Quartet in D major, Op. 64 No. 5, “The Lark”: I. Allegro moderato",
+        "author": "Musopen",
+        "source": "https://archive.org/details/MusopenCollectionAsFlac",
+        "license": "Public domain"
+      },
+      "gain": 0.8,
+      "loop": true
+    }
+  },
+  "sfx": {
+    "pluck": {
+      "file": "pluck.m4a",
+      "credit": {
+        "title": "Violin, pizzicato",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.6
+    },
+    "seal": {
+      "file": "seal.m4a",
+      "credit": {
+        "title": "Violin, pizzicato on the G string",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.8
+    },
+    "reveal": {
+      "file": "reveal.m4a",
+      "credit": {
+        "title": "Violin, bowed, sounded as a chord",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.7
+    },
+    "discord": {
+      "file": "discord.m4a",
+      "credit": {
+        "title": "Violin, bowed fortissimo, sounded as a clash",
+        "author": "Lawrence Fritts, Musical Instrument Samples, University of Iowa Electronic Music Studios",
+        "source": "https://theremin.music.uiowa.edu/MISviolin2012.html",
+        "license": "Free to use without restriction"
+      },
+      "gain": 0.55
+    },
+    "page": {
+      "file": "page.m4a",
+      "credit": {
+        "title": "Book sound effects: a page turned",
+        "author": "Book sound effects collection, Internet Archive",
+        "source": "https://archive.org/details/book-sound-effects",
+        "license": "CC0"
+      },
+      "gain": 0.5
+    }
+  }
+}

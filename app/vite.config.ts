@@ -29,7 +29,16 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,png,woff2}"],
+        // Engravings and effects are precached for offline play; music streams and is cached as it plays.
+        globPatterns: ["**/*.{js,css,html,png,woff2,webp}", "audio/{pluck,reveal,discord,page,seal}.m4a"],
+        runtimeCaching: [
+          {
+            // The director fetches each track whole, so a plain cache serves it offline.
+            urlPattern: ({ url }) => url.pathname.endsWith(".m4a"),
+            handler: "CacheFirst",
+            options: { cacheName: "afoot-music", cacheableResponse: { statuses: [200] } },
+          },
+        ],
       },
     }),
   ],

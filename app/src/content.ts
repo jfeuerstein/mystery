@@ -1,9 +1,10 @@
 import { Case } from "@afoot/schema";
 import { unseal, type SealedIndex } from "@afoot/seal";
 import stoppedClock from "../../fixtures/stopped-clock.case.json";
+import { typesetAll } from "./ui/typeset";
 
 /** The hand-written sample case (GAME_DESIGN.md §16): always first, never sealed. */
-export const SAMPLE: Case = Case.parse(stoppedClock);
+export const SAMPLE: Case = typesetAll(Case.parse(stoppedClock));
 
 // Sealed seasons are bundled as opaque text and opened in the browser (§14.6).
 const indexFiles = import.meta.glob<SealedIndex>("../../content/sealed/index.json", { eager: true, import: "default" });
@@ -28,7 +29,7 @@ export async function loadSealedCases(): Promise<void> {
     const blob = sealedFiles[`../../content/sealed/${entry.file}`];
     if (!blob) continue;
     try {
-      opened.push(Case.parse(await unseal(blob)));
+      opened.push(typesetAll(Case.parse(await unseal(blob))));
     } catch {
       // Never print case content; just say which slot failed.
       console.error(`Season ${entry.season}, case ${entry.number} could not be opened`);

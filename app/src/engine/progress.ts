@@ -270,10 +270,14 @@ export function grade(p: CaseProgress): Grade {
   return "untidy";
 }
 
-export function patienceHolder(c: Case, p: CaseProgress): string {
+export function patienceHolderPerson(c: Case, p: CaseProgress) {
   const id =
     p.stage.kind === "chapter" || p.stage.kind === "cold"
       ? c.chapters[p.stage.chapter]!.patienceHolder
       : c.finale.patienceHolder;
-  return c.cast.find((x) => x.id === id)?.name ?? id;
+  return c.cast.find((x) => x.id === id) ?? { id, name: id, role: "" };
+}
+
+export function patienceHolder(c: Case, p: CaseProgress): string {
+  return patienceHolderPerson(c, p).name;
 }

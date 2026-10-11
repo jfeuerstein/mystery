@@ -7,6 +7,8 @@ import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import caseJson from "../../fixtures/stopped-clock.case.json";
 import { checkAnswer } from "../src/answers.js";
+import { checkArt, Plate } from "../src/art.js";
+import { checkAudio, ffmpegArgs, Sound } from "../src/audio.js";
 import { audit } from "../src/audit.js";
 import { compose } from "../src/compose.js";
 import type { LedgerEntry } from "../src/ledger.js";
@@ -146,9 +148,11 @@ describe("audit and compose", () => {
     const bad = structuredClone(fixture);
     bad.cast[0]!.portrait.tag = "portrait-unicorn";
     bad.finale.solution.push("Moriarty smiled.");
+    bad.finale.intro.push("It was like a question on the LSAT.");
     const r = audit(bad, { catalog: new Set(catalog.map((a) => a.tag)), curriculum: curriculumFor(1, []) });
     expect(r.errors.join("\n")).toContain('art tag "portrait-unicorn"');
     expect(r.errors.join("\n")).toContain("Moriarty");
+    expect(r.errors.join("\n")).toContain("names the LSAT");
     expect(r.errors.join("\n")).toContain("5 deductions; a case has 6–10");
     expect(r.errors.join("\n")).toContain('deduction "d-clock-chain" needs at least 2 variants');
   });
@@ -288,4 +292,46 @@ describe("CLI", () => {
     expect(out).toContain("NOT SEALED  playtest");
     expect(readFileSync(join(dir, "case.json"), "utf8")).toBeTruthy(); // nothing deleted
   }, 30000);
+});
+
+describe("art and audio", () => {
+  const plate = {
+    page: "https://commons.wikimedia.org/wiki/File:X.jpg",
+    image: "https://upload.wikimedia.org/x.jpg",
+    title: "The Naval Treaty",
+    author: "Sidney Paget",
+    date: "1893",
+    license: "Public domain",
+  };
+
+  it("takes only public-domain plates", () => {
+    expect(Plate.safeParse(plate).success).toBe(true);
+    expect(Plate.safeParse({ ...plate, license: "CC0" }).success).toBe(true);
+    expect(Plate.safeParse({ ...plate, license: "CC BY-SA 4.0" }).success).toBe(false);
+    expect(Plate.safeParse({ ...plate, crop: [0, 0, 1.2, 1] }).success).toBe(false);
+  });
+
+  it("takes only free recordings, and layers them in one ffmpeg graph", () => {
+    const sound = {
+      kind: "sfx",
+      layers: [
+        { url: "https://example.org/a.aif", start: 1, duration: 2 },
+        { url: "https://example.org/a.aif", start: 5, duration: 2, offset: 0.1 },
+      ],
+      fadeOut: 1,
+      credit: { title: "t", author: "a", source: "https://example.org", license: "Free to use without restriction" },
+    };
+    expect(Sound.safeParse({ ...sound, credit: { ...sound.credit, license: "CC BY 4.0" } }).success).toBe(false);
+    const args = ffmpegArgs(Sound.parse(sound), ["a", "b"], "out.m4a");
+    const graph = args[args.indexOf("-filter_complex") + 1]!;
+    expect(graph).toContain("amix=inputs=2");
+    expect(graph).toContain("adelay=100|100");
+    expect(graph).toContain("afade=t=out:st=1.1:d=1");
+    expect(args).toContain("-ac");
+  });
+
+  it("every shipped plate and recording exists and is credited", () => {
+    expect(checkArt()).toEqual([]);
+    expect(checkAudio()).toEqual([]);
+  });
 });

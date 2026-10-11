@@ -13,6 +13,8 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node
 import { dirname, relative, resolve } from "node:path";
 import { z } from "zod";
 import { checkAnswer, extractJson } from "./answers.js";
+import { buildArt, checkArt, previewArt } from "./art.js";
+import { buildAudio, checkAudio } from "./audio.js";
 import { audit } from "./audit.js";
 import { compose } from "./compose.js";
 import { nextSlot, readIndex, readLedger, writeIndex, writeLedger } from "./ledger.js";
@@ -38,7 +40,14 @@ const USAGE = `afoot <command> [args]
   status <id>                    blind-playtest coverage
   seal <id> [--keep]             run every gate, seal, update index and ledger
   sealed-check [--details]       open every sealed case and verify it (metrics only)
-  motifs                         check the motif library against the art catalog`;
+  motifs                         check the motif library against the art catalog
+  art build [tag...]             download, crop and print engravings from pipeline/art/plates.json
+  art check                      every catalog plate exists and is credited as public domain
+  art preview <plates.json> <dir>   print another plates file as PNGs, catalog untouched
+  audio build [cue...]           cut the music and effects in pipeline/audio/sounds.json (needs ffmpeg)
+  audio check                    every manifest recording exists and is credited under a free licence
+
+  Behind an HTTPS proxy, run the builds with NODE_USE_ENV_PROXY=1.`;
 
 type Args = { _: string[]; flags: Record<string, string | true> };
 
@@ -330,6 +339,36 @@ async function main(argv: string[]): Promise<number> {
       const kinds = motifs.reduce<Record<string, number>>((acc, m) => ({ ...acc, [m.kind]: (acc[m.kind] ?? 0) + 1 }), {});
       console.log(`${motifs.length} motifs ${JSON.stringify(kinds)}: ${problems.length ? "PROBLEMS" : "OK"}`);
       return problems.length ? 1 : 0;
+    }
+
+    case "art": {
+      if (args._[1] === "build") {
+        const failed = await buildArt(args._.slice(2), (line) => console.log(line));
+        return failed ? 1 : 0;
+      }
+      if (args._[1] === "preview" && args._[2] && args._[3]) {
+        return (await previewArt(args._[2], args._[3], (line) => console.log(line))) ? 1 : 0;
+      }
+      if (args._[1] === "check") {
+        const problems = checkArt();
+        print(problems);
+        console.log(problems.length ? "PROBLEMS" : "OK");
+        return problems.length ? 1 : 0;
+      }
+      console.log(USAGE);
+      return 1;
+    }
+
+    case "audio": {
+      if (args._[1] === "build") return (await buildAudio(args._.slice(2), (line) => console.log(line))) ? 1 : 0;
+      if (args._[1] === "check") {
+        const problems = checkAudio();
+        print(problems);
+        console.log(problems.length ? "PROBLEMS" : "OK");
+        return problems.length ? 1 : 0;
+      }
+      console.log(USAGE);
+      return 1;
     }
 
     default:
