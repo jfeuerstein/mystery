@@ -1,161 +1,409 @@
 {
-  "$comment": "The engraving catalog (GAME_DESIGN.md \u00a713.2). Cases may only use these tags. Until real public-domain engravings are added, the app draws a captioned placeholder plate for each tag.",
+  "$comment": "The engraving catalog (GAME_DESIGN.md §13.2). Cases may only use these tags. Until real public-domain engravings are added, the app draws a captioned placeholder plate for each tag.",
   "version": 1,
   "assets": [
     {
       "tag": "portrait-young-woman",
       "kind": "portrait",
-      "description": "A young woman in a dark travelling dress, composed."
+      "description": "A young woman in a dark travelling dress, composed.",
+      "file": "portrait-young-woman.webp",
+      "credit": {
+        "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1898",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p305--Brotherhood_of_7_kings--ch_9.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-elderly-woman",
       "kind": "portrait",
-      "description": "An elderly lady in widow's black with a cane."
+      "description": "An elderly lady in widow's black with a cane.",
+      "file": "portrait-elderly-woman.webp",
+      "credit": {
+        "title": "The Chamber of Shadows (The Strand Magazine)",
+        "author": "Paul Hardy",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._23,_pg._467_-_She_Said,_Hoarsely,_Go.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-governess",
       "kind": "portrait",
-      "description": "A governess in a plain grey dress, hair severely drawn back."
+      "description": "A governess in a plain grey dress, hair severely drawn back.",
+      "file": "portrait-governess.webp",
+      "credit": {
+        "title": "A Little Surprise (The Strand Magazine)",
+        "author": "W. S. Stacey",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._5,_no._25,_pg._25.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-housekeeper",
       "kind": "portrait",
-      "description": "A small, upright housekeeper with a chatelaine of keys."
+      "description": "A small, upright housekeeper with a chatelaine of keys.",
+      "file": "portrait-housekeeper.webp",
+      "credit": {
+        "title": "Illustrated Interviews: Henry Stacy Marks (The Strand Magazine)",
+        "author": "Henry Stacy Marks or W. S. Stacey",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._8,_pg._115_-_First_Earnings.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-maid",
       "kind": "portrait",
-      "description": "A housemaid in cap and apron."
+      "description": "A housemaid in cap and apron.",
+      "file": "portrait-maid.webp",
+      "credit": {
+        "title": "The Boscombe Valley Mystery (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-landlady",
       "kind": "portrait",
-      "description": "A stout London landlady in a shawl."
+      "description": "A stout London landlady in a shawl.",
+      "file": "portrait-landlady.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_06,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-actress",
       "kind": "portrait",
-      "description": "An actress in an extravagant hat and furs."
+      "description": "An actress in an extravagant hat and furs.",
+      "file": "portrait-actress.webp",
+      "credit": {
+        "title": "A Case of Identity (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_A_Case_of_Identity_01.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-lady-of-quality",
       "kind": "portrait",
-      "description": "A lady of quality in evening dress and pearls."
+      "description": "A lady of quality in evening dress and pearls.",
+      "file": "portrait-lady-of-quality.webp",
+      "credit": {
+        "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1898",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p423--Brotherhood_of_7_kings--ch_10.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-gentleman",
       "kind": "portrait",
-      "description": "A smooth, well-tailored gentleman in a frock coat."
+      "description": "A smooth, well-tailored gentleman in a frock coat.",
+      "file": "portrait-gentleman.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_03,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-young-gentleman",
       "kind": "portrait",
-      "description": "A nervous young gentleman, hat in hand."
+      "description": "A nervous young gentleman, hat in hand.",
+      "file": "portrait-young-gentleman.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-09.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-colonel",
       "kind": "portrait",
-      "description": "A retired army colonel with white moustaches and a stiff back."
+      "description": "A retired army colonel with white moustaches and a stiff back.",
+      "file": "portrait-colonel.webp",
+      "credit": {
+        "title": "The Naval Treaty (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_10,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-aristocrat",
       "kind": "portrait",
-      "description": "A peer of the realm, cold and immaculate."
+      "description": "A peer of the realm, cold and immaculate.",
+      "file": "portrait-aristocrat.webp",
+      "credit": {
+        "title": "The Noble Bachelor (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._390_-_Lord_Robert_St_Simon.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-banker",
       "kind": "portrait",
-      "description": "A portly City banker with a watch-chain."
+      "description": "A portly City banker with a watch-chain.",
+      "file": "portrait-banker.webp",
+      "credit": {
+        "title": "The Case of Mr. Foggatt (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1894",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Case_of_Mr._Foggatt_1.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-solicitor",
       "kind": "portrait",
-      "description": "A thin, dry solicitor with pince-nez."
+      "description": "A thin, dry solicitor with pince-nez.",
+      "file": "portrait-solicitor.webp",
+      "credit": {
+        "title": "The Resident Patient (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_02,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-clerk",
       "kind": "portrait",
-      "description": "A copying clerk with ink-stained cuffs."
+      "description": "A copying clerk with ink-stained cuffs.",
+      "file": "portrait-clerk.webp",
+      "credit": {
+        "title": "The Stockbroker's Clerk (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p283.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-doctor",
       "kind": "portrait",
-      "description": "A country doctor with a black bag."
+      "description": "A country doctor with a black bag.",
+      "file": "portrait-doctor.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-08.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-clergyman",
       "kind": "portrait",
-      "description": "A clergyman in a shovel hat and dog collar."
+      "description": "A clergyman in a shovel hat and dog collar.",
+      "file": "portrait-clergyman.webp",
+      "credit": {
+        "title": "A Scandal in Bohemia (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand2-070-ASimpleMindedClergyman.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-professor",
       "kind": "portrait",
-      "description": "A stooping academic with a high forehead."
+      "description": "A stooping academic with a high forehead.",
+      "file": "portrait-professor.webp",
+      "credit": {
+        "title": "The Stanway Cameo Mystery (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1894",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Stanway_Cameo_Mystery_1.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-artist",
       "kind": "portrait",
-      "description": "A bohemian painter in a loose velvet coat."
+      "description": "A bohemian painter in a loose velvet coat.",
+      "file": "portrait-artist.webp",
+      "credit": {
+        "title": "The Lenton Croft Robberies (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1894",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Lenton_Croft_Robberies_1.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "portrait-sailor",
       "kind": "portrait",
-      "description": "A weathered sailor in a pea jacket."
+      "description": "A weathered sailor in a pea jacket.",
+      "file": "portrait-sailor.webp",
+      "credit": {
+        "title": "The Cardboard Box (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_05.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-sea-captain",
       "kind": "portrait",
-      "description": "A sea captain with a beard and a peaked cap."
+      "description": "A sea captain with a beard and a peaked cap.",
+      "file": "portrait-sea-captain.webp",
+      "credit": {
+        "title": "A Night Ride on the Flying Scotchman (The Strand Magazine)",
+        "author": "Unknown engraver",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._196_-_Samuel_Watson_-_Driver.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-groom",
       "kind": "portrait",
-      "description": "A young groom in a waistcoat and shirtsleeves."
+      "description": "A young groom in a waistcoat and shirtsleeves.",
+      "file": "portrait-groom.webp",
+      "credit": {
+        "title": "A Scandal in Bohemia (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._7,_pg._67_-_A_drunken-looking_groom.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-butler",
       "kind": "portrait",
-      "description": "An elderly butler, impassive."
+      "description": "An elderly butler, impassive.",
+      "file": "portrait-butler.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-21_-_Hound_of_Baskervilles,_page_118.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-gamekeeper",
       "kind": "portrait",
-      "description": "A gamekeeper with a shotgun broken over his arm."
+      "description": "A gamekeeper with a shotgun broken over his arm.",
+      "file": "portrait-gamekeeper.webp",
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-26.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-labourer",
       "kind": "portrait",
-      "description": "A navvy or labourer in a moleskin coat."
+      "description": "A navvy or labourer in a moleskin coat.",
+      "file": "portrait-labourer.webp",
+      "credit": {
+        "title": "The Bride of Felix Armstrong (The Strand Magazine)",
+        "author": "W. S. Stacey",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._18,_pg._571_-_He_Proved_His_Assertion.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-cabman",
       "kind": "portrait",
-      "description": "A London cabman in a many-caped greatcoat."
+      "description": "A London cabman in a many-caped greatcoat.",
+      "file": "portrait-cabman.webp",
+      "credit": {
+        "title": "A Case of Identity (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._9,_pg._252_-_There_Was_No_One_There.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-street-urchin",
       "kind": "portrait",
-      "description": "A ragged boy of the Baker Street Irregulars."
+      "description": "A ragged boy of the Baker Street Irregulars.",
+      "file": "portrait-street-urchin.webp",
+      "credit": {
+        "title": "Street Musicians (The Strand Magazine)",
+        "author": "Frank Feller",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._13,_pg._67_-_Hurdy-Gurdy.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-publican",
       "kind": "portrait",
-      "description": "A publican in shirtsleeves behind a bar."
+      "description": "A publican in shirtsleeves behind a bar.",
+      "file": "portrait-publican.webp",
+      "credit": {
+        "title": "Lady Florry's Gems (The Strand Magazine)",
+        "author": "Paul Hardy",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._370_-_There,_Sir,_He_Said_Solemnly.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-shopkeeper",
       "kind": "portrait",
-      "description": "A shopkeeper in a long apron."
+      "description": "A shopkeeper in a long apron.",
+      "file": "portrait-shopkeeper.webp",
+      "credit": {
+        "title": "London: A Pilgrimage",
+        "author": "Gustave Doré",
+        "date": "1872",
+        "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f286.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-foreigner",
       "kind": "portrait",
-      "description": "A gentleman in foreign cut of clothes, watchful."
+      "description": "A gentleman in foreign cut of clothes, watchful.",
+      "file": "portrait-foreigner.webp",
+      "credit": {
+        "title": "The Resident Patient (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_03,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-inspector",
       "kind": "portrait",
-      "description": "A Scotland Yard inspector in a bowler and overcoat."
+      "description": "A Scotland Yard inspector in a bowler and overcoat.",
+      "file": "portrait-inspector.webp",
+      "credit": {
+        "title": "The Cardboard Box (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-constable",
@@ -165,22 +413,54 @@
     {
       "tag": "portrait-holmes",
       "kind": "portrait",
-      "description": "Sherlock Holmes in a dressing gown, pipe in hand."
+      "description": "Sherlock Holmes in a dressing gown, pipe in hand.",
+      "file": "portrait-holmes.webp",
+      "credit": {
+        "title": "The Man with the Twisted Lip (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1891",
+        "source": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-watson",
       "kind": "portrait",
-      "description": "Dr. Watson, moustached, in a tweed suit."
+      "description": "Dr. Watson, moustached, in a tweed suit.",
+      "file": "portrait-watson.webp",
+      "credit": {
+        "title": "The Greek Interpreter (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-mycroft",
       "kind": "portrait",
-      "description": "Mycroft Holmes, heavy and still, in a club armchair."
+      "description": "Mycroft Holmes, heavy and still, in a club armchair.",
+      "file": "portrait-mycroft.webp",
+      "credit": {
+        "title": "The Greek Interpreter (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1893",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Greek_Interpreter_07,_The_Strand_Magazine,_Vol_6.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "portrait-mrs-hudson",
       "kind": "portrait",
-      "description": "Mrs. Hudson with a tea tray."
+      "description": "Mrs. Hudson with a tea tray.",
+      "file": "portrait-mrs-hudson.webp",
+      "credit": {
+        "title": "There's Many a Slip (The Strand Magazine)",
+        "author": "W. S. Stacey",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._20,_pg._160_-_Yes,_He_Answered_Musingly.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-sitting-room",

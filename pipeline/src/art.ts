@@ -18,7 +18,7 @@ const Fraction = z.number().min(0).max(1);
 export const Plate = z.object({
   /** The page that documents the image and its licence (a Commons file page, say). */
   page: z.string().url(),
-  /** The original image file. */
+  /** The file the build prints from: a large Commons rendering (thumb.wikimedia.org) or the original. */
   image: z.string().url(),
   title: z.string().min(1),
   author: z.string().min(1),

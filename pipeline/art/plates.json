@@ -1,4 +1,495 @@
 {
-  "$comment": "The source of every engraving in app/public/art (GAME_DESIGN.md §13.2). Public domain or CC0 only. `npm run afoot -- art build` prints them; crop and focus are fractions of the original.",
-  "plates": {}
+  "$comment": "The source of every engraving in app/public/art (GAME_DESIGN.md §13.2). Public domain or CC0 only. `image` is the file the build prints from: a large Commons rendering (thumb.wikimedia.org) or the original. `npm run afoot -- art build` prints them; crop and focus are fractions of the image.",
+  "plates": {
+    "portrait-actress": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_A_Case_of_Identity_01.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Sidney_Paget_-_A_Case_of_Identity_01.jpg/1920px-Sidney_Paget_-_A_Case_of_Identity_01.jpg",
+      "title": "A Case of Identity (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.5056,
+        0.13,
+        0.8544,
+        0.48
+      ]
+    },
+    "portrait-aristocrat": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._390_-_Lord_Robert_St_Simon.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/The_Strand_Magazine_vol._3%2C_no._16%2C_pg._390_-_Lord_Robert_St_Simon.png/960px-The_Strand_Magazine_vol._3%2C_no._16%2C_pg._390_-_Lord_Robert_St_Simon.png",
+      "title": "The Noble Bachelor (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.1137,
+        0.0,
+        0.7463,
+        0.42
+      ]
+    },
+    "portrait-artist": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Lenton_Croft_Robberies_1.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/The_Lenton_Croft_Robberies_1.jpg/960px-The_Lenton_Croft_Robberies_1.jpg",
+      "title": "The Lenton Croft Robberies (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1894",
+      "license": "CC0",
+      "crop": [
+        0.2532,
+        0.03,
+        0.7468,
+        0.5
+      ]
+    },
+    "portrait-banker": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Case_of_Mr._Foggatt_1.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/The_Case_of_Mr._Foggatt_1.jpg/500px-The_Case_of_Mr._Foggatt_1.jpg",
+      "title": "The Case of Mr. Foggatt (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1894",
+      "license": "Public domain",
+      "crop": [
+        0.1299,
+        0.0,
+        0.7101,
+        0.5
+      ]
+    },
+    "portrait-butler": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-21_-_Hound_of_Baskervilles,_page_118.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Houn-21_-_Hound_of_Baskervilles%2C_page_118.jpg/1280px-Houn-21_-_Hound_of_Baskervilles%2C_page_118.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.4639,
+        0.2,
+        0.8461,
+        0.56
+      ]
+    },
+    "portrait-cabman": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._9,_pg._252_-_There_Was_No_One_There.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/The_Strand_Magazine_vol._2%2C_no._9%2C_pg._252_-_There_Was_No_One_There.png/1280px-The_Strand_Magazine_vol._2%2C_no._9%2C_pg._252_-_There_Was_No_One_There.png",
+      "title": "A Case of Identity (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.4605,
+        0.16,
+        0.7795,
+        0.62
+      ]
+    },
+    "portrait-clergyman": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand2-070-ASimpleMindedClergyman.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Strand2-070-ASimpleMindedClergyman.jpg/500px-Strand2-070-ASimpleMindedClergyman.jpg",
+      "title": "A Scandal in Bohemia (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.0467,
+        0.0,
+        0.7933,
+        0.5
+      ]
+    },
+    "portrait-clerk": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p283.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/The_Strand_Magazine_%28Volume_5%29_-_p283.png/1280px-The_Strand_Magazine_%28Volume_5%29_-_p283.png",
+      "title": "The Stockbroker's Clerk (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.5811,
+        0.0,
+        0.9989,
+        0.36
+      ]
+    },
+    "portrait-colonel": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_10,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/The_Naval_Treaty_10%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_10%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.3068,
+        0.08,
+        0.6032,
+        0.42
+      ]
+    },
+    "portrait-doctor": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-08.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Houn-08.jpg/960px-Houn-08.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.1878,
+        0.02,
+        0.6522,
+        0.5
+      ]
+    },
+    "portrait-elderly-woman": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._23,_pg._467_-_She_Said,_Hoarsely,_Go.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Strand_Magazine_vol._4%2C_no._23%2C_pg._467_-_She_Said%2C_Hoarsely%2C_Go.png/960px-The_Strand_Magazine_vol._4%2C_no._23%2C_pg._467_-_She_Said%2C_Hoarsely%2C_Go.png",
+      "title": "The Chamber of Shadows (The Strand Magazine)",
+      "author": "Paul Hardy",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.4749,
+        0.22,
+        0.9651,
+        0.6
+      ]
+    },
+    "portrait-foreigner": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_03,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/The_Resident_Patient_03%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Resident_Patient_03%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Resident Patient (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.5802,
+        0.0,
+        0.9598,
+        0.45
+      ]
+    },
+    "portrait-gamekeeper": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-26.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Houn-26.jpg/960px-Houn-26.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.5073,
+        0.05,
+        0.9727,
+        0.44
+      ]
+    },
+    "portrait-gentleman": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_03,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/The_Naval_Treaty_03%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_03%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.037,
+        0.0,
+        0.503,
+        0.42
+      ]
+    },
+    "portrait-governess": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._5,_no._25,_pg._25.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/The_Strand_Magazine_vol._5%2C_no._25%2C_pg._25.png/960px-The_Strand_Magazine_vol._5%2C_no._25%2C_pg._25.png",
+      "title": "A Little Surprise (The Strand Magazine)",
+      "author": "W. S. Stacey",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.427,
+        0.13,
+        0.873,
+        0.52
+      ]
+    },
+    "portrait-groom": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._7,_pg._67_-_A_drunken-looking_groom.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/The_Strand_Magazine_vol._2%2C_no._7%2C_pg._67_-_A_drunken-looking_groom.png/500px-The_Strand_Magazine_vol._2%2C_no._7%2C_pg._67_-_A_drunken-looking_groom.png",
+      "title": "A Scandal in Bohemia (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.1359,
+        0.0,
+        0.8641,
+        0.45
+      ]
+    },
+    "portrait-holmes": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg/1280px-Sherlock_Holmes_-_The_Man_with_the_Twisted_Lip.jpg",
+      "title": "The Man with the Twisted Lip (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.2376,
+        0.03,
+        0.8824,
+        0.75
+      ]
+    },
+    "portrait-housekeeper": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._8,_pg._115_-_First_Earnings.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/The_Strand_Magazine_vol._2%2C_no._8%2C_pg._115_-_First_Earnings.png/1280px-The_Strand_Magazine_vol._2%2C_no._8%2C_pg._115_-_First_Earnings.png",
+      "title": "Illustrated Interviews: Henry Stacy Marks (The Strand Magazine)",
+      "author": "Henry Stacy Marks or W. S. Stacey",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.1505,
+        0.06,
+        0.6895,
+        0.55
+      ]
+    },
+    "portrait-inspector": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg/1920px-The_Adventure_of_the_Cardboard_Box_06_-_Lestrade.jpg",
+      "title": "The Cardboard Box (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.115,
+        0.18,
+        0.485,
+        0.55
+      ]
+    },
+    "portrait-labourer": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._18,_pg._571_-_He_Proved_His_Assertion.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/The_Strand_Magazine_vol._3%2C_no._18%2C_pg._571_-_He_Proved_His_Assertion.png/1280px-The_Strand_Magazine_vol._3%2C_no._18%2C_pg._571_-_He_Proved_His_Assertion.png",
+      "title": "The Bride of Felix Armstrong (The Strand Magazine)",
+      "author": "W. S. Stacey",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.1258,
+        0.18,
+        0.4742,
+        0.52
+      ]
+    },
+    "portrait-lady-of-quality": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p423--Brotherhood_of_7_kings--ch_10.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Strand_Mag_1898%2C_p423--Brotherhood_of_7_kings--ch_10.jpg/1280px-Strand_Mag_1898%2C_p423--Brotherhood_of_7_kings--ch_10.jpg",
+      "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1898",
+      "license": "Public domain",
+      "crop": [
+        0.3864,
+        0.16,
+        0.8536,
+        0.56
+      ]
+    },
+    "portrait-landlady": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_06,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/The_Naval_Treaty_06%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Naval_Treaty_06%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Naval Treaty (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.5421,
+        0.03,
+        0.8579,
+        0.5
+      ]
+    },
+    "portrait-maid": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg/1920px-Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg",
+      "title": "The Boscombe Valley Mystery (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.5775,
+        0.08,
+        0.8925,
+        0.5
+      ]
+    },
+    "portrait-mrs-hudson": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._20,_pg._160_-_Yes,_He_Answered_Musingly.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/The_Strand_Magazine_vol._4%2C_no._20%2C_pg._160_-_Yes%2C_He_Answered_Musingly.png/1280px-The_Strand_Magazine_vol._4%2C_no._20%2C_pg._160_-_Yes%2C_He_Answered_Musingly.png",
+      "title": "There's Many a Slip (The Strand Magazine)",
+      "author": "W. S. Stacey",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.0567,
+        0.15,
+        0.4433,
+        0.55
+      ]
+    },
+    "portrait-mycroft": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Greek_Interpreter_07,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/The_Greek_Interpreter_07%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Greek_Interpreter_07%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Greek Interpreter (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.4299,
+        0.18,
+        0.8901,
+        0.66
+      ]
+    },
+    "portrait-professor": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Stanway_Cameo_Mystery_1.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/The_Stanway_Cameo_Mystery_1.jpg/960px-The_Stanway_Cameo_Mystery_1.jpg",
+      "title": "The Stanway Cameo Mystery (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1894",
+      "license": "Public domain",
+      "crop": [
+        0.4673,
+        0.17,
+        0.8927,
+        0.62
+      ]
+    },
+    "portrait-publican": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._370_-_There,_Sir,_He_Said_Solemnly.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/The_Strand_Magazine_vol._3%2C_no._16%2C_pg._370_-_There%2C_Sir%2C_He_Said_Solemnly.png/1280px-The_Strand_Magazine_vol._3%2C_no._16%2C_pg._370_-_There%2C_Sir%2C_He_Said_Solemnly.png",
+      "title": "Lady Florry's Gems (The Strand Magazine)",
+      "author": "Paul Hardy",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.3314,
+        0.2,
+        0.7886,
+        0.56
+      ]
+    },
+    "portrait-sailor": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_05.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/The_Adventure_of_the_Cardboard_Box_05.jpg/1280px-The_Adventure_of_the_Cardboard_Box_05.jpg",
+      "title": "The Cardboard Box (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.1361,
+        0.0,
+        0.8039,
+        0.36
+      ]
+    },
+    "portrait-sea-captain": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._196_-_Samuel_Watson_-_Driver.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/The_Strand_Magazine_vol._3%2C_no._14%2C_pg._196_-_Samuel_Watson_-_Driver.png/960px-The_Strand_Magazine_vol._3%2C_no._14%2C_pg._196_-_Samuel_Watson_-_Driver.png",
+      "title": "A Night Ride on the Flying Scotchman (The Strand Magazine)",
+      "author": "Unknown engraver",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.3039,
+        0.06,
+        0.7961,
+        0.5
+      ]
+    },
+    "portrait-shopkeeper": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f286.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bpt6k10470488_f286.jpg/1280px-Bpt6k10470488_f286.jpg",
+      "title": "London: A Pilgrimage",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.1986,
+        0.14,
+        0.6414,
+        0.52
+      ]
+    },
+    "portrait-solicitor": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_02,_The_Strand_Magazine,_Vol_6.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/The_Resident_Patient_02%2C_The_Strand_Magazine%2C_Vol_6.png/1920px-The_Resident_Patient_02%2C_The_Strand_Magazine%2C_Vol_6.png",
+      "title": "The Resident Patient (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.0413,
+        0.12,
+        0.4787,
+        0.55
+      ]
+    },
+    "portrait-street-urchin": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._13,_pg._67_-_Hurdy-Gurdy.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/The_Strand_Magazine_vol._3%2C_no._13%2C_pg._67_-_Hurdy-Gurdy.png/960px-The_Strand_Magazine_vol._3%2C_no._13%2C_pg._67_-_Hurdy-Gurdy.png",
+      "title": "Street Musicians (The Strand Magazine)",
+      "author": "Frank Feller",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.1531,
+        0.22,
+        0.5669,
+        0.64
+      ]
+    },
+    "portrait-watson": {
+      "page": "https://commons.wikimedia.org/wiki/File:Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg/1920px-Sherlock_Holmes_%26_Watson_-_The_Greek_Interpreter_-_Sidney_Paget.jpg",
+      "title": "The Greek Interpreter (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.0651,
+        0.05,
+        0.4049,
+        0.4
+      ]
+    },
+    "portrait-young-gentleman": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-09.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Houn-09.jpg/960px-Houn-09.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.0101,
+        0.06,
+        0.4299,
+        0.5
+      ]
+    },
+    "portrait-young-woman": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p305--Brotherhood_of_7_kings--ch_9.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Strand_Mag_1898%2C_p305--Brotherhood_of_7_kings--ch_9.jpg/960px-Strand_Mag_1898%2C_p305--Brotherhood_of_7_kings--ch_9.jpg",
+      "title": "The Brotherhood of the Seven Kings (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1898",
+      "license": "Public domain",
+      "crop": [
+        0.1024,
+        0.05,
+        0.8376,
+        0.5
+      ]
+    }
+  }
 }
