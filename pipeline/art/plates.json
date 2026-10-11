@@ -490,6 +490,546 @@
         0.8376,
         0.5
       ]
+    },
+    "scene-attic": {
+      "page": "https://commons.wikimedia.org/wiki/File:Tubaspeler_op_een_zolderkamer,_RP-P-1912-1041.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Tubaspeler_op_een_zolderkamer%2C_RP-P-1912-1041.jpg/1920px-Tubaspeler_op_een_zolderkamer%2C_RP-P-1912-1041.jpg",
+      "title": "Tuba player in an attic (Rijksmuseum RP-P-1912-1041)",
+      "author": "Romain Looymans",
+      "date": "1890",
+      "license": "CC0",
+      "crop": [
+        0.32,
+        0.05,
+        0.803,
+        0.95
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-bank-office": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=316",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page316-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: The Prerogative Office, Doctors' Commons, 1860",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1784,
+        0.205,
+        0.6616,
+        0.65
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-bedroom": {
+      "page": "https://commons.wikimedia.org/wiki/File:Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png/1920px-Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png",
+      "title": "Apartment of Princess Clotilde, Durazzo Palace (L'Illustration)",
+      "author": "Édouard Riou",
+      "date": "1859",
+      "license": "Public domain",
+      "crop": [
+        0.44,
+        0.05,
+        0.92,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-cellar": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=351",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Old_and_New_London%2C_vol._2.djvu/page351-1920px-Old_and_New_London%2C_vol._2.djvu.jpg",
+      "title": "Old and New London, vol. 2: The Crypt of St. John's, Clerkenwell",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.2312,
+        0.205,
+        0.7688,
+        0.69
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-church": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=150",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page150-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Interior of Kensington Church, 1850",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2538,
+        0.252,
+        0.7062,
+        0.668
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-churchyard": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=609",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page609-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Edmonton Church, 1790",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.1474,
+        0.245,
+        0.6126,
+        0.671
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-cliffs": {
+      "page": "https://commons.wikimedia.org/wiki/File:George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg/1920px-George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg",
+      "title": "Dover, from Shakespeare's Cliff (Yale Center for British Art B1977.14.6693)",
+      "author": "George Cooke",
+      "date": "1826",
+      "license": "CC0",
+      "crop": [
+        0.1,
+        0.21,
+        0.455,
+        0.85
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-club": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=285",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Old_and_New_London%2C_vol._3.djvu/page285-1920px-Old_and_New_London%2C_vol._3.djvu.jpg",
+      "title": "Old and New London, vol. 3: Dining-room of the Garrick Club",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2171,
+        0.215,
+        0.8229,
+        0.765
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-country-house": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=204",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page204-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Holland House, from the North",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2816,
+        0.255,
+        0.7184,
+        0.655
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-dining-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-22.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Houn-22.jpg/1920px-Houn-22.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.1,
+        0.015,
+        0.9,
+        0.9
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-docks": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f92.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Bpt6k10470488_f92.jpg/1920px-Bpt6k10470488_f92.jpg",
+      "title": "London: A Pilgrimage",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.015,
+        1.0,
+        0.962
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-drawing-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=170",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page170-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Queen Caroline's Drawing-room, Kensington Palace",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2179,
+        0.235,
+        0.6821,
+        0.66
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-garden": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=555",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page555-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: Drapers' Hall Garden",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1084,
+        0.33,
+        0.5316,
+        0.715
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-hall": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=205",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page205-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Grand Staircase, Holland House",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2998,
+        0.215,
+        0.895,
+        0.76
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-inn": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=339",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Old_and_New_London%2C_vol._2.djvu/page339-1920px-Old_and_New_London%2C_vol._2.djvu.jpg",
+      "title": "Old and New London, vol. 2: Coffee-room at St. John's Gate",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1672,
+        0.255,
+        0.6328,
+        0.675
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-kitchen": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=476",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page476-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: The Mansion House Kitchen",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.1374,
+        0.245,
+        0.5826,
+        0.655
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-laboratory": {
+      "page": "https://commons.wikimedia.org/wiki/File:Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif/1920px-Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif.jpg",
+      "title": "Faraday's Laboratory at the Royal Institution (The Life and Letters of Faraday)",
+      "author": "Unknown engraver",
+      "date": "1870",
+      "license": "Public domain",
+      "crop": [
+        0.22,
+        0.07,
+        0.58,
+        0.92
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-library": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._4.djvu?page=86",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Old_and_New_London%2C_vol._4.djvu/page86-1920px-Old_and_New_London%2C_vol._4.djvu.jpg",
+      "title": "Old and New London, vol. 4: The King's Library, Buckingham House, 1775",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.2015,
+        0.205,
+        0.7585,
+        0.735
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-lodging-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=564",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Old_and_New_London%2C_vol._2.djvu/page564-1920px-Old_and_New_London%2C_vol._2.djvu.jpg",
+      "title": "Old and New London, vol. 2: Room of a House in Fulwood's Rents",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.2927,
+        0.285,
+        0.7473,
+        0.695
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-london-street": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f319.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Bpt6k10470488_f319.jpg/1920px-Bpt6k10470488_f319.jpg",
+      "title": "London: A Pilgrimage (Bluegate Fields)",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.05,
+        0.0,
+        0.956,
+        0.96
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-moor": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-35.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Houn-35.jpg/1920px-Houn-35.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.38,
+        0.005,
+        0.99,
+        0.518
+      ],
+      "focus": [
+        0.5,
+        0.42
+      ]
+    },
+    "scene-railway-carriage": {
+      "page": "https://commons.wikimedia.org/wiki/File:Strand_paget.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Strand_paget.jpg/1920px-Strand_paget.jpg",
+      "title": "Silver Blaze (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.162,
+        0.03,
+        0.798,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.35
+      ]
+    },
+    "scene-riverbank": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=357",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page357-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: The Fleet River, near St. Pancras, 1825",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.1961,
+        0.25,
+        0.6439,
+        0.66
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-shop": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=450",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page450-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: Birch's Shop, Cornhill",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.2882,
+        0.25,
+        0.7118,
+        0.64
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-sitting-room": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_26)_-_p385.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/The_Strand_Magazine_%28Volume_26%29_-_p385.png/1920px-The_Strand_Magazine_%28Volume_26%29_-_p385.png",
+      "title": "The Adventure of the Empty House (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1903",
+      "license": "Public domain",
+      "crop": [
+        0.2,
+        0.01,
+        0.97,
+        0.99
+      ],
+      "focus": [
+        0.5,
+        0.4
+      ]
+    },
+    "scene-stables": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=32",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Old_and_New_London%2C_vol._5.djvu/page32-1920px-Old_and_New_London%2C_vol._5.djvu.jpg",
+      "title": "Old and New London, vol. 5: Court-yard of Old Tattersall's",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.261,
+        0.205,
+        0.839,
+        0.765
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-station-platform": {
+      "page": "https://commons.wikimedia.org/wiki/File:Birmingham_New_Street_station_in_1854.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Birmingham_New_Street_station_in_1854.jpg/1920px-Birmingham_New_Street_station_in_1854.jpg",
+      "title": "New Street Station, Birmingham (Illustrated London News)",
+      "author": "Unknown engraver",
+      "date": "1854",
+      "license": "Public domain",
+      "crop": [
+        0.5,
+        0.02,
+        0.98,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.65
+      ]
+    },
+    "scene-study": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=50",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Old_and_New_London%2C_vol._1.djvu/page50-1920px-Old_and_New_London%2C_vol._1.djvu.jpg",
+      "title": "Old and New London, vol. 1: The Room over Temple Bar, 1876",
+      "author": "Unknown engraver",
+      "date": "1873",
+      "license": "Public domain",
+      "crop": [
+        0.4055,
+        0.27,
+        0.8345,
+        0.665
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-theatre": {
+      "page": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=248",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Old_and_New_London%2C_vol._3.djvu/page248-1920px-Old_and_New_London%2C_vol._3.djvu.jpg",
+      "title": "Old and New London, vol. 3: Interior of Drury Lane Theatre",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.233,
+        0.181,
+        0.787,
+        0.684
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-village-street": {
+      "page": "https://commons.wikimedia.org/wiki/File:Coaching_days_and_coaching_ways_(Page_70)_BHL18772111.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Coaching_days_and_coaching_ways_%28Page_70%29_BHL18772111.jpg/1920px-Coaching_days_and_coaching_ways_%28Page_70%29_BHL18772111.jpg",
+      "title": "Coaching Days and Coaching Ways (The Bear at Devizes)",
+      "author": "Herbert Railton",
+      "date": "1888",
+      "license": "Public domain",
+      "crop": [
+        0.04,
+        0.19,
+        0.636,
+        0.69
+      ],
+      "focus": [
+        0.5,
+        0.62
+      ]
     }
   }
 }

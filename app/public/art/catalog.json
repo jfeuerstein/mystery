@@ -465,152 +465,512 @@
     {
       "tag": "scene-sitting-room",
       "kind": "scene",
-      "description": "221B Baker Street: the sitting room, fire, chemicals and books."
+      "description": "221B Baker Street: the sitting room, fire, chemicals and books.",
+      "file": "scene-sitting-room.webp",
+      "focus": [
+        0.5,
+        0.4
+      ],
+      "credit": {
+        "title": "The Adventure of the Empty House (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1903",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_26)_-_p385.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-study",
       "kind": "scene",
-      "description": "A private study: desk, bookcases, a long-case clock in the hall beyond."
+      "description": "A private study: desk, bookcases, a long-case clock in the hall beyond.",
+      "file": "scene-study.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: The Room over Temple Bar, 1876",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=50",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-drawing-room",
       "kind": "scene",
-      "description": "A drawing room with a card table and a piano."
+      "description": "A drawing room with a card table and a piano.",
+      "file": "scene-drawing-room.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Queen Caroline's Drawing-room, Kensington Palace",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=170",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-library",
       "kind": "scene",
-      "description": "A country-house library with a ladder and tall windows."
+      "description": "A country-house library with a ladder and tall windows.",
+      "file": "scene-library.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 4: The King's Library, Buckingham House, 1775",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._4.djvu?page=86",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-bedroom",
       "kind": "scene",
-      "description": "A bedroom with a four-poster and a washstand."
+      "description": "A bedroom with a four-poster and a washstand.",
+      "file": "scene-bedroom.webp",
+      "focus": [
+        0.5,
+        0.55
+      ],
+      "credit": {
+        "title": "Apartment of Princess Clotilde, Durazzo Palace (L'Illustration)",
+        "author": "Édouard Riou",
+        "date": "1859",
+        "source": "https://commons.wikimedia.org/wiki/File:Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-dining-room",
       "kind": "scene",
-      "description": "A dining room laid for dinner."
+      "description": "A dining room laid for dinner.",
+      "file": "scene-dining-room.webp",
+      "focus": [
+        0.5,
+        0.45
+      ],
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-22.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-hall",
       "kind": "scene",
-      "description": "An entrance hall with a staircase and a long-case clock."
+      "description": "An entrance hall with a staircase and a long-case clock.",
+      "file": "scene-hall.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Grand Staircase, Holland House",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=205",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-kitchen",
       "kind": "scene",
-      "description": "A great kitchen below stairs, range and copper pans."
+      "description": "A great kitchen below stairs, range and copper pans.",
+      "file": "scene-kitchen.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: The Mansion House Kitchen",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=476",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-cellar",
       "kind": "scene",
-      "description": "A brick wine cellar lit by a single candle."
+      "description": "A brick wine cellar lit by a single candle.",
+      "file": "scene-cellar.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 2: The Crypt of St. John's, Clerkenwell",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=351",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-attic",
       "kind": "scene",
-      "description": "An attic of trunks and sloping beams."
+      "description": "An attic of trunks and sloping beams.",
+      "file": "scene-attic.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Tuba player in an attic (Rijksmuseum RP-P-1912-1041)",
+        "author": "Romain Looymans",
+        "date": "1890",
+        "source": "https://commons.wikimedia.org/wiki/File:Tubaspeler_op_een_zolderkamer,_RP-P-1912-1041.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "scene-country-house",
       "kind": "scene",
-      "description": "A long, low country house among wet lawns."
+      "description": "A long, low country house among wet lawns.",
+      "file": "scene-country-house.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Holland House, from the North",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=204",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-garden",
       "kind": "scene",
-      "description": "A walled garden with a sundial and gravel paths."
+      "description": "A walled garden with a sundial and gravel paths.",
+      "file": "scene-garden.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: Drapers' Hall Garden",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=555",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-stables",
       "kind": "scene",
-      "description": "A stable yard with loose-boxes and a pump."
+      "description": "A stable yard with loose-boxes and a pump.",
+      "file": "scene-stables.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Court-yard of Old Tattersall's",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=32",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-churchyard",
       "kind": "scene",
-      "description": "A village churchyard with leaning stones."
+      "description": "A village churchyard with leaning stones.",
+      "file": "scene-churchyard.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Edmonton Church, 1790",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=609",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-village-street",
       "kind": "scene",
-      "description": "A village street with an inn sign."
+      "description": "A village street with an inn sign.",
+      "file": "scene-village-street.webp",
+      "focus": [
+        0.5,
+        0.62
+      ],
+      "credit": {
+        "title": "Coaching Days and Coaching Ways (The Bear at Devizes)",
+        "author": "Herbert Railton",
+        "date": "1888",
+        "source": "https://commons.wikimedia.org/wiki/File:Coaching_days_and_coaching_ways_(Page_70)_BHL18772111.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-inn",
       "kind": "scene",
-      "description": "The taproom of a country inn."
+      "description": "The taproom of a country inn.",
+      "file": "scene-inn.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 2: Coffee-room at St. John's Gate",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=339",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-railway-carriage",
       "kind": "scene",
-      "description": "A first-class railway compartment."
+      "description": "A first-class railway compartment.",
+      "file": "scene-railway-carriage.webp",
+      "focus": [
+        0.5,
+        0.35
+      ],
+      "credit": {
+        "title": "Silver Blaze (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1892",
+        "source": "https://commons.wikimedia.org/wiki/File:Strand_paget.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-station-platform",
       "kind": "scene",
-      "description": "A railway platform under a glass roof."
+      "description": "A railway platform under a glass roof.",
+      "file": "scene-station-platform.webp",
+      "focus": [
+        0.5,
+        0.65
+      ],
+      "credit": {
+        "title": "New Street Station, Birmingham (Illustrated London News)",
+        "author": "Unknown engraver",
+        "date": "1854",
+        "source": "https://commons.wikimedia.org/wiki/File:Birmingham_New_Street_station_in_1854.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-london-street",
       "kind": "scene",
-      "description": "A foggy London street of gas lamps and hansoms."
+      "description": "A foggy London street of gas lamps and hansoms.",
+      "file": "scene-london-street.webp",
+      "focus": [
+        0.5,
+        0.45
+      ],
+      "credit": {
+        "title": "London: A Pilgrimage (Bluegate Fields)",
+        "author": "Gustave Doré",
+        "date": "1872",
+        "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f319.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-docks",
       "kind": "scene",
-      "description": "The London docks: warehouses, cranes and masts."
+      "description": "The London docks: warehouses, cranes and masts.",
+      "file": "scene-docks.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "London: A Pilgrimage",
+        "author": "Gustave Doré",
+        "date": "1872",
+        "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f92.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-riverbank",
       "kind": "scene",
-      "description": "A riverbank with reeds and a towpath."
+      "description": "A riverbank with reeds and a towpath.",
+      "file": "scene-riverbank.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: The Fleet River, near St. Pancras, 1825",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=357",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-moor",
       "kind": "scene",
-      "description": "A bleak moor with a tor on the skyline."
+      "description": "A bleak moor with a tor on the skyline.",
+      "file": "scene-moor.webp",
+      "focus": [
+        0.5,
+        0.42
+      ],
+      "credit": {
+        "title": "The Hound of the Baskervilles (The Strand Magazine)",
+        "author": "Sidney Paget",
+        "date": "1901",
+        "source": "https://commons.wikimedia.org/wiki/File:Houn-35.jpg",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-cliffs",
       "kind": "scene",
-      "description": "Chalk cliffs above a grey sea."
+      "description": "Chalk cliffs above a grey sea.",
+      "file": "scene-cliffs.webp",
+      "focus": [
+        0.5,
+        0.45
+      ],
+      "credit": {
+        "title": "Dover, from Shakespeare's Cliff (Yale Center for British Art B1977.14.6693)",
+        "author": "George Cooke",
+        "date": "1826",
+        "source": "https://commons.wikimedia.org/wiki/File:George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg",
+        "license": "CC0"
+      }
     },
     {
       "tag": "scene-bank-office",
       "kind": "scene",
-      "description": "A bank's private office with a strongroom door."
+      "description": "A bank's private office with a strongroom door.",
+      "file": "scene-bank-office.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: The Prerogative Office, Doctors' Commons, 1860",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=316",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-shop",
       "kind": "scene",
-      "description": "A small shop with a counter and shelves."
+      "description": "A small shop with a counter and shelves.",
+      "file": "scene-shop.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 1: Birch's Shop, Cornhill",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=450",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-lodging-room",
       "kind": "scene",
-      "description": "A shabby lodging-house room."
+      "description": "A shabby lodging-house room.",
+      "file": "scene-lodging-room.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 2: Room of a House in Fulwood's Rents",
+        "author": "Unknown engraver",
+        "date": "1873",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=564",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-club",
       "kind": "scene",
-      "description": "The silent reading room of a gentlemen's club."
+      "description": "The silent reading room of a gentlemen's club.",
+      "file": "scene-club.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 3: Dining-room of the Garrick Club",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=285",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-theatre",
       "kind": "scene",
-      "description": "Backstage at a theatre."
+      "description": "Backstage at a theatre.",
+      "file": "scene-theatre.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 3: Interior of Drury Lane Theatre",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=248",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-laboratory",
       "kind": "scene",
-      "description": "A chemical laboratory with retorts."
+      "description": "A chemical laboratory with retorts.",
+      "file": "scene-laboratory.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Faraday's Laboratory at the Royal Institution (The Life and Letters of Faraday)",
+        "author": "Unknown engraver",
+        "date": "1870",
+        "source": "https://commons.wikimedia.org/wiki/File:Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "scene-church",
       "kind": "scene",
-      "description": "The nave of a village church."
+      "description": "The nave of a village church.",
+      "file": "scene-church.webp",
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": {
+        "title": "Old and New London, vol. 5: Interior of Kensington Church, 1850",
+        "author": "Unknown engraver",
+        "date": "1878",
+        "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=150",
+        "license": "Public domain"
+      }
     },
     {
       "tag": "vignette-clock",
