@@ -16,6 +16,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
+      # Opens every sealed case and verifies it; prints metrics only.
+      - run: npm run -s afoot -- sealed-check
 
   playthrough:
     runs-on: ubuntu-latest

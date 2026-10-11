@@ -4,7 +4,8 @@
   "type": "module",
   "workspaces": [
     "packages/*",
-    "app"
+    "app",
+    "pipeline"
   ],
   "scripts": {
     "dev": "npm run dev -w @afoot/app",
@@ -12,7 +13,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p app/tsconfig.json && tsc --noEmit -p app/tsconfig.node.json",
     "test": "vitest run",
     "e2e": "node app/e2e/playthrough.mjs",
-    "check": "npm run typecheck && npm run test && npm run build"
+    "check": "npm run typecheck && npm run test && npm run build",
+    "afoot": "tsx pipeline/src/cli.ts"
   },
   "engines": {
     "node": ">=22"
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@types/node": "^22.20.5",
     "playwright-core": "1.64",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "vitest": "^3.2.7"
   }

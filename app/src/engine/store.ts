@@ -1,9 +1,8 @@
-import type { Case, ConceptId } from "@afoot/schema";
+import { STARTER_ENTRIES, type Case, type ConceptId } from "@afoot/schema";
 import { del, get, set } from "idb-keyval";
 import { create } from "zustand";
 import { createJSONStorage, persist, type StateStorage } from "zustand/middleware";
-import { CASES } from "../content";
-import { STARTER_ENTRIES } from "../notebook/entries";
+import { allCases } from "../content";
 import * as engine from "./progress";
 import type { CaseProgress, Grade } from "./progress";
 
@@ -51,7 +50,7 @@ const blankSave = (): SaveData => ({
 });
 
 export function caseById(id: string): Case {
-  const c = CASES.find((x) => x.id === id);
+  const c = allCases().find((x) => x.id === id);
   if (!c) throw new Error(`unknown case ${id}`);
   return c;
 }
@@ -130,7 +129,7 @@ export const useGame = create<State>()(
 /** Cases unlock strictly in order (decision 20). */
 export function isUnlocked(caseIndex: number, grades: Record<string, Grade>): boolean {
   if (caseIndex === 0) return true;
-  const previous = CASES[caseIndex - 1];
+  const previous = allCases()[caseIndex - 1];
   return previous !== undefined && grades[previous.id] !== undefined;
 }
 

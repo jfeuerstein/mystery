@@ -22,4 +22,6 @@ npm run e2e     # after a build: plays the sample case in headless Chromium
 
 - `packages/schema`, `packages/logic`: the case format and the logic checkers that verify every puzzle.
 - `app/`: the game, an installable web app for iPhone.
+- `pipeline/`: the `afoot` CLI that verifies, playtests and seals generated cases (`npm run afoot`).
+- `.claude/skills/generate-case/`: how a Claude Code session generates a case without anyone seeing it.
 - `fixtures/stopped-clock.case.json`: the playable sample case from the design doc.

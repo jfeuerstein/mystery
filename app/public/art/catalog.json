@@ -1,0 +1,586 @@
+{
+  "$comment": "The engraving catalog (GAME_DESIGN.md \u00a713.2). Cases may only use these tags. Until real public-domain engravings are added, the app draws a captioned placeholder plate for each tag.",
+  "version": 1,
+  "assets": [
+    {
+      "tag": "portrait-young-woman",
+      "kind": "portrait",
+      "description": "A young woman in a dark travelling dress, composed."
+    },
+    {
+      "tag": "portrait-elderly-woman",
+      "kind": "portrait",
+      "description": "An elderly lady in widow's black with a cane."
+    },
+    {
+      "tag": "portrait-governess",
+      "kind": "portrait",
+      "description": "A governess in a plain grey dress, hair severely drawn back."
+    },
+    {
+      "tag": "portrait-housekeeper",
+      "kind": "portrait",
+      "description": "A small, upright housekeeper with a chatelaine of keys."
+    },
+    {
+      "tag": "portrait-maid",
+      "kind": "portrait",
+      "description": "A housemaid in cap and apron."
+    },
+    {
+      "tag": "portrait-landlady",
+      "kind": "portrait",
+      "description": "A stout London landlady in a shawl."
+    },
+    {
+      "tag": "portrait-actress",
+      "kind": "portrait",
+      "description": "An actress in an extravagant hat and furs."
+    },
+    {
+      "tag": "portrait-lady-of-quality",
+      "kind": "portrait",
+      "description": "A lady of quality in evening dress and pearls."
+    },
+    {
+      "tag": "portrait-gentleman",
+      "kind": "portrait",
+      "description": "A smooth, well-tailored gentleman in a frock coat."
+    },
+    {
+      "tag": "portrait-young-gentleman",
+      "kind": "portrait",
+      "description": "A nervous young gentleman, hat in hand."
+    },
+    {
+      "tag": "portrait-colonel",
+      "kind": "portrait",
+      "description": "A retired army colonel with white moustaches and a stiff back."
+    },
+    {
+      "tag": "portrait-aristocrat",
+      "kind": "portrait",
+      "description": "A peer of the realm, cold and immaculate."
+    },
+    {
+      "tag": "portrait-banker",
+      "kind": "portrait",
+      "description": "A portly City banker with a watch-chain."
+    },
+    {
+      "tag": "portrait-solicitor",
+      "kind": "portrait",
+      "description": "A thin, dry solicitor with pince-nez."
+    },
+    {
+      "tag": "portrait-clerk",
+      "kind": "portrait",
+      "description": "A copying clerk with ink-stained cuffs."
+    },
+    {
+      "tag": "portrait-doctor",
+      "kind": "portrait",
+      "description": "A country doctor with a black bag."
+    },
+    {
+      "tag": "portrait-clergyman",
+      "kind": "portrait",
+      "description": "A clergyman in a shovel hat and dog collar."
+    },
+    {
+      "tag": "portrait-professor",
+      "kind": "portrait",
+      "description": "A stooping academic with a high forehead."
+    },
+    {
+      "tag": "portrait-artist",
+      "kind": "portrait",
+      "description": "A bohemian painter in a loose velvet coat."
+    },
+    {
+      "tag": "portrait-sailor",
+      "kind": "portrait",
+      "description": "A weathered sailor in a pea jacket."
+    },
+    {
+      "tag": "portrait-sea-captain",
+      "kind": "portrait",
+      "description": "A sea captain with a beard and a peaked cap."
+    },
+    {
+      "tag": "portrait-groom",
+      "kind": "portrait",
+      "description": "A young groom in a waistcoat and shirtsleeves."
+    },
+    {
+      "tag": "portrait-butler",
+      "kind": "portrait",
+      "description": "An elderly butler, impassive."
+    },
+    {
+      "tag": "portrait-gamekeeper",
+      "kind": "portrait",
+      "description": "A gamekeeper with a shotgun broken over his arm."
+    },
+    {
+      "tag": "portrait-labourer",
+      "kind": "portrait",
+      "description": "A navvy or labourer in a moleskin coat."
+    },
+    {
+      "tag": "portrait-cabman",
+      "kind": "portrait",
+      "description": "A London cabman in a many-caped greatcoat."
+    },
+    {
+      "tag": "portrait-street-urchin",
+      "kind": "portrait",
+      "description": "A ragged boy of the Baker Street Irregulars."
+    },
+    {
+      "tag": "portrait-publican",
+      "kind": "portrait",
+      "description": "A publican in shirtsleeves behind a bar."
+    },
+    {
+      "tag": "portrait-shopkeeper",
+      "kind": "portrait",
+      "description": "A shopkeeper in a long apron."
+    },
+    {
+      "tag": "portrait-foreigner",
+      "kind": "portrait",
+      "description": "A gentleman in foreign cut of clothes, watchful."
+    },
+    {
+      "tag": "portrait-inspector",
+      "kind": "portrait",
+      "description": "A Scotland Yard inspector in a bowler and overcoat."
+    },
+    {
+      "tag": "portrait-constable",
+      "kind": "portrait",
+      "description": "A uniformed constable with helmet and lantern."
+    },
+    {
+      "tag": "portrait-holmes",
+      "kind": "portrait",
+      "description": "Sherlock Holmes in a dressing gown, pipe in hand."
+    },
+    {
+      "tag": "portrait-watson",
+      "kind": "portrait",
+      "description": "Dr. Watson, moustached, in a tweed suit."
+    },
+    {
+      "tag": "portrait-mycroft",
+      "kind": "portrait",
+      "description": "Mycroft Holmes, heavy and still, in a club armchair."
+    },
+    {
+      "tag": "portrait-mrs-hudson",
+      "kind": "portrait",
+      "description": "Mrs. Hudson with a tea tray."
+    },
+    {
+      "tag": "scene-sitting-room",
+      "kind": "scene",
+      "description": "221B Baker Street: the sitting room, fire, chemicals and books."
+    },
+    {
+      "tag": "scene-study",
+      "kind": "scene",
+      "description": "A private study: desk, bookcases, a long-case clock in the hall beyond."
+    },
+    {
+      "tag": "scene-drawing-room",
+      "kind": "scene",
+      "description": "A drawing room with a card table and a piano."
+    },
+    {
+      "tag": "scene-library",
+      "kind": "scene",
+      "description": "A country-house library with a ladder and tall windows."
+    },
+    {
+      "tag": "scene-bedroom",
+      "kind": "scene",
+      "description": "A bedroom with a four-poster and a washstand."
+    },
+    {
+      "tag": "scene-dining-room",
+      "kind": "scene",
+      "description": "A dining room laid for dinner."
+    },
+    {
+      "tag": "scene-hall",
+      "kind": "scene",
+      "description": "An entrance hall with a staircase and a long-case clock."
+    },
+    {
+      "tag": "scene-kitchen",
+      "kind": "scene",
+      "description": "A great kitchen below stairs, range and copper pans."
+    },
+    {
+      "tag": "scene-cellar",
+      "kind": "scene",
+      "description": "A brick wine cellar lit by a single candle."
+    },
+    {
+      "tag": "scene-attic",
+      "kind": "scene",
+      "description": "An attic of trunks and sloping beams."
+    },
+    {
+      "tag": "scene-country-house",
+      "kind": "scene",
+      "description": "A long, low country house among wet lawns."
+    },
+    {
+      "tag": "scene-garden",
+      "kind": "scene",
+      "description": "A walled garden with a sundial and gravel paths."
+    },
+    {
+      "tag": "scene-stables",
+      "kind": "scene",
+      "description": "A stable yard with loose-boxes and a pump."
+    },
+    {
+      "tag": "scene-churchyard",
+      "kind": "scene",
+      "description": "A village churchyard with leaning stones."
+    },
+    {
+      "tag": "scene-village-street",
+      "kind": "scene",
+      "description": "A village street with an inn sign."
+    },
+    {
+      "tag": "scene-inn",
+      "kind": "scene",
+      "description": "The taproom of a country inn."
+    },
+    {
+      "tag": "scene-railway-carriage",
+      "kind": "scene",
+      "description": "A first-class railway compartment."
+    },
+    {
+      "tag": "scene-station-platform",
+      "kind": "scene",
+      "description": "A railway platform under a glass roof."
+    },
+    {
+      "tag": "scene-london-street",
+      "kind": "scene",
+      "description": "A foggy London street of gas lamps and hansoms."
+    },
+    {
+      "tag": "scene-docks",
+      "kind": "scene",
+      "description": "The London docks: warehouses, cranes and masts."
+    },
+    {
+      "tag": "scene-riverbank",
+      "kind": "scene",
+      "description": "A riverbank with reeds and a towpath."
+    },
+    {
+      "tag": "scene-moor",
+      "kind": "scene",
+      "description": "A bleak moor with a tor on the skyline."
+    },
+    {
+      "tag": "scene-cliffs",
+      "kind": "scene",
+      "description": "Chalk cliffs above a grey sea."
+    },
+    {
+      "tag": "scene-bank-office",
+      "kind": "scene",
+      "description": "A bank's private office with a strongroom door."
+    },
+    {
+      "tag": "scene-shop",
+      "kind": "scene",
+      "description": "A small shop with a counter and shelves."
+    },
+    {
+      "tag": "scene-lodging-room",
+      "kind": "scene",
+      "description": "A shabby lodging-house room."
+    },
+    {
+      "tag": "scene-club",
+      "kind": "scene",
+      "description": "The silent reading room of a gentlemen's club."
+    },
+    {
+      "tag": "scene-theatre",
+      "kind": "scene",
+      "description": "Backstage at a theatre."
+    },
+    {
+      "tag": "scene-laboratory",
+      "kind": "scene",
+      "description": "A chemical laboratory with retorts."
+    },
+    {
+      "tag": "scene-church",
+      "kind": "scene",
+      "description": "The nave of a village church."
+    },
+    {
+      "tag": "vignette-clock",
+      "kind": "vignette",
+      "description": "A long-case clock, glass broken."
+    },
+    {
+      "tag": "vignette-watch",
+      "kind": "vignette",
+      "description": "A pocket watch, stopped."
+    },
+    {
+      "tag": "vignette-teacup",
+      "kind": "vignette",
+      "description": "A cup and saucer."
+    },
+    {
+      "tag": "vignette-key",
+      "kind": "vignette",
+      "description": "A large iron key."
+    },
+    {
+      "tag": "vignette-boots",
+      "kind": "vignette",
+      "description": "A pair of muddy boots."
+    },
+    {
+      "tag": "vignette-deed",
+      "kind": "vignette",
+      "description": "A legal document, half burned."
+    },
+    {
+      "tag": "vignette-letter",
+      "kind": "vignette",
+      "description": "A folded letter."
+    },
+    {
+      "tag": "vignette-envelope",
+      "kind": "vignette",
+      "description": "An envelope with a broken seal."
+    },
+    {
+      "tag": "vignette-telegram",
+      "kind": "vignette",
+      "description": "A telegraph form."
+    },
+    {
+      "tag": "vignette-newspaper",
+      "kind": "vignette",
+      "description": "A folded newspaper column."
+    },
+    {
+      "tag": "vignette-ticket",
+      "kind": "vignette",
+      "description": "A railway ticket."
+    },
+    {
+      "tag": "vignette-ink",
+      "kind": "vignette",
+      "description": "A hand with an ink stain."
+    },
+    {
+      "tag": "vignette-hand",
+      "kind": "vignette",
+      "description": "A hand showing calluses."
+    },
+    {
+      "tag": "vignette-ring",
+      "kind": "vignette",
+      "description": "A signet ring."
+    },
+    {
+      "tag": "vignette-glove",
+      "kind": "vignette",
+      "description": "A lady's glove."
+    },
+    {
+      "tag": "vignette-hat",
+      "kind": "vignette",
+      "description": "A hat with a band."
+    },
+    {
+      "tag": "vignette-cane",
+      "kind": "vignette",
+      "description": "A walking stick with a silver head."
+    },
+    {
+      "tag": "vignette-umbrella",
+      "kind": "vignette",
+      "description": "A furled umbrella."
+    },
+    {
+      "tag": "vignette-pipe",
+      "kind": "vignette",
+      "description": "A briar pipe."
+    },
+    {
+      "tag": "vignette-cigar-ash",
+      "kind": "vignette",
+      "description": "A small heap of cigar ash."
+    },
+    {
+      "tag": "vignette-footprint",
+      "kind": "vignette",
+      "description": "A footprint in soft earth."
+    },
+    {
+      "tag": "vignette-candle",
+      "kind": "vignette",
+      "description": "A candle burned low."
+    },
+    {
+      "tag": "vignette-lamp",
+      "kind": "vignette",
+      "description": "An oil lamp."
+    },
+    {
+      "tag": "vignette-bottle",
+      "kind": "vignette",
+      "description": "A small medicine bottle."
+    },
+    {
+      "tag": "vignette-poison-label",
+      "kind": "vignette",
+      "description": "A chemist's label."
+    },
+    {
+      "tag": "vignette-pistol",
+      "kind": "vignette",
+      "description": "A revolver."
+    },
+    {
+      "tag": "vignette-knife",
+      "kind": "vignette",
+      "description": "A knife."
+    },
+    {
+      "tag": "vignette-rope",
+      "kind": "vignette",
+      "description": "A coil of rope."
+    },
+    {
+      "tag": "vignette-ladder",
+      "kind": "vignette",
+      "description": "A ladder against a wall."
+    },
+    {
+      "tag": "vignette-window",
+      "kind": "vignette",
+      "description": "A window with a broken catch."
+    },
+    {
+      "tag": "vignette-lock",
+      "kind": "vignette",
+      "description": "A door lock with scratches."
+    },
+    {
+      "tag": "vignette-safe",
+      "kind": "vignette",
+      "description": "A small safe, open."
+    },
+    {
+      "tag": "vignette-map",
+      "kind": "vignette",
+      "description": "A hand-drawn map."
+    },
+    {
+      "tag": "vignette-photograph",
+      "kind": "vignette",
+      "description": "A cabinet photograph."
+    },
+    {
+      "tag": "vignette-coin",
+      "kind": "vignette",
+      "description": "A foreign coin."
+    },
+    {
+      "tag": "vignette-button",
+      "kind": "vignette",
+      "description": "A torn-off button."
+    },
+    {
+      "tag": "vignette-thread",
+      "kind": "vignette",
+      "description": "A thread caught on a nail."
+    },
+    {
+      "tag": "vignette-mud",
+      "kind": "vignette",
+      "description": "A splash of mud on cloth."
+    },
+    {
+      "tag": "vignette-dog",
+      "kind": "vignette",
+      "description": "A dog on a chain."
+    },
+    {
+      "tag": "vignette-horse",
+      "kind": "vignette",
+      "description": "A horse's hoof and shoe."
+    },
+    {
+      "tag": "vignette-carriage-wheel",
+      "kind": "vignette",
+      "description": "A wheel rut in a lane."
+    },
+    {
+      "tag": "vignette-handkerchief",
+      "kind": "vignette",
+      "description": "A monogrammed handkerchief."
+    },
+    {
+      "tag": "vignette-diary",
+      "kind": "vignette",
+      "description": "An open diary."
+    },
+    {
+      "tag": "vignette-ledger",
+      "kind": "vignette",
+      "description": "An account book."
+    },
+    {
+      "tag": "vignette-will",
+      "kind": "vignette",
+      "description": "A last will and testament."
+    },
+    {
+      "tag": "vignette-bloodstain",
+      "kind": "vignette",
+      "description": "A dark stain on floorboards."
+    },
+    {
+      "tag": "vignette-glass",
+      "kind": "vignette",
+      "description": "A wine glass."
+    },
+    {
+      "tag": "vignette-card",
+      "kind": "vignette",
+      "description": "A playing card."
+    },
+    {
+      "tag": "vignette-calling-card",
+      "kind": "vignette",
+      "description": "A calling card."
+    },
+    {
+      "tag": "vignette-matchbox",
+      "kind": "vignette",
+      "description": "A matchbox."
+    }
+  ]
+}
