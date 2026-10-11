@@ -58,6 +58,48 @@ premise), and writes `content/.plain/<caseId>/concept.json`.
   central trick used in the last 6 cases.
 - Replace the synopsis placeholder with a one-paragraph secret synopsis.
 
+### Serial seasons (only when `next` prints `"continuity": { "serial": true, … }`)
+
+Most seasons are standalone. A serial season (Season 2, an experiment:
+GAME_DESIGN.md decision 27) carries one **thread** and its people from case
+to case, and resolves the thread in its last case (`continuity.length`).
+Every case is still a complete mystery with its own crime and culprit, and
+its deductions are solved from its own text.
+
+- **The season's first case plans the thread** in `concept.arc`: `truth`
+  (what is really going on, secret), `plan` (one line per case through the
+  last: how the thread surfaces there, small at first and building), and
+  `resolution`. Keep it human-scale and of the period: a recurring
+  adversary, a client whose trouble runs deeper than one case, a series of
+  linked incidents, a matter touching Watson, Mrs. Hudson or one of the
+  inspectors. Never Moriarty, nor a stand-in for him (no hidden master of
+  London's crime). Plant only what case 1's plan line says: a detail, a
+  person, an unanswered question.
+- **Later cases** get `continuity.arc` and `continuity.previously` (what each
+  earlier case handed on) from `next`, and `concept.json` arrives with the arc
+  filled in. Keep its `truth` and the plan lines of cases already sealed; you
+  may revise the lines still to come and the `resolution`. Advance the thread
+  as this case's line says, and bring back at least one person or
+  consequence from an earlier case (list those cases in `carry.callbacks`).
+  A returning person goes in `world.json`'s cast under the same name, and
+  their past matches `previously`.
+- **The season's last case resolves the thread**, as its main mystery or as
+  the twist in its own, and leaves no `hooks` open.
+- **Fair play across cases.** The player may have played the last case days
+  ago, and the blind solvers see only this one. When a case picks up the
+  thread or a returning face, open with a short passage in Watson's voice
+  (two to four sentences, in the first narration) recalling what matters.
+  Any earlier fact a deduction needs is stated again in this case. No
+  deduction may depend on remembering an earlier case.
+- The player has solved every earlier case (they unlock in order), so this
+  case may mention their solutions. It must not reveal the thread's truth
+  before the plan's case for it.
+- Before sealing, fill `concept.carry`: `outcome` (how the case ended, as
+  the player saw it), `threadBeat` (what it showed of the thread), `cast`
+  (people who could return, as last seen), `hooks` (loose ends for later
+  cases) and `callbacks`. `seal` adds a `continuity` gate for all of this
+  and records arc and carry in the sealed ledger for the next session.
+
 ## Stage 2: world model (`world.json`)
 
 Design the crime before any puzzle or prose. Follow `WorldModel` in
@@ -211,8 +253,8 @@ git commit -m "<the line afoot seal printed>"
 git push
 ```
 
-`seal` refuses unless every gate passes (slot, novelty, verify, audit,
-playtest). On success it writes `content/sealed/`, updates the spoiler-free
+`seal` refuses unless every gate passes (slot, novelty, continuity in a
+serial season, verify, audit, playtest). On success it writes `content/sealed/`, updates the spoiler-free
 index and the sealed ledger, and deletes the plaintext.
 
 End with the one-line final message from the protocol above.

@@ -14,6 +14,8 @@ import { compose } from "../src/compose.js";
 import type { LedgerEntry } from "../src/ledger.js";
 import { curriculumFor, suggestMotifs } from "../src/next.js";
 import { ROOT } from "../src/paths.js";
+import type { Concept, SeasonArc } from "../src/plan.js";
+import { continuityGates, continuityTemplate, seasonSoFar, seasonStyle, TO_WRITE } from "../src/seasons.js";
 import { coverage, puzzleHash, requirements, type PlaytestLog } from "../src/playtest.js";
 import { checkMotifs, loadCatalog, loadMotifs } from "../src/sources.js";
 import { playerView, readingOrder } from "../src/view.js";
@@ -65,6 +67,73 @@ describe("curriculum and motifs", () => {
       expect(pick.central.kind).toBe("central-trick");
       expect(pick.complications.every((m) => m.kind === "complication")).toBe(true);
     }
+  });
+});
+
+describe("serial seasons (decision 27)", () => {
+  const arc: SeasonArc = {
+    truth: "t",
+    plan: Array.from({ length: 8 }, (_, i) => ({ case: i + 1, beat: `beat ${i + 1}` })),
+    resolution: "r",
+  };
+  const carry = { outcome: "o", threadBeat: "b", cast: [], hooks: ["h"], callbacks: [] };
+  const concept = (over: Partial<Concept>): Concept => ({
+    caseId: "s2c1",
+    season: 2,
+    number: 1,
+    motifs: { central: "x", complications: [] },
+    curriculum: { reinforces: [] },
+    synopsis: "s",
+    arc,
+    carry,
+    ...over,
+  });
+  const sealed = [entry({ season: 2, number: 1, caseId: "s2c1", arc, carry })];
+
+  it("only Season 2 is serial: the experiment leaves the default standalone", () => {
+    expect(seasonStyle(1)).toEqual({ serial: false, length: 8 });
+    expect(seasonStyle(2)).toEqual({ serial: true, length: 8 });
+    expect(seasonStyle(3).serial).toBe(false);
+    expect(continuityGates(concept({ season: 1, caseId: "s1c1", arc: undefined, carry: undefined }), [])).toEqual([]);
+  });
+
+  it("hands the next case the thread and what each earlier case of the season left behind", () => {
+    const later = { ...arc, resolution: "r2" };
+    const ledger = [entry({ season: 1, carry: { ...carry, outcome: "season one" } }), ...sealed, entry({ season: 2, number: 2, arc: later, carry })];
+    const so = seasonSoFar(ledger, 2);
+    expect(so.arc).toEqual(later);
+    expect(so.previously.map((p) => p.case)).toEqual([1, 2]);
+    expect(seasonSoFar(ledger, 3)).toEqual({ previously: [] });
+    expect(continuityTemplate(ledger, 2).arc).toEqual(later);
+    expect(continuityTemplate([], 2).arc!.plan).toHaveLength(8);
+  });
+
+  it("seals a first case that plans the thread, and refuses one that doesn't", () => {
+    expect(continuityGates(concept({}), [])).toEqual([]);
+    expect(continuityGates(concept({ arc: undefined }), [])).toEqual(["continuity: a serial season's concept.json needs arc and carry"]);
+    expect(continuityGates(concept(continuityTemplate([], 2)), []).join()).toContain(`still says "${TO_WRITE}"`);
+    expect(continuityGates(concept({ arc: { ...arc, plan: arc.plan.slice(0, 7) } }), [])).toEqual(["continuity: the arc has no line for case 8"]);
+  });
+
+  it("holds later cases to what was already played, and to a callback", () => {
+    const second = (over: Partial<Concept>) => concept({ caseId: "s2c2", number: 2, carry: { ...carry, callbacks: [1] }, ...over });
+    expect(continuityGates(second({}), sealed)).toEqual([]);
+    expect(continuityGates(second({ arc: { ...arc, truth: "changed" } }), sealed)).toEqual(["continuity: the thread's truth changed after case 1"]);
+    const rewritten = { ...arc, plan: arc.plan.map((p) => (p.case === 1 ? { ...p, beat: "new" } : p)) };
+    expect(continuityGates(second({ arc: rewritten }), sealed)).toEqual(["continuity: the arc's line for case 1, already played, changed"]);
+    const replanned = { ...arc, plan: arc.plan.map((p) => (p.case === 5 ? { ...p, beat: "new" } : p)) };
+    expect(continuityGates(second({ arc: replanned }), sealed)).toEqual([]);
+    expect(continuityGates(second({ carry: { ...carry, callbacks: [] } }), sealed)).toEqual([
+      "continuity: a later case brings back someone or something from an earlier one (carry.callbacks)",
+    ]);
+    expect(continuityGates(second({ carry: { ...carry, callbacks: [2] } }), sealed)).toEqual(["continuity: carry.callbacks names case 2, which isn't earlier"]);
+  });
+
+  it("ends the season with every hook closed, and no case past its length", () => {
+    const last = (over: Partial<Concept>) => concept({ caseId: "s2c8", number: 8, carry: { ...carry, callbacks: [1] }, ...over });
+    expect(continuityGates(last({}), sealed)).toEqual(["continuity: the season's last case leaves no hooks open"]);
+    expect(continuityGates(last({ carry: { ...carry, hooks: [], callbacks: [1] } }), sealed)).toEqual([]);
+    expect(continuityGates(concept({ number: 9, carry: { ...carry, callbacks: [1] } }), sealed)).toContain("continuity: season 2 is planned as 8 cases");
   });
 });
 
@@ -254,6 +323,18 @@ describe("CLI", () => {
     expect(readFileSync(join(content, "sealed/s1/c1.sealed"), "utf8")).not.toContain("Vance");
     expect(cli(content, "sealed-check")).toContain("1/1 sealed cases verify");
   }, 60000);
+
+  it("next --init gives a serial season's first case a thread to plan, and a standalone season none", () => {
+    const content = mkdtempSync(join(tmpdir(), "afoot-"));
+    const two = JSON.parse(cli(content, "next", "--season", "2", "--init").split("\nwrote")[0]!);
+    expect(two.continuity).toEqual({ serial: true, length: 8, previously: [] });
+    const concept = JSON.parse(readFileSync(join(content, ".plain/s2c1/concept.json"), "utf8"));
+    expect(concept.arc.plan).toHaveLength(8);
+    expect(concept.carry.outcome).toBe(TO_WRITE);
+    const one = JSON.parse(cli(content, "next", "--season", "1", "--init").split("\nwrote")[0]!);
+    expect(one.continuity).toEqual({ serial: false });
+    expect(JSON.parse(readFileSync(join(content, ".plain/s1c1/concept.json"), "utf8")).arc).toBeUndefined();
+  }, 30000);
 
   it("seal refuses a case that fails its gates, and lists why", () => {
     const content = mkdtempSync(join(tmpdir(), "afoot-"));
