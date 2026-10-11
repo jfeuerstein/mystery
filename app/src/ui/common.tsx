@@ -2,28 +2,27 @@ import { createContext, useContext, useEffect, useId, useLayoutEffect, useRef, u
 import { createPortal } from "react-dom";
 import catalogJson from "../../public/art/catalog.json";
 import { HolderIcon, type HolderKind } from "./icons";
+import { platesOf, type ArtAsset, type PlateChooser } from "./plates";
 
 // ---------------------------------------------------------------------------
 // Engravings (GAME_DESIGN.md §13.2)
 // ---------------------------------------------------------------------------
-
-export type ArtCredit = { title: string; author: string; date?: string; source: string; license: string };
-type ArtAsset = {
-  tag: string;
-  kind: "portrait" | "scene" | "vignette";
-  description: string;
-  /** Processed engraving in public/art/, once sourced. */
-  file?: string;
-  /** Where a narrow frame centres on the plate, as fractions [x, y]. */
-  focus?: [number, number];
-  credit?: ArtCredit;
-};
 
 export const ART: ArtAsset[] = (catalogJson as { assets: ArtAsset[] }).assets;
 const BY_TAG = new Map(ART.map((a) => [a.tag, a]));
 
 export function artFor(tag: string): ArtAsset | undefined {
   return BY_TAG.get(tag);
+}
+
+/**
+ * The plate chooser in force: inside a case, the case's own (see plates.ts);
+ * elsewhere, each tag's first plate.
+ */
+export const ArtChoice = createContext<PlateChooser>((tag) => platesOf(artFor(tag))[0]);
+
+export function useArtChooser(): PlateChooser {
+  return useContext(ArtChoice);
 }
 
 export function artUrl(file: string): string {
@@ -86,9 +85,21 @@ function Plate({ kind }: { kind: ArtAsset["kind"] }) {
   );
 }
 
-/** A framed engraving: the real plate when it has been sourced, else a placeholder. */
-export function Engraving(props: { tag: string; height?: number; children?: ReactNode; className?: string; caption?: boolean }) {
+/**
+ * A framed engraving: the real plate when it has been sourced, else a
+ * placeholder. `owner` is who or what it depicts, so two people sharing a tag
+ * can wear different plates.
+ */
+export function Engraving(props: {
+  tag: string;
+  owner?: string | undefined;
+  height?: number;
+  children?: ReactNode;
+  className?: string;
+  caption?: boolean;
+}) {
   const asset = artFor(props.tag);
+  const plate = useArtChooser()(props.tag, props.owner);
   const [loaded, setLoaded] = useState(false);
   const kind = asset?.kind ?? (props.tag.startsWith("portrait") ? "portrait" : props.tag.startsWith("scene") ? "scene" : "vignette");
   return (
@@ -97,12 +108,13 @@ export function Engraving(props: { tag: string; height?: number; children?: Reac
       style={props.height ? { height: props.height } : undefined}
       aria-label={asset?.description ?? captionFor(props.tag)}
     >
-      {asset?.file ? (
+      {plate ? (
         <img
-          src={artUrl(asset.file)}
+          key={plate.file}
+          src={artUrl(plate.file)}
           alt=""
           className={loaded ? "loaded" : ""}
-          style={asset.focus ? { objectPosition: `${asset.focus[0] * 100}% ${asset.focus[1] * 100}%` } : undefined}
+          style={plate.focus ? { objectPosition: `${plate.focus[0] * 100}% ${plate.focus[1] * 100}%` } : undefined}
           onLoad={() => setLoaded(true)}
           draggable={false}
         />
@@ -111,7 +123,7 @@ export function Engraving(props: { tag: string; height?: number; children?: Reac
       )}
       {props.children}
       {/* The tag's caption labels a placeholder; a real plate needs none. */}
-      {props.caption !== false && !asset?.file && <figcaption>{captionFor(props.tag)}</figcaption>}
+      {props.caption !== false && !plate && <figcaption>{captionFor(props.tag)}</figcaption>}
     </figure>
   );
 }

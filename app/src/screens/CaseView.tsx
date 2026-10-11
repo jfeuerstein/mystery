@@ -1,10 +1,11 @@
 import type { Beat, Case } from "@afoot/schema";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { audio, type MusicCue } from "../audio/director";
 import * as engine from "../engine/progress";
 import type { CaseProgress } from "../engine/progress";
 import { useGame } from "../engine/store";
-import { artFor, artUrl, Engraving, Forward, GradeSeal, Ornament, PatienceMeter, ROMAN, Sheet, useSettling } from "../ui/common";
+import { ArtChoice, artFor, artUrl, Engraving, Forward, GradeSeal, Ornament, PatienceMeter, ROMAN, Sheet, useArtChooser, useSettling } from "../ui/common";
+import { chooserFor } from "../ui/plates";
 import { Back, Folder, holderKind, Lens, Notebook, OpenBook } from "../ui/icons";
 import { DeductionPalace, FinalePalace } from "./Palace";
 import { CaseFile, NotebookSheet, StorySheet } from "./Sheets";
@@ -107,17 +108,18 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
   const subject = props.c.cast.find((x) => x.id === props.beat.subject);
   const detail = props.beat.details.find((d) => d.id === open);
   const ready = engine.canAdvance(props.c, props.p);
+  const choose = useArtChooser();
   return (
     <div className="stage page">
       <div className="stage-body">
-        <Engraving tag={subject?.portrait.tag ?? "portrait"} height={250} />
+        <Engraving tag={subject?.portrait.tag ?? "portrait"} owner={subject?.id} height={250} />
         <p className="muted" style={{ textAlign: "center", margin: "0 0 12px", fontStyle: "italic" }}>
           You see, but do you observe? Examine {subject?.name ?? "them"} closely.
         </p>
         <div className="observe-grid">
           {props.beat.details.map((d, i) => {
             const done = phase?.inspected.includes(d.id);
-            const art = artFor(d.vignette.tag);
+            const art = choose(d.vignette.tag, d.id);
             return (
               <button
                 key={d.id}
@@ -151,7 +153,7 @@ function Observe(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </Actions>
       {detail && (
         <Sheet onClose={() => setOpen(undefined)}>
-          <Engraving tag={detail.vignette.tag} height={170} caption={false} />
+          <Engraving tag={detail.vignette.tag} owner={detail.id} height={170} caption={false} />
           <p style={{ fontStyle: "italic" }}>{detail.text}</p>
           <button className="btn" onClick={() => setOpen(undefined)} data-testid="close-detail">
             Noted
@@ -171,19 +173,20 @@ function Examine(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
   const card = open ? evidence(open) : undefined;
   const found = phase?.found.length ?? 0;
   const ready = engine.canAdvance(props.c, props.p);
+  const choose = useArtChooser();
   return (
     <div className="stage page">
       <div className="stage-body">
         <div className="smallcaps muted" style={{ textAlign: "center", marginBottom: 10 }}>
           {location?.name} · {found} of {props.beat.hotspots.length} found
         </div>
-        <Engraving tag={location?.scene.tag ?? "scene"} className="scene" caption={false}>
+        <Engraving tag={location?.scene.tag ?? "scene"} owner={location?.id} className="scene" caption={false}>
           {props.beat.hotspots.map((id) => {
             const e = evidence(id);
             const spot = e?.hotspot ?? { x: 0.5, y: 0.5, r: 0.08 };
             const done = phase?.found.includes(id);
             // An engraved object is its own tap target; without one, a faint lens-mark.
-            const art = e ? artFor(e.vignette.tag) : undefined;
+            const art = e ? choose(e.vignette.tag, e.id) : undefined;
             return (
               <button
                 key={id}
@@ -212,7 +215,7 @@ function Examine(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { kind: 
       </Actions>
       {card && (
         <Sheet onClose={() => setOpen(undefined)}>
-          <Engraving tag={card.vignette.tag} height={170} caption={false} />
+          <Engraving tag={card.vignette.tag} owner={card.id} height={170} caption={false} />
           <h3 className="display" style={{ margin: "0 0 6px" }}>
             {card.name}
           </h3>
@@ -236,7 +239,7 @@ function Interrogate(props: { c: Case; p: CaseProgress; beat: Extract<Beat, { ki
   return (
     <div className="stage page">
       <div className="stage-body">
-        <Engraving tag={witness?.portrait.tag ?? "portrait"} height={200} />
+        <Engraving tag={witness?.portrait.tag ?? "portrait"} owner={witness?.id} height={200} />
         {open ? (
           <div className="prose" key={open.id}>
             {open.sentences.map((s) => (
@@ -429,6 +432,8 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
   const { sheet, openSheet } = useGame();
   const s = p.stage;
   const cue = musicFor(p);
+  // One plate per tag for the whole case, different plates for people who share one.
+  const choose = useMemo(() => chooserFor(c, artFor), [c]);
   const inPalace =
     (s.kind === "chapter" && s.phase.kind === "deduction" && s.phase.step === "palace") ||
     (s.kind === "finale" && s.step === "palace");
@@ -475,12 +480,12 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
   }
 
   return (
-    <>
+    <ArtChoice.Provider value={choose}>
       <Header c={c} p={p} title={title} inert={inPalace} />
       {body}
       {!inPalace && sheet === "casefile" && <CaseFile c={c} p={p} onClose={() => openSheet(null)} />}
       {!inPalace && sheet === "notebook" && <NotebookSheet onClose={() => openSheet(null)} />}
       {!inPalace && sheet === "story" && <StorySheet c={c} p={p} onClose={() => openSheet(null)} />}
-    </>
+    </ArtChoice.Provider>
   );
 }

@@ -54,14 +54,31 @@ export const SIZES = {
 
 type Kind = keyof typeof SIZES;
 
+type Credit = { title: string; author: string; date: string; source: string; license: string };
+
+/** A further plate for the same tag; the app chooses one per case (§13.2). */
+type Variant = { file: string; focus?: [number, number]; credit: Credit };
+
 export type CatalogAsset = {
   tag: string;
   kind: Kind;
   description: string;
   file?: string;
   focus?: [number, number];
-  credit?: { title: string; author: string; date: string; source: string; license: string };
+  credit?: Credit;
+  variants?: Variant[];
 };
+
+/**
+ * A plates.json key is a catalog tag for its first plate, and `tag#2`,
+ * `tag#3`, … for further variants of the same subject.
+ */
+export function plateKey(key: string): { tag: string; n: number } {
+  const m = /^(.+)#(\d+)$/.exec(key);
+  return m ? { tag: m[1]!, n: Number(m[2]) } : { tag: key, n: 1 };
+}
+
+const fileFor = (tag: string, n: number) => (n === 1 ? `${tag}.webp` : `${tag}-${n}.webp`);
 
 type Catalog = { $comment?: string; version: number; assets: CatalogAsset[] };
 
@@ -176,32 +193,43 @@ export async function printPlate(source: Buffer, plate: Plate, kind: Kind): Prom
     .toBuffer();
 }
 
+/** Builds the named plates (a tag builds all its variants), or every plate. */
 export async function buildArt(tags: string[], log: (line: string) => void): Promise<number> {
   const plates = readPlates();
   const catalog = readCatalog();
-  const wanted = tags.length ? tags : Object.keys(plates);
-  let failed = 0;
+  const wanted = tags.length ? Object.keys(plates).filter((k) => tags.includes(k) || tags.includes(plateKey(k).tag)) : Object.keys(plates);
+  let failed = tags.filter((t) => !Object.keys(plates).some((k) => k === t || plateKey(k).tag === t)).length;
+  for (const t of tags) if (!wanted.some((k) => k === t || plateKey(k).tag === t)) log(`${t}: no plate in plates.json`);
   mkdirSync(ART_PATHS.out, { recursive: true });
-  for (const tag of wanted) {
-    const plate = plates[tag];
+  for (const key of wanted) {
+    const plate = plates[key]!;
+    const { tag, n } = plateKey(key);
     const asset = catalog.assets.find((a) => a.tag === tag);
-    if (!plate || !asset) {
-      log(`${tag}: ${plate ? "not in the catalog" : "no plate in plates.json"}`);
+    if (!asset) {
+      log(`${key}: not in the catalog`);
       failed++;
       continue;
     }
     try {
       const webp = await printPlate(await download(plate.image), plate, asset.kind);
-      const file = `${tag}.webp`;
+      const file = fileFor(tag, n);
       writeFileSync(resolve(ART_PATHS.out, file), webp);
-      asset.file = file;
-      if (plate.focus) asset.focus = plate.focus;
-      else delete asset.focus;
-      asset.credit = { title: plate.title, author: plate.author, date: plate.date, source: plate.page, license: plate.license };
-      log(`${tag}: ${Math.round(webp.length / 1024)} KB`);
+      const credit = { title: plate.title, author: plate.author, date: plate.date, source: plate.page, license: plate.license };
+      if (n === 1) {
+        asset.file = file;
+        if (plate.focus) asset.focus = plate.focus;
+        else delete asset.focus;
+        asset.credit = credit;
+      } else {
+        const variant: Variant = { file, ...(plate.focus ? { focus: plate.focus } : {}), credit };
+        asset.variants = [...(asset.variants ?? []).filter((v) => v.file !== file), variant].sort((a, b) =>
+          a.file.localeCompare(b.file, "en", { numeric: true }),
+        );
+      }
+      log(`${key}: ${Math.round(webp.length / 1024)} KB`);
     } catch (e) {
       failed++;
-      log(`${tag}: FAILED ${(e as Error).message}`);
+      log(`${key}: FAILED ${(e as Error).message}`);
     }
   }
   writeFileSync(PATHS.catalog, `${JSON.stringify(catalog, null, 2)}\n`);
@@ -214,21 +242,22 @@ export async function previewArt(platesPath: string, outDir: string, log: (line:
   const kinds = new Map(readCatalog().assets.map((a) => [a.tag, a.kind]));
   mkdirSync(resolve(outDir), { recursive: true });
   let failed = 0;
-  for (const [tag, plate] of Object.entries(plates)) {
+  for (const [key, plate] of Object.entries(plates)) {
+    const { tag, n } = plateKey(key);
     const kind = kinds.get(tag);
     if (!kind) {
-      log(`${tag}: not in the catalog`);
+      log(`${key}: not in the catalog`);
       failed++;
       continue;
     }
     try {
       const webp = await printPlate(await download(plate.image), plate, kind);
-      const file = resolve(outDir, `${tag}.png`);
+      const file = resolve(outDir, `${n === 1 ? tag : `${tag}-${n}`}.png`);
       await sharp(webp).png().toFile(file);
-      log(`${tag}: ${file}`);
+      log(`${key}: ${file}`);
     } catch (e) {
       failed++;
-      log(`${tag}: FAILED ${(e as Error).message}`);
+      log(`${key}: FAILED ${(e as Error).message}`);
     }
   }
   return failed;
@@ -240,13 +269,25 @@ export function checkArt(): string[] {
   const plates = readPlates();
   const catalog = readCatalog();
   const tags = new Set(catalog.assets.map((a) => a.tag));
-  for (const tag of Object.keys(plates)) if (!tags.has(tag)) problems.push(`plate "${tag}" has no catalog tag`);
+  for (const key of Object.keys(plates)) if (!tags.has(plateKey(key).tag)) problems.push(`plate "${key}" has no catalog tag`);
+  const images = new Map<string, string>();
+  for (const [key, plate] of Object.entries(plates)) {
+    const other = images.get(plate.image + JSON.stringify(plate.crop ?? null));
+    if (other) problems.push(`${key}: the same print and crop as ${other}`);
+    images.set(plate.image + JSON.stringify(plate.crop ?? null), key);
+  }
   for (const a of catalog.assets) {
-    if (!a.file) continue;
-    if (!existsSync(resolve(ART_PATHS.out, a.file))) problems.push(`${a.tag}: ${a.file} is missing`);
-    if (!a.credit) problems.push(`${a.tag}: no credit`);
-    else if (!PUBLIC_DOMAIN.test(a.credit.license)) problems.push(`${a.tag}: licence "${a.credit.license}" is not public domain`);
-    if (!plates[a.tag]) problems.push(`${a.tag}: has a file but no plate in plates.json`);
+    if (!a.file) {
+      if (a.variants?.length) problems.push(`${a.tag}: variants without a first plate`);
+      continue;
+    }
+    const prints = [{ key: a.tag, file: a.file, credit: a.credit }, ...(a.variants ?? []).map((v) => ({ key: `${a.tag}#${/-(\d+)\.webp$/.exec(v.file)?.[1]}`, ...v }))];
+    for (const { key, file, credit } of prints) {
+      if (!existsSync(resolve(ART_PATHS.out, file))) problems.push(`${key}: ${file} is missing`);
+      if (!credit) problems.push(`${key}: no credit`);
+      else if (!PUBLIC_DOMAIN.test(credit.license)) problems.push(`${key}: licence "${credit.license}" is not public domain`);
+      if (!plates[key]) problems.push(`${key}: has a file but no plate in plates.json`);
+    }
   }
   return problems;
 }

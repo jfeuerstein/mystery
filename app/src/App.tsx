@@ -5,6 +5,7 @@ import { formatDuration, summarize } from "./engine/ledger";
 import { caseById, exportSave, isUnlocked, useGame } from "./engine/store";
 import { CaseView } from "./screens/CaseView";
 import { ART, Corner, GradeSeal, Ornament } from "./ui/common";
+import { platesOf } from "./ui/plates";
 import { Back, Cog, Ledger as LedgerIcon } from "./ui/icons";
 
 function isStandalone(): boolean {
@@ -328,7 +329,10 @@ function soundGroups(credits: { title: string; author: string; source: string; l
 
 function Credits() {
   const { go } = useGame();
-  const art = ART.filter((a) => a.file && a.credit);
+  // Every plate, each subject's variants included.
+  const art = ART.flatMap((a) =>
+    platesOf(a).flatMap((plate) => (plate.credit ? [{ key: plate.file, description: a.description, credit: plate.credit }] : [])),
+  );
   const sounds = [...Object.entries(AUDIO_MANIFEST.music), ...Object.entries(AUDIO_MANIFEST.sfx)].filter(([, e]) => e) as [
     string,
     NonNullable<(typeof AUDIO_MANIFEST.music)["theme"]>,
@@ -347,7 +351,7 @@ function Credits() {
           <p className="muted">Placeholder plates, until the engravings are sourced.</p>
         ) : (
           <>
-            {byAuthor(art.map((a) => a.credit!)).map(([author, works]) => (
+            {byAuthor(art.map((a) => a.credit)).map(([author, works]) => (
               <p key={author} className="credit-group">
                 <span className="smallcaps">{author}</span>:{" "}
                 {[...works.entries()].map(([title, date], i) => (
@@ -364,10 +368,10 @@ function Credits() {
               <summary className="smallcaps">Every plate and its source</summary>
               <ul>
                 {art.map((a) => (
-                  <li key={a.tag}>
+                  <li key={a.key}>
                     {a.description}{" "}
-                    <a href={a.credit!.source} target="_blank" rel="noreferrer">
-                      {a.credit!.license}
+                    <a href={a.credit.source} target="_blank" rel="noreferrer">
+                      {a.credit.license}
                     </a>
                   </li>
                 ))}
