@@ -80,6 +80,11 @@
       "season": 2,
       "number": 8,
       "file": "s2/c8.sealed"
+    },
+    {
+      "season": 3,
+      "number": 1,
+      "file": "s3/c1.sealed"
     }
   ]
 }
