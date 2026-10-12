@@ -90,6 +90,11 @@
       "season": 3,
       "number": 2,
       "file": "s3/c2.sealed"
+    },
+    {
+      "season": 3,
+      "number": 3,
+      "file": "s3/c3.sealed"
     }
   ]
 }
