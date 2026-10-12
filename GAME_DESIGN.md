@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.10. Written from a design interview, October 2026
+**Status:** v1.11. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -722,11 +722,11 @@ pipeline composes the scenes itself:
    the upright Examine frame, vignette 640×480, the object shown whole on
    white). A plate may whiten scan marks or a neighbouring cut (`erase`).
    Images come from large Commons renderings (`thumb.wikimedia.org`), the
-   Internet Archive and museum collections. 151 of the 155 tags have a
+   Internet Archive and museum collections. 157 of the 161 tags have a
    plate; cigar ash, a thread, a will and a calling card keep their
    placeholder until a plate good enough turns up. A tag may carry several
    plates (`tag#2`, `tag#3`, … in `plates.json`, listed as `variants` in the
-   catalog), 222 in all. A case shows one plate per tag throughout, people,
+   catalog), 228 in all. A case shows one plate per tag throughout, people,
    places or objects that share a tag get different plates while there are
    enough, and which plate comes first varies from case to case
    (`app/src/ui/plates.ts`). The app lays every plate
@@ -1357,6 +1357,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.11 | The engraving library's second round: 61 new plates (second plates for 24 portraits, 17 scenes and 10 objects; first plates for 10 new subjects), 228 in all (§13.2). Candidates whose legible lettering could read as a clue were turned away. |
 | v1.10 | Tier 4 complete. The Parallel, a Flaw turned about: choose the argument from Holmes' commonplace book that goes wrong the same way (§8.2). The schedule layout for complex arrangements: ordered groups with capacities (§8.5). The Map Room and the blind solvers' view show each group's capacity. Notebook entries for parallel errors and complex arrangements. |
 | v1.9 | Season 3 is serial too (decision 27). Season 3 groundwork: tier 4's Notebook entries for the four new Fallacy Index names (the part and the whole, proportion and number, arguing in a circle, absence of evidence) (§11.2). |
 | v1.8 | The engraving library grows: 35 new subjects (14 kinds of person, 14 places, 9 objects) and second plates for 20 existing subjects; a tag may carry several plates, chosen per case (§13.2). |

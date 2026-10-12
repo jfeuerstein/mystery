@@ -3178,6 +3178,84 @@
         "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n596/mode/1up",
         "license": "Public domain"
       }
+    },
+    {
+      "tag": "vignette-chemistry",
+      "kind": "vignette",
+      "description": "Chemical apparatus: a retort over a spirit lamp.",
+      "file": "vignette-chemistry.webp",
+      "credit": {
+        "title": "The Boy's Playbook of Science (John Henry Pepper), new edition: Fig. 157, a retort heated over a spirit lamp",
+        "author": "Henry George Hine (wood engraving after the author's sketches)",
+        "date": "1869",
+        "source": "https://archive.org/details/boysplaybookofsc00pepprich/page/n184/mode/1up",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-wallet",
+      "kind": "vignette",
+      "description": "A pocket-book, wallet or purse.",
+      "file": "vignette-wallet.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: wallet pocket-book",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n443/mode/1up",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-timetable",
+      "kind": "vignette",
+      "description": "A railway timetable or Bradshaw.",
+      "file": "vignette-timetable.webp",
+      "credit": {
+        "title": "Bradshaw's Monthly General Railway and Steam Navigation Guide, no. XVI: London and Birmingham up trains",
+        "author": "George Bradshaw (publisher)",
+        "date": "1843",
+        "source": "https://commons.wikimedia.org/wiki/File:Bradshaw%27s_Monthly_(XVI).djvu?page=8",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-hourglass",
+      "kind": "vignette",
+      "description": "An hourglass.",
+      "file": "vignette-hourglass.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: log, or time glass",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n331/mode/1up",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-quill",
+      "kind": "vignette",
+      "description": "A quill pen and inkstand.",
+      "file": "vignette-quill.webp",
+      "credit": {
+        "title": "Mes prisons (Silvio Pellico), Paris: Charpentier: tailpiece, papers with ink-bottle and quills",
+        "author": "Tony Johannot",
+        "date": "1843",
+        "source": "https://www.oldbookillustrations.com/illustrations/stationery/",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-jewel",
+      "kind": "vignette",
+      "description": "A jewelled brooch or other jewel.",
+      "file": "vignette-jewel.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: diamond star brooch",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n26/mode/1up",
+        "license": "Public domain"
+      }
     }
   ]
 }

@@ -3980,6 +3980,220 @@
         25,
         140
       ]
+    },
+    "vignette-chemistry": {
+      "page": "https://archive.org/details/boysplaybookofsc00pepprich/page/n184/mode/1up",
+      "image": "https://archive.org/download/boysplaybookofsc00pepprich/page/n184.jpg",
+      "title": "The Boy's Playbook of Science (John Henry Pepper), new edition: Fig. 157, a retort heated over a spirit lamp",
+      "author": "Henry George Hine (wood engraving after the author's sketches)",
+      "date": "1869",
+      "license": "Public domain",
+      "crop": [
+        0.07,
+        0.488,
+        0.7,
+        0.776
+      ],
+      "levels": [
+        35,
+        200
+      ],
+      "erase": [
+        [
+          0.6825,
+          0,
+          1,
+          0.6771
+        ],
+        [
+          0.9635,
+          0.6771,
+          1,
+          1
+        ],
+        [
+          0.6,
+          0.5625,
+          0.6317,
+          0.6215
+        ]
+      ]
+    },
+    "vignette-wallet": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n443/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n443.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: wallet pocket-book",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.211,
+        0.13,
+        0.399,
+        0.226
+      ],
+      "levels": [
+        20,
+        188
+      ],
+      "erase": [
+        [
+          0.2074,
+          0,
+          0.4734,
+          0.0729
+        ]
+      ]
+    },
+    "vignette-timetable": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bradshaw%27s_Monthly_(XVI).djvu?page=8",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Bradshaw%27s_Monthly_%28XVI%29.djvu/page8-1920px-Bradshaw%27s_Monthly_%28XVI%29.djvu.jpg",
+      "title": "Bradshaw's Monthly General Railway and Steam Navigation Guide, no. XVI: London and Birmingham up trains",
+      "author": "George Bradshaw (publisher)",
+      "date": "1843",
+      "license": "Public domain",
+      "crop": [
+        0.012,
+        0.092,
+        0.953,
+        0.7805
+      ]
+    },
+    "vignette-hourglass": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n331/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n331.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: log, or time glass",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.345,
+        0.575,
+        0.495,
+        0.748
+      ],
+      "levels": [
+        30,
+        195
+      ]
+    },
+    "vignette-quill": {
+      "page": "https://www.oldbookillustrations.com/illustrations/stationery/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1843/stationery-rawscan.jpg",
+      "title": "Mes prisons (Silvio Pellico), Paris: Charpentier: tailpiece, papers with ink-bottle and quills",
+      "author": "Tony Johannot",
+      "date": "1843",
+      "license": "Public domain",
+      "crop": [
+        0.04,
+        0.05,
+        0.95,
+        0.85
+      ],
+      "levels": [
+        40,
+        205
+      ],
+      "erase": [
+        [
+          0.3901,
+          0.44,
+          0.4286,
+          0.4788
+        ],
+        [
+          0.4264,
+          0.4488,
+          0.4593,
+          0.4913
+        ],
+        [
+          0.4571,
+          0.46,
+          0.5033,
+          0.5025
+        ],
+        [
+          0.5088,
+          0.485,
+          0.5473,
+          0.5288
+        ],
+        [
+          0.5462,
+          0.4963,
+          0.5714,
+          0.5463
+        ],
+        [
+          0.5714,
+          0.5038,
+          0.6022,
+          0.55
+        ],
+        [
+          0.6011,
+          0.515,
+          0.6429,
+          0.565
+        ],
+        [
+          0.6429,
+          0.5225,
+          0.6901,
+          0.5713
+        ],
+        [
+          0.689,
+          0.535,
+          0.7253,
+          0.5813
+        ],
+        [
+          0.7231,
+          0.54,
+          0.7637,
+          0.59
+        ]
+      ]
+    },
+    "vignette-jewel": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n26/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n26.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: diamond star brooch",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.338,
+        0.129,
+        0.546,
+        0.265
+      ],
+      "levels": [
+        22,
+        166
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.0529,
+          0.1029
+        ],
+        [
+          0.9279,
+          0,
+          1,
+          0.1029
+        ],
+        [
+          0.8029,
+          0,
+          0.9279,
+          0.0331
+        ]
+      ]
     }
   }
 }
