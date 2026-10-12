@@ -105,6 +105,11 @@
       "season": 3,
       "number": 5,
       "file": "s3/c5.sealed"
+    },
+    {
+      "season": 3,
+      "number": 6,
+      "file": "s3/c6.sealed"
     }
   ]
 }
