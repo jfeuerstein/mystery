@@ -162,9 +162,27 @@ async function main() {
 
   // Chapter I
   await shot(page, "narration");
-  // Read to the last paragraph: a tap on the page there must not leave it;
-  // only the Continue button does.
-  while ((await page.getByTestId("continue").textContent()) !== "Continue") await page.getByTestId("continue").click();
+  // Read to the last paragraph at a small phone's height, where the page
+  // outgrows the screen: each paragraph read on must come into view above
+  // the sticky button bar, and the stuck bar keeps its button clear of the
+  // screen's edge.
+  await page.setViewportSize({ width: 375, height: 667 });
+  while ((await page.getByTestId("continue").textContent()) !== "Continue") {
+    await page.getByTestId("continue").click();
+    await page.waitForTimeout(800);
+    const m = await page.evaluate(() => {
+      const newest = [...document.querySelectorAll("[data-testid=narration] .prose p")].at(-1).getBoundingClientRect();
+      const bar = document.querySelector("[data-testid=narration] .actions").getBoundingClientRect();
+      const button = document.querySelector("[data-testid=continue]").getBoundingClientRect();
+      return { newestBottom: Math.round(newest.bottom), barTop: Math.round(bar.top), foot: Math.round(innerHeight - button.bottom), scrollY };
+    });
+    if (m.newestBottom > m.barTop + 1) throw new Error(`the paragraph read on is hidden by the button bar: ${JSON.stringify(m)}`);
+    if (m.foot < 8) throw new Error(`the button bar's button touches the screen's edge: ${JSON.stringify(m)}`);
+  }
+  await shot(page, "narration-read-on");
+  await page.setViewportSize({ width: 390, height: 844 });
+  // A tap on the page at the last paragraph must not leave it; only the
+  // Continue button does.
   await page.locator(".stage-body").click({ position: { x: 20, y: 20 } });
   await page.waitForTimeout(500);
   if (!(await page.getByTestId("narration").count())) throw new Error("a tap on the page left the narration");
