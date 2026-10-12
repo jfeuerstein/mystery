@@ -80,6 +80,46 @@
       "season": 2,
       "number": 8,
       "file": "s2/c8.sealed"
+    },
+    {
+      "season": 3,
+      "number": 1,
+      "file": "s3/c1.sealed"
+    },
+    {
+      "season": 3,
+      "number": 2,
+      "file": "s3/c2.sealed"
+    },
+    {
+      "season": 3,
+      "number": 3,
+      "file": "s3/c3.sealed"
+    },
+    {
+      "season": 3,
+      "number": 4,
+      "file": "s3/c4.sealed"
+    },
+    {
+      "season": 3,
+      "number": 5,
+      "file": "s3/c5.sealed"
+    },
+    {
+      "season": 3,
+      "number": 6,
+      "file": "s3/c6.sealed"
+    },
+    {
+      "season": 3,
+      "number": 7,
+      "file": "s3/c7.sealed"
+    },
+    {
+      "season": 3,
+      "number": 8,
+      "file": "s3/c8.sealed"
     }
   ]
 }
