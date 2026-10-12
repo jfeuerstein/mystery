@@ -115,6 +115,11 @@
       "season": 3,
       "number": 7,
       "file": "s3/c7.sealed"
+    },
+    {
+      "season": 3,
+      "number": 8,
+      "file": "s3/c8.sealed"
     }
   ]
 }
