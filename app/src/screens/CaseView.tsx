@@ -1,5 +1,5 @@
 import type { Beat, Case } from "@afoot/schema";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { audio, type MusicCue } from "../audio/director";
 import * as engine from "../engine/progress";
 import type { CaseProgress } from "../engine/progress";
@@ -58,6 +58,37 @@ function ChapterHead(props: { number: number; title: string }) {
 
 // ---------------------------------------------------------------------------
 
+/**
+ * Keeps the newest paragraph in view as a narration grows. The page scrolls
+ * just far enough to lift the paragraph clear of the sticky button bar, and
+ * never so far that its first line leaves the top of the screen, so as much
+ * of what came before stays in sight as the screen allows.
+ */
+function useNewestInView(paragraph: number) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    // A page opens at its top, with its chapter head and engraving in view.
+    if (!el || paragraph === 0) return;
+    // On the next frame: a glide begun inside the tap that revealed the
+    // paragraph is cancelled by the end of that tap.
+    const frame = requestAnimationFrame(() => {
+      const box = el.getBoundingClientRect();
+      const bar = el.closest(".stage")?.querySelector(".actions");
+      const app = el.closest(".app");
+      const floor = bar ? bar.getBoundingClientRect().top : window.innerHeight;
+      const ceiling = app ? parseFloat(getComputedStyle(app).paddingTop) : 0;
+      const by = Math.min(box.bottom - floor, box.top - ceiling);
+      if (by <= 0) return;
+      // An absolute target, so a tap during the glide still lands in the right place.
+      const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: window.scrollY + by, behavior: still ? "auto" : "smooth" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [paragraph]);
+  return ref;
+}
+
 function Narration(props: {
   c: Case;
   p: CaseProgress;
@@ -70,6 +101,7 @@ function Narration(props: {
   const shown = props.beat.paragraphs.slice(0, paragraph + 1);
   const last = paragraph >= props.beat.paragraphs.length - 1;
   const settling = useSettling(paragraph);
+  const newest = useNewestInView(paragraph);
   const turn = () => {
     if (last) audio.sfx("page");
     step(engine.nextParagraph);
@@ -87,7 +119,7 @@ function Narration(props: {
         {props.chapter && <ChapterHead {...props.chapter} />}
         {props.beat.art && <Engraving tag={props.beat.art.tag} height={190} />}
         {shown.map((text, i) => (
-          <p key={i} className={props.chapter && i === 0 ? "dropcap" : ""}>
+          <p key={i} ref={i === paragraph ? newest : undefined} className={props.chapter && i === 0 ? "dropcap" : ""}>
             {text}
           </p>
         ))}
@@ -437,6 +469,14 @@ export function CaseView(props: { c: Case; p: CaseProgress }) {
   const inPalace =
     (s.kind === "chapter" && s.phase.kind === "deduction" && s.phase.step === "palace") ||
     (s.kind === "finale" && s.step === "palace");
+
+  // Each new page opens at its top. The window's scroll would otherwise carry
+  // over from the page before, which reading on may have scrolled down.
+  const page = s.kind === "chapter" ? `${s.chapter}/${s.beat}` : s.kind === "finale" ? `finale/${s.step}` : s.kind;
+  useLayoutEffect(() => {
+    // A block body: newer browsers return a Promise from scrollTo, which React would take for a cleanup.
+    window.scrollTo(0, 0);
+  }, [page]);
 
   useEffect(() => {
     if (!inPalace) audio.music(cue);
