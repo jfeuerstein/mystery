@@ -726,7 +726,7 @@ pipeline composes the scenes itself:
    plate; cigar ash, a thread, a will and a calling card keep their
    placeholder until a plate good enough turns up. A tag may carry several
    plates (`tag#2`, `tag#3`, … in `plates.json`, listed as `variants` in the
-   catalog), 212 in all. A case shows one plate per tag throughout, people,
+   catalog), 222 in all. A case shows one plate per tag throughout, people,
    places or objects that share a tag get different plates while there are
    enough, and which plate comes first varies from case to case
    (`app/src/ui/plates.ts`). The app lays every plate

@@ -2292,7 +2292,19 @@
         "date": "1892",
         "source": "https://archive.org/details/Junior5026",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-clock-2.webp",
+          "credit": {
+            "title": "Silber & Fleming's Illustrated Pattern-Book: massive hall clock",
+            "author": "Silber & Fleming (trade catalogue engraving)",
+            "date": "1889",
+            "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n110/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-watch",
@@ -2305,7 +2317,19 @@
         "date": "1892",
         "source": "https://archive.org/details/Junior5026",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-watch-2.webp",
+          "credit": {
+            "title": "Junior Army and Navy Stores catalogue no. 25: gentleman's keyless half-hunter watch",
+            "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+            "date": "1892",
+            "source": "https://archive.org/details/Junior5026/page/n568/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-teacup",
@@ -2331,7 +2355,19 @@
         "date": "1863",
         "source": "https://commons.wikimedia.org/wiki/File:Drie_sleutels,_RP-P-1929-12.jpg",
         "license": "CC0"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-key-2.webp",
+          "credit": {
+            "title": "Protection from Fire and Thieves (George Hayter Chubb): ornamental key",
+            "author": "Unknown engraver (Chubb & Son)",
+            "date": "1875",
+            "source": "https://archive.org/details/protectionfromfi00chub/page/n26/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-boots",
@@ -2396,7 +2432,19 @@
         "date": "1873",
         "source": "https://commons.wikimedia.org/wiki/File:1873_1_shilling_telegraph_form.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-telegram-2.webp",
+          "credit": {
+            "title": "Post Office Telegraphs form for inland telegrams (Stock Exchange offices)",
+            "author": "Post Office Telegraphs (printed form, Eyre & Spottiswoode)",
+            "date": "c. 1886-1900",
+            "source": "https://commons.wikimedia.org/wiki/File:QV_TP40b_6d_Stock_Exchange_Telegraph_Form.jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-newspaper",
@@ -2409,7 +2457,19 @@
         "date": "1900",
         "source": "https://commons.wikimedia.org/wiki/File:The_Morning_Post,_No._39841,_London,_February_12,_1900.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-newspaper-2.webp",
+          "credit": {
+            "title": "The Times, front page, 21 October 1899",
+            "author": "The Times",
+            "date": "1899",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Times_-_October_21,_1899.pdf",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-ticket",
@@ -2487,7 +2547,19 @@
         "date": "1797",
         "source": "https://commons.wikimedia.org/wiki/File:Hoed,_RP-P-1906-3739.jpg",
         "license": "CC0"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-hat-2.webp",
+          "credit": {
+            "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): fur felt railroad hat with ribbon band",
+            "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+            "date": "1897",
+            "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n250/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-cane",
@@ -2570,7 +2642,19 @@
         "date": "c. 1900",
         "source": "https://archive.org/details/sherwood12085_20240130",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-lamp-2.webp",
+          "credit": {
+            "title": "Silber & Fleming's Illustrated Pattern-Book: brass stand lamp with globe and chimney",
+            "author": "Silber & Fleming (trade catalogue engraving)",
+            "date": "1889",
+            "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n834/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-bottle",
@@ -2583,7 +2667,19 @@
         "date": "1870",
         "source": "https://wellcomecollection.org/works/yvpdehkx",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-bottle-2.webp",
+          "credit": {
+            "title": "Book of illustrations to S. Maw, Son & Thompson's quarterly price-current: narrow-mouth bottle with stopper guard (Wellcome Collection)",
+            "author": "S. Maw, Son & Thompson",
+            "date": "1870",
+            "source": "https://wellcomecollection.org/works/yvpdehkx/items?canvas=125",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-poison-label",
@@ -2609,7 +2705,19 @@
         "date": "1897",
         "source": "https://archive.org/details/TheGun/page/n529/mode/1up",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-pistol-2.webp",
+          "credit": {
+            "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): frontier revolver",
+            "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+            "date": "1897",
+            "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n527/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-knife",
@@ -2622,7 +2730,19 @@
         "date": "1906",
         "source": "https://archive.org/details/criminalinvestig00grosuoft",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "vignette-knife-2.webp",
+          "credit": {
+            "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): spear-point hunting knife",
+            "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+            "date": "1897",
+            "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n545/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "vignette-rope",

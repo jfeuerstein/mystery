@@ -3692,6 +3692,294 @@
         0.5,
         0.55
       ]
+    },
+    "vignette-pistol#2": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n527/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n527.jpg",
+      "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): frontier revolver",
+      "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.661,
+        0.4755,
+        0.945,
+        0.597
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.012,
+          1
+        ],
+        [
+          0.2415,
+          0.63,
+          1,
+          1
+        ],
+        [
+          0.944,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    "vignette-knife#2": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n545/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n545.jpg",
+      "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): spear-point hunting knife",
+      "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.105,
+        0.35,
+        0.36,
+        0.43
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          1,
+          0.3
+        ],
+        [
+          0,
+          0,
+          0.04,
+          1
+        ],
+        [
+          0,
+          0.74,
+          1,
+          1
+        ]
+      ]
+    },
+    "vignette-lamp#2": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n834/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n834.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: brass stand lamp with globe and chimney",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.34,
+        0.47,
+        0.54,
+        0.83
+      ],
+      "erase": [
+        [
+          0,
+          0.911,
+          1,
+          1
+        ]
+      ],
+      "levels": [
+        40,
+        182
+      ]
+    },
+    "vignette-clock#2": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n110/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n110.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: massive hall clock",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.275,
+        0.068,
+        0.5,
+        0.892
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.36,
+          0.075
+        ],
+        [
+          0.515,
+          0,
+          1,
+          0.075
+        ],
+        [
+          0,
+          0.17,
+          0.05,
+          0.53
+        ],
+        [
+          0.867,
+          0.366,
+          1,
+          0.403
+        ],
+        [
+          0.942,
+          0.366,
+          1,
+          1
+        ],
+        [
+          0.884,
+          0.76,
+          1,
+          0.925
+        ],
+        [
+          0,
+          0.93,
+          0.035,
+          1
+        ],
+        [
+          0.62,
+          0.982,
+          0.9,
+          1
+        ]
+      ],
+      "levels": [
+        20,
+        195
+      ]
+    },
+    "vignette-watch#2": {
+      "page": "https://archive.org/details/Junior5026/page/n568/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n568.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: gentleman's keyless half-hunter watch",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.08,
+        0.52,
+        0.435,
+        0.84
+      ],
+      "levels": [
+        55,
+        172
+      ]
+    },
+    "vignette-telegram#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:QV_TP40b_6d_Stock_Exchange_Telegraph_Form.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/QV_TP40b_6d_Stock_Exchange_Telegraph_Form.jpg/500px-QV_TP40b_6d_Stock_Exchange_Telegraph_Form.jpg",
+      "title": "Post Office Telegraphs form for inland telegrams (Stock Exchange offices)",
+      "author": "Post Office Telegraphs (printed form, Eyre & Spottiswoode)",
+      "date": "c. 1886-1900",
+      "license": "Public domain",
+      "crop": [
+        0.03,
+        0.012,
+        0.982,
+        0.975
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.08,
+          0.027
+        ],
+        [
+          0.061,
+          0.062,
+          0.092,
+          0.084
+        ]
+      ]
+    },
+    "vignette-newspaper#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Times_-_October_21,_1899.pdf",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/The_Times_-_October_21%2C_1899.pdf/page1-1920px-The_Times_-_October_21%2C_1899.pdf.jpg",
+      "title": "The Times, front page, 21 October 1899",
+      "author": "The Times",
+      "date": "1899",
+      "license": "Public domain",
+      "crop": [
+        0.033,
+        0.022,
+        0.982,
+        0.55
+      ]
+    },
+    "vignette-key#2": {
+      "page": "https://archive.org/details/protectionfromfi00chub/page/n26/mode/1up",
+      "image": "https://archive.org/download/protectionfromfi00chub/page/n26.jpg",
+      "title": "Protection from Fire and Thieves (George Hayter Chubb): ornamental key",
+      "author": "Unknown engraver (Chubb & Son)",
+      "date": "1875",
+      "license": "Public domain",
+      "crop": [
+        0.13,
+        0.775,
+        0.82,
+        0.95
+      ],
+      "levels": [
+        25,
+        180
+      ]
+    },
+    "vignette-hat#2": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n250/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n250.jpg",
+      "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): fur felt railroad hat with ribbon band",
+      "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.362,
+        0.1,
+        0.648,
+        0.192
+      ],
+      "erase": [
+        [
+          0.972,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    "vignette-bottle#2": {
+      "page": "https://wellcomecollection.org/works/yvpdehkx/items?canvas=125",
+      "image": "https://iiif.wellcomecollection.org/image/b22267761_0125.jp2/full/max/0/default.jpg",
+      "title": "Book of illustrations to S. Maw, Son & Thompson's quarterly price-current: narrow-mouth bottle with stopper guard (Wellcome Collection)",
+      "author": "S. Maw, Son & Thompson",
+      "date": "1870",
+      "license": "Public domain",
+      "crop": [
+        0.05,
+        0.635,
+        0.29,
+        0.92
+      ],
+      "erase": [
+        [
+          0,
+          0.937,
+          1,
+          1
+        ]
+      ],
+      "levels": [
+        25,
+        140
+      ]
     }
   }
 }
