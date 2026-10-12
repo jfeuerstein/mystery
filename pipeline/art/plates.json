@@ -3276,6 +3276,924 @@
         0.94,
         0.472
       ]
+    },
+    "portrait-butler#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:Kamerdyner_(58426).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Kamerdyner_%2858426%29.jpg/1920px-Kamerdyner_%2858426%29.jpg",
+      "title": "Tygodnik Illustrowany: Warsaw servants, the valet (Kamerdyner)",
+      "author": "Unknown engraver",
+      "date": "1867",
+      "license": "Public domain",
+      "crop": [
+        0.26,
+        0.0,
+        0.79,
+        0.48
+      ]
+    },
+    "portrait-cabman#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:Cab_Driver.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Cab_Driver.jpg/1920px-Cab_Driver.jpg",
+      "title": "London Labour and the London Poor (Henry Mayhew): Cab Driver",
+      "author": "Unknown engraver, after a photograph",
+      "date": "1851",
+      "license": "Public domain",
+      "crop": [
+        0.22,
+        0.1,
+        0.78,
+        0.504
+      ]
+    },
+    "portrait-foreigner#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._9,_pg._231_-_A_Stranger_Entered.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/The_Strand_Magazine_vol._2%2C_no._9%2C_pg._231_-_A_Stranger_Entered.png/1920px-The_Strand_Magazine_vol._2%2C_no._9%2C_pg._231_-_A_Stranger_Entered.png",
+      "title": "The Postmistress of Laurel Run (The Strand Magazine): A stranger entered",
+      "author": "Paul Hardy",
+      "date": "1891",
+      "license": "Public domain",
+      "crop": [
+        0.49,
+        0.05,
+        0.85,
+        0.456
+      ]
+    },
+    "portrait-gamekeeper#2": {
+      "page": "https://archive.org/details/gamekeeperathome00jeffuoft/page/n7/mode/1up",
+      "image": "https://archive.org/download/gamekeeperathome00jeffuoft/page/n7.jpg",
+      "title": "The Gamekeeper at Home (Richard Jefferies), illustrated edition: The Keeper",
+      "author": "Charles Whymper",
+      "date": "1880",
+      "license": "Public domain",
+      "crop": [
+        0.345,
+        0.225,
+        0.73,
+        0.5
+      ],
+      "erase": [
+        [
+          0.55,
+          0.0,
+          1.0,
+          0.06
+        ]
+      ]
+    },
+    "portrait-labourer#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_London_Scavenger.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/The_London_Scavenger.jpg/1920px-The_London_Scavenger.jpg",
+      "title": "London Labour and the London Poor (Henry Mayhew): The London Scavenger",
+      "author": "Archibald Henning and William Frederick Measom, after a daguerreotype by Richard Beard",
+      "date": "1851",
+      "license": "Public domain",
+      "crop": [
+        0.2,
+        0.12,
+        0.8,
+        0.572
+      ]
+    },
+    "portrait-publican#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._130_-_Here_You_Are,_Said_the_Landlord.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/The_Strand_Magazine_vol._3%2C_no._14%2C_pg._130_-_Here_You_Are%2C_Said_the_Landlord.png/1920px-The_Strand_Magazine_vol._3%2C_no._14%2C_pg._130_-_Here_You_Are%2C_Said_the_Landlord.png",
+      "title": "After the Crime (The Strand Magazine): \"Here you are,\" said the landlord",
+      "author": "Unknown illustrator",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.07,
+        0.37,
+        0.75
+      ]
+    },
+    "portrait-street-urchin#2": {
+      "page": "https://archive.org/details/londonstreetarab00stan/page/n30/mode/1up",
+      "image": "https://archive.org/download/londonstreetarab00stan/page/n30.jpg",
+      "title": "London Street Arabs (Mrs. H. M. Stanley)",
+      "author": "Dorothy Tennant",
+      "date": "1890",
+      "license": "Public domain",
+      "crop": [
+        0.26,
+        0.31,
+        0.47,
+        0.476
+      ]
+    },
+    "scene-bedroom#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._23,_pg._534_-_He_Proceeded_to_Uncover_the_Royal_Bed.png",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/The_Strand_Magazine_vol._4%2C_no._23%2C_pg._534_-_He_Proceeded_to_Uncover_the_Royal_Bed.png/1920px-The_Strand_Magazine_vol._4%2C_no._23%2C_pg._534_-_He_Proceeded_to_Uncover_the_Royal_Bed.png",
+      "title": "The Little Grey Man (The Strand Magazine)",
+      "author": "Unknown illustrator",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.03,
+        1.0,
+        0.9
+      ],
+      "focus": [
+        0.45,
+        0.45
+      ]
+    },
+    "scene-kitchen#2": {
+      "page": "https://archive.org/details/oldnewlondonnarr04thor_0/page/n137/mode/1up",
+      "image": "https://archive.org/download/oldnewlondonnarr04thor_0/page/n137.jpg",
+      "title": "Old and New London, vol. 4: Kitchen of St. James's Palace in the Time of George III",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.053,
+        0.175,
+        0.918,
+        0.747
+      ],
+      "focus": [
+        0.5,
+        0.6
+      ]
+    },
+    "scene-attic#2": {
+      "page": "https://archive.org/details/oldnewlondonnarr04thor_0/page/n354/mode/1up",
+      "image": "https://archive.org/download/oldnewlondonnarr04thor_0/page/n354.jpg",
+      "title": "Old and New London, vol. 4: The Loft used by the Cato Street Conspirators, 1820",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.054,
+        0.237,
+        0.927,
+        0.661
+      ],
+      "focus": [
+        0.42,
+        0.5
+      ]
+    },
+    "scene-garden#2": {
+      "page": "https://archive.org/details/cu31924012145060/page/n202/mode/1up",
+      "image": "https://archive.org/download/cu31924012145060/page/n202.jpg",
+      "title": "The Formal Garden in England (Blomfield): Pitmedden, Aberdeenshire",
+      "author": "F. Inigo Thomas",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.148,
+        0.16,
+        0.862,
+        0.735
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-village-street#2": {
+      "page": "https://archive.org/details/oldnewlondonnarr05thoruoft/page/n451/mode/1up",
+      "image": "https://archive.org/download/oldnewlondonnarr05thoruoft/page/n451.jpg",
+      "title": "Old and New London, vol. 5: The \"Old Crown Inn,\" Highgate, in 1830",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.098,
+        0.248,
+        0.952,
+        0.684
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-inn#2": {
+      "page": "https://archive.org/details/oldchristmasfrom00irviiala/page/n54/mode/1up",
+      "image": "https://archive.org/download/oldchristmasfrom00irviiala/page/n54.jpg",
+      "title": "Old Christmas (Washington Irving): Inn Kitchen",
+      "author": "Randolph Caldecott (engraved by James D. Cooper)",
+      "date": "1876",
+      "license": "Public domain",
+      "crop": [
+        0.095,
+        0.228,
+        0.952,
+        0.812
+      ],
+      "focus": [
+        0.5,
+        0.5
+      ]
+    },
+    "scene-railway-carriage#2": {
+      "page": "https://www.oldbookillustrations.com/illustrations/pleasant-journey/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1885/pleasant-journey-rawscan.jpg",
+      "title": "The Cornhill Magazine, new series, vol. 4: A Pleasant Journey",
+      "author": "Thomas Gedge Cheeseman (engraved by Joseph Swain)",
+      "date": "1885",
+      "license": "Public domain",
+      "crop": [
+        0.045,
+        0.02,
+        0.962,
+        0.9
+      ],
+      "focus": [
+        0.72,
+        0.5
+      ],
+      "levels": [
+        30,
+        175
+      ]
+    },
+    "scene-station-platform#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:Holl_(after_Frith)_The_Railway_Station_1.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Holl_%28after_Frith%29_The_Railway_Station_1.jpg/1920px-Holl_%28after_Frith%29_The_Railway_Station_1.jpg",
+      "title": "The Railway Station (engraving after William Powell Frith)",
+      "author": "Francis Holl, after William Powell Frith",
+      "date": "1866",
+      "license": "Public domain",
+      "crop": [
+        0.062,
+        0.072,
+        0.938,
+        0.84
+      ],
+      "focus": [
+        0.5,
+        0.45
+      ]
+    },
+    "scene-docks#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:St_Katharine%27s_Docks,_from_the_Basin_RMG_PU1437.tiff",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/St_Katharine%27s_Docks%2C_from_the_Basin_RMG_PU1437.tiff/1920px-St_Katharine%27s_Docks%2C_from_the_Basin_RMG_PU1437.tiff.jpg",
+      "title": "St Katharine's Docks, from the Basin (Shepherd's London in the Nineteenth Century)",
+      "author": "Thomas Hosmer Shepherd (engraved by H. Jorden)",
+      "date": "1829",
+      "license": "Public domain",
+      "crop": [
+        0.01,
+        0.03,
+        0.985,
+        0.855
+      ],
+      "focus": [
+        0.28,
+        0.5
+      ]
+    },
+    "scene-moor#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:Houn-27_-_Legend_of_the_wicked_Hugo_(Hound_of_Baskervilles,_page_160).jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Houn-27_-_Legend_of_the_wicked_Hugo_%28Hound_of_Baskervilles%2C_page_160%29.jpg/1920px-Houn-27_-_Legend_of_the_wicked_Hugo_%28Hound_of_Baskervilles%2C_page_160%29.jpg",
+      "title": "The Hound of the Baskervilles (The Strand Magazine)",
+      "author": "Sidney Paget",
+      "date": "1901",
+      "license": "Public domain",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        0.9
+      ],
+      "focus": [
+        0.6,
+        0.33
+      ]
+    },
+    "scene-club#2": {
+      "page": "https://archive.org/details/oldnewlondonnarr04thoruoft/page/152/mode/1up",
+      "image": "https://iiif.archive.org/iiif/oldnewlondonnarr04thoruoft$171/full/full/90/default.jpg",
+      "title": "Old and New London, vol. 4: Library of the Reform Club",
+      "author": "Unknown engraver",
+      "date": "1878",
+      "license": "Public domain",
+      "crop": [
+        0.265,
+        0.035,
+        0.725,
+        0.915
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-theatre#2": {
+      "page": "https://archive.org/details/strand-1893-v-6/page/n703/mode/1up",
+      "image": "https://archive.org/download/strand-1893-v-6/page/n703.jpg",
+      "title": "Transformation Scenes: How They Are Made and Worked (The Strand Magazine): On the \"Bridge\", Below",
+      "author": "Unknown illustrator, engraved by Hare",
+      "date": "1893",
+      "license": "Public domain",
+      "crop": [
+        0.37,
+        0.3,
+        0.88,
+        0.668
+      ],
+      "focus": [
+        0.45,
+        0.5
+      ]
+    },
+    "scene-laboratory#2": {
+      "page": "https://wellcomecollection.org/works/vfjymr43",
+      "image": "https://iiif.wellcomecollection.org/image/V0025600/full/max/0/default.jpg",
+      "title": "A chemical laboratory with four chemists; one looks into a furnace (Wellcome Collection 37787i)",
+      "author": "Unknown engraver",
+      "date": "19th century",
+      "license": "Public domain",
+      "crop": [
+        0.44,
+        0.19,
+        0.9,
+        0.84
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-cliffs#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:George_Bradshaw_after_Clarkson_Frederick_Stanfield.The_Needles,a_few_miles_west_of_the_Isle_of_Wight.Line_engraving_on_paper,96_x_141_mm.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/George_Bradshaw_after_Clarkson_Frederick_Stanfield.The_Needles%2Ca_few_miles_west_of_the_Isle_of_Wight.Line_engraving_on_paper%2C96_x_141_mm.jpg/1920px-George_Bradshaw_after_Clarkson_Frederick_Stanfield.The_Needles%2Ca_few_miles_west_of_the_Isle_of_Wight.Line_engraving_on_paper%2C96_x_141_mm.jpg",
+      "title": "The Needles, a few miles west of the Isle of Wight",
+      "author": "George Bradshaw, after Clarkson Stanfield",
+      "date": "1836",
+      "license": "Public domain",
+      "crop": [
+        0.035,
+        0.035,
+        0.965,
+        0.95
+      ],
+      "focus": [
+        0.62,
+        0.5
+      ]
+    },
+    "scene-riverbank#2": {
+      "page": "https://archive.org/details/birketfosterspic00tayl/page/n118/mode/1up",
+      "image": "https://archive.org/download/birketfosterspic00tayl/page/n118.jpg",
+      "title": "Birket Foster's Pictures of English Landscape: At Sun-set",
+      "author": "Myles Birket Foster, engraved by the Brothers Dalziel",
+      "date": "1863",
+      "license": "Public domain",
+      "crop": [
+        0.068,
+        0.078,
+        0.935,
+        0.86
+      ],
+      "focus": [
+        0.62,
+        0.68
+      ]
+    },
+    "scene-lodging-room#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f425.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Bpt6k10470488_f425.jpg/1920px-Bpt6k10470488_f425.jpg",
+      "title": "London: A Pilgrimage (Doré and Jerrold): Found in the Street",
+      "author": "Gustave Doré",
+      "date": "1872",
+      "license": "Public domain",
+      "crop": [
+        0.01,
+        0.01,
+        0.99,
+        0.93
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "scene-church#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:View_of_the_interior_of_Bodelwyddan_Church,_near_St._Asaph.jpeg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/View_of_the_interior_of_Bodelwyddan_Church%2C_near_St._Asaph.jpeg/960px-View_of_the_interior_of_Bodelwyddan_Church%2C_near_St._Asaph.jpeg",
+      "title": "View of the Interior of Bodelwyddan Church, near St. Asaph",
+      "author": "Orlando Jewitt",
+      "date": "c. 1860",
+      "license": "Public domain",
+      "crop": [
+        0.015,
+        0.11,
+        0.975,
+        0.965
+      ],
+      "focus": [
+        0.5,
+        0.55
+      ]
+    },
+    "vignette-pistol#2": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n527/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n527.jpg",
+      "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): frontier revolver",
+      "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.661,
+        0.4755,
+        0.945,
+        0.597
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.012,
+          1
+        ],
+        [
+          0.2415,
+          0.63,
+          1,
+          1
+        ],
+        [
+          0.944,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    "vignette-knife#2": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n545/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n545.jpg",
+      "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): spear-point hunting knife",
+      "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.105,
+        0.35,
+        0.36,
+        0.43
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          1,
+          0.3
+        ],
+        [
+          0,
+          0,
+          0.04,
+          1
+        ],
+        [
+          0,
+          0.74,
+          1,
+          1
+        ]
+      ]
+    },
+    "vignette-lamp#2": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n834/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n834.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: brass stand lamp with globe and chimney",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.34,
+        0.47,
+        0.54,
+        0.83
+      ],
+      "erase": [
+        [
+          0,
+          0.911,
+          1,
+          1
+        ]
+      ],
+      "levels": [
+        40,
+        182
+      ]
+    },
+    "vignette-clock#2": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n110/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n110.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: massive hall clock",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.275,
+        0.068,
+        0.5,
+        0.892
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.36,
+          0.075
+        ],
+        [
+          0.515,
+          0,
+          1,
+          0.075
+        ],
+        [
+          0,
+          0.17,
+          0.05,
+          0.53
+        ],
+        [
+          0.867,
+          0.366,
+          1,
+          0.403
+        ],
+        [
+          0.942,
+          0.366,
+          1,
+          1
+        ],
+        [
+          0.884,
+          0.76,
+          1,
+          0.925
+        ],
+        [
+          0,
+          0.93,
+          0.035,
+          1
+        ],
+        [
+          0.62,
+          0.982,
+          0.9,
+          1
+        ]
+      ],
+      "levels": [
+        20,
+        195
+      ]
+    },
+    "vignette-watch#2": {
+      "page": "https://archive.org/details/Junior5026/page/n568/mode/1up",
+      "image": "https://archive.org/download/Junior5026/page/n568.jpg",
+      "title": "Junior Army and Navy Stores catalogue no. 25: gentleman's keyless half-hunter watch",
+      "author": "Junior Army and Navy Stores (trade catalogue engraving)",
+      "date": "1892",
+      "license": "Public domain",
+      "crop": [
+        0.08,
+        0.52,
+        0.435,
+        0.84
+      ],
+      "levels": [
+        55,
+        172
+      ]
+    },
+    "vignette-telegram#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:QV_TP40b_6d_Stock_Exchange_Telegraph_Form.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/QV_TP40b_6d_Stock_Exchange_Telegraph_Form.jpg/500px-QV_TP40b_6d_Stock_Exchange_Telegraph_Form.jpg",
+      "title": "Post Office Telegraphs form for inland telegrams (Stock Exchange offices)",
+      "author": "Post Office Telegraphs (printed form, Eyre & Spottiswoode)",
+      "date": "c. 1886-1900",
+      "license": "Public domain",
+      "crop": [
+        0.03,
+        0.012,
+        0.982,
+        0.975
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.08,
+          0.027
+        ],
+        [
+          0.061,
+          0.062,
+          0.092,
+          0.084
+        ]
+      ]
+    },
+    "vignette-newspaper#2": {
+      "page": "https://commons.wikimedia.org/wiki/File:The_Times_-_October_21,_1899.pdf",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/The_Times_-_October_21%2C_1899.pdf/page1-1920px-The_Times_-_October_21%2C_1899.pdf.jpg",
+      "title": "The Times, front page, 21 October 1899",
+      "author": "The Times",
+      "date": "1899",
+      "license": "Public domain",
+      "crop": [
+        0.033,
+        0.022,
+        0.982,
+        0.55
+      ]
+    },
+    "vignette-key#2": {
+      "page": "https://archive.org/details/protectionfromfi00chub/page/n26/mode/1up",
+      "image": "https://archive.org/download/protectionfromfi00chub/page/n26.jpg",
+      "title": "Protection from Fire and Thieves (George Hayter Chubb): ornamental key",
+      "author": "Unknown engraver (Chubb & Son)",
+      "date": "1875",
+      "license": "Public domain",
+      "crop": [
+        0.13,
+        0.775,
+        0.82,
+        0.95
+      ],
+      "levels": [
+        25,
+        180
+      ]
+    },
+    "vignette-hat#2": {
+      "page": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n250/mode/1up",
+      "image": "https://archive.org/download/sears-roebuck-catalog-104-spring-1897/page/n250.jpg",
+      "title": "Sears, Roebuck & Co. Catalogue no. 104 (1897): fur felt railroad hat with ribbon band",
+      "author": "Sears, Roebuck & Co. (trade catalogue engraving)",
+      "date": "1897",
+      "license": "Public domain",
+      "crop": [
+        0.362,
+        0.1,
+        0.648,
+        0.192
+      ],
+      "erase": [
+        [
+          0.972,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    "vignette-bottle#2": {
+      "page": "https://wellcomecollection.org/works/yvpdehkx/items?canvas=125",
+      "image": "https://iiif.wellcomecollection.org/image/b22267761_0125.jp2/full/max/0/default.jpg",
+      "title": "Book of illustrations to S. Maw, Son & Thompson's quarterly price-current: narrow-mouth bottle with stopper guard (Wellcome Collection)",
+      "author": "S. Maw, Son & Thompson",
+      "date": "1870",
+      "license": "Public domain",
+      "crop": [
+        0.05,
+        0.635,
+        0.29,
+        0.92
+      ],
+      "erase": [
+        [
+          0,
+          0.937,
+          1,
+          1
+        ]
+      ],
+      "levels": [
+        25,
+        140
+      ]
+    },
+    "vignette-chemistry": {
+      "page": "https://archive.org/details/boysplaybookofsc00pepprich/page/n184/mode/1up",
+      "image": "https://archive.org/download/boysplaybookofsc00pepprich/page/n184.jpg",
+      "title": "The Boy's Playbook of Science (John Henry Pepper), new edition: Fig. 157, a retort heated over a spirit lamp",
+      "author": "Henry George Hine (wood engraving after the author's sketches)",
+      "date": "1869",
+      "license": "Public domain",
+      "crop": [
+        0.07,
+        0.488,
+        0.7,
+        0.776
+      ],
+      "levels": [
+        35,
+        200
+      ],
+      "erase": [
+        [
+          0.6825,
+          0,
+          1,
+          0.6771
+        ],
+        [
+          0.9635,
+          0.6771,
+          1,
+          1
+        ],
+        [
+          0.6,
+          0.5625,
+          0.6317,
+          0.6215
+        ]
+      ]
+    },
+    "vignette-wallet": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n443/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n443.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: wallet pocket-book",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.211,
+        0.13,
+        0.399,
+        0.226
+      ],
+      "levels": [
+        20,
+        188
+      ],
+      "erase": [
+        [
+          0.2074,
+          0,
+          0.4734,
+          0.0729
+        ]
+      ]
+    },
+    "vignette-timetable": {
+      "page": "https://commons.wikimedia.org/wiki/File:Bradshaw%27s_Monthly_(XVI).djvu?page=8",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Bradshaw%27s_Monthly_%28XVI%29.djvu/page8-1920px-Bradshaw%27s_Monthly_%28XVI%29.djvu.jpg",
+      "title": "Bradshaw's Monthly General Railway and Steam Navigation Guide, no. XVI: London and Birmingham up trains",
+      "author": "George Bradshaw (publisher)",
+      "date": "1843",
+      "license": "Public domain",
+      "crop": [
+        0.012,
+        0.092,
+        0.953,
+        0.7805
+      ]
+    },
+    "vignette-hourglass": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n331/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n331.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: log, or time glass",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.345,
+        0.575,
+        0.495,
+        0.748
+      ],
+      "levels": [
+        30,
+        195
+      ]
+    },
+    "vignette-quill": {
+      "page": "https://www.oldbookillustrations.com/illustrations/stationery/",
+      "image": "https://www.oldbookillustrations.com/site/assets/high-res/1843/stationery-rawscan.jpg",
+      "title": "Mes prisons (Silvio Pellico), Paris: Charpentier: tailpiece, papers with ink-bottle and quills",
+      "author": "Tony Johannot",
+      "date": "1843",
+      "license": "Public domain",
+      "crop": [
+        0.04,
+        0.05,
+        0.95,
+        0.85
+      ],
+      "levels": [
+        40,
+        205
+      ],
+      "erase": [
+        [
+          0.3901,
+          0.44,
+          0.4286,
+          0.4788
+        ],
+        [
+          0.4264,
+          0.4488,
+          0.4593,
+          0.4913
+        ],
+        [
+          0.4571,
+          0.46,
+          0.5033,
+          0.5025
+        ],
+        [
+          0.5088,
+          0.485,
+          0.5473,
+          0.5288
+        ],
+        [
+          0.5462,
+          0.4963,
+          0.5714,
+          0.5463
+        ],
+        [
+          0.5714,
+          0.5038,
+          0.6022,
+          0.55
+        ],
+        [
+          0.6011,
+          0.515,
+          0.6429,
+          0.565
+        ],
+        [
+          0.6429,
+          0.5225,
+          0.6901,
+          0.5713
+        ],
+        [
+          0.689,
+          0.535,
+          0.7253,
+          0.5813
+        ],
+        [
+          0.7231,
+          0.54,
+          0.7637,
+          0.59
+        ]
+      ]
+    },
+    "vignette-jewel": {
+      "page": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n26/mode/1up",
+      "image": "https://archive.org/download/IllustratedPatternBookofSterlingSilver1889/page/n26.jpg",
+      "title": "Silber & Fleming's Illustrated Pattern-Book: diamond star brooch",
+      "author": "Silber & Fleming (trade catalogue engraving)",
+      "date": "1889",
+      "license": "Public domain",
+      "crop": [
+        0.338,
+        0.129,
+        0.546,
+        0.265
+      ],
+      "levels": [
+        22,
+        166
+      ],
+      "erase": [
+        [
+          0,
+          0,
+          0.0529,
+          0.1029
+        ],
+        [
+          0.9279,
+          0,
+          1,
+          0.1029
+        ],
+        [
+          0.8029,
+          0,
+          0.9279,
+          0.0331
+        ]
+      ]
     }
   }
 }
