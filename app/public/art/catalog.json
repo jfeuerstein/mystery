@@ -38,7 +38,19 @@
         "date": "1892",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._23,_pg._467_-_She_Said,_Hoarsely,_Go.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-elderly-woman-2.webp",
+          "credit": {
+            "title": "Heads of the People: The Dowager",
+            "author": "Kenny Meadows",
+            "date": "1840",
+            "source": "https://archive.org/details/headsofpeopleorp1840mead2/page/n245/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-governess",
@@ -51,7 +63,19 @@
         "date": "1893",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._5,_no._25,_pg._25.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-governess-2.webp",
+          "credit": {
+            "title": "The Adventure of the Copper Beeches (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1892",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._18,_pg._621_-_I_Read_For_About_Ten_Minutes.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-housekeeper",
@@ -64,7 +88,19 @@
         "date": "1891",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._8,_pg._115_-_First_Earnings.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-housekeeper-2.webp",
+          "credit": {
+            "title": "The Adventure of the Norwood Builder (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1903",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_26)_-_p500.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-maid",
@@ -77,7 +113,19 @@
         "date": "1891",
         "source": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_The_Boscombe_Valley_Mystery_02.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-maid-2.webp",
+          "credit": {
+            "title": "The Queer Side of Things: The Retaliator (The Strand Magazine)",
+            "author": "J. F. Sullivan",
+            "date": "1892",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._17,_pg._544_-_The_Servant_Announced_a_Gentleman.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-landlady",
@@ -103,7 +151,19 @@
         "date": "1891",
         "source": "https://commons.wikimedia.org/wiki/File:Sidney_Paget_-_A_Case_of_Identity_01.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-actress-2.webp",
+          "credit": {
+            "title": "Anecdotes of the War Path (The Strand Magazine)",
+            "author": "Irving Montagu",
+            "date": "1891",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._7,_pg._20_-_Flirting_that_fan_of_hers.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-lady-of-quality",
@@ -116,7 +176,19 @@
         "date": "1898",
         "source": "https://commons.wikimedia.org/wiki/File:Strand_Mag_1898,_p423--Brotherhood_of_7_kings--ch_10.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-lady-of-quality-2.webp",
+          "credit": {
+            "title": "\"Standing in the Doorway of the Ball-room\" (The Strand Magazine, vol. 6)",
+            "author": "Unknown illustrator",
+            "date": "1893",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._6,_no._34,_pg._353_-_Standing_in_the_Doorway_of_the_Ball-room.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-gentleman",
@@ -154,7 +226,19 @@
         "date": "1901",
         "source": "https://commons.wikimedia.org/wiki/File:Houn-09.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-young-gentleman-2.webp",
+          "credit": {
+            "title": "The Five Orange Pips (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1891",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._11,_pg._482_-_He_Looked_About_Him_Anxiously.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-colonel",
@@ -205,7 +289,19 @@
         "date": "1894",
         "source": "https://commons.wikimedia.org/wiki/File:The_Case_of_Mr._Foggatt_1.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-banker-2.webp",
+          "credit": {
+            "title": "The Beryl Coronet (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1892",
+            "source": "https://archive.org/details/StrandMagazine17/page/n72/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-solicitor",
@@ -218,7 +314,19 @@
         "date": "1893",
         "source": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_02,_The_Strand_Magazine,_Vol_6.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-solicitor-2.webp",
+          "credit": {
+            "title": "The Last Chronicle of Barset (Anthony Trollope), vol. 1",
+            "author": "George Housman Thomas",
+            "date": "1867",
+            "source": "https://archive.org/details/lastchronicleofb01troluoft/page/n403/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-clerk",
@@ -231,7 +339,19 @@
         "date": "1893",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p283.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-clerk-2.webp",
+          "credit": {
+            "title": "The Naval Treaty (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1893",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Naval_Treaty_02,_The_Strand_Magazine,_Vol_6.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-doctor",
@@ -244,7 +364,19 @@
         "date": "1901",
         "source": "https://commons.wikimedia.org/wiki/File:Houn-08.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-doctor-2.webp",
+          "credit": {
+            "title": "The Doctor's Visit (The Strand Magazine)",
+            "author": "Walter S. Stacey",
+            "date": "1891",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._1,_no._2,_pg._185_-_The_Doctors_Visit.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-clergyman",
@@ -257,7 +389,19 @@
         "date": "1891",
         "source": "https://commons.wikimedia.org/wiki/File:Strand2-070-ASimpleMindedClergyman.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-clergyman-2.webp",
+          "credit": {
+            "title": "The Final Problem (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1893",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Final_Problem_05,_The_Strand_Magazine,_Vol_6.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-professor",
@@ -270,7 +414,19 @@
         "date": "1894",
         "source": "https://commons.wikimedia.org/wiki/File:The_Stanway_Cameo_Mystery_1.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-professor-2.webp",
+          "credit": {
+            "title": "The Three Students (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1904",
+            "source": "https://archive.org/details/sim_strand-magazine_1904-06_27_162/page/n1/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-artist",
@@ -283,7 +439,19 @@
         "date": "1894",
         "source": "https://commons.wikimedia.org/wiki/File:The_Lenton_Croft_Robberies_1.jpg",
         "license": "CC0"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-artist-2.webp",
+          "credit": {
+            "title": "The Cornhill Magazine, vol. 26: Set to Work",
+            "author": "George du Maurier",
+            "date": "1872",
+            "source": "https://www.oldbookillustrations.com/illustrations/studio-work/",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-sailor",
@@ -296,7 +464,19 @@
         "date": "1893",
         "source": "https://commons.wikimedia.org/wiki/File:The_Adventure_of_the_Cardboard_Box_05.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-sailor-2.webp",
+          "credit": {
+            "title": "The Gloria Scott (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1893",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_(Volume_5)_-_p398.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-sea-captain",
@@ -309,7 +489,19 @@
         "date": "1892",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._196_-_Samuel_Watson_-_Driver.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-sea-captain-2.webp",
+          "credit": {
+            "title": "Timber-Toes: An Ocean Mystery (The Strand Magazine)",
+            "author": "C. J. Staniland",
+            "date": "1896",
+            "source": "https://archive.org/details/strandmagazineil1218alle/page/n745/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-groom",
@@ -552,7 +744,19 @@
         "date": "1892",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._20,_pg._160_-_Yes,_He_Answered_Musingly.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-mrs-hudson-2.webp",
+          "credit": {
+            "title": "The Curate's Temptation (The Strand Magazine)",
+            "author": "G. Hillyard Swinstead",
+            "date": "1892",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._15,_pg._301_-_Oh,_Thank_You,_Sir,_Said_Mrs_Martin.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-widow",
@@ -755,6 +959,19 @@
         "author": "Sidney Paget",
         "date": "1891",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._12,_pg._629_-_He_is_a_Professional_Beggar.png",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "portrait-farmer",
+      "kind": "portrait",
+      "description": "A farmer or countryman in hat and coat.",
+      "file": "portrait-farmer.webp",
+      "credit": {
+        "title": "Far from the Madding Crowd (Thomas Hardy), vol. 1: Farmer Boldwood (\"I feel—almost too much—to think,\" he said)",
+        "author": "Helen Paterson (Allingham)",
+        "date": "1874",
+        "source": "https://archive.org/details/farfrommaddingcr01hard/page/n229/mode/1up",
         "license": "Public domain"
       }
     },
@@ -2444,6 +2661,45 @@
         "author": "Sears, Roebuck and Co. (catalogue engraving)",
         "date": "1897",
         "source": "https://archive.org/details/sears-roebuck-catalog-104-spring-1897/page/n464/mode/1up",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-chessboard",
+      "kind": "vignette",
+      "description": "A chessboard with pieces.",
+      "file": "vignette-chessboard.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: the \"In Statu Quo\" chess board",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n521/mode/1up",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-fan",
+      "kind": "vignette",
+      "description": "A lady's fan.",
+      "file": "vignette-fan.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: white satin fan, painted with flowers",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n63/mode/1up",
+        "license": "Public domain"
+      }
+    },
+    {
+      "tag": "vignette-violin",
+      "kind": "vignette",
+      "description": "A violin.",
+      "file": "vignette-violin.webp",
+      "credit": {
+        "title": "Silber & Fleming's Illustrated Pattern-Book: violin",
+        "author": "Silber & Fleming (trade catalogue engraving)",
+        "date": "1889",
+        "source": "https://archive.org/details/IllustratedPatternBookofSterlingSilver1889/page/n596/mode/1up",
         "license": "Public domain"
       }
     }

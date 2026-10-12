@@ -722,11 +722,11 @@ pipeline composes the scenes itself:
    the upright Examine frame, vignette 640×480, the object shown whole on
    white). A plate may whiten scan marks or a neighbouring cut (`erase`).
    Images come from large Commons renderings (`thumb.wikimedia.org`), the
-   Internet Archive and museum collections. 147 of the 151 tags have a
+   Internet Archive and museum collections. 151 of the 155 tags have a
    plate; cigar ash, a thread, a will and a calling card keep their
    placeholder until a plate good enough turns up. A tag may carry several
    plates (`tag#2`, `tag#3`, … in `plates.json`, listed as `variants` in the
-   catalog), 167 in all. A case shows one plate per tag throughout, people,
+   catalog), 188 in all. A case shows one plate per tag throughout, people,
    places or objects that share a tag get different plates while there are
    enough, and which plate comes first varies from case to case
    (`app/src/ui/plates.ts`). The app lays every plate
