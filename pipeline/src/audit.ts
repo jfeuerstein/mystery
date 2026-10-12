@@ -99,6 +99,22 @@ export function audit(
         if (v.puzzle.type === "flaw" && !opts.curriculum.flawTypes.includes(v.puzzle.answer.flawType)) {
           errors.push(`deduction "${b.slot.id}/${v.id}" needs flaw name "${v.puzzle.answer.flawType}", which the player can't choose yet`);
         }
+        // The tier-4 forms are their concepts: a Parallel teaches parallel errors, a schedule complex arrangements.
+        const needs =
+          v.puzzle.type === "parallel"
+            ? "parallel-errors"
+            : v.puzzle.type === "arrangement" && v.puzzle.layout === "schedule"
+              ? "complex-arrangements"
+              : undefined;
+        if (needs && !v.concepts.includes(needs)) errors.push(`deduction "${b.slot.id}/${v.id}" is a ${needs} puzzle and must list "${needs}"`);
+        if (v.puzzle.type === "parallel") {
+          // A Parallel asks the player to recognise errors, so each must already be in the Fallacy Index.
+          for (const f of new Set([v.puzzle.flaw, ...v.puzzle.options.map((o) => o.flaw)])) {
+            if (f !== "valid" && !opts.curriculum.flawTypes.includes(f)) {
+              errors.push(`deduction "${b.slot.id}/${v.id}" uses the error "${f}", which the player hasn't met yet`);
+            }
+          }
+        }
       }
     }
   }

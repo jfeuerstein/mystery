@@ -2,12 +2,14 @@
 // reports only whether a Declare was right; the player is never told why
 // (decision 21).
 import {
+  capacityText,
   checkArrangementAnswer,
   checkChainAnswer,
   checkFlawAnswer,
   checkMissingLinkAnswer,
   checkObjectionAnswer,
   checkObservationAnswer,
+  checkParallelAnswer,
   checkReconstructionAnswer,
   compile,
   FRAME_TEXT,
@@ -28,6 +30,7 @@ import {
   type MissingLinkPuzzle,
   type ObjectionPuzzle,
   type ObservationPuzzle,
+  type ParallelPuzzle,
   type Reconstruction,
 } from "@afoot/schema";
 import { useState, type ReactNode } from "react";
@@ -84,6 +87,36 @@ export function FlawRoom(props: { puzzle: FlawPuzzle; speaker: string; unlocked:
         ready={sentence !== undefined && flaw !== undefined}
         onDeclare={() => props.onDeclare(checkFlawAnswer(puzzle, { sentenceId: sentence!, flawType: flaw! }))}
       />
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+
+/** The Parallel (§8.2): which argument from the commonplace book goes wrong the same way. */
+export function ParallelRoom(props: { puzzle: ParallelPuzzle; speaker: string; onDeclare: Declare }) {
+  const { puzzle } = props;
+  const [option, setOption] = useState<string>();
+  return (
+    <>
+      <Section>{props.speaker}'s reasoning</Section>
+      <div className="argument">
+        {puzzle.sentences.map((s) => (
+          <p key={s.id} className={s.role === "conclusion" ? "conclusion" : ""}>
+            {s.text}
+          </p>
+        ))}
+      </div>
+      <Section>From the commonplace book</Section>
+      <div className="list">
+        {puzzle.options.map((o, i) => (
+          <button key={o.id} className={`pick ${option === o.id ? "selected" : ""}`} onClick={() => setOption(o.id)}>
+            <span className="num">{String.fromCharCode(65 + i)}.</span>
+            {o.text}
+          </button>
+        ))}
+      </div>
+      <Footer ready={option !== undefined} onDeclare={() => props.onDeclare(checkParallelAnswer(puzzle, { optionId: option! }))} />
     </>
   );
 }
@@ -357,7 +390,10 @@ export function ArrangementRoom(props: { puzzle: ArrangementPuzzle; onDeclare: D
             onClick={() => placeInto(s.id)}
             data-testid={`slot-${s.id}`}
           >
-            <span className="slot-label">{s.label}</span>
+            <span className="slot-label">
+              {s.label}
+              {capacityText(s) && <small className="slot-cap">{capacityText(s)}</small>}
+            </span>
             <span style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
               {occupants(s.id).map((e) => (
                 <span

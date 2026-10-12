@@ -227,6 +227,34 @@ describe("audit and compose", () => {
     expect(r.errors.join("\n")).toContain('deduction "d-clock-chain" needs at least 2 variants');
   });
 
+  it("holds the tier-4 forms to their concepts and to errors the player has met", () => {
+    const c = structuredClone(fixture);
+    const variants = c.chapters.flatMap((ch) => ch.beats.flatMap((b) => (b.kind === "deduction" ? b.slot.variants : [])));
+    const flaw = variants.find((v) => v.puzzle.type === "flaw")!;
+    flaw.puzzle = {
+      type: "parallel",
+      speaker: flaw.puzzle.type === "flaw" ? flaw.puzzle.speaker : "",
+      sentences: [
+        { id: "s1", role: "premise", text: "Whoever forged it had the paper." },
+        { id: "s2", role: "conclusion", text: "Crane had the paper, so he forged it." },
+      ],
+      flaw: "necessary-as-sufficient",
+      options: [
+        { id: "o1", text: "One.", flaw: "valid" },
+        { id: "o2", text: "Two.", flaw: "necessary-as-sufficient" },
+        { id: "o3", text: "Three.", flaw: "attacking-the-man" },
+      ],
+      answer: { optionId: "o2" },
+    };
+    const arrangement = variants.find((v) => v.puzzle.type === "arrangement")!;
+    if (arrangement.puzzle.type === "arrangement") arrangement.puzzle.layout = "schedule";
+    const errors = audit(c, { catalog: new Set(catalog.map((a) => a.tag)), curriculum: curriculumFor(1, []) }).errors.join("\n");
+    expect(errors).toContain('must list "parallel-errors"');
+    expect(errors).toContain('must list "complex-arrangements"');
+    expect(errors).toContain('uses the error "attacking-the-man", which the player hasn\'t met yet');
+    expect(errors).not.toContain('uses the error "necessary-as-sufficient"');
+  });
+
   it("places hotspots that don't overlap", () => {
     const bare = structuredClone(fixture);
     for (const e of bare.evidence) delete e.hotspot;

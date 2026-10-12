@@ -280,6 +280,30 @@ export const ENTRIES: NotebookEntry[] = [
       "No one saw the clerk leave the bank that evening, so he never left it. (The side door is unwatched after six.)",
     term: "The argument from ignorance (ad ignorantiam)",
   },
+  {
+    id: "parallel-errors",
+    title: "On Parallel Errors",
+    section: "method",
+    gloss:
+      "Strip an argument of its names and places and you have its skeleton. A blunder about a will and a blunder about a weather-glass may have the very same bones, Watson, and once you know the bones you will know the blunder wherever you meet it.",
+    plain:
+      "Two arguments can make the same mistake about quite different things. To match them, ignore the subject and compare the steps: what is given, what is concluded, and where the reasoning slips. An argument on the same subject that reasons differently is not a match.",
+    example:
+      "“Whoever took the key had a ladder; the gardener has a ladder; so he took the key” goes wrong exactly as “Every banker owns a top hat; Mr. Pell owns a top hat; so Mr. Pell is a banker.” Both turn the arrow round.",
+    term: "Logical form: the parallel argument",
+  },
+  {
+    id: "complex-arrangements",
+    title: "On Complex Arrangements",
+    section: "method",
+    gloss:
+      "When the question is both who came first and who came together, keep two ledgers in your head: one for the order of the days and one for the room in each. Every fact you settle in the one will settle another in the other.",
+    plain:
+      "Some arrangements are orderings and groupings at once: people are placed in groups, and the groups come in order. Track both how many each group may hold and which group comes before which. A full group is closed to everyone else.",
+    example:
+      "Monday takes three callers at most, Tuesday two, Wednesday one. Holt called the day before Kerr, and Moss on an earlier day than Holt. Then Holt came on Tuesday and Kerr on Wednesday, and Moss on Monday.",
+    term: "Ordering and grouping combined",
+  },
 ];
 
 /** Entries open from the first case. Others unlock as their concepts arrive (§10). */

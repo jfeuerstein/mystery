@@ -9,6 +9,8 @@ export function candleSeconds(puzzle: Puzzle | { type: "reconstruction"; reconst
   switch (puzzle.type) {
     case "flaw":
       return BASE + 8 * Math.max(0, puzzle.sentences.length - 3);
+    case "parallel":
+      return BASE + 8 * Math.max(0, puzzle.sentences.length - 3) + 15 * puzzle.options.length;
     case "objection":
       return BASE + 6 * Math.max(0, puzzle.testimony.length + puzzle.hand.length - 6);
     case "observation":
