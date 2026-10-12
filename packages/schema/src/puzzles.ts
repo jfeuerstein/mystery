@@ -26,6 +26,38 @@ export const FlawPuzzle = z.object({
 export type FlawPuzzle = z.infer<typeof FlawPuzzle>;
 
 // ---------------------------------------------------------------------------
+// The Parallel (§8.2): the same error, met before
+// ---------------------------------------------------------------------------
+
+export const ParallelOption = z.object({
+  id: Id,
+  /** A short argument from Holmes' commonplace book, on another subject. */
+  text: z.string().min(1),
+  /** The error it commits, or `valid` if its conclusion follows. */
+  flaw: z.union([FlawType, z.literal("valid")]),
+  /** Logical form. Required for formal flaw types (§14.4), and checked whenever given. */
+  formal: z
+    .object({ premises: z.array(Statement).min(1), conclusion: Literal })
+    .optional(),
+});
+export type ParallelOption = z.infer<typeof ParallelOption>;
+
+export const ParallelPuzzle = z.object({
+  type: z.literal("parallel"),
+  speaker: Id,
+  sentences: z.array(ArgumentSentence).min(2),
+  /** The argument's error. */
+  flaw: FlawType,
+  formal: z
+    .object({ premises: z.array(Statement).min(1), conclusion: Literal })
+    .optional(),
+  /** 3–5 arguments, exactly one of which goes wrong in the same way. */
+  options: z.array(ParallelOption).min(3).max(5),
+  answer: z.object({ optionId: Id }),
+});
+export type ParallelPuzzle = z.infer<typeof ParallelPuzzle>;
+
+// ---------------------------------------------------------------------------
 // Objection! and Corroborate (§8.3)
 // ---------------------------------------------------------------------------
 
@@ -134,8 +166,10 @@ export const ArrangementPuzzle = z.object({
   /**
    * `ordering`: one entity per slot, slots in order (a timeline).
    * `grouping`: slots are places or groups with optional capacity limits.
+   * `schedule`: groups in order (days, floors, carriages), with optional
+   *   capacities; ordering rules compare groups (complex arrangements, tier 4).
    */
-  layout: z.enum(["ordering", "grouping"]),
+  layout: z.enum(["ordering", "grouping", "schedule"]),
   entities: z.array(z.object({ id: Id, name: z.string().min(1) })).min(2),
   slots: z
     .array(
@@ -228,6 +262,7 @@ export type MissingLinkPuzzle = z.infer<typeof MissingLinkPuzzle>;
 
 export const Puzzle = z.discriminatedUnion("type", [
   FlawPuzzle,
+  ParallelPuzzle,
   ObjectionPuzzle,
   ChainPuzzle,
   ArrangementPuzzle,

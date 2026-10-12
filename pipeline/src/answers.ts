@@ -7,6 +7,7 @@ import {
   checkMissingLinkAnswer,
   checkObjectionAnswer,
   checkObservationAnswer,
+  checkParallelAnswer,
   checkReconstructionAnswer,
   type ArrangementAnswer,
 } from "@afoot/logic";
@@ -40,6 +41,8 @@ export function checkAnswer(c: Case, target: Target, answer: Json): boolean {
     }
     case "flaw":
       return checkFlawAnswer(p, { sentenceId: str(answer.sentenceId), flawType: str(answer.flawType) as FlawType });
+    case "parallel":
+      return checkParallelAnswer(p, { optionId: str(answer.optionId) });
     case "objection":
       return checkObjectionAnswer(p, { sentenceId: str(answer.sentenceId), evidenceId: str(answer.evidenceId) });
     case "chain": {

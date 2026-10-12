@@ -6,6 +6,7 @@ export * from "./flaw.js";
 export * from "./missinglink.js";
 export * from "./objection.js";
 export * from "./observation.js";
+export * from "./parallel.js";
 export * from "./propositional.js";
 export * from "./reconstruction.js";
 export type { VerifyResult } from "./result.js";

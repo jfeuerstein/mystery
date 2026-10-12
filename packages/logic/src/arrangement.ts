@@ -14,6 +14,15 @@ export type ArrangementAnswer =
 
 const ORDERING_ONLY = new Set(["before", "immediately-before", "adjacent", "not-adjacent"]);
 
+/** How many a group may hold, as the board and the player view say it ("at most 3"), or nothing. */
+export function capacityText(slot: { min?: number | undefined; max?: number | undefined }): string | undefined {
+  const { min, max } = slot;
+  if (min !== undefined && max !== undefined) return min === max ? `exactly ${min}` : `${min} to ${max}`;
+  if (max !== undefined) return `at most ${max}`;
+  if (min !== undefined && min > 0) return `at least ${min}`;
+  return undefined;
+}
+
 function scope(c: Constraint, into = new Set<string>()): Set<string> {
   switch (c.op) {
     case "in":
@@ -249,14 +258,17 @@ class Model {
   ): boolean {
     const asg: Assignment = new Map([[x, v]]);
     const others = vars.filter((y) => y !== x);
+    // People outside the rule already settled in a slot take up its room.
+    const settled = new Array<number>(this.slotCount).fill(0);
+    for (const [e, dom] of domains) if (!vars.includes(e) && dom.size === 1) settled[[...dom][0]!]!++;
     const walk = (i: number): boolean => {
       if (i === others.length) return evaluate(c, asg, this.slotIndex) === true;
       const y = others[i]!;
       for (const w of domains.get(y)!) {
-        // Respect slot capacities within the rule's own entities (one per
-        // slot in an ordering): "two people together can't share a room
-        // for one".
-        const inSlot = [...asg.values()].filter((u) => u === w).length;
+        // Respect slot capacities (one per slot in an ordering), counting
+        // the rule's own entities and everyone settled: "two people together
+        // can't share a room with one bed left".
+        const inSlot = [...asg.values()].filter((u) => u === w).length + settled[w]!;
         if (inSlot >= this.maxes[w]!) continue;
         asg.set(y, w);
         if (evaluate(c, asg, this.slotIndex) !== false && walk(i + 1)) return true;
@@ -340,6 +352,15 @@ export function verifyArrangement(puzzle: ArrangementPuzzle): VerifyResult {
     }
     if (puzzle.layout === "grouping" && opsIn(rule.constraint).some((op) => ORDERING_ONLY.has(op))) {
       report.error(`rule "${rule.id}" uses an ordering-only constraint in a grouping`);
+    }
+  }
+  if (puzzle.layout === "schedule") {
+    // A schedule is both at once: some group holds several people, and some rule is about order.
+    if (puzzle.entities.length <= puzzle.slots.length) {
+      report.error("a schedule needs more people than groups, or it is only an ordering");
+    }
+    if (!puzzle.rules.some((r) => opsIn(r.constraint).some((op) => ORDERING_ONLY.has(op)))) {
+      report.error("a schedule needs a rule about order, or it is only a grouping");
     }
   }
   const q = puzzle.question;

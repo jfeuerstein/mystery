@@ -12,6 +12,7 @@ import {
   MissingLinkRoom,
   ObjectionRoom,
   ObservationRoom,
+  ParallelRoom,
   ReconstructionRoom,
 } from "../palace/rooms";
 import { Candle, PatienceMeter, SheetHost, useThemeColor } from "../ui/common";
@@ -23,6 +24,7 @@ const PALACE_BG = "#0f0d0b";
 
 const ROOM_NAMES = {
   flaw: "Gallery of Testimony",
+  parallel: "Gallery of Testimony",
   objection: "Gallery of Testimony",
   chain: "Chain Hall",
   arrangement: "Map Room",
@@ -36,6 +38,8 @@ const ROOM_NAMES = {
  */
 const GUIDES: Record<string, string> = {
   flaw: "Tap the sentence where the reasoning goes wrong, then the name of the error from the Fallacy Index. Press and hold Declare to commit.",
+  parallel:
+    "Read the reasoning, then tap the argument from the commonplace book that goes wrong in the same way. Press and hold Declare to commit.",
   objection:
     "Tap the statement you mean to challenge, then present a card from the hand of evidence. Press and hold Declare to commit.",
   chain:
@@ -233,6 +237,9 @@ export function DeductionPalace(props: { c: Case; p: CaseProgress }) {
   switch (puzzle.type) {
     case "flaw":
       room = <FlawRoom puzzle={puzzle} speaker={name(puzzle.speaker)} unlocked={unlocked} onDeclare={onDeclare} />;
+      break;
+    case "parallel":
+      room = <ParallelRoom puzzle={puzzle} speaker={name(puzzle.speaker)} onDeclare={onDeclare} />;
       break;
     case "objection":
       room = <ObjectionRoom puzzle={puzzle} witness={name(puzzle.witness)} onDeclare={onDeclare} />;

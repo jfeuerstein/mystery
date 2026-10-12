@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.9. Written from a design interview, October 2026
+**Status:** v1.10. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -348,7 +348,8 @@ The signature Holmes moment, and the opener of almost every case.
 
 | Type | Room | You construct… | LSAT kinship |
 |------|------|----------------|--------------|
-| **The Flaw** | Gallery of Testimony | the faulty step, plus the *name* of the error | LR: Flaw, Parallel Flaw |
+| **The Flaw** | Gallery of Testimony | the faulty step, plus the *name* of the error | LR: Flaw |
+| **The Parallel** | Gallery of Testimony | the argument from Holmes' commonplace book that goes wrong the same way | LR: Parallel Flaw |
 | **Objection!** | Gallery of Testimony | the statement, plus the evidence that breaks it | LR: Weaken, Resolve/Explain, Inconsistency |
 | **Corroborate** | Gallery of Testimony | the statement, plus the evidence that supports it | LR: Strengthen, Sufficient Assumption |
 | **The Chain** | Chain Hall | a chain of linked premises ending in a conclusion | LR: Must Be True, Conditional Inference |
@@ -374,6 +375,15 @@ The signature Holmes moment, and the opener of almost every case.
 - **Declare.** Both parts must be correct.
 - **On a miss:** you lose one Patience, and that is all you learn. There is
   no feedback on which part was wrong (§9.1).
+
+**The Parallel** (tier 4, *On Parallel Errors*) turns the Flaw about. Holmes
+reaches for his commonplace book: *"I have met this argument before,
+Watson."* The argument is shown whole, and beneath it 3–5 short arguments
+from the book on other subjects. The player taps the one that goes wrong in
+the same way and Declares. Exactly one does; at least one other goes wrong
+differently, and one usually shares the argument's subject but reasons
+differently, so matching the subject is the trap. Every error involved is
+already in the player's Fallacy Index.
 
 ### 8.3 Objection! and Corroborate
 *"The groom says he never left the stables. The river says otherwise."*
@@ -432,9 +442,13 @@ The signature Holmes moment, and the opener of almost every case.
   - **Grouping:** rooms, carriages, or teams (who was where).
   - **Matching:** a two-attribute grid (who owned which cane, and which
     cane was found where).
-  - **Hybrid:** later in the curriculum.
+  - **Schedule** (hybrid, tier 4, *On Complex Arrangements*): groups that
+    come in order (days, floors, carriages), each holding several people.
+    Ordering rules compare groups ("on an earlier day than"). Built as the
+    `schedule` layout.
 - **Interaction:** tap a cell to cycle ✓ / ✗ / blank, or drag a person onto
-  a slot. Pencil marks are free. You can annotate rules as "used".
+  a slot. Pencil marks are free. You can annotate rules as "used". The board
+  shows how many each group may hold ("at most 3").
 - **Declare** the full arrangement. On a miss, you lose one Patience and get
   no other feedback, not even how many placements were wrong.
 - **Sometimes the question is partial.** Instead of the full arrangement, it
@@ -920,10 +934,11 @@ reports.
 
 | Type | Formal spec | Verifier |
 |------|-------------|----------|
-| **Arrangement** | Entities, slots, and constraints in a small DSL (`before(A,B)`, `adjacent(A,B)`, `not_in(A,{1,5})`, `same_group(A,B)`…) | A backtracking solver confirms **exactly one** solution, or that the partial-question answer is forced. A human-style propagation solver confirms it is solvable **without guessing**, and its step count sets the difficulty score. |
+| **Arrangement** | Entities, slots, and constraints in a small DSL (`before(A,B)`, `adjacent(A,B)`, `not_in(A,{1,5})`, `same_group(A,B)`…) | A backtracking solver confirms **exactly one** solution, or that the partial-question answer is forced. A human-style propagation solver confirms it is solvable **without guessing**, and its step count sets the difficulty score. It counts everyone already settled in a group against that group's capacity. A schedule must have more people than groups and a rule about order. |
 | **Chain** | Premises as typed logical forms (`A→B`, `all(X,Y)`, `some(X,Y)`, `A→¬B`), with surface phrasing ("only if", "unless") mapped to logical form by **code, not by the model** | Forward chaining with contrapositives confirms the target is entailed and no distractor is. Each card's converse and inverse readings are confirmed *not* to follow (so they really are traps), and at least one distractor must be reachable through them. |
 | **Missing Link** | Argument in logical form, plus the gap | The solver confirms the intended premise is necessary (or sufficient), and that every tile combination reaching a *different* logical form fails the test. |
 | **Flaw** | Sentences with roles, the failing sentence id, a flaw type from the taxonomy, and (for formal flaws) the argument's logical form | Formal flaws (converse, necessary/sufficient, quantifier errors) are checked mechanically. All flaws go through blind playtest agreement (3 of 3) plus the adversary pass. |
+| **Parallel** | The argument's sentences and flaw type, and each option's flaw type (or `valid`), with logical forms for the formal types | Code confirms exactly one option shares the argument's error and another goes wrong differently, and classifies every logical form given. The informal errors go through blind playtest agreement and the adversary pass. |
 | **Objection / Corroborate** | Each testimony sentence mapped to world-model propositions; each evidence card mapped to the facts it establishes | Code computes every (sentence, evidence) pair that contradicts or supports. There must be **exactly one** intended pair, and no unintended pairs among the cards available. |
 | **Observation** | Observation-to-inference links grounded in world-model facts, with distractors grounded in "defeaters" | Blind playtest agreement, plus an adversary pass on each distractor. |
 | **Reconstruction** | Each blank mapped to a world-model field and to the deduction ids that establish it | Code confirms every blank is determined by earlier deductions (fair play) and the word bank contains each correct answer exactly once. |
@@ -1295,8 +1310,8 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | 4 | *On Proportion and Number* | Percentages versus totals | Numbers vs. percentages | Flaw, Objection |
 | 4 | *On Arguing in a Circle* | Circular reasoning | Circular reasoning | Flaw |
 | 4 | *On Absence of Evidence* | Treating a lack of proof as disproof | Absence of evidence | Flaw |
-| 4 | *On Parallel Errors* | Matching the structure of a flawed argument | Parallel Flaw | Flaw (structure-matching variant) |
-| 4 | *On Complex Arrangements* | Hybrid ordering and grouping | Hybrid games | Arrangement |
+| 4 | *On Parallel Errors* | Matching the structure of a flawed argument | Parallel Flaw | Parallel |
+| 4 | *On Complex Arrangements* | Hybrid ordering and grouping | Hybrid games | Arrangement (schedule) |
 
 ---
 
@@ -1342,6 +1357,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.10 | Tier 4 complete. The Parallel, a Flaw turned about: choose the argument from Holmes' commonplace book that goes wrong the same way (§8.2). The schedule layout for complex arrangements: ordered groups with capacities (§8.5). The Map Room and the blind solvers' view show each group's capacity. Notebook entries for parallel errors and complex arrangements. |
 | v1.9 | Season 3 is serial too (decision 27). Season 3 groundwork: tier 4's Notebook entries for the four new Fallacy Index names (the part and the whole, proportion and number, arguing in a circle, absence of evidence) (§11.2). |
 | v1.8 | The engraving library grows: 35 new subjects (14 kinds of person, 14 places, 9 objects) and second plates for 20 existing subjects; a tag may carry several plates, chosen per case (§13.2). |
 | v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). Generation sessions keep their status lines content-free and their deduction slot ids neutral (§14.7). The story so far (§6), the forward button's settle, and the status-bar strip (§13.4). |
