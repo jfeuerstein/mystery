@@ -527,7 +527,19 @@
         "date": "1901",
         "source": "https://commons.wikimedia.org/wiki/File:Houn-21_-_Hound_of_Baskervilles,_page_118.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-butler-2.webp",
+          "credit": {
+            "title": "Tygodnik Illustrowany: Warsaw servants, the valet (Kamerdyner)",
+            "author": "Unknown engraver",
+            "date": "1867",
+            "source": "https://commons.wikimedia.org/wiki/File:Kamerdyner_(58426).jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-gamekeeper",
@@ -540,7 +552,19 @@
         "date": "1901",
         "source": "https://commons.wikimedia.org/wiki/File:Houn-26.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-gamekeeper-2.webp",
+          "credit": {
+            "title": "The Gamekeeper at Home (Richard Jefferies), illustrated edition: The Keeper",
+            "author": "Charles Whymper",
+            "date": "1880",
+            "source": "https://archive.org/details/gamekeeperathome00jeffuoft/page/n7/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-labourer",
@@ -553,7 +577,19 @@
         "date": "1892",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._18,_pg._571_-_He_Proved_His_Assertion.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-labourer-2.webp",
+          "credit": {
+            "title": "London Labour and the London Poor (Henry Mayhew): The London Scavenger",
+            "author": "Archibald Henning and William Frederick Measom, after a daguerreotype by Richard Beard",
+            "date": "1851",
+            "source": "https://commons.wikimedia.org/wiki/File:The_London_Scavenger.jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-cabman",
@@ -566,7 +602,19 @@
         "date": "1891",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._9,_pg._252_-_There_Was_No_One_There.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-cabman-2.webp",
+          "credit": {
+            "title": "London Labour and the London Poor (Henry Mayhew): Cab Driver",
+            "author": "Unknown engraver, after a photograph",
+            "date": "1851",
+            "source": "https://commons.wikimedia.org/wiki/File:Cab_Driver.jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-street-urchin",
@@ -579,7 +627,19 @@
         "date": "1892",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._13,_pg._67_-_Hurdy-Gurdy.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-street-urchin-2.webp",
+          "credit": {
+            "title": "London Street Arabs (Mrs. H. M. Stanley)",
+            "author": "Dorothy Tennant",
+            "date": "1890",
+            "source": "https://archive.org/details/londonstreetarab00stan/page/n30/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-publican",
@@ -592,7 +652,19 @@
         "date": "1892",
         "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._16,_pg._370_-_There,_Sir,_He_Said_Solemnly.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-publican-2.webp",
+          "credit": {
+            "title": "After the Crime (The Strand Magazine): \"Here you are,\" said the landlord",
+            "author": "Unknown illustrator",
+            "date": "1892",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._3,_no._14,_pg._130_-_Here_You_Are,_Said_the_Landlord.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-shopkeeper",
@@ -618,7 +690,19 @@
         "date": "1893",
         "source": "https://commons.wikimedia.org/wiki/File:The_Resident_Patient_03,_The_Strand_Magazine,_Vol_6.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "portrait-foreigner-2.webp",
+          "credit": {
+            "title": "The Postmistress of Laurel Run (The Strand Magazine): A stranger entered",
+            "author": "Paul Hardy",
+            "date": "1891",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._2,_no._9,_pg._231_-_A_Stranger_Entered.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "portrait-inspector",
@@ -1150,7 +1234,23 @@
         "date": "1859",
         "source": "https://commons.wikimedia.org/wiki/File:Mariage_de_Napol%C3%A9on_Joseph_Charles_Paul_Bonaparte_et_Ludovica_Teresa_Maria_Clotilde_di_Savoia._013.png",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-bedroom-2.webp",
+          "focus": [
+            0.45,
+            0.45
+          ],
+          "credit": {
+            "title": "The Little Grey Man (The Strand Magazine)",
+            "author": "Unknown illustrator",
+            "date": "1892",
+            "source": "https://commons.wikimedia.org/wiki/File:The_Strand_Magazine_vol._4,_no._23,_pg._534_-_He_Proceeded_to_Uncover_the_Royal_Bed.png",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-dining-room",
@@ -1233,7 +1333,23 @@
         "date": "1873",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=476",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-kitchen-2.webp",
+          "focus": [
+            0.5,
+            0.6
+          ],
+          "credit": {
+            "title": "Old and New London, vol. 4: Kitchen of St. James's Palace in the Time of George III",
+            "author": "Unknown engraver",
+            "date": "1878",
+            "source": "https://archive.org/details/oldnewlondonnarr04thor_0/page/n137/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-cellar",
@@ -1283,7 +1399,23 @@
         "date": "1890",
         "source": "https://commons.wikimedia.org/wiki/File:Tubaspeler_op_een_zolderkamer,_RP-P-1912-1041.jpg",
         "license": "CC0"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-attic-2.webp",
+          "focus": [
+            0.42,
+            0.5
+          ],
+          "credit": {
+            "title": "Old and New London, vol. 4: The Loft used by the Cato Street Conspirators, 1820",
+            "author": "Unknown engraver",
+            "date": "1878",
+            "source": "https://archive.org/details/oldnewlondonnarr04thor_0/page/n354/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-country-house",
@@ -1333,7 +1465,23 @@
         "date": "1873",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._1.djvu?page=555",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-garden-2.webp",
+          "focus": [
+            0.5,
+            0.5
+          ],
+          "credit": {
+            "title": "The Formal Garden in England (Blomfield): Pitmedden, Aberdeenshire",
+            "author": "F. Inigo Thomas",
+            "date": "1892",
+            "source": "https://archive.org/details/cu31924012145060/page/n202/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-stables",
@@ -1430,7 +1578,23 @@
         "date": "1888",
         "source": "https://commons.wikimedia.org/wiki/File:Coaching_days_and_coaching_ways_(Page_70)_BHL18772111.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-village-street-2.webp",
+          "focus": [
+            0.5,
+            0.55
+          ],
+          "credit": {
+            "title": "Old and New London, vol. 5: The \"Old Crown Inn,\" Highgate, in 1830",
+            "author": "Unknown engraver",
+            "date": "1878",
+            "source": "https://archive.org/details/oldnewlondonnarr05thoruoft/page/n451/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-inn",
@@ -1447,7 +1611,23 @@
         "date": "1873",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=339",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-inn-2.webp",
+          "focus": [
+            0.5,
+            0.5
+          ],
+          "credit": {
+            "title": "Old Christmas (Washington Irving): Inn Kitchen",
+            "author": "Randolph Caldecott (engraved by James D. Cooper)",
+            "date": "1876",
+            "source": "https://archive.org/details/oldchristmasfrom00irviiala/page/n54/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-railway-carriage",
@@ -1464,7 +1644,23 @@
         "date": "1892",
         "source": "https://commons.wikimedia.org/wiki/File:Strand_paget.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-railway-carriage-2.webp",
+          "focus": [
+            0.72,
+            0.5
+          ],
+          "credit": {
+            "title": "The Cornhill Magazine, new series, vol. 4: A Pleasant Journey",
+            "author": "Thomas Gedge Cheeseman (engraved by Joseph Swain)",
+            "date": "1885",
+            "source": "https://www.oldbookillustrations.com/illustrations/pleasant-journey/",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-station-platform",
@@ -1481,7 +1677,23 @@
         "date": "1854",
         "source": "https://commons.wikimedia.org/wiki/File:Birmingham_New_Street_station_in_1854.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-station-platform-2.webp",
+          "focus": [
+            0.5,
+            0.45
+          ],
+          "credit": {
+            "title": "The Railway Station (engraving after William Powell Frith)",
+            "author": "Francis Holl, after William Powell Frith",
+            "date": "1866",
+            "source": "https://commons.wikimedia.org/wiki/File:Holl_(after_Frith)_The_Railway_Station_1.jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-london-street",
@@ -1515,7 +1727,23 @@
         "date": "1872",
         "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f92.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-docks-2.webp",
+          "focus": [
+            0.28,
+            0.5
+          ],
+          "credit": {
+            "title": "St Katharine's Docks, from the Basin (Shepherd's London in the Nineteenth Century)",
+            "author": "Thomas Hosmer Shepherd (engraved by H. Jorden)",
+            "date": "1829",
+            "source": "https://commons.wikimedia.org/wiki/File:St_Katharine%27s_Docks,_from_the_Basin_RMG_PU1437.tiff",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-riverbank",
@@ -1532,7 +1760,23 @@
         "date": "1878",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=357",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-riverbank-2.webp",
+          "focus": [
+            0.62,
+            0.68
+          ],
+          "credit": {
+            "title": "Birket Foster's Pictures of English Landscape: At Sun-set",
+            "author": "Myles Birket Foster, engraved by the Brothers Dalziel",
+            "date": "1863",
+            "source": "https://archive.org/details/birketfosterspic00tayl/page/n118/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-moor",
@@ -1549,7 +1793,23 @@
         "date": "1901",
         "source": "https://commons.wikimedia.org/wiki/File:Houn-35.jpg",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-moor-2.webp",
+          "focus": [
+            0.6,
+            0.33
+          ],
+          "credit": {
+            "title": "The Hound of the Baskervilles (The Strand Magazine)",
+            "author": "Sidney Paget",
+            "date": "1901",
+            "source": "https://commons.wikimedia.org/wiki/File:Houn-27_-_Legend_of_the_wicked_Hugo_(Hound_of_Baskervilles,_page_160).jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-cliffs",
@@ -1566,7 +1826,23 @@
         "date": "1826",
         "source": "https://commons.wikimedia.org/wiki/File:George_Cooke_-_Dover_from_Shakespeare%5Es_Cliff_-_B1977.14.6693_-_Yale_Center_for_British_Art.jpg",
         "license": "CC0"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-cliffs-2.webp",
+          "focus": [
+            0.62,
+            0.5
+          ],
+          "credit": {
+            "title": "The Needles, a few miles west of the Isle of Wight",
+            "author": "George Bradshaw, after Clarkson Stanfield",
+            "date": "1836",
+            "source": "https://commons.wikimedia.org/wiki/File:George_Bradshaw_after_Clarkson_Frederick_Stanfield.The_Needles,a_few_miles_west_of_the_Isle_of_Wight.Line_engraving_on_paper,96_x_141_mm.jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-bank-office",
@@ -1617,7 +1893,23 @@
         "date": "1873",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._2.djvu?page=564",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-lodging-room-2.webp",
+          "focus": [
+            0.5,
+            0.55
+          ],
+          "credit": {
+            "title": "London: A Pilgrimage (Doré and Jerrold): Found in the Street",
+            "author": "Gustave Doré",
+            "date": "1872",
+            "source": "https://commons.wikimedia.org/wiki/File:Bpt6k10470488_f425.jpg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-club",
@@ -1634,7 +1926,23 @@
         "date": "1878",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=285",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-club-2.webp",
+          "focus": [
+            0.5,
+            0.55
+          ],
+          "credit": {
+            "title": "Old and New London, vol. 4: Library of the Reform Club",
+            "author": "Unknown engraver",
+            "date": "1878",
+            "source": "https://archive.org/details/oldnewlondonnarr04thoruoft/page/152/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-theatre",
@@ -1651,7 +1959,23 @@
         "date": "1878",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._3.djvu?page=248",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-theatre-2.webp",
+          "focus": [
+            0.45,
+            0.5
+          ],
+          "credit": {
+            "title": "Transformation Scenes: How They Are Made and Worked (The Strand Magazine): On the \"Bridge\", Below",
+            "author": "Unknown illustrator, engraved by Hare",
+            "date": "1893",
+            "source": "https://archive.org/details/strand-1893-v-6/page/n703/mode/1up",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-laboratory",
@@ -1668,7 +1992,23 @@
         "date": "1870",
         "source": "https://commons.wikimedia.org/wiki/File:Faraday_Laboratory_1870_Plate_RGNb10333198.05.tif",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-laboratory-2.webp",
+          "focus": [
+            0.5,
+            0.55
+          ],
+          "credit": {
+            "title": "A chemical laboratory with four chemists; one looks into a furnace (Wellcome Collection 37787i)",
+            "author": "Unknown engraver",
+            "date": "19th century",
+            "source": "https://wellcomecollection.org/works/vfjymr43",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-church",
@@ -1685,7 +2025,23 @@
         "date": "1878",
         "source": "https://commons.wikimedia.org/wiki/File:Old_and_New_London,_vol._5.djvu?page=150",
         "license": "Public domain"
-      }
+      },
+      "variants": [
+        {
+          "file": "scene-church-2.webp",
+          "focus": [
+            0.5,
+            0.55
+          ],
+          "credit": {
+            "title": "View of the Interior of Bodelwyddan Church, near St. Asaph",
+            "author": "Orlando Jewitt",
+            "date": "c. 1860",
+            "source": "https://commons.wikimedia.org/wiki/File:View_of_the_interior_of_Bodelwyddan_Church,_near_St._Asaph.jpeg",
+            "license": "Public domain"
+          }
+        }
+      ]
     },
     {
       "tag": "scene-conservatory",
