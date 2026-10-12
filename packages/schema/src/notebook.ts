@@ -232,6 +232,54 @@ export const ENTRIES: NotebookEntry[] = [
       "“The mud on his boots is red, so he came by the quarry road.” Unsaid: anyone with red mud on his boots came by the quarry road. Is it so? The brickworks lane is red too.",
     term: "The enthymeme: a suppressed premise",
   },
+  {
+    id: "part-and-whole",
+    title: "On the Part and the Whole",
+    section: "fallacy",
+    gloss:
+      "Every brick in that wall is light enough for a child to lift, Watson; I should not ask the child to lift the wall. What is true of each piece need not be true of the whole, nor what is true of the whole of every piece.",
+    plain:
+      "The error: assuming that what is true of each part must be true of the whole, or that what is true of the whole must be true of each part. A rich firm can employ a poor clerk; a committee of careful men can make a careless decision.",
+    example:
+      "Every one of the jurors is a sensible man, so the jury’s verdict was sensible. (Twelve sensible men may still reach a foolish verdict together.)",
+    term: "Composition and division",
+  },
+  {
+    id: "proportion-and-number",
+    title: "On Proportion and Number",
+    section: "fallacy",
+    gloss:
+      "Most of the pickpockets taken at Waterloo wore bowler hats, says the inspector, and he eyes every bowler on the platform. He has not asked how many of the honest men wore bowlers too.",
+    plain:
+      "A share and a count are different things. A count says nothing about how large a share it is until you know the total, and a share says nothing about how many until you know the total. Before comparing, ask: out of how many?",
+    example:
+      "More passengers were robbed on the main line last year than on the branch line, so the main line is the more dangerous. (Forty times as many people travel on it.)",
+    term: "The neglected base rate",
+  },
+  {
+    id: "arguing-in-a-circle",
+    title: "On Arguing in a Circle",
+    section: "fallacy",
+    gloss:
+      "The man is honest, he assures me, because he says so, and an honest man would not lie about it. A circle may be drawn very neatly, Watson, and still enclose nothing at all.",
+    plain:
+      "The conclusion is already assumed among the premises, often in different words. Such an argument gives no reason to believe its conclusion unless you believe it already.",
+    example:
+      "The diary must be genuine, for every entry in it is in the colonel’s own hand: the diary itself says so.",
+    term: "Begging the question (petitio principii)",
+  },
+  {
+    id: "absence-of-evidence",
+    title: "On Absence of Evidence",
+    section: "fallacy",
+    gloss:
+      "The dog that did not bark told me a great deal, because a dog that barks at strangers would have barked. Gregson found no footprints in the shrubbery and concludes that no one passed. He looked after the gardener had raked it.",
+    plain:
+      "The error: treating a lack of proof that something happened as proof that it did not. Absence counts as evidence only when the thing would surely have left a trace and someone looked where the trace would be.",
+    example:
+      "No one saw the clerk leave the bank that evening, so he never left it. (The side door is unwatched after six.)",
+    term: "The argument from ignorance (ad ignorantiam)",
+  },
 ];
 
 /** Entries open from the first case. Others unlock as their concepts arrive (§10). */

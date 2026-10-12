@@ -9,8 +9,8 @@ import type { Carry, Concept, SeasonArc } from "./plan.js";
 
 export type SeasonStyle = { serial: boolean; length: number };
 
-/** Seasons that differ from the default. Season 2 is the serial experiment (decision 27). */
-const SEASONS: Record<number, Partial<SeasonStyle>> = { 2: { serial: true } };
+/** Seasons that differ from the default. Season 2 was the serial experiment, and Season 3 kept it (decision 27). */
+const SEASONS: Record<number, Partial<SeasonStyle>> = { 2: { serial: true }, 3: { serial: true } };
 
 export function seasonStyle(season: number): SeasonStyle {
   return { serial: false, length: 8, ...SEASONS[season] };

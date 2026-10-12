@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.8. Written from a design interview, October 2026
+**Status:** v1.9. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -120,7 +120,7 @@ Every design decision from the interview and the revisions that followed, with t
 | 24 | Story arc | **Standalone cases, no Moriarty storyline yet.** Moriarty is excluded from the motif library for now. | Keeps every case self-contained. An arc can be revisited later. Revised in v1.7: Season 2 tries a serial thread as an experiment (decision 27); still no Moriarty. |
 | 25 | Generation runner | **Claude Code sessions on the player's existing subscription**, not the Claude API | No per-case cost. The writing steps run in a session that follows a repo skill, and the code checks stay the same. |
 | 26 | Reading Comprehension | **Out of scope**, not planned for any season | Keeps the game focused on argument, conditional and ordering logic. Documents (letters, wills, newspaper columns) remain clue sources only. |
-| 27 | Season 2 | **A serial season, as an experiment:** one thread and its people carry from case to case and resolve in the season's last case (§5) | Proposed by the player, to try more carry-over between cases. Seasons stay standalone by default; each case keeps its own culprit and is solved from its own text. |
+| 27 | Seasons 2 and 3 | **A serial season, as an experiment:** one thread and its people carry from case to case and resolve in the season's last case (§5) | Proposed by the player, to try more carry-over between cases. Seasons stay standalone by default; each case keeps its own culprit and is solved from its own text. Season 3 keeps it, at the player's request (v1.9), with a new thread of its own. |
 
 ---
 
@@ -196,7 +196,8 @@ The generator may vary this template (a case might open at the crime scene,
 or include a second victim mid-case), but all four phases are always present.
 
 ### Serial seasons (decision 27)
-Seasons are standalone by default. Season 2 is an experiment in carry-over:
+Seasons are standalone by default. Season 2 was an experiment in
+carry-over, and Season 3 is serial too, with a thread of its own:
 
 - **One thread runs through the season.** Its first case plans it (the
   secret truth, how it surfaces in each case, how it ends), and the
@@ -217,8 +218,8 @@ Seasons are standalone by default. Season 2 is an experiment in carry-over:
   `afoot seal` refuses a serial case that changes what was already played,
   calls back to nothing, or leaves the season's end with loose ends.
 
-If the experiment works, later seasons can adopt it in
-`pipeline/src/seasons.ts`.
+`pipeline/src/seasons.ts` names the serial seasons. A thread belongs to its
+season: each serial season's first case plans a new one.
 
 ---
 
@@ -597,8 +598,11 @@ example, *Conditionals → Contrapositive → Converse trap → "Only if" → "U
 - Within a tier, concepts arrive in the order of `CONCEPTS` in
   `packages/schema/src/ids.ts`. Tier 3: the unrepresentative witness,
   attacking the man, two doors only, the slippery word, some/most/all, and
-  last the unstated premise (the Missing Link).
-- Season 1 covers tiers 1–2 of Appendix A. Later seasons add tiers 3–4.
+  last the unstated premise (the Missing Link). Tier 4: the part and the
+  whole, proportion and number, arguing in a circle, absence of evidence,
+  parallel errors, and complex arrangements.
+- Season 1 covers tiers 1–2 of Appendix A, Season 2 adds tier 3, and
+  Season 3 adds tier 4.
 
 ### 11.3 Adaptive difficulty
 Adaptivity has to work with *pre-generated, sealed* content (decision 13),
@@ -1338,6 +1342,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.9 | Season 3 is serial too (decision 27). Season 3 groundwork: tier 4's Notebook entries for the four new Fallacy Index names (the part and the whole, proportion and number, arguing in a circle, absence of evidence) (§11.2). |
 | v1.8 | The engraving library grows: 35 new subjects (14 kinds of person, 14 places, 9 objects) and second plates for 20 existing subjects; a tag may carry several plates, chosen per case (§13.2). |
 | v1.7 | Season 2 is a serial season, as an experiment: a thread and its people carry from case to case and resolve in the season's last case; each case still stands alone (decision 27, §5). Generation sessions keep their status lines content-free and their deduction slot ids neutral (§14.7). The story so far (§6), the forward button's settle, and the status-bar strip (§13.4). |
 | v1.6 | The engraving library: 112 of 116 catalog tags have a public-domain plate (Paget's Strand illustrations, Cassell's *Old and New London*, Doré, Gross's *Criminal Investigation*, trade catalogues, museum prints). Evidence objects sit in paper medallions in Examine scenes (§13.2). |
