@@ -37,8 +37,8 @@ never see a generated case before playing it.
   the pipeline and the app.
 - `pipeline/` (`@afoot/pipeline`): the `afoot` CLI (`npm run afoot`), the
   motif library (`pipeline/motifs/motifs.yaml`) and generator-side code.
-  `pipeline/src/seasons.ts` says which seasons are serial (Season 2, an
-  experiment: decision 27); every other season is standalone.
+  `pipeline/src/seasons.ts` says which seasons are serial (Seasons 2 and 3:
+  decision 27); every other season is standalone.
 - `.claude/skills/generate-case/`: the procedure a generation session follows;
   `.claude/agents/`: the blind-solver and adversary playtesters.
 - `content/sealed/`: sealed cases, the spoiler-free `index.json`, and the

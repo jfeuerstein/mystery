@@ -90,10 +90,11 @@ describe("serial seasons (decision 27)", () => {
   });
   const sealed = [entry({ season: 2, number: 1, caseId: "s2c1", arc, carry })];
 
-  it("only Season 2 is serial: the experiment leaves the default standalone", () => {
+  it("only Seasons 2 and 3 are serial: the default stays standalone", () => {
     expect(seasonStyle(1)).toEqual({ serial: false, length: 8 });
     expect(seasonStyle(2)).toEqual({ serial: true, length: 8 });
-    expect(seasonStyle(3).serial).toBe(false);
+    expect(seasonStyle(3)).toEqual({ serial: true, length: 8 });
+    expect(seasonStyle(4).serial).toBe(false);
     expect(continuityGates(concept({ season: 1, caseId: "s1c1", arc: undefined, carry: undefined }), [])).toEqual([]);
   });
 

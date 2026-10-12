@@ -150,7 +150,13 @@ Designing each puzzle type (the verifiers will hold you to these):
   `attacking-the-man` (a claim dismissed for its speaker), `two-doors-only`
   (two options offered as the only ones, one ruled out), `slippery-word`
   (one word in two senses across the step), `some-most-all` ("some" or
-  "most" treated as "all", or two "some" statements chained).
+  "most" treated as "all", or two "some" statements chained),
+  `part-and-whole` (what holds of each part claimed for the whole, or of
+  the whole for each part), `proportion-and-number` (a count compared
+  without its total, or a share read as a count), `arguing-in-a-circle`
+  (the conclusion already assumed in a premise, perhaps reworded),
+  `absence-of-evidence` (no sign of a thing taken as proof it never
+  happened, where it need not have left a sign or no one looked).
 - **Missing Link** (`missing-link`, for `unstated-premise`): an argument of
   2–4 sentences whose `premises` (logical form) stop short of `conclusion`.
   Pick a `frame` (`if`, `only-if`, `unless`, `no-one-who`); code gives it its
