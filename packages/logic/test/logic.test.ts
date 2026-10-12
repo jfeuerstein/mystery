@@ -7,6 +7,7 @@ import type {
   MissingLinkPuzzle,
   ObjectionPuzzle,
   ObservationPuzzle,
+  ParallelPuzzle,
   Reconstruction,
 } from "@afoot/schema";
 import { describe, expect, it } from "vitest";
@@ -14,6 +15,7 @@ import {
   checkArrangementAnswer,
   checkChainAnswer,
   checkMissingLinkAnswer,
+  checkParallelAnswer,
   classifyFormalArgument,
   closure,
   compile,
@@ -28,6 +30,7 @@ import {
   verifyMissingLink,
   verifyObjection,
   verifyObservation,
+  verifyParallel,
   verifyReconstruction,
 } from "../src/index.js";
 
@@ -216,6 +219,46 @@ describe("The Arrangement", () => {
     expect(errors).toContain('unknown entity "z"');
     expect(errors).toContain('unknown slot "w"');
   });
+
+  // A schedule (complex arrangements): days in order, several callers a day.
+  const schedule = (overrides: Partial<ArrangementPuzzle> = {}): ArrangementPuzzle => ({
+    type: "arrangement",
+    layout: "schedule",
+    entities: ["holt", "ives", "kerr", "lamb", "moss"].map((id) => ({ id, name: id })),
+    slots: [
+      { id: "mon", label: "Monday", max: 3 },
+      { id: "tue", label: "Tuesday", max: 2 },
+      { id: "wed", label: "Wednesday", max: 1 },
+    ],
+    rules: [
+      { id: "r1", text: "Holt called the day before Kerr.", constraint: { op: "immediately-before", a: "holt", b: "kerr" } },
+      { id: "r2", text: "Ives and Lamb called on the same day.", constraint: { op: "same", a: "ives", b: "lamb" } },
+      { id: "r3", text: "Moss called on an earlier day than Holt.", constraint: { op: "before", a: "moss", b: "holt" } },
+    ],
+    question: { kind: "full" },
+    ...overrides,
+  });
+
+  it("solves a schedule by deduction, counting who already fills a day", () => {
+    // Ives and Lamb can't share Tuesday: it holds two, and Holt is settled there.
+    const result = verifyArrangement(schedule());
+    expect(result.errors).toEqual([]);
+    expect(result.warnings).toEqual([]);
+    expect(solveArrangement(schedule())).toEqual({
+      kind: "full",
+      placements: { holt: "tue", ives: "mon", kerr: "wed", lamb: "mon", moss: "mon" },
+    });
+    const wrong = { holt: "tue", ives: "tue", kerr: "wed", lamb: "tue", moss: "mon" };
+    expect(checkArrangementAnswer(schedule(), { kind: "full", placements: wrong })).toBe(false);
+  });
+
+  it("rejects a schedule that is only an ordering or only a grouping", () => {
+    const p = schedule();
+    const onePerDay = schedule({ entities: p.entities.slice(0, 3), slots: p.slots });
+    expect(verifyArrangement(onePerDay).errors.join()).toContain("only an ordering");
+    const noOrder = schedule({ rules: [p.rules[1]!] });
+    expect(verifyArrangement(noOrder).errors.join()).toContain("only a grouping");
+  });
 });
 
 describe("The Flaw", () => {
@@ -252,6 +295,98 @@ describe("The Flaw", () => {
     expect(verifyFlaw(flaw({ answer: { sentenceId: "s3", flawType: "necessary-as-sufficient" } })).ok).toBe(false);
     const { formal: _, ...rest } = flaw({});
     expect(verifyFlaw(rest).errors.join()).toContain("needs a logical form");
+  });
+});
+
+describe("the Parallel", () => {
+  // The argument affirms the consequent; o2 makes the same error on another
+  // subject, o1 argues validly about the same subject (the surface trap) and
+  // o3 attacks the man.
+  const parallel = (overrides: Partial<ParallelPuzzle>): ParallelPuzzle => ({
+    type: "parallel",
+    speaker: "lestrade",
+    sentences: [
+      { id: "s1", role: "premise", text: "Whoever forged the cheque had the bank's paper." },
+      { id: "s2", role: "premise", text: "Mr. Crane had the bank's paper." },
+      { id: "s3", role: "conclusion", text: "So Mr. Crane forged the cheque." },
+    ],
+    flaw: "necessary-as-sufficient",
+    formal: {
+      premises: [
+        { form: "if", a: "crane-forged", b: "crane-paper" },
+        { form: "fact", literal: "crane-paper" },
+      ],
+      conclusion: "crane-forged",
+    },
+    options: [
+      {
+        id: "o1",
+        text: "Whoever forged the cheque had the bank's paper. Mr. Crane had none, so he did not forge it.",
+        flaw: "valid",
+        formal: {
+          premises: [
+            { form: "if", a: "crane-forged", b: "crane-paper" },
+            { form: "fact", literal: "!crane-paper" },
+          ],
+          conclusion: "!crane-forged",
+        },
+      },
+      {
+        id: "o2",
+        text: "Anyone who rode to the mill got mud on his boots. The miller's boy has mud on his boots, so he rode to the mill.",
+        flaw: "necessary-as-sufficient",
+        formal: {
+          premises: [
+            { form: "if", a: "boy-rode", b: "boy-mud" },
+            { form: "fact", literal: "boy-mud" },
+          ],
+          conclusion: "boy-rode",
+        },
+      },
+      {
+        id: "o3",
+        text: "The curate says the bell rang at nine. But the curate is a gambler, so it did not.",
+        flaw: "attacking-the-man",
+      },
+    ],
+    answer: { optionId: "o2" },
+    ...overrides,
+  });
+
+  it("accepts one option with the same error and others that go wrong differently", () => {
+    const result = verifyParallel(parallel({}));
+    expect(result.errors).toEqual([]);
+    expect(result.metrics.options).toBe(3);
+    expect(checkParallelAnswer(parallel({}), { optionId: "o2" })).toBe(true);
+    expect(checkParallelAnswer(parallel({}), { optionId: "o1" })).toBe(false);
+  });
+
+  it("rejects an answer that commits a different error, or a second match", () => {
+    expect(verifyParallel(parallel({ answer: { optionId: "o3" } })).errors.join()).toContain('commits "attacking-the-man"');
+    const p = parallel({});
+    const twice = parallel({ options: [...p.options, { ...p.options[1]!, id: "o4" }] });
+    expect(verifyParallel(twice).errors.join()).toContain("2 options commit");
+  });
+
+  it("rejects a puzzle whose other options are all valid", () => {
+    const p = parallel({});
+    const valid = { ...p.options[0]!, id: "o3" };
+    expect(verifyParallel(parallel({ options: [p.options[0]!, p.options[1]!, valid] })).errors.join()).toContain("merely the flawed one");
+  });
+
+  it("checks every logical form against the error it is said to commit", () => {
+    const p = parallel({});
+    // o1 is labelled as the same error, but its form is valid.
+    const mislabelled = parallel({ options: [{ ...p.options[0]!, flaw: "sufficient-as-necessary" }, p.options[1]!, p.options[2]!] });
+    expect(verifyParallel(mislabelled).errors.join()).toContain('option "o1"\'s logical form reads as "valid"');
+    const { formal: _, ...bare } = p.options[1]!;
+    expect(verifyParallel(parallel({ options: [p.options[0]!, bare, p.options[2]!] })).errors.join()).toContain("needs a logical form");
+  });
+
+  it("rejects an unknown answer and duplicate ids", () => {
+    expect(verifyParallel(parallel({ answer: { optionId: "o9" } })).ok).toBe(false);
+    const p = parallel({});
+    expect(verifyParallel(parallel({ options: [p.options[0]!, { ...p.options[1]!, id: "o1" }, p.options[2]!] })).ok).toBe(false);
   });
 });
 

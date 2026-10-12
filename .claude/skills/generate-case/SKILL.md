@@ -157,6 +157,16 @@ Designing each puzzle type (the verifiers will hold you to these):
   (the conclusion already assumed in a premise, perhaps reworded),
   `absence-of-evidence` (no sign of a thing taken as proof it never
   happened, where it need not have left a sign or no one looked).
+- **Parallel** (`parallel`, for `parallel-errors`): the speaker's argument
+  (2–5 `sentences` as for a Flaw, `flaw` naming its error, `formal` for the
+  formal types) and 3–5 `options`: short arguments from Holmes' commonplace
+  book on other subjects, each with the `flaw` it commits or `valid`.
+  Exactly one option commits the argument's error, and at least one other
+  commits a different one (the verifier checks both). Make one wrong option
+  share the argument's subject but reason differently (the surface trap).
+  Give `formal` to every option of a formal type, and to `valid` options
+  where you can, so code confirms them. Every error used must be in the
+  curriculum's `flawTypes`, and the variant lists `parallel-errors`.
 - **Missing Link** (`missing-link`, for `unstated-premise`): an argument of
   2–4 sentences whose `premises` (logical form) stop short of `conclusion`.
   Pick a `frame` (`if`, `only-if`, `unless`, `no-one-who`); code gives it its
@@ -180,6 +190,13 @@ Designing each puzzle type (the verifiers will hold you to these):
 - **Arrangement**: rules must solve by elimination with no guessing and no
   redundant rule (the verifier checks both). Rule text must say exactly what
   the constraint says ("immediately after" is `immediately-before` reversed).
+  The board shows each slot's capacity (`min`/`max`, "at most 3"), so rules
+  needn't repeat it. The `schedule` layout (for `complex-arrangements`,
+  which the variant then lists) puts people into groups that come in order:
+  days, floors, carriages. It needs more people than groups and at least
+  one rule about order; `before`, `immediately-before`, `adjacent` and
+  `not-adjacent` compare groups ("on an earlier day than", "the day
+  before").
 - **Reconstruction**: 4–8 blanks covering who, when, how, why and the trick;
   each blank's `establishedBy` names the deductions or clues that prove it;
   the word bank holds every right answer once plus plausible wrong ones from

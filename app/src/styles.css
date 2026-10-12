@@ -1473,6 +1473,13 @@ button {
   color: var(--palace-dim);
 }
 
+.slot-row .slot-cap {
+  display: block;
+  font-size: 0.75em;
+  font-variant: normal;
+  font-style: italic;
+}
+
 .slot-row .chip {
   animation: place 300ms var(--ease) both;
 }

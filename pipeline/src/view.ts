@@ -9,7 +9,7 @@ import {
   type FlawType,
   type Orientation,
 } from "@afoot/schema";
-import { fillFrame } from "@afoot/logic";
+import { capacityText, fillFrame } from "@afoot/logic";
 
 export type Target = { slot: string; variant: string } | "finale";
 
@@ -199,6 +199,23 @@ export function playerView(c: Case, target: Target, flawOptions: readonly FlawTy
         'Reply with JSON only: {"steps": [{"card": "<fact id>"}, {"card": "<id>", "reading": <1-4>}, ...]}',
       );
       break;
+    case "parallel":
+      out.push(`## ${name(p.speaker)}'s argument`);
+      for (const s of p.sentences) out.push(`- ${s.text}`);
+      out.push("", "## From Holmes' commonplace book");
+      for (const o of p.options) out.push(`- [${o.id}] ${o.text}`);
+      out.push("", "## The Fallacy Index (for reference)");
+      for (const f of flawOptions) {
+        const e = entryById(f);
+        if (e) out.push(`- ${e.title}: ${e.plain}`);
+      }
+      out.push(
+        "",
+        `Choose the argument from the commonplace book that goes wrong in the same way as ${name(p.speaker)}'s.`,
+        "## How to answer",
+        'Reply with JSON only: {"optionId": "<id>"}',
+      );
+      break;
     case "missing-link": {
       out.push(`## ${name(p.speaker)}'s argument`);
       for (const s of p.sentences) out.push(`- ${s.text}`);
@@ -223,8 +240,12 @@ export function playerView(c: Case, target: Target, flawOptions: readonly FlawTy
       p.rules.forEach((r, i) => out.push(`${i + 1}. ${r.text}`));
       out.push("", "## People");
       for (const e of p.entities) out.push(`- [${e.id}] ${e.name}`);
-      out.push("", `## ${p.layout === "ordering" ? "Positions, in order" : "Places"}`);
-      for (const s of p.slots) out.push(`- [${s.id}] ${s.label}`);
+      const heading = { ordering: "Positions, in order", grouping: "Places", schedule: "Groups, in order" }[p.layout];
+      out.push("", `## ${heading}`);
+      for (const s of p.slots) {
+        const cap = capacityText(s);
+        out.push(`- [${s.id}] ${s.label}${cap ? ` (${cap})` : ""}`);
+      }
       const q = p.question;
       out.push("", "## How to answer");
       if (q.kind === "full") {
