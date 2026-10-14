@@ -158,6 +158,22 @@ async function main() {
   await shot(page, "title");
   await page.getByTestId("begin").click();
   await shot(page, "casebook");
+  // Skipping a case (decision 28): only the open case offers it, behind a
+  // confirmation. Keeping the case changes nothing; skipping it opens the
+  // next, and the skipped case stays playable: it is played below, and graded.
+  const sealedAtStart = await page.locator(".folder.locked").count();
+  if (sealedAtStart > 0) {
+    await page.getByTestId("skip-case").click();
+    await page.getByTestId("skip-confirm").waitFor();
+    await shot(page, "skip-confirm");
+    await page.getByTestId("skip-cancel").click();
+    await page.getByTestId("skip-confirm").waitFor({ state: "detached" });
+    if ((await page.locator(".folder.locked").count()) !== sealedAtStart) throw new Error("keeping a case still opened the next");
+    await page.getByTestId("skip-case").click();
+    await page.getByTestId("skip-ok").click();
+    await page.getByTestId("skip-confirm").waitFor({ state: "detached" });
+    if ((await page.locator(".folder.locked").count()) !== sealedAtStart - 1) throw new Error("skipping a case did not open the next");
+  }
   await page.getByTestId("case-stopped-clock").click();
 
   // Chapter I
@@ -320,6 +336,9 @@ async function main() {
   if (grade !== "workmanlike") throw new Error(`expected a Workmanlike grade, got ${grade}`);
   await page.getByTestId("continue").click();
   await shot(page, "casebook-after");
+  // The skipped sample, played after all, is graded like any other case.
+  const sample = await page.getByTestId("case-stopped-clock").textContent();
+  if (!sample.includes("Best: workmanlike") || sample.includes("Skipped")) throw new Error(`the sample's folder reads: ${sample}`);
 
   // Holmes' Ledger: the finished case's deductions are counted.
   await page.getByRole("button", { name: "Holmes’ Ledger" }).click();

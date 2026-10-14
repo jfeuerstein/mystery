@@ -29,6 +29,8 @@ type SaveData = {
   stats: Attempt[];
   /** Mind Palace rooms whose one-time guide has been read (§11.2). */
   seenRooms: string[];
+  /** Cases skipped from the Casebook, which open the next case as a solved one does (decision 28). */
+  skipped: string[];
 };
 
 const DEFAULT_SETTINGS: Settings = { textSize: "normal", candle: false, music: 0.6, sfx: 0.8 };
@@ -47,6 +49,8 @@ type State = SaveData & {
   recordAttempt: (attempt: Attempt) => void;
   markRoomSeen: (room: string) => void;
   completeCase: () => void;
+  /** Skips the Casebook's open case, opening the next (decision 28). */
+  skipCase: (caseId: string) => void;
   setSettings: (s: Partial<Settings>) => void;
   resetProgress: () => void;
   importSave: (data: unknown) => boolean;
@@ -66,6 +70,7 @@ const blankSave = (): SaveData => ({
   settings: { ...DEFAULT_SETTINGS },
   stats: [],
   seenRooms: [],
+  skipped: [],
 });
 
 export function caseById(id: string): Case {
@@ -118,14 +123,27 @@ export const useGame = create<State>()(
         if (!seenRooms.includes(room)) setState({ seenRooms: [...seenRooms, room] });
       },
       completeCase: () => {
-        const { activeCase, progress, grades } = getState();
+        const { activeCase, progress, grades, skipped } = getState();
         const p = activeCase ? progress[activeCase] : undefined;
         if (!activeCase || !p || p.stage.kind !== "account") return;
         const g = engine.grade(p);
         const order: Grade[] = ["untidy", "workmanlike", "masterful"];
         const best = grades[activeCase];
         const keep = best && order.indexOf(best) > order.indexOf(g) ? best : g;
-        setState({ grades: { ...grades, [activeCase]: keep }, screen: "casebook", activeCase: null });
+        setState({
+          grades: { ...grades, [activeCase]: keep },
+          // A skipped case played after all is graded like any other.
+          skipped: skipped.filter((id) => id !== activeCase),
+          screen: "casebook",
+          activeCase: null,
+        });
+      },
+      skipCase: (caseId) => {
+        const { grades, skipped, unlock } = getState();
+        if (engine.skippableCase(allCases(), grades, skipped) !== caseId) return;
+        setState({ skipped: [...skipped, caseId] });
+        // The Notebook opens what the case would have taught, so later cases find their entries there.
+        unlock(engine.caseConcepts(caseById(caseId)));
       },
       setSettings: (s) => setState({ settings: { ...getState().settings, ...s } }),
       resetProgress: () => setState({ ...blankSave(), screen: "title", activeCase: null }),
@@ -144,7 +162,13 @@ export const useGame = create<State>()(
       // Older saves lack the ledger and the newer settings.
       migrate: (persisted) => {
         const p = (persisted ?? {}) as Partial<SaveData>;
-        return { ...p, stats: p.stats ?? [], seenRooms: p.seenRooms ?? [], settings: { ...DEFAULT_SETTINGS, ...p.settings } };
+        return {
+          ...p,
+          stats: p.stats ?? [],
+          seenRooms: p.seenRooms ?? [],
+          skipped: p.skipped ?? [],
+          settings: { ...DEFAULT_SETTINGS, ...p.settings },
+        };
       },
       merge: (persisted, current) => {
         const p = (persisted ?? {}) as Partial<SaveData>;
@@ -154,6 +178,7 @@ export const useGame = create<State>()(
           settings: { ...DEFAULT_SETTINGS, ...p.settings },
           stats: p.stats ?? [],
           seenRooms: p.seenRooms ?? [],
+          skipped: p.skipped ?? [],
         };
       },
       partialize: (s): SaveData & { activeCase: string | null } => ({
@@ -163,6 +188,7 @@ export const useGame = create<State>()(
         settings: s.settings,
         stats: s.stats,
         seenRooms: s.seenRooms,
+        skipped: s.skipped,
         activeCase: s.activeCase,
       }),
       onRehydrateStorage: () => () => useGame.setState({ hydrated: true }),
@@ -170,15 +196,13 @@ export const useGame = create<State>()(
   ),
 );
 
-/** Cases unlock strictly in order (decision 20). */
-export function isUnlocked(caseIndex: number, grades: Record<string, Grade>): boolean {
-  if (caseIndex === 0) return true;
-  const previous = allCases()[caseIndex - 1];
-  return previous !== undefined && grades[previous.id] !== undefined;
+/** Cases unlock strictly in order (decision 20); a skipped case counts as closed (decision 28). */
+export function isUnlocked(caseIndex: number, grades: Record<string, Grade>, skipped: readonly string[]): boolean {
+  return engine.isCaseOpen(caseIndex, allCases(), grades, skipped);
 }
 
 /** The whole save as JSON, for Export Save (§15.3). */
 export function exportSave(): string {
-  const { progress, grades, unlocked, settings, stats, seenRooms } = useGame.getState();
-  return JSON.stringify({ version: 2, progress, grades, unlocked, settings, stats, seenRooms }, null, 2);
+  const { progress, grades, unlocked, settings, stats, seenRooms, skipped } = useGame.getState();
+  return JSON.stringify({ version: 2, progress, grades, unlocked, settings, stats, seenRooms, skipped }, null, 2);
 }
