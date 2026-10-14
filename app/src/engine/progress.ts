@@ -1,6 +1,6 @@
 // The game engine as pure functions over a serializable progress record.
 // GAME_DESIGN.md §5 (structure), §6 (core loop), §9 (Patience and grading).
-import { PATIENCE_PER_CHAPTER, type Beat, type Case, type DeductionSlot, type Puzzle } from "@afoot/schema";
+import { PATIENCE_PER_CHAPTER, type Beat, type Case, type ConceptId, type DeductionSlot, type Puzzle } from "@afoot/schema";
 
 export type BeatPhase =
   | { kind: "narration"; paragraph: number }
@@ -354,4 +354,47 @@ export function patienceHolderPerson(c: Case, p: CaseProgress) {
 
 export function patienceHolder(c: Case, p: CaseProgress): string {
   return patienceHolderPerson(c, p).name;
+}
+
+// ---------------------------------------------------------------------------
+// The Casebook: which cases are open (decision 20) and skipping one (decision 28)
+// ---------------------------------------------------------------------------
+
+/**
+ * Cases open strictly in order: a case opens once the one before it is
+ * closed, by a grade or by being skipped.
+ */
+export function isCaseOpen(
+  index: number,
+  cases: readonly Case[],
+  grades: Readonly<Record<string, Grade>>,
+  skipped: readonly string[],
+): boolean {
+  if (index === 0) return true;
+  const previous = cases[index - 1];
+  return previous !== undefined && (grades[previous.id] !== undefined || skipped.includes(previous.id));
+}
+
+/**
+ * The one case that may be skipped: the first case neither graded nor
+ * skipped, so long as another case follows it to open.
+ */
+export function skippableCase(
+  cases: readonly Case[],
+  grades: Readonly<Record<string, Grade>>,
+  skipped: readonly string[],
+): string | undefined {
+  const index = cases.findIndex((c) => grades[c.id] === undefined && !skipped.includes(c.id));
+  return index >= 0 && index < cases.length - 1 ? cases[index]!.id : undefined;
+}
+
+/** Every concept a case teaches or draws on: what playing it would open in the Notebook. */
+export function caseConcepts(c: Case): ConceptId[] {
+  const all = new Set<ConceptId>([...(c.concepts.introduces ? [c.concepts.introduces] : []), ...c.concepts.reinforces]);
+  for (const chapter of c.chapters) {
+    for (const beat of chapter.beats) {
+      if (beat.kind === "deduction") for (const v of beat.slot.variants) for (const concept of v.concepts) all.add(concept);
+    }
+  }
+  return [...all];
 }

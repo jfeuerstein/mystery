@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { audio, AUDIO_MANIFEST } from "./audio/director";
 import { allCases, loadSealedCases } from "./content";
 import { formatDuration, summarize } from "./engine/ledger";
+import { skippableCase } from "./engine/progress";
 import { caseById, exportSave, isUnlocked, useGame } from "./engine/store";
 import { CaseView } from "./screens/CaseView";
-import { ART, Corner, GradeSeal, Ornament } from "./ui/common";
+import { ART, Corner, GradeSeal, Ornament, Sheet } from "./ui/common";
 import { platesOf } from "./ui/plates";
 import { Back, Cog, Ledger as LedgerIcon } from "./ui/icons";
 
@@ -91,8 +92,38 @@ function Title() {
   );
 }
 
+const caseLabel = (c: { season: number; number: number }) => (c.season === 0 ? "The sample case" : `Season ${c.season} · No. ${c.number}`);
+
+/** Asks before a case is skipped (decision 28). */
+function SkipConfirm(props: { label: string; onSkip: () => void; onKeep: () => void }) {
+  return (
+    <Sheet onClose={props.onKeep}>
+      <div data-testid="skip-confirm">
+        <h2 className="display" style={{ margin: "0 0 4px", textAlign: "center" }}>
+          Skip this case?
+        </h2>
+        <p className="muted smallcaps" style={{ textAlign: "center", marginTop: 0 }}>
+          {props.label}
+        </p>
+        <p>The next case will open as though you had closed this one. It is meant for a Casebook whose progress was lost.</p>
+        <p>This case stays in the Casebook, to play whenever you like; it earns no grade until you do. Its Notebook entries open now.</p>
+        <div className="btn-row" style={{ marginTop: 18 }}>
+          <button className="btn" onClick={props.onKeep} data-testid="skip-cancel">
+            Keep it
+          </button>
+          <button className="btn" onClick={props.onSkip} data-testid="skip-ok">
+            Skip it
+          </button>
+        </div>
+      </div>
+    </Sheet>
+  );
+}
+
 function Casebook() {
-  const { grades, progress, openCase, go } = useGame();
+  const { grades, progress, skipped, openCase, skipCase, go } = useGame();
+  const [confirming, setConfirming] = useState<string>();
+  const skippable = skippableCase(allCases(), grades, skipped);
   return (
     <>
       <div className="header">
@@ -111,38 +142,70 @@ function Casebook() {
       </div>
       <div className="list page">
         {allCases().map((c, i) => {
-          const unlocked = isUnlocked(i, grades);
+          const unlocked = isUnlocked(i, grades, skipped);
           const p = progress[c.id];
           const inProgress = p && p.stage.kind !== "account";
           const grade = grades[c.id];
-          const label = c.season === 0 ? "The sample case" : `Season ${c.season} · No. ${c.number}`;
+          const label = caseLabel(c);
+          const status = grade
+            ? `Best: ${grade}`
+            : skipped.includes(c.id)
+              ? inProgress
+                ? "Skipped · in progress"
+                : "Skipped"
+              : inProgress
+                ? "In progress"
+                : unlocked
+                  ? "Unopened"
+                  : "Opens when the case before it is closed";
           return (
-            <button
-              key={c.id}
-              className={`folder ${unlocked ? "" : "locked"}`}
-              style={{ animationDelay: `${i * 70}ms` }}
-              disabled={!unlocked}
-              onClick={() => openCase(c.id)}
-              data-testid={`case-${c.id}`}
-            >
-              <span className="tab">{label}</span>
-              {!unlocked && <span className="twine" aria-hidden="true" />}
-              <div className="display" style={{ fontSize: "1.2em", paddingRight: grade || !unlocked ? 64 : 0 }}>
-                {/* A sealed case's title stays hidden until it unlocks. */}
-                {unlocked ? c.title : "Sealed"}
-              </div>
-              <div className="muted" style={{ fontSize: "0.9em", fontStyle: "italic" }}>
-                {grade ? `Best: ${grade}` : inProgress ? "In progress" : unlocked ? "Unopened" : "Opens when the case before it is closed"}
-              </div>
-              {grade && <GradeSeal grade={grade} />}
-              {!unlocked && <span className="stamp">SEALED</span>}
-            </button>
+            <Fragment key={c.id}>
+              <button
+                className={`folder ${unlocked ? "" : "locked"}`}
+                style={{ animationDelay: `${i * 70}ms` }}
+                disabled={!unlocked}
+                onClick={() => openCase(c.id)}
+                data-testid={`case-${c.id}`}
+              >
+                <span className="tab">{label}</span>
+                {!unlocked && <span className="twine" aria-hidden="true" />}
+                <div className="display" style={{ fontSize: "1.2em", paddingRight: grade || !unlocked ? 64 : 0 }}>
+                  {/* A sealed case's title stays hidden until it unlocks. */}
+                  {unlocked ? c.title : "Sealed"}
+                </div>
+                <div className="muted" style={{ fontSize: "0.9em", fontStyle: "italic" }}>
+                  {status}
+                </div>
+                {grade && <GradeSeal grade={grade} />}
+                {!unlocked && <span className="stamp">SEALED</span>}
+              </button>
+              {c.id === skippable && (
+                <button
+                  className="link skip-case"
+                  style={{ animationDelay: `${i * 70 + 120}ms` }}
+                  onClick={() => setConfirming(c.id)}
+                  data-testid="skip-case"
+                >
+                  Skip this case
+                </button>
+              )}
+            </Fragment>
           );
         })}
         <p className="muted" style={{ textAlign: "center", fontSize: "0.9em", fontStyle: "italic" }}>
           {allCases().length === 1 ? "New cases will appear here, one at a time." : "Cases open one at a time, in order."}
         </p>
       </div>
+      {confirming && (
+        <SkipConfirm
+          label={caseLabel(caseById(confirming))}
+          onKeep={() => setConfirming(undefined)}
+          onSkip={() => {
+            skipCase(confirming);
+            setConfirming(undefined);
+          }}
+        />
+      )}
     </>
   );
 }

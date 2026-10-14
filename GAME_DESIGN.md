@@ -3,7 +3,7 @@
 > *"You see, but you do not observe. The distinction is clear."*
 > — *A Scandal in Bohemia*
 
-**Status:** v1.12. Written from a design interview, October 2026
+**Status:** v1.13. Written from a design interview, October 2026
 **Platform:** iPhone (installable web app / PWA), portrait only
 **Audience:** One player (personal project, never distributed)
 
@@ -113,7 +113,7 @@ Every design decision from the interview and the revisions that followed, with t
 | 17 | Audio | **Violin music and violin sound effects**, no voice | Atmosphere without narration cost. Revised in v1.4: public-domain string recordings for the music and violin samples for the effects; no location ambience. |
 | 18 | LSAT fidelity | **The concepts only; the test is never named in the app** | The mystery comes first. LSAT concepts inform design, and an internal tag system powers adaptivity, but play should not feel related to the test. Revised in v1.4: the Notebook's glossary shows each concept's classic name from the logic books instead of the test's category name, and a test fails the build if the word appears in the app, schema, logic package or fixtures. |
 | 19 | Title | **The Game Is Afoot** | Chosen by the player. |
-| 20 | Case order | **Strictly sequential**, one open case at a time | Keeps the curriculum and adaptive tuning in a fixed order. |
+| 20 | Case order | **Strictly sequential**, one open case at a time | Keeps the curriculum and adaptive tuning in a fixed order. The open case may be skipped to recover lost progress (decision 28). |
 | 21 | Wrong-answer feedback | **None**: a miss costs one Patience and reveals nothing | Purist, consistent with decision 8. Guessing teaches nothing. |
 | 22 | Patience budget | **3 per chapter**, 3 for the finale, for every patience-holder | Confirmed by the player after the first draft. |
 | 23 | Art source | **Public-domain engravings only**, with no AI image generation | Authentic period look. The pipeline writes cases to fit the art catalog. |
@@ -121,6 +121,7 @@ Every design decision from the interview and the revisions that followed, with t
 | 25 | Generation runner | **Claude Code sessions on the player's existing subscription**, not the Claude API | No per-case cost. The writing steps run in a session that follows a repo skill, and the code checks stay the same. |
 | 26 | Reading Comprehension | **Out of scope**, not planned for any season | Keeps the game focused on argument, conditional and ordering logic. Documents (letters, wills, newspaper columns) remain clue sources only. |
 | 27 | Seasons 2 and 3 | **A serial season, as an experiment:** one thread and its people carry from case to case and resolve in the season's last case (§5) | Proposed by the player, to try more carry-over between cases. Seasons stay standalone by default; each case keeps its own culprit and is solved from its own text. Season 3 keeps it, at the player's request (v1.9), with a new thread of its own. |
+| 28 | Skipping a case | **The Casebook's open case can be skipped**, after a confirmation; the next case opens as though it were closed (§5) | Proposed by the player, to recover a Casebook whose progress was lost. Order stays strict otherwise: only the open case can be skipped, and never the last. The skipped case stays playable and earns its grade if played; its Notebook entries open at once, so later cases find the names they need. |
 
 ---
 
@@ -174,7 +175,7 @@ Season (a sealed batch of ~8 cases)
 
 | Unit | Size | Notes |
 |------|------|-------|
-| **Season** | 6–10 cases | One sealed content bundle. **Strictly sequential:** only one unsolved case is open at a time, and the next unlocks when the current one is solved. Replaying finished cases is allowed. |
+| **Season** | 6–10 cases | One sealed content bundle. **Strictly sequential:** only one unsolved case is open at a time, and the next unlocks when the current one is solved, or skipped from the Casebook (decision 28). Replaying finished cases is allowed. |
 | **Case** | 3–4 chapters, 6–10 deductions | One self-contained mystery (in a serial season, one that also carries the season's thread). |
 | **Chapter** | 5–10 minutes, 2–3 deductions | The unit of failure (decision 7) and a natural stopping point. |
 | **Beat** | 30 seconds to 3 minutes | The unit of autosave. Closing the app mid-beat resumes at the start of that beat. |
@@ -1363,6 +1364,7 @@ name from the logic books (`term` in `packages/schema/src/notebook.ts`).
 | v0.3 | Public-domain engravings only, no Moriarty storyline (decisions 23–24). |
 | v0.4 | Generation moved from the Claude API to Claude Code sessions, with a spoiler protocol (decision 25). |
 | v1.0 | Reading Comprehension ruled out (decision 26). Polish pass: cross-references fixed, Mind Palace exit clarified, remaining inconsistencies removed. Final. |
+| v1.13 | The Casebook's open case can be skipped, after a confirmation, to recover lost progress (decision 28). |
 | v1.12 | Reading on a long page brings the new paragraph into view above the bottom bar, and a stuck bottom bar keeps its button clear of the screen's edge (§13.4). |
 | v1.11 | The engraving library's second round: 61 new plates (second plates for 24 portraits, 17 scenes and 10 objects; first plates for 10 new subjects), 228 in all (§13.2). Candidates whose legible lettering could read as a clue were turned away. |
 | v1.10 | Tier 4 complete. The Parallel, a Flaw turned about: choose the argument from Holmes' commonplace book that goes wrong the same way (§8.2). The schedule layout for complex arrangements: ordered groups with capacities (§8.5). The Map Room and the blind solvers' view show each group's capacity. Notebook entries for parallel errors and complex arrangements. |

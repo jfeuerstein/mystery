@@ -6,6 +6,7 @@ import {
   ask,
   availableTopics,
   canAdvance,
+  caseConcepts,
   currentBeat,
   currentSlot,
   declare,
@@ -14,10 +15,12 @@ import {
   finish,
   grade,
   inspect,
+  isCaseOpen,
   nextParagraph,
   puzzleFor,
   restartChapter,
   restartFinale,
+  skippableCase,
   startCase,
   storySoFar,
   type CaseProgress,
@@ -178,5 +181,34 @@ describe("the story so far", () => {
     for (let i = 0; i < 3; i++) p = declare(c, p, false);
     expect(p.stage.kind).toBe("cold");
     expect(storySoFar(c, p).filter((x) => x.kind === "chapter")).toEqual([{ kind: "chapter", number: 0, title: "The Client" }]);
+  });
+});
+
+describe("the Casebook (decisions 20 and 28)", () => {
+  // Three cases in a row, as a season reads in the Casebook.
+  const cases = ["a", "b", "c"].map((id) => ({ ...c, id }));
+
+  it("opens cases strictly in order, a skipped case counting as closed", () => {
+    expect(cases.map((_, i) => isCaseOpen(i, cases, {}, []))).toEqual([true, false, false]);
+    expect(cases.map((_, i) => isCaseOpen(i, cases, { a: "untidy" }, []))).toEqual([true, true, false]);
+    expect(cases.map((_, i) => isCaseOpen(i, cases, {}, ["a"]))).toEqual([true, true, false]);
+    expect(cases.map((_, i) => isCaseOpen(i, cases, { b: "masterful" }, ["a"]))).toEqual([true, true, true]);
+  });
+
+  it("lets only the open case be skipped, and never the last", () => {
+    expect(skippableCase(cases, {}, [])).toBe("a");
+    expect(skippableCase(cases, { a: "workmanlike" }, [])).toBe("b");
+    expect(skippableCase(cases, {}, ["a"])).toBe("b");
+    // The last case has nothing after it to open.
+    expect(skippableCase(cases, { a: "untidy" }, ["b"])).toBeUndefined();
+    expect(skippableCase(cases, { a: "untidy", b: "untidy", c: "untidy" }, [])).toBeUndefined();
+  });
+
+  it("knows every concept a case would open in the Notebook", () => {
+    const concepts = caseConcepts(c);
+    for (const concept of c.concepts.reinforces) expect(concepts).toContain(concept);
+    const used = c.chapters.flatMap((ch) => ch.beats.flatMap((b) => (b.kind === "deduction" ? b.slot.variants.flatMap((v) => v.concepts) : [])));
+    for (const concept of used) expect(concepts).toContain(concept);
+    expect(new Set(concepts).size).toBe(concepts.length);
   });
 });
